@@ -1,53 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
-// Types
-interface Blog {
-  _id: string;
-  title: string;
-  slug: string;
-  content: string;
-  excerpt: string;
-  author: string;
-  category: string;
-  tags: string[];
-  featuredImage?: string;
-  status: string;
-  featured: boolean;
-  publishedAt?: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface CreateBlogData {
-  title: string;
-  slug?: string;
-  content: string;
-  excerpt: string;
-  author: string;
-  category: string;
-  tags: string[];
-  featuredImage?: string;
-  status: string;
-  featured?: boolean;
-}
-
-interface UpdateBlogData extends Partial<CreateBlogData> {
-  _id: string;
-}
-
-interface BlogsResponse {
-  success: boolean;
-  data: Blog[];
-  total: number;
-  page: number;
-  limit: number;
-  totalPages: number;
-}
-
-interface BlogResponse {
-  success: boolean;
-  data: Blog;
-}
+import { api } from "@/lib/privateAxios";
+import {
+  CreateBlogData,
+  UpdateBlogData,
+  BlogsResponse,
+  BlogResponse,
+} from "@/lib/types/blog";
 
 // Query Keys
 export const blogKeys = {
@@ -81,11 +39,10 @@ export const useGetBlogs = (params?: {
         });
       }
 
-      const response = await fetch(`/api/blogs?${searchParams.toString()}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch blogs");
-      }
-      return response.json();
+      const response = await api.get<BlogsResponse>(
+        `/api/blogs?${searchParams.toString()}`
+      );
+      return response.data;
     },
   });
 };
@@ -94,11 +51,8 @@ export const useGetBlog = (id: string) => {
   return useQuery<BlogResponse>({
     queryKey: blogKeys.detail(id),
     queryFn: async () => {
-      const response = await fetch(`/api/blogs/${id}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch blog");
-      }
-      return response.json();
+      const response = await api.get<BlogResponse>(`/api/blogs/${id}`);
+      return response.data;
     },
     enabled: !!id,
   });
@@ -109,18 +63,8 @@ export const useCreateBlog = () => {
 
   return useMutation<BlogResponse, Error, CreateBlogData>({
     mutationFn: async (data) => {
-      const response = await fetch("/api/blogs", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to create blog");
-      }
-      return response.json();
+      const response = await api.post<BlogResponse>("/api/blogs", data);
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: blogKeys.lists() });
@@ -134,18 +78,68 @@ export const useUpdateBlog = () => {
   return useMutation<BlogResponse, Error, UpdateBlogData>({
     mutationFn: async (data) => {
       const { _id, ...updateData } = data;
-      const response = await fetch(`/api/blogs/${_id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updateData),
-      });
+      const response = await api.patch<BlogResponse>(
+        `/api/blogs/${_id}`,
+        updateData
+      );
+      return response.data;
+    },
+    onMutate: async (newData) => {
+      // Cancel any outgoing refetches
+      await queryClient.cancelQueries({ queryKey: blogKeys.lists() });
 
-      if (!response.ok) {
-        throw new Error("Failed to update blog");
+      // Snapshot all previous queries
+      const previousQueries: Array<{
+        queryKey: readonly unknown[];
+        data: BlogsResponse | undefined;
+      }> = [];
+
+      // Get all matching queries and snapshot them
+      queryClient
+        .getQueryCache()
+        .findAll({ queryKey: blogKeys.lists() })
+        .forEach((query) => {
+          const data = queryClient.getQueryData<BlogsResponse>(query.queryKey);
+          previousQueries.push({ queryKey: [...query.queryKey], data });
+
+          // Optimistically update each matching query - only update the featured field
+          if (data) {
+            queryClient.setQueryData<BlogsResponse>(query.queryKey, {
+              ...data,
+              data: data.data.map((blog) =>
+                blog._id === newData._id
+                  ? { ...blog, featured: newData.featured ?? blog.featured }
+                  : blog
+              ),
+            });
+          }
+        });
+
+      // Return context with the snapshotted values
+      return { previousQueries };
+    },
+    onError: (err, newData, context) => {
+      // If the mutation fails, roll back all queries
+      if (
+        context &&
+        typeof context === "object" &&
+        context !== null &&
+        "previousQueries" in context
+      ) {
+        const ctx = context as {
+          previousQueries: Array<{
+            queryKey: readonly unknown[];
+            data: BlogsResponse | undefined;
+          }>;
+        };
+        if (Array.isArray(ctx.previousQueries)) {
+          ctx.previousQueries.forEach((item) => {
+            if (item.data) {
+              queryClient.setQueryData(item.queryKey, item.data);
+            }
+          });
+        }
       }
-      return response.json();
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: blogKeys.lists() });
@@ -161,14 +155,10 @@ export const useDeleteBlog = () => {
 
   return useMutation<{ success: boolean }, Error, string>({
     mutationFn: async (id) => {
-      const response = await fetch(`/api/blogs/${id}`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to delete blog");
-      }
-      return response.json();
+      const response = await api.delete<{ success: boolean }>(
+        `/api/blogs/${id}`
+      );
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: blogKeys.lists() });
@@ -185,18 +175,12 @@ export const useBulkUpdateBlogs = () => {
     { ids: string[]; action: string; data?: Record<string, unknown> }
   >({
     mutationFn: async ({ ids, action, data }) => {
-      const response = await fetch("/api/blogs", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ids, action, ...data }),
+      const response = await api.put<{ success: boolean }>("/api/blogs", {
+        ids,
+        action,
+        ...data,
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to bulk update blogs");
-      }
-      return response.json();
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: blogKeys.lists() });

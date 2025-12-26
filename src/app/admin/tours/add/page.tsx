@@ -2,7 +2,12 @@
 import React, { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { CreateTourData } from "@/lib/types/tour";
-import { useCreateTour, useNotification, useForm } from "@/lib/hooks";
+import {
+  useCreateTour,
+  useNotification,
+  useForm,
+  useGetCategories,
+} from "@/lib/hooks";
 import {
   TourStatus,
   TOUR_STATUS_OPTIONS,
@@ -30,6 +35,16 @@ const AddTour = () => {
   const { showSuccess, showError } = useNotification();
   const slugManuallyEditedRef = useRef(false);
   const metaTitleManuallyEditedRef = useRef(false);
+
+  // Fetch categories for the select dropdown
+  const { data: categoriesData } = useGetCategories({ limit: 1000 });
+  const categoryOptions = React.useMemo(() => {
+    const categories = categoriesData?.data || [];
+    return categories.map((cat) => ({
+      value: cat.name,
+      label: cat.name,
+    }));
+  }, [categoriesData]);
 
   const form = useForm<CreateTourData>({
     initialValues: {
@@ -177,16 +192,9 @@ const AddTour = () => {
                 label="Category"
                 {...form.getFieldProps("category")}
                 placeholder="Select Category"
-                data={[
-                  { value: "Adventure", label: "Adventure" },
-                  { value: "Cultural", label: "Cultural" },
-                  { value: "City Tour", label: "City Tour" },
-                  { value: "Beach", label: "Beach" },
-                  { value: "Mountain", label: "Mountain" },
-                  { value: "Nature", label: "Nature" },
-                  { value: "Relaxation", label: "Relaxation" },
-                ]}
+                data={categoryOptions}
                 required
+                searchable
               />
 
               <NumberInput

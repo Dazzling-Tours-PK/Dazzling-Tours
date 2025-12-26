@@ -7,6 +7,7 @@ import {
   useUpdateTour,
   useNotification,
   useForm,
+  useGetCategories,
 } from "@/lib/hooks";
 import {
   TourStatus,
@@ -38,6 +39,16 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
 
   const tour = data?.data;
   const initializedRef = useRef(false);
+
+  // Fetch categories for the select dropdown
+  const { data: categoriesData } = useGetCategories({ limit: 1000 });
+  const categoryOptions = React.useMemo(() => {
+    const categories = categoriesData?.data || [];
+    return categories.map((cat) => ({
+      value: cat.name,
+      label: cat.name,
+    }));
+  }, [categoriesData]);
 
   const form = useForm<UpdateTourData>({
     initialValues: {
@@ -206,16 +217,9 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
                 label="Category"
                 {...form.getFieldProps("category")}
                 placeholder="Select Category"
-                data={[
-                  { value: "Adventure", label: "Adventure" },
-                  { value: "Cultural", label: "Cultural" },
-                  { value: "City Tour", label: "City Tour" },
-                  { value: "Beach", label: "Beach" },
-                  { value: "Mountain", label: "Mountain" },
-                  { value: "Nature", label: "Nature" },
-                  { value: "Relaxation", label: "Relaxation" },
-                ]}
+                data={categoryOptions}
                 required
+                searchable
               />
 
               <NumberInput

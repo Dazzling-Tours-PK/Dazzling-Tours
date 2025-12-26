@@ -81,6 +81,7 @@ const EditTestimonial = ({ params }: { params: Promise<{ id: string }> }) => {
         featured: testimonial.featured,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [testimonial]);
 
   // Memoize tours data to prevent unnecessary re-computations

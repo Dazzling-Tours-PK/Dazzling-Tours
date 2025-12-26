@@ -1,4 +1,5 @@
 import { PaginatedResponse, SingleResponse } from "./common";
+import { SEOFields } from "./seo";
 
 export interface Blog {
   _id: string;
@@ -8,11 +9,14 @@ export interface Blog {
   author: string;
   category: string;
   tags: string[];
-  featuredImage: string;
+  featuredImage?: string;
   status: string;
   featured: boolean;
   views: number;
   likes: number;
+  publishedAt?: string;
+  // SEO fields
+  seo?: SEOFields;
   createdAt: string;
   updatedAt: string;
 }
@@ -27,6 +31,8 @@ export interface CreateBlogData {
   featuredImage?: string;
   status?: string;
   featured?: boolean;
+  // SEO fields
+  seo?: SEOFields;
 }
 
 export interface UpdateBlogData extends Partial<CreateBlogData> {

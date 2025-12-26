@@ -54,6 +54,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${manrope.variable} ${work_sans.variable} ${kalam.variable}`}
+        suppressHydrationWarning
       >
         <NotificationProvider>
           <QueryProvider>

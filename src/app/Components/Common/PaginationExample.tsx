@@ -13,7 +13,7 @@ const ExamplePaginationUsage: React.FC = () => {
     total: 150,
     page: currentPage,
     limit: pageSize,
-    totalPages: Math.ceil(150 / pageSize),
+    pages: Math.ceil(150 / pageSize),
   };
 
   const handlePageChange = (page: number) => {

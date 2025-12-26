@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import { Newsletter } from "@/models";
+import { MongoQuery } from "@/lib/types";
 
 // GET /api/newsletter - Get all newsletter subscribers
 export async function GET(request: NextRequest) {
@@ -10,16 +11,25 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get("page") || "1");
     const limit = parseInt(searchParams.get("limit") || "10");
-    const status = searchParams.get("status") || "Active";
+    const status = searchParams.get("status");
+    const search = searchParams.get("search");
+
+    const query: MongoQuery = {};
+    if (status) query.status = status;
+
+    // Add search functionality
+    if (search) {
+      query.email = { $regex: search, $options: "i" };
+    }
 
     const skip = (page - 1) * limit;
 
-    const subscribers = await Newsletter.find({ status })
+    const subscribers = await Newsletter.find(query)
       .sort({ subscribedAt: -1 })
       .skip(skip)
       .limit(limit);
 
-    const total = await Newsletter.countDocuments({ status });
+    const total = await Newsletter.countDocuments(query);
 
     return NextResponse.json({
       success: true,
@@ -31,8 +41,8 @@ export async function GET(request: NextRequest) {
         pages: Math.ceil(total / limit),
       },
     });
-  } catch (error) {
-    console.error("Error fetching newsletter subscribers:", error);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+} catch (_error) {
     return NextResponse.json(
       { success: false, error: "Failed to fetch subscribers" },
       { status: 500 }
@@ -51,6 +61,15 @@ export async function POST(request: NextRequest) {
     if (!email) {
       return NextResponse.json(
         { success: false, error: "Email is required" },
+        { status: 400 }
+      );
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { success: false, error: "Invalid email format" },
         { status: 400 }
       );
     }
@@ -90,8 +109,8 @@ export async function POST(request: NextRequest) {
       },
       { status: 201 }
     );
-  } catch (error) {
-    console.error("Error subscribing to newsletter:", error);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+} catch (_error) {
     return NextResponse.json(
       { success: false, error: "Failed to subscribe to newsletter" },
       { status: 500 }
@@ -99,65 +118,39 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// PUT /api/newsletter - Update newsletter subscription
+// PUT /api/newsletter - Update multiple newsletter subscriptions (bulk operations)
 export async function PUT(request: NextRequest) {
   try {
     await connectDB();
 
     const body = await request.json();
-    const { action, email, status } = body;
+    const { action, ids, data } = body;
 
-    if (!action || !email) {
+    if (!action || !ids || !Array.isArray(ids)) {
       return NextResponse.json(
-        { success: false, error: "Action and email are required" },
+        { success: false, error: "Action and ids are required" },
         { status: 400 }
       );
     }
 
     let result;
     switch (action) {
-      case "unsubscribe":
-        result = await Newsletter.findOneAndUpdate(
-          { email },
-          {
-            status: "Unsubscribed",
-            unsubscribedAt: new Date(),
-          },
-          { new: true }
-        );
-        break;
-      case "reactivate":
-        result = await Newsletter.findOneAndUpdate(
-          { email },
-          {
-            status: "Active",
-            subscribedAt: new Date(),
-            unsubscribedAt: undefined,
-          },
-          { new: true }
-        );
-        break;
       case "updateStatus":
-        if (!status) {
-          return NextResponse.json(
-            { success: false, error: "Status is required" },
-            { status: 400 }
-          );
-        }
         const updateData: {
           status: string;
           unsubscribedAt?: Date;
           subscribedAt?: Date;
-        } = { status };
-        if (status === "Unsubscribed") {
+        } = { status: data.status };
+        if (data.status === "Unsubscribed") {
           updateData.unsubscribedAt = new Date();
-        } else if (status === "Active") {
+        } else if (data.status === "Active") {
           updateData.subscribedAt = new Date();
           updateData.unsubscribedAt = undefined;
         }
-        result = await Newsletter.findOneAndUpdate({ email }, updateData, {
-          new: true,
-        });
+        result = await Newsletter.updateMany({ _id: { $in: ids } }, updateData);
+        break;
+      case "delete":
+        result = await Newsletter.deleteMany({ _id: { $in: ids } });
         break;
       default:
         return NextResponse.json(
@@ -166,66 +159,15 @@ export async function PUT(request: NextRequest) {
         );
     }
 
-    if (!result) {
-      return NextResponse.json(
-        { success: false, error: "Email not found" },
-        { status: 404 }
-      );
-    }
-
     return NextResponse.json({
       success: true,
       data: result,
-      message: `Newsletter ${action} completed successfully`,
+      message: `Newsletter subscriptions ${action} completed successfully`,
     });
-  } catch (error) {
-    console.error("Error updating newsletter:", error);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+} catch (_error) {
     return NextResponse.json(
-      { success: false, error: "Failed to update newsletter" },
-      { status: 500 }
-    );
-  }
-}
-
-// DELETE /api/newsletter - Unsubscribe from newsletter
-export async function DELETE(request: NextRequest) {
-  try {
-    await connectDB();
-
-    const { searchParams } = new URL(request.url);
-    const email = searchParams.get("email");
-
-    if (!email) {
-      return NextResponse.json(
-        { success: false, error: "Email is required" },
-        { status: 400 }
-      );
-    }
-
-    const subscriber = await Newsletter.findOneAndUpdate(
-      { email },
-      {
-        status: "Unsubscribed",
-        unsubscribedAt: new Date(),
-      },
-      { new: true }
-    );
-
-    if (!subscriber) {
-      return NextResponse.json(
-        { success: false, error: "Email not found" },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.json({
-      success: true,
-      message: "Successfully unsubscribed from newsletter",
-    });
-  } catch (error) {
-    console.error("Error unsubscribing from newsletter:", error);
-    return NextResponse.json(
-      { success: false, error: "Failed to unsubscribe from newsletter" },
+      { success: false, error: "Failed to update newsletter subscriptions" },
       { status: 500 }
     );
   }

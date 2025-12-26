@@ -66,6 +66,8 @@ export function cleanContactData(data: Record<string, unknown>) {
  * Utility function specifically for blog data cleaning
  */
 export function cleanBlogData(data: Record<string, unknown>) {
+  // Don't include "seo" in optional fields - we want to preserve the SEO object structure
+  // even if some fields are empty, as it's always expected to be present
   return cleanDataForMongoDB(data, [
     "category",
     "tags",

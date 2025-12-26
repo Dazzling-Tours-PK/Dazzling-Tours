@@ -1,7 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import Header1 from "../Header/Header1";
-import Footer1 from "../Footer/Footer1";
+import Footer from "../Footer/Footer";
 
 interface ConditionalLayoutProps {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ const ConditionalLayout = ({ children }: ConditionalLayoutProps) => {
     <div className="main-page-area">
       <Header1 />
       {children}
-      <Footer1 />
+      <Footer />
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Pagination } from "@/lib/types/common";
 
 // Types
 interface Comment {
@@ -34,10 +35,7 @@ interface UpdateCommentData extends Partial<CreateCommentData> {
 interface CommentsResponse {
   success: boolean;
   data: Comment[];
-  total: number;
-  page: number;
-  limit: number;
-  totalPages: number;
+  pagination?: Pagination;
 }
 
 interface CommentResponse {

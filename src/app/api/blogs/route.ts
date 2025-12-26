@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import { Blog } from "@/models";
 import { MongoQuery } from "@/lib/types";
+import { cleanBlogData } from "@/lib/utils/dataCleaning";
+import { UNCATEGORIZED_CATEGORY_NAME } from "@/lib/constants/categories";
 
 // GET /api/blogs - Get all blogs
 export async function GET(request: NextRequest) {
@@ -13,12 +15,16 @@ export async function GET(request: NextRequest) {
     const limit = parseInt(searchParams.get("limit") || "10");
     const category = searchParams.get("category");
     const status = searchParams.get("status");
+    const featured = searchParams.get("featured");
     const search = searchParams.get("search");
 
     const query: MongoQuery = {};
 
     if (category) query.category = category;
     if (status) query.status = status;
+    if (featured !== null && featured !== undefined) {
+      query.featured = featured === "true";
+    }
     if (search) {
       query.$or = [
         { title: { $regex: search, $options: "i" } },
@@ -37,9 +43,18 @@ export async function GET(request: NextRequest) {
 
     const total = await Blog.countDocuments(query);
 
+    // Ensure all blogs have a category (set to "Uncategorized" if empty)
+    const blogsWithCategory = blogs.map((blog) => {
+      const blogObj = blog.toObject();
+      if (!blogObj.category || blogObj.category.trim() === "") {
+        blogObj.category = UNCATEGORIZED_CATEGORY_NAME;
+      }
+      return blogObj;
+    });
+
     return NextResponse.json({
       success: true,
-      data: blogs,
+      data: blogsWithCategory,
       pagination: {
         page,
         limit,
@@ -47,8 +62,7 @@ export async function GET(request: NextRequest) {
         pages: Math.ceil(total / limit),
       },
     });
-  } catch (error) {
-    console.error("Error fetching blogs:", error);
+  } catch {
     return NextResponse.json(
       { success: false, error: "Failed to fetch blogs" },
       { status: 500 }
@@ -85,19 +99,51 @@ export async function POST(request: NextRequest) {
       body.publishedAt = new Date();
     }
 
-    const blog = new Blog(body);
+    // Clean the data using utility function
+    const cleanedData = cleanBlogData(body);
+
+    // Always ensure SEO object exists (with provided data or defaults)
+    // Preserve all SEO fields including focusKeyword, even if empty
+    cleanedData.seo = {
+      metaTitle: body.seo?.metaTitle ?? "",
+      metaDescription: body.seo?.metaDescription ?? "",
+      slug: body.seo?.slug ?? "",
+      focusKeyword: body.seo?.focusKeyword ?? "",
+      ogImage: body.seo?.ogImage ?? "",
+    };
+
+    const blog = new Blog(cleanedData);
+
+    // Ensure SEO is set if not already present
+    if (!blog.seo) {
+      blog.seo = {
+        metaTitle: "",
+        metaDescription: "",
+        slug: "",
+        focusKeyword: "",
+        ogImage: "",
+      };
+    }
+
     await blog.save();
+
+    // Fetch fresh from database to ensure we get the saved data
+    const savedBlog = await Blog.findById(blog._id);
+
+    // Convert Mongoose document to plain object to ensure all fields are included
+    const blogData = savedBlog?.toObject
+      ? savedBlog.toObject()
+      : savedBlog || blog.toObject();
 
     return NextResponse.json(
       {
         success: true,
-        data: blog,
+        data: blogData,
         message: "Blog created successfully",
       },
       { status: 201 }
     );
-  } catch (error) {
-    console.error("Error creating blog:", error);
+  } catch {
     return NextResponse.json(
       { success: false, error: "Failed to create blog" },
       { status: 500 }
@@ -152,8 +198,7 @@ export async function PUT(request: NextRequest) {
       data: result,
       message: `Blogs ${action} completed successfully`,
     });
-  } catch (error) {
-    console.error("Error updating blogs:", error);
+  } catch {
     return NextResponse.json(
       { success: false, error: "Failed to update blogs" },
       { status: 500 }

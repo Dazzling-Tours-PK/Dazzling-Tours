@@ -6,6 +6,7 @@ import {
   useUpdateTour,
   useDeleteTour,
   useNotification,
+  useGetCategories,
 } from "@/lib/hooks";
 import { TourStatus, TOUR_STATUS_OPTIONS } from "@/lib/enums";
 import PaginationComponent from "@/app/Components/Common/PaginationComponent";
@@ -37,6 +38,19 @@ const ToursList = () => {
   const updateTourMutation = useUpdateTour();
   const deleteTourMutation = useDeleteTour();
   const { showSuccess } = useNotification();
+
+  // Fetch categories for the filter dropdown
+  const { data: categoriesData } = useGetCategories({ limit: 1000 });
+  const categoryFilterOptions = React.useMemo(() => {
+    const categories = categoriesData?.data || [];
+    return [
+      { value: "all", label: "All Categories" },
+      ...categories.map((cat) => ({
+        value: cat.name,
+        label: cat.name,
+      })),
+    ];
+  }, [categoriesData]);
 
   const tours = toursData?.data || [];
   const pagination = toursData?.pagination;
@@ -153,16 +167,8 @@ const ToursList = () => {
           <Select
             value={filterCategory}
             onChange={handleCategoryChange}
-            data={[
-              { value: "all", label: "All Categories" },
-              { value: "Adventure", label: "Adventure" },
-              { value: "Cultural", label: "Cultural" },
-              { value: "City Tour", label: "City Tour" },
-              { value: "Beach", label: "Beach" },
-              { value: "Mountain", label: "Mountain" },
-              { value: "Nature", label: "Nature" },
-              { value: "Relaxation", label: "Relaxation" },
-            ]}
+            data={categoryFilterOptions}
+            searchable
           />
 
           <Select

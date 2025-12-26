@@ -30,43 +30,35 @@ const StarRating: React.FC<StarRatingProps> = ({
     }
   };
 
-  const handleMouseEnter = (starIndex: number) => {
-    if (!readonly) {
-      // Optional: Add hover effect
-    }
-  };
-
   return (
     <div className={`star-rating ${sizeClasses[size]} ${className}`}>
       {Array.from({ length: maxStars }, (_, index) => {
-        const isFilled = index < rating;
-        const isClickable = !readonly && onRatingChange;
+        const isFilled = index < Math.floor(rating);
+        const isHalfFilled = index < rating && index >= Math.floor(rating);
 
         return (
           <button
             key={index}
             type="button"
             className={`star-btn ${isFilled ? "filled" : "empty"} ${
-              isClickable ? "clickable" : "readonly"
+              readonly ? "readonly" : "clickable"
             }`}
             onClick={() => handleStarClick(index)}
-            onMouseEnter={() => handleMouseEnter(index)}
             disabled={readonly}
             aria-label={`Rate ${index + 1} out of ${maxStars} stars`}
             aria-pressed={isFilled}
           >
-            <i
-              className={`bi bi-star${isFilled ? "-fill" : ""}`}
-              aria-hidden="true"
-            ></i>
+            {isHalfFilled ? (
+              <i className="bi bi-star-half" aria-hidden="true"></i>
+            ) : (
+              <i
+                className={`bi bi-star${isFilled ? "-fill" : ""}`}
+                aria-hidden="true"
+              ></i>
+            )}
           </button>
         );
       })}
-      {!readonly && (
-        <span className="rating-text">
-          ({rating} out of {maxStars})
-        </span>
-      )}
     </div>
   );
 };

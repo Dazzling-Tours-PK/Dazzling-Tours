@@ -24,8 +24,8 @@ export async function GET(
       success: true,
       data: blog,
     });
-  } catch (error) {
-    console.error("Error fetching blog:", error);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_error) {
     return NextResponse.json(
       { success: false, error: "Failed to fetch blog" },
       { status: 500 }
@@ -33,8 +33,8 @@ export async function GET(
   }
 }
 
-// PUT /api/blogs/[id] - Update a blog
-export async function PUT(
+// PATCH /api/blogs/[id] - Update a blog
+export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
@@ -49,10 +49,46 @@ export async function PUT(
       body.publishedAt = new Date();
     }
 
+    // Remove _id from body if present (shouldn't be updated)
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { _id, seo, featured, ...otherData } = body;
+
+    // Build update object with $set operator (similar to tours)
+    const updateQuery: Record<string, unknown> = {};
+
+    // Explicitly handle featured field (boolean can be false, so check for !== undefined)
+    if (featured !== undefined) {
+      updateQuery.featured = featured;
+    }
+
+    // Add all other fields to update
+    Object.keys(otherData).forEach((key) => {
+      if (key !== "seo" && otherData[key] !== undefined) {
+        updateQuery[key] = otherData[key];
+      }
+    });
+
+    // Handle SEO - set the entire object
+    if (seo !== undefined) {
+      updateQuery.seo = {
+        metaTitle: seo.metaTitle || "",
+        metaDescription: seo.metaDescription || "",
+        slug: seo.slug || "",
+        focusKeyword: seo.focusKeyword || "",
+        ogImage: seo.ogImage || "",
+      };
+    }
+
+    // Use findByIdAndUpdate with $set operator (similar to tours)
     const blog = await Blog.findByIdAndUpdate(
       resolvedParams.id,
-      { ...body, updatedAt: new Date() },
-      { new: true, runValidators: true }
+      { $set: updateQuery },
+      {
+        new: true,
+        runValidators: true,
+        upsert: false,
+        setDefaultsOnInsert: true,
+      }
     );
 
     if (!blog) {
@@ -62,13 +98,30 @@ export async function PUT(
       );
     }
 
+    // Ensure SEO is set if not already present
+    if (!blog.seo) {
+      blog.seo = {
+        metaTitle: "",
+        metaDescription: "",
+        slug: "",
+        focusKeyword: "",
+        ogImage: "",
+      };
+      await blog.save();
+    }
+
+    // Convert Mongoose document to plain object to ensure all fields are included
+    const blogData = blog.toObject
+      ? blog.toObject({ flattenMaps: true })
+      : blog;
+
     return NextResponse.json({
       success: true,
-      data: blog,
+      data: blogData,
       message: "Blog updated successfully",
     });
-  } catch (error) {
-    console.error("Error updating blog:", error);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_error) {
     return NextResponse.json(
       { success: false, error: "Failed to update blog" },
       { status: 500 }
@@ -98,8 +151,8 @@ export async function DELETE(
       success: true,
       message: "Blog deleted successfully",
     });
-  } catch (error) {
-    console.error("Error deleting blog:", error);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_error) {
     return NextResponse.json(
       { success: false, error: "Failed to delete blog" },
       { status: 500 }

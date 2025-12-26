@@ -17,6 +17,10 @@ const BreadCrumb = ({ Title, bgImg }: BreadCrumbProps) => {
     <section
       className="breadcrumb-wrapper fix bg-cover"
       data-background={bgImg}
+      style={{
+        backgroundImage: bgImg ? `url('${bgImg}')` : undefined,
+      }}
+      suppressHydrationWarning
     >
       <div className="container">
         <div className="row">

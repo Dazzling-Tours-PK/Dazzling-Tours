@@ -1,276 +1,434 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import {
-  useGetNewsletterSubscribers,
-  useUpdateNewsletterSubscription,
-  useBulkUpdateNewsletter,
+  useGetNewsletters,
+  useUpdateNewsletter,
+  useDeleteNewsletter,
+  useBulkUpdateNewsletters,
+  useNotification,
 } from "@/lib/hooks";
+import PaginationComponent from "@/app/Components/Common/PaginationComponent";
+import { TextInput, Select } from "@/app/Components/Form";
+import { Group, Stack, Page, Button } from "@/app/Components/Common";
 
 const NewsletterList = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterStatus, setFilterStatus] = useState("Active");
+  const [filterStatus, setFilterStatus] = useState("all");
   const [selectedSubscribers, setSelectedSubscribers] = useState<string[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize] = useState(10);
 
-  const { data: subscribersData, isLoading: loading } =
-    useGetNewsletterSubscribers();
-  const updateNewsletterMutation = useUpdateNewsletterSubscription();
-  const bulkUpdateNewsletterMutation = useBulkUpdateNewsletter();
+  const { data: subscribersData, isLoading: loading } = useGetNewsletters({
+    page: currentPage,
+    limit: pageSize,
+    status: filterStatus === "all" ? undefined : filterStatus,
+    search: searchTerm || undefined,
+  });
 
-  const subscribers = subscribersData?.data || [];
+  const updateNewsletterMutation = useUpdateNewsletter();
+  const deleteNewsletterMutation = useDeleteNewsletter();
+  const bulkUpdateNewslettersMutation = useBulkUpdateNewsletters();
+  const { showSuccess, showError } = useNotification();
 
-  const updateSubscriberStatus = (email: string, status: string) => {
-    updateNewsletterMutation.mutate({
-      email,
-      status,
-    });
+  const subscribers = useMemo(
+    () => subscribersData?.data || [],
+    [subscribersData?.data]
+  );
+  const pagination = subscribersData?.pagination;
+
+  // Calculate statistics
+  const stats = useMemo(() => {
+    const allSubscribers = subscribersData?.data || [];
+    return {
+      total: subscribersData?.pagination?.total || 0,
+      active: allSubscribers.filter((s) => s.status === "Active").length,
+      unsubscribed: allSubscribers.filter((s) => s.status === "Unsubscribed")
+        .length,
+    };
+  }, [subscribersData]);
+
+  const deleteSubscriber = (id: string) => {
+    if (confirm("Are you sure you want to delete this subscriber?")) {
+      deleteNewsletterMutation.mutate(id, {
+        onSuccess: () => {
+          showSuccess("Subscriber deleted successfully!");
+        },
+        onError: (error) => {
+          showError(error.message || "Failed to delete subscriber");
+        },
+      });
+    }
   };
 
-  const bulkUpdateStatus = (status: string) => {
-    if (selectedSubscribers.length === 0) {
-      alert("Please select subscribers to update");
-      return;
-    }
-
-    bulkUpdateNewsletterMutation.mutate(
+  const updateStatus = (id: string, newStatus: string) => {
+    updateNewsletterMutation.mutate(
       {
-        emails: selectedSubscribers,
-        action: "updateStatus",
-        data: { status },
+        _id: id,
+        status: newStatus as "Active" | "Unsubscribed",
       },
       {
         onSuccess: () => {
-          setSelectedSubscribers([]);
+          showSuccess("Subscriber status updated successfully!");
+        },
+        onError: (error) => {
+          showError(error.message || "Failed to update subscriber");
         },
       }
     );
   };
 
-  const toggleSubscriberSelection = (email: string) => {
+  const bulkUpdateStatus = (status: string) => {
+    if (selectedSubscribers.length === 0) {
+      showError("Please select subscribers to update");
+      return;
+    }
+
+    bulkUpdateNewslettersMutation.mutate(
+      {
+        ids: selectedSubscribers,
+        action: "updateStatus",
+        data: { status },
+      },
+      {
+        onSuccess: () => {
+          showSuccess(
+            `${selectedSubscribers.length} subscriber(s) updated successfully!`
+          );
+          setSelectedSubscribers([]);
+        },
+        onError: (error) => {
+          showError(error.message || "Failed to update subscribers");
+        },
+      }
+    );
+  };
+
+  const bulkDelete = () => {
+    if (selectedSubscribers.length === 0) {
+      showError("Please select subscribers to delete");
+      return;
+    }
+
+    if (
+      confirm(
+        `Are you sure you want to delete ${selectedSubscribers.length} subscriber(s)?`
+      )
+    ) {
+      bulkUpdateNewslettersMutation.mutate(
+        {
+          ids: selectedSubscribers,
+          action: "delete",
+        },
+        {
+          onSuccess: () => {
+            showSuccess(
+              `${selectedSubscribers.length} subscriber(s) deleted successfully!`
+            );
+            setSelectedSubscribers([]);
+          },
+          onError: (error) => {
+            showError(error.message || "Failed to delete subscribers");
+          },
+        }
+      );
+    }
+  };
+
+  const toggleSubscriberSelection = (id: string) => {
     setSelectedSubscribers((prev) =>
-      prev.includes(email)
-        ? prev.filter((subEmail) => subEmail !== email)
-        : [...prev, email]
+      prev.includes(id)
+        ? prev.filter((subscriberId) => subscriberId !== id)
+        : [...prev, id]
     );
   };
 
   const selectAllSubscribers = () => {
-    const filteredEmails = filteredSubscribers.map(
-      (subscriber) => subscriber.email
-    );
+    const allSubscriberIds = subscribers.map((subscriber) => subscriber._id);
     setSelectedSubscribers(
-      selectedSubscribers.length === filteredEmails.length ? [] : filteredEmails
+      selectedSubscribers.length === allSubscriberIds.length
+        ? []
+        : allSubscriberIds
     );
   };
-
-  const filteredSubscribers = subscribers.filter((subscriber) => {
-    const matchesSearch = subscriber.email
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const matchesStatus =
-      filterStatus === "all" || subscriber.status === filterStatus;
-    return matchesSearch && matchesStatus;
-  });
 
   const getStatusBadgeClass = (status: string) => {
     switch (status) {
       case "Active":
         return "status-badge success";
       case "Unsubscribed":
-        return "status-badge danger";
+        return "status-badge secondary";
       default:
         return "status-badge secondary";
     }
   };
 
-  if (loading) {
-    return <div className="loading">Loading subscribers...</div>;
-  }
+  // Reset to first page when filters change
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    setCurrentPage(1);
+  };
+
+  const handleStatusChange = (value: string) => {
+    setFilterStatus(value);
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   return (
-    <div className="newsletter-list">
-      <div className="page-header">
-        <h1>Newsletter Subscribers</h1>
-        <div className="header-actions">
-          <button
-            onClick={() => bulkUpdateStatus("Active")}
-            className="btn btn-success"
-            disabled={selectedSubscribers.length === 0}
-          >
-            <i className="bi bi-check-circle"></i> Activate Selected
-          </button>
-          <button
-            onClick={() => bulkUpdateStatus("Unsubscribed")}
-            className="btn btn-warning"
-            disabled={selectedSubscribers.length === 0}
-          >
-            <i className="bi bi-x-circle"></i> Unsubscribe Selected
-          </button>
+    <Page
+      title="Newsletter Subscribers"
+      description="Manage newsletter subscribers, view statistics, and update subscription status"
+      loading={loading}
+    >
+      <Stack>
+        {/* Statistics Cards */}
+        <div className="stats-grid" style={{ marginBottom: "1.5rem" }}>
+          <div className="stat-card">
+            <div className="stat-icon" style={{ background: "#e3f2fd" }}>
+              <i className="bi bi-envelope" style={{ color: "#1976d2" }}></i>
+            </div>
+            <div className="stat-content">
+              <h4>Total Subscribers</h4>
+              <p>{stats.total}</p>
+            </div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon" style={{ background: "#e8f5e9" }}>
+              <i
+                className="bi bi-check-circle"
+                style={{ color: "#388e3c" }}
+              ></i>
+            </div>
+            <div className="stat-content">
+              <h4>Active</h4>
+              <p>{stats.active}</p>
+            </div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon" style={{ background: "#f3e5f5" }}>
+              <i className="bi bi-x-circle" style={{ color: "#7b1fa2" }}></i>
+            </div>
+            <div className="stat-content">
+              <h4>Unsubscribed</h4>
+              <p>{stats.unsubscribed}</p>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Filters */}
-      <div className="filters">
-        <div className="search-box">
-          <input
-            type="text"
-            placeholder="Search subscribers..."
+        {/* Bulk Actions */}
+        {selectedSubscribers.length > 0 && (
+          <div
+            className="bulk-actions"
+            style={{
+              background: "#fff3cd",
+              border: "1px solid #ffc107",
+              borderRadius: "8px",
+              padding: "1rem",
+              marginBottom: "1.5rem",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "1rem",
+            }}
+          >
+            <div className="bulk-info" style={{ fontWeight: 600 }}>
+              <i className="bi bi-check-circle me-2"></i>
+              {selectedSubscribers.length} subscriber(s) selected
+            </div>
+            <div
+              className="bulk-buttons"
+              style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}
+            >
+              <Button
+                size="sm"
+                color="success"
+                onClick={() => bulkUpdateStatus("Active")}
+              >
+                <i className="bi bi-check-circle"></i> Activate Selected
+              </Button>
+              <Button
+                size="sm"
+                color="secondary"
+                onClick={() => bulkUpdateStatus("Unsubscribed")}
+              >
+                <i className="bi bi-x-circle"></i> Unsubscribe Selected
+              </Button>
+              <Button size="sm" color="error" onClick={bulkDelete}>
+                <i className="bi bi-trash"></i> Delete Selected
+              </Button>
+              <Button
+                size="sm"
+                color="secondary"
+                variant="outline"
+                onClick={() => setSelectedSubscribers([])}
+              >
+                <i className="bi bi-x-circle"></i> Clear Selection
+              </Button>
+            </div>
+          </div>
+        )}
+
+        {/* Filters */}
+        <Group>
+          <TextInput
+            placeholder="Search subscribers by email..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={handleSearchChange}
+            leftIcon={<i className="bi bi-search"></i>}
+            style={{ flex: 1, minWidth: "250px" }}
           />
-          <i className="bi bi-search"></i>
-        </div>
-        <select
-          value={filterStatus}
-          onChange={(e) => setFilterStatus(e.target.value)}
-        >
-          <option value="all">All Status</option>
-          <option value="Active">Active</option>
-          <option value="Unsubscribed">Unsubscribed</option>
-        </select>
-      </div>
 
-      {/* Subscribers Table */}
-      <div className="subscribers-table">
-        <table>
-          <thead>
-            <tr>
-              <th>
-                <input
-                  type="checkbox"
-                  checked={
-                    selectedSubscribers.length === filteredSubscribers.length &&
-                    filteredSubscribers.length > 0
-                  }
-                  onChange={selectAllSubscribers}
-                />
-              </th>
-              <th>Email</th>
-              <th>Status</th>
-              <th>Subscribed Date</th>
-              <th>Unsubscribed Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredSubscribers.map((subscriber) => (
-              <tr key={subscriber._id}>
-                <td>
+          <Select
+            value={filterStatus}
+            onChange={handleStatusChange}
+            data={[
+              { value: "all", label: "All Status" },
+              { value: "Active", label: "Active" },
+              { value: "Unsubscribed", label: "Unsubscribed" },
+            ]}
+            style={{ minWidth: "150px" }}
+          />
+        </Group>
+
+        {/* Subscribers Table */}
+        <div className="blogs-table">
+          <table>
+            <thead>
+              <tr>
+                <th style={{ width: "50px" }}>
                   <input
                     type="checkbox"
-                    checked={selectedSubscribers.includes(subscriber.email)}
-                    onChange={() => toggleSubscriberSelection(subscriber.email)}
+                    checked={
+                      selectedSubscribers.length === subscribers.length &&
+                      subscribers.length > 0
+                    }
+                    onChange={selectAllSubscribers}
+                    style={{ cursor: "pointer" }}
                   />
-                </td>
-                <td>
-                  <div className="email-info">
-                    <strong>{subscriber.email}</strong>
-                  </div>
-                </td>
-                <td>
-                  <span className={getStatusBadgeClass(subscriber.status)}>
-                    {subscriber.status}
-                  </span>
-                </td>
-                <td>
-                  <div className="date-info">
-                    {new Date(subscriber.subscribedAt).toLocaleDateString()}
-                    <br />
-                    <small>
-                      {new Date(subscriber.subscribedAt).toLocaleTimeString()}
-                    </small>
-                  </div>
-                </td>
-                <td>
-                  {subscriber.unsubscribedAt ? (
+                </th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Subscribed Date</th>
+                <th>Unsubscribed Date</th>
+                <th style={{ width: "120px" }}>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {subscribers.map((subscriber) => (
+                <tr key={subscriber._id}>
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={selectedSubscribers.includes(subscriber._id)}
+                      onChange={() => toggleSubscriberSelection(subscriber._id)}
+                      style={{ cursor: "pointer" }}
+                    />
+                  </td>
+                  <td>
+                    <a
+                      href={`mailto:${subscriber.email}`}
+                      style={{ color: "#1976d2", textDecoration: "none" }}
+                    >
+                      {subscriber.email}
+                    </a>
+                  </td>
+                  <td>
+                    <select
+                      value={subscriber.status}
+                      onChange={(e) =>
+                        updateStatus(subscriber._id, e.target.value)
+                      }
+                      className={`status-select ${getStatusBadgeClass(
+                        subscriber.status
+                      )}`}
+                      style={{
+                        padding: "0.25rem 0.5rem",
+                        borderRadius: "4px",
+                        border: "1px solid #ddd",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <option value="Active">Active</option>
+                      <option value="Unsubscribed">Unsubscribed</option>
+                    </select>
+                  </td>
+                  <td>
                     <div className="date-info">
-                      {new Date(subscriber.unsubscribedAt).toLocaleDateString()}
+                      {new Date(subscriber.subscribedAt).toLocaleDateString()}
                       <br />
-                      <small>
-                        {new Date(
-                          subscriber.unsubscribedAt
-                        ).toLocaleTimeString()}
+                      <small style={{ color: "#6c757d" }}>
+                        {new Date(subscriber.subscribedAt).toLocaleTimeString()}
                       </small>
                     </div>
-                  ) : (
-                    <span className="text-muted">-</span>
-                  )}
-                </td>
-                <td>
-                  <div className="action-buttons">
-                    {subscriber.status === "Unsubscribed" && (
-                      <button
-                        onClick={() =>
-                          updateSubscriberStatus(subscriber.email, "Active")
-                        }
-                        className="btn btn-sm btn-outline-success"
-                        title="Reactivate"
-                      >
-                        <i className="bi bi-arrow-clockwise"></i>
-                      </button>
+                  </td>
+                  <td>
+                    {subscriber.unsubscribedAt ? (
+                      <div className="date-info">
+                        {new Date(
+                          subscriber.unsubscribedAt
+                        ).toLocaleDateString()}
+                        <br />
+                        <small style={{ color: "#6c757d" }}>
+                          {new Date(
+                            subscriber.unsubscribedAt
+                          ).toLocaleTimeString()}
+                        </small>
+                      </div>
+                    ) : (
+                      <span style={{ color: "#6c757d" }}>-</span>
                     )}
-                    {subscriber.status === "Active" && (
+                  </td>
+                  <td>
+                    <div className="action-buttons">
                       <button
-                        onClick={() =>
-                          updateSubscriberStatus(
-                            subscriber.email,
-                            "Unsubscribed"
-                          )
-                        }
-                        className="btn btn-sm btn-outline-warning"
-                        title="Unsubscribe"
+                        onClick={() => deleteSubscriber(subscriber._id)}
+                        className="btn btn-sm btn-outline-danger"
+                        title="Delete"
                       >
-                        <i className="bi bi-x-circle"></i>
+                        <i className="bi bi-trash"></i>
                       </button>
-                    )}
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      {filteredSubscribers.length === 0 && (
-        <div className="no-data">
-          <p>No subscribers found</p>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      )}
 
-      {/* Statistics */}
-      <div className="newsletter-stats">
-        <div className="stats-grid">
-          <div className="stat-card">
-            <h4>Total Subscribers</h4>
-            <p>{subscribers.length}</p>
-          </div>
-          <div className="stat-card">
-            <h4>Active</h4>
-            <p>{subscribers.filter((s) => s.status === "Active").length}</p>
-          </div>
-          <div className="stat-card">
-            <h4>Unsubscribed</h4>
-            <p>
-              {subscribers.filter((s) => s.status === "Unsubscribed").length}
+        {subscribers.length === 0 && !loading && (
+          <div
+            className="no-data"
+            style={{ textAlign: "center", padding: "3rem" }}
+          >
+            <i
+              className="bi bi-inbox"
+              style={{
+                fontSize: "3rem",
+                color: "#6c757d",
+                marginBottom: "1rem",
+              }}
+            ></i>
+            <p style={{ fontSize: "1.1rem", color: "#6c757d" }}>
+              No newsletter subscribers found
             </p>
           </div>
-          <div className="stat-card">
-            <h4>This Month</h4>
-            <p>
-              {
-                subscribers.filter((s) => {
-                  const subDate = new Date(s.subscribedAt);
-                  const now = new Date();
-                  return (
-                    subDate.getMonth() === now.getMonth() &&
-                    subDate.getFullYear() === now.getFullYear()
-                  );
-                }).length
-              }
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+        )}
+
+        {/* Pagination */}
+        {pagination && (
+          <PaginationComponent
+            pagination={pagination}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+            pageSize={pageSize}
+          />
+        )}
+      </Stack>
+    </Page>
   );
 };
 

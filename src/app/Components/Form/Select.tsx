@@ -267,6 +267,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
             role="combobox"
             aria-expanded={isOpen}
             aria-haspopup="listbox"
+            aria-controls={isOpen ? "select-options-list" : undefined}
           >
             <span className={!selectedLabel ? "text-muted" : ""}>
               {selectedLabel || placeholder || "Select an option..."}

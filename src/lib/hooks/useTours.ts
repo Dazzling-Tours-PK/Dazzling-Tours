@@ -60,6 +60,17 @@ export const useGetTour = (id: string) => {
   });
 };
 
+export const useGetTourBySlug = (slug: string) => {
+  return useQuery<TourResponse>({
+    queryKey: [...tourKeys.details(), "slug", slug],
+    queryFn: async () => {
+      const response = await api.get<TourResponse>(`/api/tours/slug/${slug}`);
+      return response.data;
+    },
+    enabled: !!slug,
+  });
+};
+
 export const useCreateTour = () => {
   const queryClient = useQueryClient();
 

@@ -5,6 +5,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { AuthProvider, useAuth } from "@/lib/contexts/AuthContext";
 import "./styles/admin-theme.css";
 import "./admin.css";
+import Image from "next/image";
 
 // Protected route component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
@@ -62,7 +63,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
 // Main admin layout using CSS classes from admin.css
 const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
-
+  const router = useRouter();
   // Public routes that don't need sidebar
   const publicRoutes = [
     "/admin/login",
@@ -77,6 +78,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   const navItems = [
     { href: "/admin", label: "Dashboard", icon: "bi bi-speedometer2" },
+    { href: "/admin/categories", label: "Categories", icon: "bi bi-folder" },
     { href: "/admin/tours", label: "Tours", icon: "bi bi-map" },
     {
       href: "/admin/testimonials",
@@ -84,7 +86,9 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       icon: "bi bi-chat-quote",
     },
     { href: "/admin/blogs", label: "Blogs", icon: "bi bi-journal-text" },
+
     { href: "/admin/newsletter", label: "Newsletter", icon: "bi bi-envelope" },
+    { href: "/admin/campaigns", label: "Campaigns", icon: "bi bi-megaphone" },
     { href: "/admin/contact", label: "Contact", icon: "bi bi-telephone" },
   ];
 
@@ -95,6 +99,14 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <div className="admin-layout">
       <aside className="admin-sidebar">
         <div className="sidebar-header">
+          <Image
+            src="/assets/img/logo dazzling/Dazzling Tours Png.png"
+            alt="Dazzling Tours"
+            width={80}
+            height={80}
+            onClick={() => router.push("/")}
+            style={{ cursor: "pointer" }}
+          />
           <h3 style={{ color: "white" }}>Dazzling Tours</h3>
         </div>
         <nav className="sidebar-nav">

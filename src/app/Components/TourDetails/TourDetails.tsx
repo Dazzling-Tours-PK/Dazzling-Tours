@@ -1,37 +1,18 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import loadBackgroundImages from "../Common/loadBackgroundImages";
 import Image from "next/image";
+import { Tour } from "@/lib/types/tour";
 
-const TourDetails = () => {
+interface TourDetailsProps {
+  tour: Tour;
+}
+
+const TourDetails = ({ tour }: TourDetailsProps) => {
   useEffect(() => {
     loadBackgroundImages();
   }, []);
 
-  const faqContent = [
-    {
-      title: "How do I book a tour with your agency?",
-      content:
-        "Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio.Mauris et mollis quam. Nullam fringilla erat id ante",
-    },
-    {
-      title: " What payment methods do you accept?",
-      content:
-        "Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio.Mauris et mollis quam. Nullam fringilla erat id ante",
-    },
-    {
-      title: "Can I customize my travel itinerary?",
-      content:
-        "Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio.Mauris et mollis quam. Nullam fringilla erat id ante",
-    },
-    {
-      title: " What is your cancellation policy?",
-      content:
-        "Nullam faucibus eleifend mi eu varius. Integer vel tincidunt massa, quis semper odio.Mauris et mollis quam. Nullam fringilla erat id ante",
-    },
-  ];
-
-  const accordionContentRef = useRef(null);
   const [openItemIndex, setOpenItemIndex] = useState(-1);
   const [firstItemOpen, setFirstItemOpen] = useState(true);
 
@@ -57,57 +38,38 @@ const TourDetails = () => {
             <div className="col-12 col-lg-8">
               <div className="details-thumb">
                 <Image
-                  src="/assets/img/details/tour-details.jpg"
-                  alt="img"
+                  src={
+                    tour.images?.[0] || "/assets/img/details/tour-details.jpg"
+                  }
+                  alt={tour.title}
                   width={856}
                   height={510}
                 />
-                <ul className="image-list">
-                  <li>
-                    <Image
-                      src="/assets/img/details/tour-details-2.jpg"
-                      alt="img"
-                      width={173}
-                      height={110}
-                    />
-                  </li>
-                  <li>
-                    <Image
-                      src="/assets/img/details/tour-details-3.jpg"
-                      alt="img"
-                      width={173}
-                      height={110}
-                    />
-                  </li>
-                  <li>
-                    <Image
-                      src="/assets/img/details/tour-details-4.jpg"
-                      alt="img"
-                      width={173}
-                      height={110}
-                    />
-                  </li>
-                </ul>
+                {tour.images && tour.images.length > 1 && (
+                  <ul className="image-list">
+                    {tour.images.slice(1, 4).map((img, idx) => (
+                      <li key={idx}>
+                        <Image
+                          src={img}
+                          alt={`${tour.title} - Image ${idx + 2}`}
+                          width={173}
+                          height={110}
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
               <div className="activities-details-content">
-                <h2 className="mb-3">Ghorepani Poon Hill Trek</h2>
-                <p>
-                  Consectetur adipisicing elit sed do eiusmod tempor is
-                  incididunt ut labore et dolore of magna aliqua. ut enim ad
-                  minim veniam made of owl the quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea dolor commodo consequat duis
-                  aute irure and dolor in reprehenderit.Nullam semper quam
-                  mauris nec mollis felis aliquam eu ut non gravida mi quam
-                  mauris nec mollis felis aliquam phasellus.
-                </p>
-                <p className="mt-3">
-                  Consectetur adipisicing elit sed do eiusmod tempor is
-                  incididunt ut labore et dolore of magna aliqua. ut enim ad
-                  minim veniam made of owl the quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea dolor commodo consequat duis
-                  aute irure and dolor in reprehenderit.Nullam semper quam
-                  mauris.
-                </p>
+                <h2 className="mb-3">{tour.title}</h2>
+                {tour.shortDescription && <p>{tour.shortDescription}</p>}
+                {tour.description && tour.description.trim() && (
+                  <p
+                    className="mt-3"
+                    dangerouslySetInnerHTML={{ __html: tour.description }}
+                    suppressHydrationWarning
+                  />
+                )}
                 <div className="activities-list-item">
                   <h3>Experience the Difference</h3>
                   <div className="activities-item">
@@ -267,268 +229,246 @@ const TourDetails = () => {
                         />
                       </div>
                       <div className="content">
-                        <span>Accommodation</span>
-                        <h6>5 Stare Hotel</h6>
+                        <span>Location</span>
+                        <h6>{tour.location || "N/A"}</h6>
                       </div>
                     </div>
-                    <div className="activities-box-item style-2">
-                      <div className="icon">
-                        <Image
-                          src="/assets/img/icon/28.svg"
-                          alt="img"
-                          width={26}
-                          height={27}
-                        />
+                    {tour.duration && (
+                      <div className="activities-box-item">
+                        <div className="icon">
+                          <Image
+                            src="/assets/img/icon/29.svg"
+                            alt="img"
+                            width={26}
+                            height={27}
+                          />
+                        </div>
+                        <div className="content">
+                          <span>Duration</span>
+                          <h6>{tour.duration}</h6>
+                        </div>
                       </div>
-                      <div className="content">
-                        <span>Admission Free</span>
-                        <h6>No</h6>
+                    )}
+                    {tour.difficulty && (
+                      <div className="activities-box-item">
+                        <div className="icon">
+                          <Image
+                            src="/assets/img/icon/30.svg"
+                            alt="img"
+                            width={26}
+                            height={27}
+                          />
+                        </div>
+                        <div className="content">
+                          <span>Difficulty</span>
+                          <h6>{tour.difficulty}</h6>
+                        </div>
                       </div>
-                    </div>
-                    <div className="activities-box-item">
-                      <div className="icon">
-                        <Image
-                          src="/assets/img/icon/29.svg"
-                          alt="img"
-                          width={26}
-                          height={27}
-                        />
+                    )}
+                    {tour.groupSize && (
+                      <div className="activities-box-item">
+                        <div className="icon">
+                          <Image
+                            src="/assets/img/icon/31.svg"
+                            alt="img"
+                            width={26}
+                            height={27}
+                          />
+                        </div>
+                        <div className="content">
+                          <span>Group Size</span>
+                          <h6>{tour.groupSize} people</h6>
+                        </div>
                       </div>
-                      <div className="content">
-                        <span>Arrival City</span>
-                        <h6>London</h6>
-                      </div>
-                    </div>
-                    <div className="activities-box-item">
-                      <div className="icon">
-                        <Image
-                          src="/assets/img/icon/30.svg"
-                          alt="img"
-                          width={26}
-                          height={27}
-                        />
-                      </div>
-                      <div className="content">
-                        <span>Language</span>
-                        <h6>English</h6>
-                      </div>
-                    </div>
+                    )}
                   </div>
-                  <div className="activities-box-area mb-0">
-                    <div className="activities-box-item">
-                      <div className="icon">
-                        <Image
-                          src="/assets/img/icon/31.svg"
-                          alt="img"
-                          width={26}
-                          height={27}
-                        />
-                      </div>
-                      <div className="content">
-                        <span>Hotel Transfer</span>
-                        <h6>Available</h6>
-                      </div>
-                    </div>
-                    <div className="activities-box-item">
-                      <div className="icon">
-                        <Image
-                          src="/assets/img/icon/32.svg"
-                          alt="img"
-                          width={26}
-                          height={27}
-                        />
-                      </div>
-                      <div className="content">
-                        <span>Next Tour</span>
-                        <h6>Available</h6>
+                  {tour.price && (
+                    <div className="activities-box-area mb-0">
+                      <div className="activities-box-item">
+                        <div className="icon">
+                          <Image
+                            src="/assets/img/icon/32.svg"
+                            alt="img"
+                            width={26}
+                            height={27}
+                          />
+                        </div>
+                        <div className="content">
+                          <span>Price</span>
+                          <h6>${tour.price} / person</h6>
+                        </div>
                       </div>
                     </div>
-                    <div className="activities-box-item">
-                      <div className="icon">
-                        <Image
-                          src="/assets/img/icon/33.svg"
-                          alt="img"
-                          width={26}
-                          height={27}
-                        />
-                      </div>
-                      <div className="content">
-                        <span>01 Guide</span>
-                        <h6>Guided</h6>
-                      </div>
-                    </div>
-                    <div className="activities-box-item">
-                      <div className="icon">
-                        <Image
-                          src="/assets/img/icon/34.svg"
-                          alt="img"
-                          width={26}
-                          height={27}
-                        />
-                      </div>
-                      <div className="content">
-                        <span>Maximum Age</span>
-                        <h6>60</h6>
-                      </div>
-                    </div>
-                  </div>
+                  )}
                 </div>
-                <div className="faq-items">
-                  <h3>Tour Plan</h3>
-                  <div className="faq-accordion">
-                    <div className="accordion" id="accordion">
-                      {faqContent.map((item, index) => (
-                        <div
-                          key={index}
-                          className={`accordion-item mb-3 ${
-                            index === openItemIndex ? "active" : ""
-                          }`}
-                        >
-                          <h5
-                            onClick={() => handleItemClick(index)}
-                            className="accordion-header"
-                          >
-                            <button
-                              className="accordion-button collapsed"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              data-bs-target="#faq1"
-                              aria-expanded="true"
-                              aria-controls="faq1"
-                            >
-                              {item.title}
-                            </button>
-                          </h5>
+                {tour.itinerary && tour.itinerary.length > 0 && (
+                  <div className="faq-items">
+                    <h3>Tour Plan</h3>
+                    <div className="faq-accordion">
+                      <div className="accordion" id="accordion">
+                        {tour.itinerary.map((item, index) => (
                           <div
-                            ref={accordionContentRef}
-                            id="faq1"
-                            className="accordion-collapse collapse"
-                            data-bs-parent="#accordion"
+                            key={index}
+                            className={`accordion-item mb-3 ${
+                              index === openItemIndex ? "active" : ""
+                            }`}
                           >
-                            <div className="accordion-body">
-                              <p>{item.content}</p>
-                              <div className="faq-image">
-                                <Image
-                                  src="/assets/img/details/faq-img.jpg"
-                                  alt="img"
-                                  width={160}
-                                  height={125}
+                            <h5
+                              onClick={() => handleItemClick(index)}
+                              className="accordion-header"
+                            >
+                              <button
+                                className="accordion-button collapsed"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target={`#faq${index}`}
+                                aria-expanded={index === openItemIndex}
+                                aria-controls={`faq${index}`}
+                              >
+                                Day {item.day}: {item.title}
+                              </button>
+                            </h5>
+                            <div
+                              id={`faq${index}`}
+                              className={`accordion-collapse collapse ${
+                                index === openItemIndex ? "show" : ""
+                              }`}
+                              data-bs-parent="#accordion"
+                            >
+                              <div className="accordion-body">
+                                <p
+                                  dangerouslySetInnerHTML={{
+                                    __html: item.description,
+                                  }}
                                 />
                               </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="map-area">
-                  <h3>View in Map</h3>
-                  <div className="google-map">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6678.7619084840835!2d144.9618311901502!3d-37.81450084255415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642b4758afc1d%3A0x3119cc820fdfc62e!2sEnvato!5e0!3m2!1sen!2sbd!4v1641984054261!5m2!1sen!2sbd"
-                      loading="lazy"
-                    ></iframe>
-                  </div>
-                </div>
-                <h3>Customer Reviews</h3>
-                <div className="courses-reviews-box-items">
-                  <div className="courses-reviews-box">
-                    <div className="reviews-box">
-                      <h2>
-                        <span className="count">4.9</span>
-                      </h2>
-                      <div className="star">
-                        <i className="bi bi-star-fill"></i>
-                        <i className="bi bi-star-fill"></i>
-                        <i className="bi bi-star-fill"></i>
-                        <i className="bi bi-star-fill"></i>
-                        <i className="bi bi-star-fill"></i>
-                      </div>
-                      <p>856+ Reviews</p>
-                    </div>
-                    <div className="reviews-ratting-right">
-                      <div className="reviews-ratting-item">
-                        <div className="star">
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                        </div>
-                        <div className="progress">
-                          <div className="progress-value style-two"></div>
-                        </div>
-                        <span>Services</span>
-                      </div>
-                      <div className="reviews-ratting-item">
-                        <div className="star">
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                        </div>
-                        <div className="progress">
-                          <div className="progress-value style-three"></div>
-                        </div>
-                        <span>Safety</span>
-                      </div>
-                      <div className="reviews-ratting-item">
-                        <div className="star">
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                        </div>
-                        <div className="progress">
-                          <div className="progress-value style-three"></div>
-                        </div>
-                        <span>Guides</span>
-                      </div>
-                      <div className="reviews-ratting-item">
-                        <div className="star">
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                        </div>
-                        <div className="progress">
-                          <div className="progress-value style-four"></div>
-                        </div>
-                        <span>Foods</span>
-                      </div>
-                      <div className="reviews-ratting-item">
-                        <div className="star">
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                        </div>
-                        <div className="progress">
-                          <div className="progress-value style-five"></div>
-                        </div>
-                        <span>Hotels</span>
-                      </div>
-                      <div className="reviews-ratting-item">
-                        <div className="star">
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                          <i className="bi bi-star-fill"></i>
-                        </div>
-                        <div className="progress">
-                          <div className="progress-value style-five"></div>
-                        </div>
-                        <span>Places</span>
+                        ))}
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
+                {tour.location && (
+                  <div className="map-area">
+                    <h3>View in Map</h3>
+                    <div className="google-map">
+                      <iframe
+                        src={`https://www.google.com/maps/embed/v1/place?key=${
+                          process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""
+                        }&q=${encodeURIComponent(tour.location)}`}
+                        loading="lazy"
+                      ></iframe>
+                    </div>
+                  </div>
+                )}
+                {tour.rating && tour.rating > 0 && (
+                  <>
+                    <h3>Customer Reviews</h3>
+                    <div className="courses-reviews-box-items">
+                      <div className="courses-reviews-box">
+                        <div className="reviews-box">
+                          <h2>
+                            <span className="count">
+                              {tour.rating.toFixed(1)}
+                            </span>
+                          </h2>
+                          <div className="star">
+                            {Array.from({ length: 5 }, (_, i) => (
+                              <i
+                                key={i}
+                                className={`bi bi-star${
+                                  i < Math.floor(tour.rating) ? "-fill" : ""
+                                }`}
+                              ></i>
+                            ))}
+                          </div>
+                          <p>{tour.reviews || 0}+ Reviews</p>
+                        </div>
+                        <div className="reviews-ratting-right">
+                          <div className="reviews-ratting-item">
+                            <div className="star">
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                            </div>
+                            <div className="progress">
+                              <div className="progress-value style-two"></div>
+                            </div>
+                            <span>Services</span>
+                          </div>
+                          <div className="reviews-ratting-item">
+                            <div className="star">
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                            </div>
+                            <div className="progress">
+                              <div className="progress-value style-three"></div>
+                            </div>
+                            <span>Safety</span>
+                          </div>
+                          <div className="reviews-ratting-item">
+                            <div className="star">
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                            </div>
+                            <div className="progress">
+                              <div className="progress-value style-three"></div>
+                            </div>
+                            <span>Guides</span>
+                          </div>
+                          <div className="reviews-ratting-item">
+                            <div className="star">
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                            </div>
+                            <div className="progress">
+                              <div className="progress-value style-four"></div>
+                            </div>
+                            <span>Foods</span>
+                          </div>
+                          <div className="reviews-ratting-item">
+                            <div className="star">
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                            </div>
+                            <div className="progress">
+                              <div className="progress-value style-five"></div>
+                            </div>
+                            <span>Hotels</span>
+                          </div>
+                          <div className="reviews-ratting-item">
+                            <div className="star">
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
+                            </div>
+                            <div className="progress">
+                              <div className="progress-value style-five"></div>
+                            </div>
+                            <span>Places</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
                 <div className="cliect-review-area">
                   <h3>client review</h3>
                   <ul className="review-items">

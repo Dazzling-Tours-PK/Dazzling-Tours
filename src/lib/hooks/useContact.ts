@@ -1,10 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { api } from "@/lib/privateAxios";
+import { Pagination } from "@/lib/types/common";
 
 // Types
-interface ContactInquiry {
+export interface ContactInquiry {
   _id: string;
   name: string;
   email: string;
+  phone?: string;
   subject: string;
   message: string;
   status: string;
@@ -14,33 +17,31 @@ interface ContactInquiry {
   updatedAt: string;
 }
 
-interface CreateContactData {
+export interface CreateContactData {
   name: string;
   email: string;
+  phone?: string;
   subject: string;
   message: string;
 }
 
-interface UpdateContactData extends Partial<CreateContactData> {
+export interface UpdateContactData extends Partial<CreateContactData> {
   _id: string;
   status?: string;
 }
 
-interface ContactResponse {
+export interface ContactResponse {
   success: boolean;
   data: ContactInquiry[];
-  total: number;
-  page: number;
-  limit: number;
-  totalPages: number;
+  pagination?: Pagination;
 }
 
-interface ContactInquiryResponse {
+export interface ContactInquiryResponse {
   success: boolean;
   data: ContactInquiry;
 }
 
-interface ContactStatsResponse {
+export interface ContactStatsResponse {
   success: boolean;
   data: {
     total: number;
@@ -82,11 +83,10 @@ export const useGetContactInquiries = (params?: {
         });
       }
 
-      const response = await fetch(`/api/contact?${searchParams.toString()}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch contact inquiries");
-      }
-      return response.json();
+      const response = await api.get<ContactResponse>(
+        `/api/contact?${searchParams.toString()}`
+      );
+      return response.data;
     },
   });
 };
@@ -95,11 +95,10 @@ export const useGetContactInquiry = (id: string) => {
   return useQuery<ContactInquiryResponse>({
     queryKey: contactKeys.detail(id),
     queryFn: async () => {
-      const response = await fetch(`/api/contact/${id}`);
-      if (!response.ok) {
-        throw new Error("Failed to fetch contact inquiry");
-      }
-      return response.json();
+      const response = await api.get<ContactInquiryResponse>(
+        `/api/contact/${id}`
+      );
+      return response.data;
     },
     enabled: !!id,
   });
@@ -109,11 +108,10 @@ export const useGetContactStats = () => {
   return useQuery<ContactStatsResponse>({
     queryKey: contactKeys.stats(),
     queryFn: async () => {
-      const response = await fetch("/api/contact/stats");
-      if (!response.ok) {
-        throw new Error("Failed to fetch contact stats");
-      }
-      return response.json();
+      const response = await api.get<ContactStatsResponse>(
+        "/api/contact/stats"
+      );
+      return response.data;
     },
   });
 };
@@ -123,19 +121,11 @@ export const useCreateContactInquiry = () => {
 
   return useMutation<ContactInquiryResponse, Error, CreateContactData>({
     mutationFn: async (data) => {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || "Failed to submit contact inquiry");
-      }
-      return response.json();
+      const response = await api.post<ContactInquiryResponse>(
+        "/api/contact",
+        data
+      );
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: contactKeys.lists() });
@@ -150,18 +140,11 @@ export const useUpdateContactInquiry = () => {
   return useMutation<ContactInquiryResponse, Error, UpdateContactData>({
     mutationFn: async (data) => {
       const { _id, ...updateData } = data;
-      const response = await fetch(`/api/contact/${_id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updateData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to update contact inquiry");
-      }
-      return response.json();
+      const response = await api.put<ContactInquiryResponse>(
+        `/api/contact/${_id}`,
+        updateData
+      );
+      return response.data;
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: contactKeys.lists() });
@@ -178,14 +161,10 @@ export const useDeleteContactInquiry = () => {
 
   return useMutation<{ success: boolean }, Error, string>({
     mutationFn: async (id) => {
-      const response = await fetch(`/api/contact/${id}`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to delete contact inquiry");
-      }
-      return response.json();
+      const response = await api.delete<{ success: boolean }>(
+        `/api/contact/${id}`
+      );
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: contactKeys.lists() });
@@ -203,18 +182,12 @@ export const useBulkUpdateContactInquiries = () => {
     { ids: string[]; action: string; data?: Record<string, unknown> }
   >({
     mutationFn: async ({ ids, action, data }) => {
-      const response = await fetch("/api/contact", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ids, action, ...data }),
+      const response = await api.put<{ success: boolean }>("/api/contact", {
+        ids,
+        action,
+        ...data,
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to bulk update contact inquiries");
-      }
-      return response.json();
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: contactKeys.lists() });

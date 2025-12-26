@@ -1,4 +1,5 @@
 import { PaginatedResponse, SingleResponse } from "./common";
+import { ContactStatus } from "./enums";
 
 export interface Contact {
   _id: string;
@@ -7,7 +8,7 @@ export interface Contact {
   phone?: string;
   subject: string;
   message: string;
-  status: string;
+  status: ContactStatus;
   createdAt: string;
   updatedAt: string;
 }
@@ -18,7 +19,7 @@ export interface CreateContactData {
   phone?: string;
   subject: string;
   message: string;
-  status?: string;
+  status?: ContactStatus;
 }
 
 export interface UpdateContactData extends Partial<CreateContactData> {

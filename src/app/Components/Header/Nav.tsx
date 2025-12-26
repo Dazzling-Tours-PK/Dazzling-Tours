@@ -14,7 +14,7 @@ export default function Nav({ setMobileToggle }: NavProps) {
       label: "Home",
     },
     {
-      href: "/about",
+      href: "/about-us",
       label: "About Us",
     },
     {
@@ -23,7 +23,7 @@ export default function Nav({ setMobileToggle }: NavProps) {
     },
     {
       href: "/blogs",
-      label: "Travel Blog",
+      label: "Blogs",
     },
     {
       href: "/contact",

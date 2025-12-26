@@ -20,10 +20,12 @@ db.createUser({
 db.createCollection("users");
 db.createCollection("tours");
 db.createCollection("blogs");
+db.createCollection("categories");
 db.createCollection("testimonials");
 db.createCollection("comments");
 db.createCollection("contacts");
 db.createCollection("newsletters");
+db.createCollection("campaigns");
 db.createCollection("bookings");
 db.createCollection("otps");
 

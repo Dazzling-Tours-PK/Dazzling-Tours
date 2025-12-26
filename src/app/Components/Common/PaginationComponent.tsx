@@ -18,17 +18,13 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
   pageSize = 10,
   className = "",
 }) => {
-  if (
-    !pagination ||
-    pagination.totalPages <= 1 ||
-    pagination.total <= pageSize
-  ) {
+  if (!pagination || pagination.pages <= 1 || pagination.total <= pageSize) {
     return null;
   }
 
   const getVisiblePages = () => {
     const pages: number[] = [];
-    const totalPages = pagination.totalPages;
+    const totalPages = pagination.pages;
 
     // Always show first page
     pages.push(1);
@@ -64,7 +60,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
       <div className="pagination-controls">
         <button
           onClick={() => onPageChange(currentPage - 1)}
-          disabled={currentPage <= 1 || pagination.totalPages <= 1}
+          disabled={currentPage <= 1 || pagination.pages <= 1}
           className="btn btn-outline-secondary btn-sm"
           aria-label="Previous page"
         >
@@ -102,9 +98,7 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
 
         <button
           onClick={() => onPageChange(currentPage + 1)}
-          disabled={
-            currentPage >= pagination.totalPages || pagination.totalPages <= 1
-          }
+          disabled={currentPage >= pagination.pages || pagination.pages <= 1}
           className="btn btn-outline-secondary btn-sm"
           aria-label="Next page"
         >

@@ -1,17 +1,54 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth, useNotification } from "@/lib/hooks";
+import { useAuth, useNotification, useForm } from "@/lib/hooks";
+import { Page, Stack, Group, Button } from "@/app/Components/Common";
+import { TextInput } from "@/app/Components/Form";
 
 const ChangePasswordPage = () => {
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
   const { changePassword, isAuthenticated, user } = useAuth();
   const { showSuccess, showError } = useNotification();
   const router = useRouter();
+
+  const form = useForm({
+    initialValues: {
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: "",
+    },
+    validate: (values) => {
+      const errors: Record<string, string> = {};
+
+      if (!values.currentPassword) {
+        errors.currentPassword = "Current password is required";
+      }
+
+      if (!values.newPassword) {
+        errors.newPassword = "New password is required";
+      } else if (values.newPassword.length < 6) {
+        errors.newPassword = "Password must be at least 6 characters long";
+      }
+
+      if (!values.confirmPassword) {
+        errors.confirmPassword = "Please confirm your new password";
+      } else if (values.newPassword !== values.confirmPassword) {
+        errors.confirmPassword = "Passwords do not match";
+      }
+
+      if (
+        values.currentPassword &&
+        values.newPassword &&
+        values.currentPassword === values.newPassword
+      ) {
+        errors.newPassword =
+          "New password must be different from current password";
+      }
+
+      return errors;
+    },
+    validateOnChange: true,
+    validateOnBlur: true,
+  });
 
   // Redirect if not authenticated
   useEffect(() => {
@@ -23,154 +60,119 @@ const ChangePasswordPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (newPassword !== confirmPassword) {
-      showError("Passwords do not match");
+    if (!form.validate()) {
       return;
     }
-
-    if (newPassword.length < 6) {
-      showError("Password must be at least 6 characters long");
-      return;
-    }
-
-    if (currentPassword === newPassword) {
-      showError("New password must be different from current password");
-      return;
-    }
-
-    setIsLoading(true);
 
     try {
-      const result = await changePassword(currentPassword, newPassword);
+      const result = await changePassword(
+        form.values.currentPassword,
+        form.values.newPassword
+      );
 
       if (result.success) {
         showSuccess("Password changed successfully!");
         // Clear form
-        setCurrentPassword("");
-        setNewPassword("");
-        setConfirmPassword("");
+        form.reset();
       } else {
-        showError(result.message);
+        showError(result.message || "Password change failed");
+        if (result.message?.toLowerCase().includes("current password")) {
+          form.setFieldError("currentPassword", result.message);
+        }
       }
     } catch {
       showError("Password change failed. Please try again.");
-    } finally {
-      setIsLoading(false);
     }
   };
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <p className="text-gray-600">Redirecting to login...</p>
+      <Page
+        title="Change Password"
+        description="Update your account password"
+        loading={true}
+      >
+        <div style={{ textAlign: "center", padding: "2rem" }}>
+          <p>Redirecting to login...</p>
         </div>
-      </div>
+      </Page>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md mx-auto">
-        <div className="bg-white shadow rounded-lg p-6">
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-900">
-              Change Password
-            </h2>
-            <p className="mt-2 text-sm text-gray-600">
-              Update your password for {user?.email}
-            </p>
-          </div>
+    <Page
+      title="Change Password"
+      description={`Update your password for ${user?.email || "your account"}`}
+      headerActions={
+        <Button variant="outline" onClick={() => router.back()}>
+          <i className="bi bi-arrow-left"></i> Back
+        </Button>
+      }
+    >
+      <form onSubmit={handleSubmit}>
+        <Stack>
+          <div
+            style={{
+              maxWidth: "600px",
+              margin: "0 auto",
+              background: "#fff",
+              borderRadius: "8px",
+              padding: "2rem",
+              border: "1px solid #e5e7eb",
+            }}
+          >
+            <TextInput
+              label="Current Password"
+              type="password"
+              {...form.getFieldProps("currentPassword")}
+              placeholder="Enter your current password"
+              required
+              autoComplete="current-password"
+            />
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label
-                htmlFor="currentPassword"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Current Password
-              </label>
-              <input
-                id="currentPassword"
-                name="currentPassword"
-                type="password"
-                autoComplete="current-password"
-                required
-                value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
-                className="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Enter current password"
-              />
-            </div>
+            <TextInput
+              label="New Password"
+              type="password"
+              {...form.getFieldProps("newPassword")}
+              placeholder="Enter your new password"
+              description="Password must be at least 6 characters long"
+              required
+              autoComplete="new-password"
+            />
 
-            <div>
-              <label
-                htmlFor="newPassword"
-                className="block text-sm font-medium text-gray-700"
-              >
-                New Password
-              </label>
-              <input
-                id="newPassword"
-                name="newPassword"
-                type="password"
-                autoComplete="new-password"
-                required
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                className="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Enter new password"
-              />
-              <p className="mt-1 text-xs text-gray-500">
-                Password must be at least 6 characters long
-              </p>
-            </div>
+            <TextInput
+              label="Confirm New Password"
+              type="password"
+              {...form.getFieldProps("confirmPassword")}
+              placeholder="Confirm your new password"
+              required
+              autoComplete="new-password"
+            />
 
-            <div>
-              <label
-                htmlFor="confirmPassword"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Confirm New Password
-              </label>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                autoComplete="new-password"
-                required
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Confirm new password"
-              />
-            </div>
-
-            <div className="flex items-center justify-between">
-              <button
+            <Group style={{ marginTop: "1.5rem", justifyContent: "flex-end" }}>
+              <Button
                 type="button"
+                variant="outline"
                 onClick={() => router.back()}
-                className="text-sm text-gray-600 hover:text-gray-500"
               >
                 Cancel
-              </button>
-              <button
+              </Button>
+              <Button
                 type="submit"
                 disabled={
-                  isLoading ||
-                  !currentPassword ||
-                  !newPassword ||
-                  !confirmPassword
+                  !form.values.currentPassword ||
+                  !form.values.newPassword ||
+                  !form.values.confirmPassword ||
+                  Object.keys(form.errors).length > 0
                 }
-                className="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isLoading ? "Changing..." : "Change Password"}
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+                <i className="bi bi-key"></i> Change Password
+              </Button>
+            </Group>
+          </div>
+        </Stack>
+      </form>
+    </Page>
   );
 };
 

@@ -1,47 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
-// Types
-interface NewsletterSubscriber {
-  _id: string;
-  email: string;
-  status: string;
-  subscribedAt: string;
-  unsubscribedAt?: string;
-  source?: string;
-  tags?: string[];
-}
-
-interface CreateSubscriberData {
-  email: string;
-  source?: string;
-  tags?: string[];
-}
-
-interface UpdateSubscriberData {
-  email: string;
-  status?: string;
-  tags?: string[];
-}
-
-interface NewsletterResponse {
-  success: boolean;
-  data: NewsletterSubscriber[];
-  total: number;
-  page: number;
-  limit: number;
-  totalPages: number;
-}
-
-interface NewsletterStatsResponse {
-  success: boolean;
-  data: {
-    total: number;
-    active: number;
-    unsubscribed: number;
-    monthlyGrowth: Array<{ month: string; count: number }>;
-    sourceBreakdown: Record<string, number>;
-  };
-}
+import { api } from "@/lib/privateAxios";
+import {
+  CreateNewsletterData,
+  UpdateNewsletterData,
+  NewsletterResponse,
+  NewslettersResponse,
+  NewsletterStatsResponse,
+} from "@/lib/types/newsletter";
 
 // Query Keys
 export const newsletterKeys = {
@@ -49,18 +14,19 @@ export const newsletterKeys = {
   lists: () => [...newsletterKeys.all, "list"] as const,
   list: (filters: Record<string, unknown>) =>
     [...newsletterKeys.lists(), filters] as const,
+  details: () => [...newsletterKeys.all, "detail"] as const,
+  detail: (id: string) => [...newsletterKeys.details(), id] as const,
   stats: () => [...newsletterKeys.all, "stats"] as const,
 };
 
 // Hooks
-export const useGetNewsletterSubscribers = (params?: {
+export const useGetNewsletters = (params?: {
   status?: string;
   search?: string;
   page?: number;
   limit?: number;
-  source?: string;
 }) => {
-  return useQuery<NewsletterResponse>({
+  return useQuery<NewslettersResponse>({
     queryKey: newsletterKeys.list(params || {}),
     queryFn: async () => {
       const searchParams = new URLSearchParams();
@@ -72,14 +38,24 @@ export const useGetNewsletterSubscribers = (params?: {
         });
       }
 
-      const response = await fetch(
+      const response = await api.get<NewslettersResponse>(
         `/api/newsletter?${searchParams.toString()}`
       );
-      if (!response.ok) {
-        throw new Error("Failed to fetch newsletter subscribers");
-      }
-      return response.json();
+      return response.data;
     },
+  });
+};
+
+export const useGetNewsletter = (id: string) => {
+  return useQuery<NewsletterResponse>({
+    queryKey: newsletterKeys.detail(id),
+    queryFn: async () => {
+      const response = await api.get<NewsletterResponse>(
+        `/api/newsletter/${id}`
+      );
+      return response.data;
+    },
+    enabled: !!id,
   });
 };
 
@@ -87,11 +63,10 @@ export const useGetNewsletterStats = () => {
   return useQuery<NewsletterStatsResponse>({
     queryKey: newsletterKeys.stats(),
     queryFn: async () => {
-      const response = await fetch("/api/newsletter/stats");
-      if (!response.ok) {
-        throw new Error("Failed to fetch newsletter stats");
-      }
-      return response.json();
+      const response = await api.get<NewsletterStatsResponse>(
+        "/api/newsletter/stats"
+      );
+      return response.data;
     },
   });
 };
@@ -99,25 +74,13 @@ export const useGetNewsletterStats = () => {
 export const useSubscribeNewsletter = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<
-    { success: boolean; message: string },
-    Error,
-    CreateSubscriberData
-  >({
+  return useMutation<NewsletterResponse, Error, CreateNewsletterData>({
     mutationFn: async (data) => {
-      const response = await fetch("/api/newsletter", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || "Failed to subscribe to newsletter");
-      }
-      return response.json();
+      const response = await api.post<NewsletterResponse>(
+        "/api/newsletter",
+        data
+      );
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: newsletterKeys.lists() });
@@ -126,48 +89,37 @@ export const useSubscribeNewsletter = () => {
   });
 };
 
-export const useUpdateNewsletterSubscription = () => {
+export const useUpdateNewsletter = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<{ success: boolean }, Error, UpdateSubscriberData>({
+  return useMutation<NewsletterResponse, Error, UpdateNewsletterData>({
     mutationFn: async (data) => {
-      const response = await fetch("/api/newsletter", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to update newsletter subscription");
-      }
-      return response.json();
+      const { _id, ...updateData } = data;
+      const response = await api.put<NewsletterResponse>(
+        `/api/newsletter/${_id}`,
+        updateData
+      );
+      return response.data;
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: newsletterKeys.lists() });
+      queryClient.invalidateQueries({
+        queryKey: newsletterKeys.detail(data.data._id),
+      });
       queryClient.invalidateQueries({ queryKey: newsletterKeys.stats() });
     },
   });
 };
 
-export const useUnsubscribeNewsletter = () => {
+export const useDeleteNewsletter = () => {
   const queryClient = useQueryClient();
 
   return useMutation<{ success: boolean }, Error, string>({
-    mutationFn: async (email) => {
-      const response = await fetch("/api/newsletter", {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to unsubscribe from newsletter");
-      }
-      return response.json();
+    mutationFn: async (id) => {
+      const response = await api.delete<{ success: boolean }>(
+        `/api/newsletter/${id}`
+      );
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: newsletterKeys.lists() });
@@ -176,27 +128,21 @@ export const useUnsubscribeNewsletter = () => {
   });
 };
 
-export const useBulkUpdateNewsletter = () => {
+export const useBulkUpdateNewsletters = () => {
   const queryClient = useQueryClient();
 
   return useMutation<
     { success: boolean },
     Error,
-    { emails: string[]; action: string; data?: Record<string, unknown> }
+    { ids: string[]; action: string; data?: Record<string, unknown> }
   >({
-    mutationFn: async ({ emails, action, data }) => {
-      const response = await fetch("/api/newsletter", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ emails, action, ...data }),
+    mutationFn: async ({ ids, action, data }) => {
+      const response = await api.put<{ success: boolean }>("/api/newsletter", {
+        ids,
+        action,
+        ...data,
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to bulk update newsletter subscriptions");
-      }
-      return response.json();
+      return response.data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: newsletterKeys.lists() });

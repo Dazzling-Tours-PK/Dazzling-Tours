@@ -1,113 +1,216 @@
+"use client";
 import React from "react";
 import Link from "next/link";
+import { useGetDashboardStats } from "@/lib/hooks";
+import { Page, Stack } from "@/app/Components/Common";
 
 const AdminDashboard = () => {
-  const stats = [
-    { title: "Total Tours", value: "12", icon: "bi bi-map", color: "primary" },
-    {
-      title: "Total Bookings",
-      value: "45",
-      icon: "bi bi-calendar-check",
-      color: "success",
-    },
-    {
-      title: "Total Blogs",
-      value: "8",
-      icon: "bi bi-journal-text",
-      color: "info",
-    },
-    {
-      title: "Contact Queries",
-      value: "23",
-      icon: "bi bi-envelope",
-      color: "warning",
-    },
-  ];
+  const { data: statsData, isLoading: loading } = useGetDashboardStats();
+  const stats = statsData?.data;
 
-  const recentActivities = [
-    {
-      type: "booking",
-      message: "New booking for Paris Tour",
-      time: "2 hours ago",
-    },
-    {
-      type: "contact",
-      message: "New contact query received",
-      time: "4 hours ago",
-    },
-    { type: "blog", message: "New blog post published", time: "1 day ago" },
-    { type: "tour", message: "Tour updated: Kenya Safari", time: "2 days ago" },
-  ];
+  const statCards = stats
+    ? [
+        {
+          title: "Total Tours",
+          value: stats.tours.total,
+          subtitle: `${stats.tours.published} Published`,
+          icon: "bi bi-map",
+          color: "primary",
+          link: "/admin/tours",
+        },
+        {
+          title: "Total Blogs",
+          value: stats.blogs.total,
+          subtitle: `${stats.blogs.published} Published`,
+          icon: "bi bi-journal-text",
+          color: "info",
+          link: "/admin/blogs",
+        },
+        {
+          title: "Contact Queries",
+          value: stats.contacts.total,
+          subtitle: `${stats.contacts.new} New`,
+          icon: "bi bi-envelope",
+          color: "warning",
+          link: "/admin/contact",
+        },
+        {
+          title: "Newsletter Subscribers",
+          value: stats.newsletters.total,
+          subtitle: `${stats.newsletters.active} Active`,
+          icon: "bi bi-people",
+          color: "success",
+          link: "/admin/newsletter",
+        },
+        {
+          title: "Email Campaigns",
+          value: stats.campaigns.total,
+          subtitle: `${stats.campaigns.sent} Sent`,
+          icon: "bi bi-megaphone",
+          color: "secondary",
+          link: "/admin/campaigns",
+        },
+        {
+          title: "Testimonials",
+          value: stats.testimonials.total,
+          subtitle: `${stats.testimonials.published} Published`,
+          icon: "bi bi-chat-quote",
+          color: "purple",
+          link: "/admin/testimonials",
+        },
+      ]
+    : [];
 
   return (
-    <div className="admin-dashboard">
-      <div className="dashboard-header">
-        <h1>Dashboard</h1>
-        <p>Welcome to Dazzling Tours CMS</p>
-      </div>
-
-      {/* Stats Cards */}
-      <div className="stats-grid">
-        {stats.map((stat, index) => (
-          <div key={index} className={`stat-card ${stat.color}`}>
-            <div className="stat-icon">
-              <i className={stat.icon}></i>
-            </div>
-            <div className="stat-content">
-              <h3>{stat.value}</h3>
-              <p>{stat.title}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Quick Actions */}
-      <div className="quick-actions">
-        <h2>Quick Actions</h2>
-        <div className="action-buttons">
-          <Link href="/admin/tours/add" className="btn btn-primary">
-            <i className="bi bi-plus-circle"></i> Add New Tour
-          </Link>
-          <Link href="/admin/blogs/add" className="btn btn-success">
-            <i className="bi bi-plus-circle"></i> Add New Blog
-          </Link>
-          <Link href="/admin/tours/bookings" className="btn btn-info">
-            <i className="bi bi-calendar-check"></i> View Bookings
-          </Link>
-          <Link href="/admin/contact" className="btn btn-warning">
-            <i className="bi bi-envelope"></i> Contact Queries
-          </Link>
-        </div>
-      </div>
-
-      {/* Recent Activities */}
-      <div className="recent-activities">
-        <h2>Recent Activities</h2>
-        <div className="activity-list">
-          {recentActivities.map((activity, index) => (
-            <div key={index} className="activity-item">
-              <div className="activity-icon">
-                <i
-                  className={`bi bi-${
-                    activity.type === "booking"
-                      ? "calendar-check"
-                      : activity.type === "contact"
-                      ? "envelope"
-                      : activity.type === "blog"
-                      ? "journal-text"
-                      : "map"
-                  }`}
-                ></i>
+    <Page
+      title="Dashboard"
+      description="Welcome to Dazzling Tours CMS - Overview of your content and activities"
+      loading={loading}
+    >
+      <Stack>
+        {/* Stats Cards */}
+        <div className="stats-grid" style={{ marginBottom: "2rem" }}>
+          {statCards.map((stat, index) => (
+            <Link
+              key={index}
+              href={stat.link}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <div className="stat-card" style={{ cursor: "pointer" }}>
+                <div
+                  className="stat-icon"
+                  style={{
+                    background:
+                      stat.color === "primary"
+                        ? "#e3f2fd"
+                        : stat.color === "info"
+                        ? "#e1f5fe"
+                        : stat.color === "warning"
+                        ? "#fff3e0"
+                        : stat.color === "success"
+                        ? "#e8f5e9"
+                        : stat.color === "secondary"
+                        ? "#f3e5f5"
+                        : "#fce4ec",
+                  }}
+                >
+                  <i
+                    className={stat.icon}
+                    style={{
+                      color:
+                        stat.color === "primary"
+                          ? "#1976d2"
+                          : stat.color === "info"
+                          ? "#0288d1"
+                          : stat.color === "warning"
+                          ? "#f57c00"
+                          : stat.color === "success"
+                          ? "#388e3c"
+                          : stat.color === "secondary"
+                          ? "#7b1fa2"
+                          : "#c2185b",
+                    }}
+                  ></i>
+                </div>
+                <div className="stat-content">
+                  <h4>{stat.title}</h4>
+                  <p
+                    style={{ fontSize: "2rem", fontWeight: "bold", margin: 0 }}
+                  >
+                    {stat.value}
+                  </p>
+                  {stat.subtitle && (
+                    <p
+                      style={{
+                        fontSize: "0.875rem",
+                        color: "#6c757d",
+                        margin: "0.25rem 0 0 0",
+                      }}
+                    >
+                      {stat.subtitle}
+                    </p>
+                  )}
+                </div>
               </div>
-              <div className="activity-content">
-                <p>{activity.message}</p>
-                <span className="activity-time">{activity.time}</span>
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
-      </div>
-    </div>
+
+        {/* Quick Actions */}
+        <div
+          style={{
+            background: "#fff",
+            borderRadius: "8px",
+            padding: "1.5rem",
+            border: "1px solid #e5e7eb",
+          }}
+        >
+          <h3
+            style={{
+              margin: 0,
+              marginBottom: "1rem",
+              fontSize: "1.25rem",
+              fontWeight: 600,
+            }}
+          >
+            Quick Actions
+          </h3>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              gap: "0.75rem",
+              flexWrap: "wrap",
+            }}
+          >
+            <Link
+              href="/admin/tours/add"
+              className="btn btn-primary"
+              style={{
+                flex: "1 1 auto",
+                minWidth: "200px",
+                justifyContent: "center",
+              }}
+            >
+              <i className="bi bi-plus-circle"></i> Add New Tour
+            </Link>
+            <Link
+              href="/admin/blogs/add"
+              className="btn btn-success"
+              style={{
+                flex: "1 1 auto",
+                minWidth: "200px",
+                justifyContent: "center",
+              }}
+            >
+              <i className="bi bi-plus-circle"></i> Add New Blog
+            </Link>
+            <Link
+              href="/admin/campaigns/create"
+              className="btn btn-info"
+              style={{
+                flex: "1 1 auto",
+                minWidth: "200px",
+                justifyContent: "center",
+              }}
+            >
+              <i className="bi bi-megaphone"></i> Create Campaign
+            </Link>
+            <Link
+              href="/admin/contact"
+              className="btn btn-warning"
+              style={{
+                flex: "1 1 auto",
+                minWidth: "200px",
+                justifyContent: "center",
+              }}
+            >
+              <i className="bi bi-envelope"></i> Contact Queries
+            </Link>
+          </div>
+        </div>
+      </Stack>
+    </Page>
   );
 };
 

@@ -5,5 +5,8 @@ export * from "./blog";
 export * from "./testimonial";
 export * from "./contact";
 export * from "./newsletter";
+export * from "./campaign";
+export * from "./category";
 export * from "./notification";
 export * from "./seo";
+export * from "./enums";

@@ -1,6 +1,7 @@
 import mongoose, { Document, Schema } from "mongoose";
 import { UserRole } from "@/lib/enums/roles";
 import { TourStatus, TourDifficulty } from "@/lib/enums/tour";
+import { ContactStatus } from "@/lib/types/enums";
 
 // Tour Model
 export interface ITour extends Document {
@@ -214,7 +215,7 @@ export interface IContact extends Document {
   phone?: string;
   subject: string;
   message: string;
-  status: "New" | "Read" | "Replied" | "Closed";
+  status: ContactStatus;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -228,8 +229,8 @@ const ContactSchema = new Schema<IContact>(
     message: { type: String, required: true },
     status: {
       type: String,
-      enum: ["New", "Read", "Replied", "Closed"],
-      default: "New",
+      enum: Object.values(ContactStatus),
+      default: ContactStatus.NEW,
     },
   },
   {
@@ -247,7 +248,15 @@ export interface IBlog extends Document {
   tags: string[];
   featuredImage?: string;
   status: "Draft" | "Published";
+  featured: boolean;
   publishedAt?: Date;
+  seo?: {
+    metaTitle?: string;
+    metaDescription?: string;
+    slug?: string;
+    focusKeyword?: string;
+    ogImage?: string;
+  };
   createdAt: Date;
   updatedAt: Date;
 }
@@ -262,7 +271,15 @@ const BlogSchema = new Schema<IBlog>(
     tags: [{ type: String }],
     featuredImage: { type: String },
     status: { type: String, enum: ["Draft", "Published"], default: "Draft" },
+    featured: { type: Boolean, default: false },
     publishedAt: { type: Date },
+    seo: {
+      metaTitle: { type: String, default: "" },
+      metaDescription: { type: String, default: "" },
+      slug: { type: String, default: "" },
+      focusKeyword: { type: String, default: "" },
+      ogImage: { type: String, default: "" },
+    },
   },
   {
     timestamps: true,
@@ -275,14 +292,91 @@ export interface INewsletter extends Document {
   status: "Active" | "Unsubscribed";
   subscribedAt: Date;
   unsubscribedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-const NewsletterSchema = new Schema<INewsletter>({
-  email: { type: String, required: true, unique: true },
-  status: { type: String, enum: ["Active", "Unsubscribed"], default: "Active" },
-  subscribedAt: { type: Date, default: Date.now },
-  unsubscribedAt: { type: Date },
-});
+const NewsletterSchema = new Schema<INewsletter>(
+  {
+    email: { type: String, required: true, unique: true },
+    status: {
+      type: String,
+      enum: ["Active", "Unsubscribed"],
+      default: "Active",
+    },
+    subscribedAt: { type: Date, default: Date.now },
+    unsubscribedAt: { type: Date },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+// Newsletter Campaign Model
+export interface ICampaign extends Document {
+  title: string;
+  subject: string;
+  content: string;
+  templateType: "newsletter" | "promotion" | "custom";
+  status: "Draft" | "Scheduled" | "Sending" | "Sent" | "Failed";
+  scheduledAt?: Date;
+  sentAt?: Date;
+  recipients: {
+    type: "all" | "active" | "custom";
+    emails?: string[];
+  };
+  stats: {
+    total: number;
+    sent: number;
+    delivered: number;
+    opened: number;
+    clicked: number;
+    bounced: number;
+    failed: number;
+  };
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const CampaignSchema = new Schema<ICampaign>(
+  {
+    title: { type: String, required: true },
+    subject: { type: String, required: true },
+    content: { type: String, required: true },
+    templateType: {
+      type: String,
+      enum: ["newsletter", "promotion", "custom"],
+      default: "newsletter",
+    },
+    status: {
+      type: String,
+      enum: ["Draft", "Scheduled", "Sending", "Sent", "Failed"],
+      default: "Draft",
+    },
+    scheduledAt: { type: Date },
+    sentAt: { type: Date },
+    recipients: {
+      type: {
+        type: String,
+        enum: ["all", "active", "custom"],
+        default: "active",
+      },
+      emails: [{ type: String }],
+    },
+    stats: {
+      total: { type: Number, default: 0 },
+      sent: { type: Number, default: 0 },
+      delivered: { type: Number, default: 0 },
+      opened: { type: Number, default: 0 },
+      clicked: { type: Number, default: 0 },
+      bounced: { type: Number, default: 0 },
+      failed: { type: Number, default: 0 },
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 // Testimonial Model
 export interface ITestimonial extends Document {
@@ -365,6 +459,9 @@ export const Blog =
 export const Newsletter =
   mongoose.models.Newsletter ||
   mongoose.model<INewsletter>("Newsletter", NewsletterSchema);
+export const Campaign =
+  mongoose.models.Campaign ||
+  mongoose.model<ICampaign>("Campaign", CampaignSchema);
 export const Testimonial =
   mongoose.models.Testimonial ||
   mongoose.model<ITestimonial>("Testimonial", TestimonialSchema);
@@ -586,3 +683,27 @@ OTPSchema.methods.incrementAttempts = function () {
 
 export const OTP =
   mongoose.models.OTP || mongoose.model<IOTP>("OTP", OTPSchema);
+
+// Category Model
+export interface ICategory extends Document {
+  name: string;
+  slug: string;
+  description?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const CategorySchema = new Schema<ICategory>(
+  {
+    name: { type: String, required: true, unique: true },
+    slug: { type: String, required: true, unique: true },
+    description: { type: String },
+  },
+  {
+    timestamps: true,
+  }
+);
+
+export const Category =
+  mongoose.models.Category ||
+  mongoose.model<ICategory>("Category", CategorySchema);

@@ -9,7 +9,8 @@ export { default as ListManager } from "./ListManager";
 export { default as ItineraryManager } from "./ItineraryManager";
 export { default as ImageUpload } from "./ImageUpload";
 export { default as StarRating } from "./StarRating";
-export { default as SEOFields } from "./SEOFields";
+import SEOFields from "./SEOFields";
+export { SEOFields };
 
 // Export types
 export type { TextInputProps } from "./TextInput";

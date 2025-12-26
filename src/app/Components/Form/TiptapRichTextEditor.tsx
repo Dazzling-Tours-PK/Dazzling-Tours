@@ -22,7 +22,8 @@ export interface TiptapRichTextEditorProps {
 const TiptapRichTextEditor: React.FC<TiptapRichTextEditorProps> = ({
   label,
   description,
-  placeholder = "Enter your text here...",
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  placeholder: _placeholder = "Enter your text here...",
   value = "",
   onChange,
   required = false,

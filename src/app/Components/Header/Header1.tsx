@@ -8,7 +8,6 @@ export default function Header1() {
   const [mobileToggle, setMobileToggle] = useState(false);
   const [isSticky, setIsSticky] = useState<string>("");
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
-  const [searchToggle, setSearchToggle] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,12 +67,6 @@ export default function Header1() {
               <div className="cs_main_header_right">
                 <div className="header-btn d-flex align-items-center">
                   <div className="main-button header-btn-1">
-                    <a
-                      onClick={() => setSearchToggle(!searchToggle)}
-                      className="search-trigger search-icon"
-                    >
-                      <i className="bi bi-search"></i>
-                    </a>
                     <Link href="/contact" className="theme-btn">
                       <span>
                         Request A Quote <i className="bi bi-arrow-right"></i>
@@ -86,27 +79,6 @@ export default function Header1() {
           </div>
         </div>
       </header>
-
-      <div className={`search-wrap ${searchToggle ? "active" : ""}`}>
-        <div className="search-inner">
-          <i
-            onClick={() => setSearchToggle(!searchToggle)}
-            id="search-close"
-            className="bi bi-x-lg search-close"
-          ></i>
-          <div className="search-cell">
-            <form method="get">
-              <div className="search-field-holder">
-                <input
-                  type="search"
-                  className="main-search-input"
-                  placeholder="Search..."
-                />
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

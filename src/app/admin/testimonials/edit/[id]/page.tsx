@@ -11,6 +11,10 @@ import {
 import { useGetTours } from "@/lib/hooks/useTours";
 import { Page, Button } from "@/app/Components/Common";
 import {
+  TestimonialStatus,
+  TESTIMONIAL_STATUS_OPTIONS,
+} from "@/lib/enums/testimonial";
+import {
   TextInput,
   Textarea,
   Select,
@@ -37,7 +41,7 @@ const EditTestimonial = ({ params }: { params: Promise<{ id: string }> }) => {
       image: "",
       location: "",
       tourId: "",
-      status: "Active",
+      status: TestimonialStatus.ACTIVE,
       featured: false,
     },
     validate: (values) => {
@@ -77,7 +81,7 @@ const EditTestimonial = ({ params }: { params: Promise<{ id: string }> }) => {
         image: testimonial.image || "",
         location: testimonial.location || "",
         tourId: getTourId(testimonial.tourId),
-        status: testimonial.status as "Active" | "Inactive",
+        status: testimonial.status as TestimonialStatus,
         featured: testimonial.featured,
       });
     }
@@ -298,12 +302,9 @@ const EditTestimonial = ({ params }: { params: Promise<{ id: string }> }) => {
                 label="Status"
                 value={form.values.status}
                 onChange={(value) =>
-                  form.setFieldValue("status", value as "Active" | "Inactive")
+                  form.setFieldValue("status", value as TestimonialStatus)
                 }
-                data={[
-                  { value: "Active", label: "Active" },
-                  { value: "Inactive", label: "Inactive" },
-                ]}
+                data={TESTIMONIAL_STATUS_OPTIONS}
               />
             </div>
           </div>

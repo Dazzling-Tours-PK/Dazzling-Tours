@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "slick-carousel/slick/slick.css";
 import "./assets/main.css";
+import "./globals.css";
 import ConditionalLayout from "./Components/Common/ConditionalLayout";
 import { QueryProvider } from "./Components/Common/QueryProvider";
 import { NotificationProvider } from "@/lib/contexts/NotificationContext";

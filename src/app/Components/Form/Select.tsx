@@ -25,6 +25,8 @@ export interface SelectProps
   onChange?: (value: string) => void;
   onBlur?: () => void;
   onFocus?: () => void;
+  // Backend search support
+  onSearchChange?: (searchTerm: string) => void;
 }
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
@@ -50,6 +52,8 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
       onChange: formOnChange,
       onBlur: formOnBlur,
       onFocus: formOnFocus,
+      // Backend search support
+      onSearchChange,
       ...props
     },
     ref
@@ -301,11 +305,21 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
                   className="form-control"
                   placeholder="Search options..."
                   value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onChange={(e) => {
+                    const newSearchTerm = e.target.value;
+                    setSearchTerm(newSearchTerm);
+                    // Call onSearchChange callback for backend search
+                    if (onSearchChange) {
+                      onSearchChange(newSearchTerm);
+                    }
+                  }}
                   onKeyDown={(e) => {
                     if (e.key === "Escape") {
                       setIsOpen(false);
                       setSearchTerm("");
+                      if (onSearchChange) {
+                        onSearchChange("");
+                      }
                     }
                   }}
                 />

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, use, useRef } from "react";
+import React, { useEffect, useRef, useState, useMemo, use } from "react";
 import { useRouter } from "next/navigation";
 import { UpdateTourData } from "@/lib/types/tour";
 import {
@@ -8,12 +8,15 @@ import {
   useNotification,
   useForm,
   useGetCategories,
+  useDebounceValue,
 } from "@/lib/hooks";
 import {
   TourStatus,
   TOUR_STATUS_OPTIONS,
   TourDifficulty,
   TOUR_DIFFICULTY_OPTIONS,
+  TourPriceType,
+  TOUR_PRICE_TYPE_OPTIONS,
 } from "@/lib/enums";
 import {
   TextInput,
@@ -27,7 +30,7 @@ import {
   ImageUpload,
   SEOFields,
 } from "@/app/Components/Form";
-import { Button, Page } from "@/app/Components/Common";
+import { Button, Page, Title, Text } from "@/app/Components/Common";
 import { updateTourSchema } from "@/lib/validation/tour";
 
 const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
@@ -39,10 +42,15 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
 
   const tour = data?.data;
   const initializedRef = useRef(false);
+  const [categorySearchTerm, setCategorySearchTerm] = useState("");
+  const debouncedCategorySearch = useDebounceValue(categorySearchTerm, 500);
 
-  // Fetch categories for the select dropdown
-  const { data: categoriesData } = useGetCategories({ limit: 1000 });
-  const categoryOptions = React.useMemo(() => {
+  // Fetch categories for the select dropdown with search
+  const { data: categoriesData } = useGetCategories({
+    limit: 1000,
+    search: debouncedCategorySearch || undefined,
+  });
+  const categoryOptions = useMemo(() => {
     const categories = categoriesData?.data || [];
     return categories.map((cat) => ({
       value: cat.name,
@@ -57,6 +65,7 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
       description: "",
       shortDescription: "",
       price: 0,
+      priceType: TourPriceType.PER_PERSON,
       duration: "",
       location: "",
       category: "",
@@ -102,6 +111,7 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
         description: tour.description || "",
         shortDescription: tour.shortDescription || "",
         price: tour.price || 0,
+        priceType: tour.priceType || TourPriceType.PER_PERSON,
         duration: tour.duration || "",
         location: tour.location || "",
         category: tour.category || "",
@@ -175,12 +185,24 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
         <form id="edit-tour-form" onSubmit={handleSubmit} className="tour-form">
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-info-circle"></i> Basic Information
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-info-circle"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Basic Information
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Essential details about your tour package
-              </p>
+              </Text>
             </div>
             <div className="form-grid">
               <TextInput
@@ -191,11 +213,22 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
               />
 
               <NumberInput
-                label="Price (USD)"
-                placeholder="299"
+                label="Price (PKR)"
+                placeholder="10,000"
                 {...form.getFieldProps("price")}
                 min={0}
-                step={0.01}
+                step={1}
+                currency="₨"
+                required
+              />
+
+              <Select
+                label="Price Type"
+                value={form.values.priceType}
+                onChange={(value) =>
+                  form.setFieldValue("priceType", value as TourPriceType)
+                }
+                data={TOUR_PRICE_TYPE_OPTIONS}
                 required
               />
 
@@ -220,6 +253,7 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
                 data={categoryOptions}
                 required
                 searchable
+                onSearchChange={setCategorySearchTerm}
               />
 
               <NumberInput
@@ -249,13 +283,25 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-images"></i> Tour Images
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-images"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Tour Images
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Upload high-quality images showcasing your tour destinations and
                 activities
-              </p>
+              </Text>
             </div>
             <ImageUpload
               label="Tour Images"
@@ -269,12 +315,24 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-file-text"></i> Tour Descriptions
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-file-text"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Tour Descriptions
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Provide detailed information about your tour
-              </p>
+              </Text>
             </div>
             <div className="form-group">
               <Textarea
@@ -304,12 +362,24 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-star"></i> Highlights
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-star"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Highlights
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Add key features and attractions that make this tour special
-              </p>
+              </Text>
             </div>
 
             <ListManager
@@ -338,12 +408,24 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-calendar-check"></i> Itinerary
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-calendar-check"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Itinerary
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Create a detailed day-by-day schedule for your tour
-              </p>
+              </Text>
             </div>
             <ItineraryManager
               label="Itinerary"
@@ -361,19 +443,30 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
                   (form.values.itinerary || []).filter((_, i) => i !== index)
                 )
               }
-              maxItems={15}
             />
           </div>
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-check-circle"></i> Includes
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-check-circle"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Includes
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 List what&apos;s included in the tour price (meals,
                 transportation, accommodation, etc.)
-              </p>
+              </Text>
             </div>
             <ListManager
               label="Includes"
@@ -395,19 +488,30 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
                   (form.values.includes || []).filter((_, i) => i !== index)
                 )
               }
-              maxItems={15}
             />
           </div>
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-x-circle"></i> Excludes
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-x-circle"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Excludes
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 List what&apos;s NOT included in the tour price (optional
                 activities, personal expenses, etc.)
-              </p>
+              </Text>
             </div>
             <ListManager
               label="Excludes"
@@ -435,12 +539,24 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-gear"></i> Additional Options
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-gear"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Additional Options
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Configure additional tour settings
-              </p>
+              </Text>
             </div>
             <div className="form-grid">
               <NumberInput
@@ -469,12 +585,24 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-search"></i> SEO Settings
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-search"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                SEO Settings
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Optimize your tour for search engines and social media sharing
-              </p>
+              </Text>
             </div>
             <SEOFields
               values={

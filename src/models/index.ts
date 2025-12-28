@@ -1,6 +1,7 @@
 import mongoose, { Document, Schema } from "mongoose";
 import { UserRole } from "@/lib/enums/roles";
-import { TourStatus, TourDifficulty } from "@/lib/enums/tour";
+import { TourStatus, TourDifficulty, TourPriceType } from "@/lib/enums/tour";
+import { TestimonialStatus } from "@/lib/enums/testimonial";
 import { ContactStatus } from "@/lib/types/enums";
 
 // Tour Model
@@ -9,6 +10,7 @@ export interface ITour extends Document {
   description: string;
   shortDescription: string;
   price: number;
+  priceType: TourPriceType;
   duration: string;
   location: string;
   category: string;
@@ -44,6 +46,11 @@ const TourSchema = new Schema<ITour>(
     description: { type: String, required: true },
     shortDescription: { type: String, required: true },
     price: { type: Number, required: true },
+    priceType: {
+      type: String,
+      enum: Object.values(TourPriceType),
+      default: TourPriceType.PER_PERSON,
+    },
     duration: { type: String, required: true },
     location: { type: String, required: true },
     category: { type: String, required: true },
@@ -386,7 +393,7 @@ export interface ITestimonial extends Document {
   image?: string;
   location?: string;
   tourId?: mongoose.Types.ObjectId;
-  status: "Active" | "Inactive";
+  status: TestimonialStatus;
   featured: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -400,7 +407,11 @@ const TestimonialSchema = new Schema<ITestimonial>(
     image: { type: String },
     location: { type: String },
     tourId: { type: Schema.Types.ObjectId, ref: "Tour" },
-    status: { type: String, enum: ["Active", "Inactive"], default: "Active" },
+    status: {
+      type: String,
+      enum: Object.values(TestimonialStatus),
+      default: TestimonialStatus.ACTIVE,
+    },
     featured: { type: Boolean, default: false },
   },
   {

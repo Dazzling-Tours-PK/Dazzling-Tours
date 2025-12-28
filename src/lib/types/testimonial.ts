@@ -1,4 +1,5 @@
 import { PaginatedResponse, SingleResponse } from "./common";
+import { TestimonialStatus } from "@/lib/enums/testimonial";
 
 export interface Testimonial {
   _id: string;
@@ -11,7 +12,7 @@ export interface Testimonial {
     _id: string;
     title: string;
   };
-  status: "Active" | "Inactive";
+  status: TestimonialStatus;
   featured: boolean;
   createdAt: string;
   updatedAt: string;
@@ -24,7 +25,7 @@ export interface CreateTestimonialData {
   image?: string;
   location?: string;
   tourId?: string;
-  status?: "Active" | "Inactive";
+  status?: TestimonialStatus;
   featured?: boolean;
 }
 

@@ -3,6 +3,7 @@ import React, { use } from "react";
 import { useGetTour } from "@/lib/hooks";
 import { Page, Button } from "@/app/Components/Common";
 import Image from "next/image";
+import { formatCurrency } from "@/lib/utils/currencyConverter";
 
 const ViewTour = ({ params }: { params: Promise<{ id: string }> }) => {
   const resolvedParams = use(params);
@@ -121,8 +122,12 @@ const ViewTour = ({ params }: { params: Promise<{ id: string }> }) => {
             <div className="col-lg-4">
               <div className="text-center">
                 <div className="price-display mb-2">
-                  <span className="h3 text-primary">${tour.price}</span>
-                  <span className="text-muted ms-1">per person</span>
+                  <span className="h3 text-primary">
+                    {formatCurrency(tour.price)}
+                  </span>
+                  <span className="text-muted ms-1">
+                    {tour.priceType || "Per Person"}
+                  </span>
                 </div>
                 <div className="price-details">
                   <small className="text-muted">

@@ -34,8 +34,11 @@ export interface MongoQuery {
     | boolean
     | number
     | { $regex: string; $options: string }
+    | { $in: (string | number)[] }
+    | { $or: Array<{ [key: string]: { $regex: string; $options: string } }> }
     | Array<{ [key: string]: { $regex: string; $options: string } }>
-    | undefined;
+    | undefined
+    | Record<string, unknown>;
 }
 
 // Query Parameters Types

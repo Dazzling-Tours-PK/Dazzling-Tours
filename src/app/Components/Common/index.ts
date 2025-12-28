@@ -14,6 +14,12 @@ export { default as Avatar } from "./Avatar";
 export type { AvatarProps } from "./Avatar";
 export { default as Badge } from "./Badge";
 export type { BadgeProps } from "./Badge";
+export { default as Card } from "./Card";
+export type { CardProps } from "./Card";
+export { default as Title } from "./Title";
+export type { TitleProps } from "./Title";
+export { default as Text } from "./Text";
+export type { TextProps } from "./Text";
 export {
   default as Loading,
   LoadingSpinner,

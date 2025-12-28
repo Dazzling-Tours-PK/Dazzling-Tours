@@ -1,18 +1,56 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
-import { useGetTours } from "@/lib/hooks";
+import React, { useState, useEffect } from "react";
+import {
+  useGetTours,
+  useGetTourLocations,
+  useGetTourDifficulties,
+  useGetTourActivities,
+} from "@/lib/hooks";
 import { TourStatus } from "@/lib/enums";
+import { TourDifficulty } from "@/lib/enums/tour";
 import { StarRating } from "@/app/Components/Form";
 import { formatCurrency } from "@/lib/utils/currencyConverter";
 import PaginationComponent from "@/app/Components/Common/PaginationComponent";
+import { ActionIcon, Loading } from "@/app/Components/Common";
 
 const Tour = () => {
   const pageLimit = 9;
   const [searchQuery, setSearchQuery] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [favorites, setFavorites] = useState<string[]>([]);
+  const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
+  const [selectedDifficulties, setSelectedDifficulties] = useState<
+    TourDifficulty[]
+  >([]);
+
+  // Fetch tour locations
+  const { data: locationsData } = useGetTourLocations(TourStatus.ACTIVE);
+  const locations = locationsData?.data || [];
+
+  // Fetch tour difficulties with counts
+  const { data: difficultiesData } = useGetTourDifficulties(TourStatus.ACTIVE);
+  const difficulties = difficultiesData?.data || [];
+
+  // Fetch tour activities (highlights) with counts
+  const { data: activitiesData } = useGetTourActivities(TourStatus.ACTIVE);
+  const activities = activitiesData?.data || [];
+
+  // Load favorites from localStorage on component mount
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedFavorites = localStorage.getItem("tourFavorites");
+      if (storedFavorites) {
+        try {
+          setFavorites(JSON.parse(storedFavorites));
+        } catch (error) {
+          console.error("Error parsing favorites from localStorage:", error);
+        }
+      }
+    }
+  }, []);
 
   const {
     data: toursData,
@@ -21,11 +59,17 @@ const Tour = () => {
   } = useGetTours({
     status: TourStatus.ACTIVE,
     search: searchTerm || undefined,
+    location:
+      selectedLocations.length > 0 ? selectedLocations.join(",") : undefined,
+    difficulty:
+      selectedDifficulties.length > 0
+        ? selectedDifficulties.join(",")
+        : undefined,
     page: currentPage,
     limit: pageLimit,
   });
 
-  const tours = toursData?.data || [];
+  const tours = React.useMemo(() => toursData?.data || [], [toursData?.data]);
   const pagination = toursData?.pagination;
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,34 +97,67 @@ const Tour = () => {
     setCurrentPage(1); // Reset to first page when clearing search
   };
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    // Scroll to top of tours section when page changes
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  // Handle location filter change
+  const handleLocationChange = (locationName: string, checked: boolean) => {
+    setSelectedLocations((prev) => {
+      if (checked) {
+        return [...prev, locationName];
+      } else {
+        return prev.filter((loc) => loc !== locationName);
+      }
+    });
+    setCurrentPage(1); // Reset to first page when filter changes
   };
 
-  if (loading) {
-    return (
-      <section className="tour-section section-padding fix">
-        <div className="container custom-container">
-          <div className="section-title text-center mb-5">
-            <span className="sub-title wow fadeInUp">Our Tours</span>
-            <h2 className="wow fadeInUp" data-wow-delay=".3s">
-              Discover Your Perfect Adventure
-            </h2>
-            <p className="wow fadeInUp" data-wow-delay=".5s">
-              Explore our handpicked collection of extraordinary journeys. From
-              breathtaking landscapes to cultural treasures, find the tour that
-              speaks to your wanderlust.
-            </p>
-          </div>
-          <div className="text-center" style={{ padding: "3rem" }}>
-            <p>Loading tours...</p>
-          </div>
-        </div>
-      </section>
-    );
-  }
+  // Handle difficulty filter change
+  const handleDifficultyChange = (
+    difficulty: TourDifficulty,
+    checked: boolean
+  ) => {
+    setSelectedDifficulties((prev) => {
+      if (checked) {
+        return [...prev, difficulty];
+      } else {
+        return prev.filter((diff) => diff !== difficulty);
+      }
+    });
+    setCurrentPage(1); // Reset to first page when filter changes
+  };
+
+  // Toggle favorite status
+  const toggleFavorite = (tourId: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    setFavorites((prevFavorites) => {
+      const isFavorite = prevFavorites.includes(tourId);
+      let newFavorites: string[];
+
+      if (isFavorite) {
+        // Remove from favorites
+        newFavorites = prevFavorites.filter((id) => id !== tourId);
+      } else {
+        // Add to favorites
+        newFavorites = [...prevFavorites, tourId];
+      }
+
+      // Save to localStorage
+      if (typeof window !== "undefined") {
+        localStorage.setItem("tourFavorites", JSON.stringify(newFavorites));
+      }
+
+      return newFavorites;
+    });
+  };
+
+  // Check if a tour is favorited
+  const isFavorite = (tourId: string): boolean => {
+    return favorites.includes(tourId);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   if (error) {
     return (
@@ -127,88 +204,151 @@ const Tour = () => {
         <div className="tour-destination-wrapper">
           <div className="row g-4">
             <div className="col-xl-8">
-              <div className="row g-4">
-                {tours.map((tour) => (
-                  <div
-                    key={tour._id}
-                    className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp wow"
-                    data-wow-delay=".3s"
-                  >
-                    <div className="destination-card-items mt-0">
-                      <div className="destination-image">
-                        <Image
-                          src={
-                            tour.images?.[0] || "/assets/img/destination/01.jpg"
-                          }
-                          alt={tour.title}
-                          width={287}
-                          height={240}
-                          priority
-                        />
-                        <div className="heart-icon">
-                          <i className="bi bi-heart"></i>
-                        </div>
-                      </div>
-                      <div className="destination-content">
-                        <ul className="meta">
-                          <li>
-                            <i className="bi bi-geo-alt"></i>
-                            {tour.location}
-                          </li>
-                          <li className="rating">
-                            <div className="star">
-                              <StarRating
-                                rating={
-                                  typeof tour.rating === "number"
-                                    ? tour.rating
-                                    : 0
-                                }
-                                readonly={true}
-                                size="sm"
-                                className="tour-rating-stars"
-                              />
-                            </div>
-                            <p>
-                              {(typeof tour.rating === "number"
-                                ? tour.rating
-                                : 0
-                              ).toFixed(1)}
-                            </p>
-                          </li>
-                        </ul>
-                        <h5>
-                          <Link href={`/tours/${tour.seo?.slug || tour._id}`}>
-                            {tour.title}
-                          </Link>
-                        </h5>
-                        <ul className="info">
-                          <li>
-                            <i className="bi bi-clock"></i>
-                            {tour.duration}
-                          </li>
-                          <li>
-                            <i className="bi bi-person"></i>
-                            {tour.reviews || 0} reviews
-                          </li>
-                        </ul>
-                        <div className="price">
-                          <h6>
-                            {formatCurrency(tour.price)} <br />
-                            <span>/per person</span>
-                          </h6>
-                          <Link
-                            href={`/tours/${tour.seo?.slug || tour._id}`}
-                            className="theme-btn style-2"
+              {loading ? (
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{ minHeight: "800px", width: "100%" }}
+                >
+                  <Loading
+                    variant="spinner"
+                    size="lg"
+                    color="primary"
+                    text="Loading tours..."
+                  />
+                </div>
+              ) : tours.length === 0 ? (
+                <div
+                  className="d-flex flex-column justify-content-center align-items-center"
+                  style={{ minHeight: "400px", width: "100%" }}
+                >
+                  <i
+                    className="bi bi-inbox"
+                    style={{
+                      fontSize: "4rem",
+                      color: "#ccc",
+                      marginBottom: "1rem",
+                    }}
+                  ></i>
+                  <h4 style={{ color: "#666", marginBottom: "0.5rem" }}>
+                    No Tours Found
+                  </h4>
+                  <p style={{ color: "#999", textAlign: "center" }}>
+                    {searchTerm ||
+                    selectedLocations.length > 0 ||
+                    selectedDifficulties.length > 0
+                      ? "Try adjusting your search or filters to find more tours."
+                      : "We couldn't find any tours at the moment. Please check back later."}
+                  </p>
+                </div>
+              ) : (
+                <div className="row g-4">
+                  {tours.map((tour) => (
+                    <div
+                      key={tour._id}
+                      className="col-xl-4 col-lg-6 col-md-6 wow fadeInUp wow"
+                      data-wow-delay=".3s"
+                    >
+                      <div className="destination-card-items mt-0">
+                        <div className="destination-image">
+                          <Image
+                            src={
+                              tour.images?.[0] ||
+                              "/assets/img/destination/01.jpg"
+                            }
+                            alt={tour.title}
+                            width={287}
+                            height={240}
+                            priority
+                          />
+                          <ActionIcon
+                            variant={isFavorite(tour._id) ? "filled" : "light"}
+                            color="primary"
+                            size="md"
+                            radius="round"
+                            onClick={(e) => toggleFavorite(tour._id, e)}
+                            className="heart-icon"
+                            style={{
+                              position: "absolute",
+                              top: "10px",
+                              right: "10px",
+                              zIndex: 10,
+                            }}
+                            aria-label={
+                              isFavorite(tour._id)
+                                ? "Remove from favorites"
+                                : "Add to favorites"
+                            }
                           >
-                            Book Now<i className="bi bi-arrow-right"></i>
-                          </Link>
+                            <i
+                              className={`bi ${
+                                isFavorite(tour._id)
+                                  ? "bi-heart-fill"
+                                  : "bi-heart"
+                              }`}
+                            />
+                          </ActionIcon>
+                        </div>
+                        <div className="destination-content">
+                          <ul className="meta">
+                            <li>
+                              <i className="bi bi-geo-alt"></i>
+                              {tour.location}
+                            </li>
+                            <li className="rating">
+                              <div className="star">
+                                <StarRating
+                                  rating={
+                                    typeof tour.rating === "number"
+                                      ? tour.rating
+                                      : 0
+                                  }
+                                  readonly={true}
+                                  size="sm"
+                                  className="tour-rating-stars"
+                                />
+                              </div>
+                              <p>
+                                {(typeof tour.rating === "number"
+                                  ? tour.rating
+                                  : 0
+                                ).toFixed(1)}
+                              </p>
+                            </li>
+                          </ul>
+                          <h5>
+                            <Link href={`/tours/${tour.seo?.slug || tour._id}`}>
+                              {tour.title}
+                            </Link>
+                          </h5>
+                          <ul className="info">
+                            <li>
+                              <i className="bi bi-clock"></i>
+                              {tour.duration}
+                            </li>
+                            <li>
+                              <i className="bi bi-person"></i>
+                              {tour.reviews || 0} reviews
+                            </li>
+                          </ul>
+                          <div className="price">
+                            <h6>
+                              {formatCurrency(tour.price)} <br />
+                              <span>/per person</span>
+                            </h6>
+                            <Link
+                              href={`/tours/${tour.seo?.slug || tour._id}`}
+                              className="theme-btn style-2"
+                            >
+                              Book Now<i className="bi bi-arrow-right"></i>
+                            </Link>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-              {pagination && (
+                  ))}
+                </div>
+              )}
+              {!loading && pagination && (
                 <PaginationComponent
                   pagination={pagination}
                   currentPage={currentPage}
@@ -254,69 +394,41 @@ const Tour = () => {
                 </div>
                 <div className="single-sidebar-widget">
                   <div className="wid-title">
-                    <h3>Destination Category</h3>
+                    <h3>Destinations</h3>
                   </div>
                   <div className="categories-list">
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">Canada</span>
-                      </span>
-                      <span className="text-color">04</span>
-                    </label>
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">Europe</span>
-                      </span>
-                      <span className="text-color">03</span>
-                    </label>
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">France</span>
-                      </span>
-                      <span className="text-color">05</span>
-                    </label>
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">Indonesia</span>
-                      </span>
-                      <span className="text-color">06</span>
-                    </label>
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">Nepal</span>
-                      </span>
-                      <span className="text-color">05</span>
-                    </label>
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">Maldives</span>
-                      </span>
-                      <span className="text-color">04</span>
-                    </label>
+                    {locations.length > 0 ? (
+                      locations.map((location) => (
+                        <label
+                          key={location.name}
+                          className="checkbox-single d-flex justify-content-between align-items-center"
+                        >
+                          <span className="d-flex gap-xl-3 gap-2 align-items-center">
+                            <span className="checkbox-area d-center">
+                              <input
+                                type="checkbox"
+                                checked={selectedLocations.includes(
+                                  location.name
+                                )}
+                                onChange={(e) =>
+                                  handleLocationChange(
+                                    location.name,
+                                    e.target.checked
+                                  )
+                                }
+                              />
+                              <span className="checkmark d-center"></span>
+                            </span>
+                            <span className="text-color">{location.name}</span>
+                          </span>
+                          <span className="text-color">{location.count}</span>
+                        </label>
+                      ))
+                    ) : (
+                      <p className="text-muted p-3">
+                        No destinations available
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -325,104 +437,67 @@ const Tour = () => {
                     <h3>Activities</h3>
                   </div>
                   <div className="categories-list">
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" readOnly />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">Canada</span>
-                      </span>
-                      <span className="text-color">04</span>
-                    </label>
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">Europe</span>
-                      </span>
-                      <span className="text-color">03</span>
-                    </label>
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">France</span>
-                      </span>
-                      <span className="text-color">05</span>
-                    </label>
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">Indonesia</span>
-                      </span>
-                      <span className="text-color">06</span>
-                    </label>
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">Nepal</span>
-                      </span>
-                      <span className="text-color">05</span>
-                    </label>
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">Maldives</span>
-                      </span>
-                      <span className="text-color">04</span>
-                    </label>
+                    {activities.length > 0 ? (
+                      activities.map((activity) => (
+                        <label
+                          key={activity.name}
+                          className="checkbox-single d-flex justify-content-between align-items-center"
+                        >
+                          <span className="d-flex gap-xl-3 gap-2 align-items-center">
+                            <span className="checkbox-area d-center">
+                              <input type="checkbox" readOnly />
+                              <span className="checkmark d-center"></span>
+                            </span>
+                            <span className="text-color">{activity.name}</span>
+                          </span>
+                          <span className="text-color">{activity.count}</span>
+                        </label>
+                      ))
+                    ) : (
+                      <p className="text-muted p-3">No activities available</p>
+                    )}
                   </div>
                 </div>
                 <div className="single-sidebar-widget">
                   <div className="wid-title style-2">
-                    <h3>Tour Types</h3>
+                    <h3>Tour Difficulty</h3>
                     <i className="fa-solid fa-chevron-down"></i>
                   </div>
                   <div className="categories-list">
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">Premium</span>
-                      </span>
-                      <span className="text-color">04</span>
-                    </label>
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">Luxury</span>
-                      </span>
-                      <span className="text-color">03</span>
-                    </label>
-                    <label className="checkbox-single d-flex justify-content-between align-items-center">
-                      <span className="d-flex gap-xl-3 gap-2 align-items-center">
-                        <span className="checkbox-area d-center">
-                          <input type="checkbox" />
-                          <span className="checkmark d-center"></span>
-                        </span>
-                        <span className="text-color">Standard</span>
-                      </span>
-                      <span className="text-color">05</span>
-                    </label>
+                    {difficulties.length > 0 ? (
+                      difficulties.map((difficulty) => (
+                        <label
+                          key={difficulty.value}
+                          className="checkbox-single d-flex justify-content-between align-items-center"
+                        >
+                          <span className="d-flex gap-xl-3 gap-2 align-items-center">
+                            <span className="checkbox-area d-center">
+                              <input
+                                type="checkbox"
+                                checked={selectedDifficulties.includes(
+                                  difficulty.value as TourDifficulty
+                                )}
+                                onChange={(e) =>
+                                  handleDifficultyChange(
+                                    difficulty.value as TourDifficulty,
+                                    e.target.checked
+                                  )
+                                }
+                              />
+                              <span className="checkmark d-center"></span>
+                            </span>
+                            <span className="text-color">
+                              {difficulty.label}
+                            </span>
+                          </span>
+                          <span className="text-color">{difficulty.count}</span>
+                        </label>
+                      ))
+                    ) : (
+                      <p className="text-muted p-3">
+                        No difficulty levels available
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>

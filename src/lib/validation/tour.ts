@@ -1,6 +1,19 @@
 import { z } from "zod";
 import { TourStatus } from "../enums/tour";
 
+// Utility function to strip HTML tags and get plain text length
+const stripHtmlTags = (html: string): string => {
+  return html
+    .replace(/<[^>]*>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .trim();
+};
+
 // Base tour validation schema
 export const tourSchema = z.object({
   title: z
@@ -13,9 +26,20 @@ export const tourSchema = z.object({
   description: z
     .string()
     .min(1, "Description is required")
-    .min(10, "Description must be at least 10 characters")
-    .max(2000, "Description must be less than 2000 characters")
-    .trim(),
+    .refine(
+      (val) => {
+        const textContent = stripHtmlTags(val);
+        return textContent.length >= 10;
+      },
+      { message: "Description must be at least 10 characters" }
+    )
+    .refine(
+      (val) => {
+        const textContent = stripHtmlTags(val);
+        return textContent.length <= 2000;
+      },
+      { message: "Description must be less than 2000 characters" }
+    ),
 
   shortDescription: z
     .string()
@@ -27,7 +51,14 @@ export const tourSchema = z.object({
   price: z
     .number()
     .min(0, "Price must be greater than or equal to 0")
-    .max(100000, "Price must be less than 100,000"),
+    .refine((val) => val > 0, { message: "Price must be greater than 0" }),
+
+  priceType: z
+    .enum(["Per Person", "Couple (2 Persons)", "Group", "Package"], {
+      message:
+        "Price type must be Per Person, Couple (2 Persons), Group, or Package",
+    })
+    .default("Per Person"),
 
   duration: z
     .string()
@@ -46,9 +77,21 @@ export const tourSchema = z.object({
   category: z
     .string()
     .min(1, "Category is required")
-    .min(2, "Category must be at least 2 characters")
-    .max(50, "Category must be less than 50 characters")
-    .trim(),
+    .refine(
+      (val) => {
+        const trimmed = val.trim();
+        return trimmed.length >= 2;
+      },
+      { message: "Category must be at least 2 characters" }
+    )
+    .refine(
+      (val) => {
+        const trimmed = val.trim();
+        return trimmed.length <= 50;
+      },
+      { message: "Category must be less than 50 characters" }
+    )
+    .transform((val) => val.trim()),
 
   images: z
     .array(
@@ -83,15 +126,41 @@ export const tourSchema = z.object({
         title: z
           .string()
           .min(1, "Itinerary title is required")
-          .min(3, "Itinerary title must be at least 3 characters")
-          .max(100, "Itinerary title must be less than 100 characters")
-          .trim(),
+          .refine(
+            (val) => {
+              const trimmed = val.trim();
+              return trimmed.length >= 3;
+            },
+            { message: "Itinerary title must be at least 3 characters" }
+          )
+          .refine(
+            (val) => {
+              const trimmed = val.trim();
+              return trimmed.length <= 100;
+            },
+            { message: "Itinerary title must be less than 100 characters" }
+          )
+          .transform((val) => val.trim()),
         description: z
           .string()
           .min(1, "Itinerary description is required")
-          .min(10, "Itinerary description must be at least 10 characters")
-          .max(500, "Itinerary description must be less than 500 characters")
-          .trim(),
+          .refine(
+            (val) => {
+              const trimmed = val.trim();
+              return trimmed.length >= 10;
+            },
+            { message: "Itinerary description must be at least 10 characters" }
+          )
+          .refine(
+            (val) => {
+              const trimmed = val.trim();
+              return trimmed.length <= 500;
+            },
+            {
+              message: "Itinerary description must be less than 500 characters",
+            }
+          )
+          .transform((val) => val.trim()),
       })
     )
     .max(30, "Maximum 30 itinerary days allowed")

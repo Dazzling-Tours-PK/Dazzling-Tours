@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import loadBackgroundImages from "../Common/loadBackgroundImages";
+import React, { useState } from "react";
 import Image from "next/image";
 import { Tour } from "@/lib/types/tour";
 
@@ -9,12 +8,20 @@ interface TourDetailsProps {
 }
 
 const TourDetails = ({ tour }: TourDetailsProps) => {
-  useEffect(() => {
-    loadBackgroundImages();
-  }, []);
+  // Debug: Log tour images on client side
+  React.useEffect(() => {
+    console.log("🖼️ TourDetails - tour.images:", tour.images);
+    console.log("🖼️ TourDetails - tour.images type:", typeof tour.images);
+    console.log(
+      "🖼️ TourDetails - tour.images is array:",
+      Array.isArray(tour.images)
+    );
+    console.log("🖼️ TourDetails - tour.images length:", tour.images?.length);
+    console.log("🖼️ TourDetails - first image:", tour.images?.[0]);
+  }, [tour.images]);
 
-  const [openItemIndex, setOpenItemIndex] = useState(-1);
-  const [firstItemOpen, setFirstItemOpen] = useState(true);
+  // Initialize with 0 to match server and client rendering (first item open by default)
+  const [openItemIndex, setOpenItemIndex] = useState(0);
 
   const handleItemClick = (index: number) => {
     if (index === openItemIndex) {
@@ -23,12 +30,6 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
       setOpenItemIndex(index);
     }
   };
-  useEffect(() => {
-    if (firstItemOpen) {
-      setOpenItemIndex(0);
-      setFirstItemOpen(false);
-    }
-  }, [firstItemOpen]);
 
   return (
     <section className="activities-details-section fix section-padding">
@@ -64,8 +65,8 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                 <h2 className="mb-3">{tour.title}</h2>
                 {tour.shortDescription && <p>{tour.shortDescription}</p>}
                 {tour.description && tour.description.trim() && (
-                  <p
-                    className="mt-3"
+                  <div
+                    className="mt-3 tour-description"
                     dangerouslySetInnerHTML={{ __html: tour.description }}
                     suppressHydrationWarning
                   />
@@ -731,7 +732,14 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                 </div>
                 <div
                   className="booking-bg bg-cover"
-                  data-background="/assets/img/details/booking-bg.jpg"
+                  style={{
+                    backgroundImage:
+                      "url('/assets/img/details/booking-bg.jpg')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                  suppressHydrationWarning
                 >
                   <h3 className="text-title">
                     Book Now And Enjoy Amazing Savings!

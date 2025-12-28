@@ -19,3 +19,17 @@ export const TOUR_DIFFICULTY_OPTIONS = [
   { value: TourDifficulty.MEDIUM, label: "Medium" },
   { value: TourDifficulty.HARD, label: "Hard" },
 ] as { value: TourDifficulty; label: string }[];
+
+export enum TourPriceType {
+  PER_PERSON = "Per Person",
+  COUPLE = "Couple (2 Persons)",
+  GROUP = "Group",
+  PACKAGE = "Package",
+}
+
+export const TOUR_PRICE_TYPE_OPTIONS = [
+  { value: TourPriceType.PER_PERSON, label: "Per Person" },
+  { value: TourPriceType.COUPLE, label: "Couple (2 Persons)" },
+  { value: TourPriceType.GROUP, label: "Group" },
+  { value: TourPriceType.PACKAGE, label: "Package" },
+] as { value: TourPriceType; label: string }[];

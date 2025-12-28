@@ -25,6 +25,7 @@ export interface UseFormOptions<T extends object> {
   validateOnChange?: boolean;
   validateOnBlur?: boolean;
   onSubmit?: (values: T) => void | Promise<void>;
+  onValidationError?: (errors: Partial<Record<keyof T, string>>) => void;
 }
 
 export interface UseFormReturn<T extends object> {
@@ -67,6 +68,7 @@ export function useForm<T extends object>({
   validateOnChange = false,
   validateOnBlur = true,
   onSubmit,
+  onValidationError,
 }: UseFormOptions<T>): UseFormReturn<T> {
   const [values, setValuesState] = useState<T>(initialValues);
   const [errors, setErrorsState] = useState<Partial<Record<keyof T, string>>>(
@@ -201,7 +203,30 @@ export function useForm<T extends object>({
         // Validate form
         const isValid = validateForm();
 
+        // Get the latest errors after validation
+        const latestErrors = validate ? validate(values) : {};
+
         if (!isValid) {
+          // Call onValidationError callback if provided
+          if (onValidationError) {
+            onValidationError(latestErrors);
+          }
+
+          // Scroll to first error field if possible
+          const firstErrorField = Object.keys(latestErrors)[0];
+          if (firstErrorField) {
+            // Try to find the input field by name or id
+            const errorElement = document.querySelector(
+              `[name="${firstErrorField}"], [id="${firstErrorField}"]`
+            ) as HTMLElement;
+            if (errorElement) {
+              errorElement.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+              });
+              errorElement.focus();
+            }
+          }
           return;
         }
 
@@ -213,13 +238,12 @@ export function useForm<T extends object>({
             await submitHandler(values);
           }
         } catch (error) {
-          console.error("Form submission error:", error);
         } finally {
           setIsSubmitting(false);
         }
       };
     },
-    [values, validateForm, onSubmit]
+    [values, validateForm, onSubmit, onValidationError, validate]
   );
 
   // Get field props for form components

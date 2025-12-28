@@ -4,7 +4,11 @@ import { useRouter } from "next/navigation";
 import { CreateTestimonialData } from "@/lib/types/testimonial";
 import { useCreateTestimonial, useNotification, useForm } from "@/lib/hooks";
 import { useGetTours } from "@/lib/hooks/useTours";
-import { Page, Button } from "@/app/Components/Common";
+import { Page, Button, Card } from "@/app/Components/Common";
+import {
+  TestimonialStatus,
+  TESTIMONIAL_STATUS_OPTIONS,
+} from "@/lib/enums/testimonial";
 import {
   TextInput,
   Textarea,
@@ -28,7 +32,7 @@ const AddTestimonial = () => {
       image: "",
       location: "",
       tourId: "",
-      status: "Active",
+      status: TestimonialStatus.ACTIVE,
       featured: false,
     },
     validate: (values) => {
@@ -92,8 +96,9 @@ const AddTestimonial = () => {
           id="testimonial-form"
           onSubmit={handleSubmit}
           className="testimonial-form"
+          style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}
         >
-          <div className="form-section">
+          <Card padding="lg" variant="bordered" className="form-section">
             <div className="section-header">
               <h3>
                 <i className="bi bi-person-circle"></i> Basic Information
@@ -118,9 +123,9 @@ const AddTestimonial = () => {
                 onChange={(value) => form.setFieldValue("location", value)}
               />
             </div>
-          </div>
+          </Card>
 
-          <div className="form-section">
+          <Card padding="lg" variant="bordered" className="form-section">
             <div className="section-header">
               <h3>
                 <i className="bi bi-image"></i> Profile Image
@@ -141,9 +146,9 @@ const AddTestimonial = () => {
               multiple={false}
               acceptedTypes={["image/jpeg", "image/png", "image/webp"]}
             />
-          </div>
+          </Card>
 
-          <div className="form-section">
+          <Card padding="lg" variant="bordered" className="form-section">
             <div className="section-header">
               <h3>
                 <i className="bi bi-chat-quote"></i> Testimonial Content
@@ -159,6 +164,8 @@ const AddTestimonial = () => {
                 value={form.values.content}
                 onChange={(value) => form.setFieldValue("content", value)}
                 rows={6}
+                maxLength={300}
+                showCharCount
                 error={form.errors.content}
                 required
               />
@@ -177,9 +184,9 @@ const AddTestimonial = () => {
                 <div className="invalid-feedback">{form.errors.rating}</div>
               )}
             </div>
-          </div>
+          </Card>
 
-          <div className="form-section">
+          <Card padding="lg" variant="bordered" className="form-section">
             <div className="section-header">
               <h3>
                 <i className="bi bi-map"></i> Tour Association
@@ -196,9 +203,9 @@ const AddTestimonial = () => {
               searchable={true}
               clearable={true}
             />
-          </div>
+          </Card>
 
-          <div className="form-section">
+          <Card padding="lg" variant="bordered" className="form-section">
             <div className="section-header">
               <h3>
                 <i className="bi bi-gear"></i> Settings
@@ -218,15 +225,12 @@ const AddTestimonial = () => {
                 label="Status"
                 value={form.values.status}
                 onChange={(value) =>
-                  form.setFieldValue("status", value as "Active" | "Inactive")
+                  form.setFieldValue("status", value as TestimonialStatus)
                 }
-                data={[
-                  { value: "Active", label: "Active" },
-                  { value: "Inactive", label: "Inactive" },
-                ]}
+                data={TESTIMONIAL_STATUS_OPTIONS}
               />
             </div>
-          </div>
+          </Card>
         </form>
 
         <div className="form-actions">

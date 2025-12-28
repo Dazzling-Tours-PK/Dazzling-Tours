@@ -16,6 +16,8 @@ export async function GET(request: NextRequest) {
     const featured = searchParams.get("featured");
     const search = searchParams.get("search");
     const status = searchParams.get("status");
+    const location = searchParams.get("location");
+    const difficulty = searchParams.get("difficulty");
 
     const query: MongoQuery = {};
 
@@ -27,6 +29,29 @@ export async function GET(request: NextRequest) {
     if (category) query.category = category;
     if (featured === "true") query.featured = true;
     if (featured === "false") query.featured = false;
+
+    // Handle location filter (can be comma-separated for multiple locations)
+    if (location) {
+      const locationArray = location.split(",").map((loc) => loc.trim());
+      if (locationArray.length === 1) {
+        query.location = locationArray[0];
+      } else {
+        (query as Record<string, unknown>).location = { $in: locationArray };
+      }
+    }
+
+    // Handle difficulty filter (can be comma-separated for multiple difficulties)
+    if (difficulty) {
+      const difficultyArray = difficulty.split(",").map((diff) => diff.trim());
+      if (difficultyArray.length === 1) {
+        query.difficulty = difficultyArray[0];
+      } else {
+        (query as Record<string, unknown>).difficulty = {
+          $in: difficultyArray,
+        };
+      }
+    }
+
     if (search) {
       query.$or = [
         { title: { $regex: search, $options: "i" } },

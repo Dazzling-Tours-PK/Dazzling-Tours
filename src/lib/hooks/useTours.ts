@@ -23,6 +23,7 @@ export const useGetTours = (params?: {
   featured?: boolean;
   category?: string;
   location?: string;
+  difficulty?: string;
   search?: string;
   page?: number;
   limit?: number;
@@ -140,6 +141,92 @@ export const useBulkUpdateTours = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: tourKeys.lists() });
+    },
+  });
+};
+
+// Hook to get unique tour locations
+export interface TourLocation {
+  name: string;
+  count: number;
+}
+
+export interface TourLocationsResponse {
+  success: boolean;
+  data: TourLocation[];
+  total: number;
+}
+
+export const useGetTourLocations = (status?: string) => {
+  return useQuery<TourLocationsResponse>({
+    queryKey: [...tourKeys.all, "locations", status || "all"],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (status) {
+        params.append("status", status);
+      }
+
+      const response = await api.get<TourLocationsResponse>(
+        `/api/tours/locations?${params.toString()}`
+      );
+      return response.data;
+    },
+  });
+};
+
+export interface TourDifficultyData {
+  value: string;
+  label: string;
+  count: number;
+}
+
+export interface TourDifficultiesResponse {
+  success: boolean;
+  data: TourDifficultyData[];
+  total: number;
+}
+
+export const useGetTourDifficulties = (status?: string) => {
+  return useQuery<TourDifficultiesResponse>({
+    queryKey: [...tourKeys.all, "difficulties", status || "all"],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (status) {
+        params.append("status", status);
+      }
+
+      const response = await api.get<TourDifficultiesResponse>(
+        `/api/tours/difficulties?${params.toString()}`
+      );
+      return response.data;
+    },
+  });
+};
+
+export interface TourActivity {
+  name: string;
+  count: number;
+}
+
+export interface TourActivitiesResponse {
+  success: boolean;
+  data: TourActivity[];
+  total: number;
+}
+
+export const useGetTourActivities = (status?: string) => {
+  return useQuery<TourActivitiesResponse>({
+    queryKey: [...tourKeys.all, "activities", status || "all"],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (status) {
+        params.append("status", status);
+      }
+
+      const response = await api.get<TourActivitiesResponse>(
+        `/api/tours/activities?${params.toString()}`
+      );
+      return response.data;
     },
   });
 };

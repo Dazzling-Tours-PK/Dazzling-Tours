@@ -26,7 +26,7 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
     error,
     required = false,
     multiple = true,
-    maxFiles = 10,
+    maxFiles = 3,
     maxSize = 5, // 5MB default
     acceptedTypes = ["image/jpeg", "image/png", "image/webp"],
     value = [],
@@ -203,6 +203,11 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
 
     const canAddMore = value.length < maxFiles;
 
+    const handleUploadAreaClick = useCallback(() => {
+      if (disabled || !canAddMore) return;
+      fileInputRef.current?.click();
+    }, [disabled, canAddMore]);
+
     return (
       <div className={`form-group ${className}`}>
         {label && (
@@ -218,10 +223,12 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
         <div
           className={`image-upload-area ${isDragOver ? "drag-over" : ""} ${
             disabled ? "disabled" : ""
-          }`}
+          } ${canAddMore ? "clickable" : ""}`}
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
+          onClick={handleUploadAreaClick}
+          style={{ cursor: disabled || !canAddMore ? "default" : "pointer" }}
         >
           <input
             ref={fileInputRef}
@@ -241,9 +248,9 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
                 : value.length > 0
                 ? `${value.length} image${
                     value.length === 1 ? "" : "s"
-                  } selected • Click button to add more`
+                  } selected • Click here to add more`
                 : canAddMore
-                ? "Drag images here or click button to select"
+                ? "Drag images here or click to select"
                 : `Maximum ${maxFiles} images reached`}
             </p>
             <p className="upload-hint">

@@ -11,7 +11,6 @@ import {
 export async function GET(request: NextRequest) {
   try {
     await connectDB();
-
     // Ensure "Uncategorized" category exists
     const uncategorizedExists = await Category.findOne({
       name: UNCATEGORIZED_CATEGORY_NAME,
@@ -26,20 +25,29 @@ export async function GET(request: NextRequest) {
     }
 
     const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get("page") || "1");
-    const limit = parseInt(searchParams.get("limit") || "10");
-    const search = searchParams.get("search");
+
+    // Validate and parse page parameter
+    const pageParam = searchParams.get("page");
+    const page = Math.max(1, parseInt(pageParam || "1") || 1);
+
+    // Validate and parse limit parameter
+    const limitParam = searchParams.get("limit");
+    let limit = parseInt(limitParam || "10") || 10;
+    // Ensure limit is between 1 and 100
+    limit = Math.max(1, Math.min(100, limit));
+
+    const search = searchParams.get("search")?.trim();
 
     const query: MongoQuery = {};
 
-    if (search) {
+    if (search && search.length > 0) {
       query.$or = [
         { name: { $regex: search, $options: "i" } },
         { description: { $regex: search, $options: "i" } },
       ];
     }
 
-    const skip = (page - 1) * limit;
+    const skip = Math.max(0, (page - 1) * limit);
 
     const categories = await Category.find(query)
       .sort({ createdAt: -1 })
@@ -48,6 +56,9 @@ export async function GET(request: NextRequest) {
 
     const total = await Category.countDocuments(query);
 
+    // Calculate pages, ensuring we don't divide by zero
+    const pages = limit > 0 ? Math.ceil(total / limit) : 0;
+
     return NextResponse.json({
       success: true,
       data: categories,
@@ -55,13 +66,14 @@ export async function GET(request: NextRequest) {
         page,
         limit,
         total,
-        pages: Math.ceil(total / limit),
+        pages,
       },
     });
   } catch (error) {
-    console.error("Error fetching categories:", error);
+    const errorMessage =
+      error instanceof Error ? error.message : "Failed to fetch categories";
     return NextResponse.json(
-      { success: false, error: "Failed to fetch categories" },
+      { success: false, error: errorMessage },
       { status: 500 }
     );
   }
@@ -121,7 +133,6 @@ export async function POST(request: NextRequest) {
       data: category,
     });
   } catch (error) {
-    console.error("Error creating category:", error);
     return NextResponse.json(
       { success: false, error: "Failed to create category" },
       { status: 500 }

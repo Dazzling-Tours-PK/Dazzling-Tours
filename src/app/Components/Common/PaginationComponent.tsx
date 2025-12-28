@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Pagination } from "@/lib/types/common";
+import Button from "./Button";
 import "./PaginationComponent.css";
 
 interface PaginationComponentProps {
@@ -58,14 +59,17 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
       </div>
 
       <div className="pagination-controls">
-        <button
+        <Button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage <= 1 || pagination.pages <= 1}
-          className="btn btn-outline-secondary btn-sm"
+          variant="outline"
+          color="secondary"
+          size="sm"
+          leftIcon={<i className="bi bi-chevron-left"></i>}
           aria-label="Previous page"
         >
-          <i className="bi bi-chevron-left"></i> Previous
-        </button>
+          Previous
+        </Button>
 
         <div className="page-numbers">
           {visiblePages.map((page, index) => {
@@ -79,31 +83,32 @@ const PaginationComponent: React.FC<PaginationComponentProps> = ({
                     ...
                   </span>
                 )}
-                <button
+                <Button
                   onClick={() => onPageChange(page)}
-                  className={`btn btn-sm ${
-                    page === currentPage
-                      ? "btn-primary"
-                      : "btn-outline-secondary"
-                  }`}
+                  variant={page === currentPage ? "filled" : "outline"}
+                  color={page === currentPage ? "primary" : "secondary"}
+                  size="sm"
                   aria-label={`Go to page ${page}`}
                   aria-current={page === currentPage ? "page" : undefined}
                 >
                   {page}
-                </button>
+                </Button>
               </React.Fragment>
             );
           })}
         </div>
 
-        <button
+        <Button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage >= pagination.pages || pagination.pages <= 1}
-          className="btn btn-outline-secondary btn-sm"
+          variant="outline"
+          color="secondary"
+          size="sm"
+          rightIcon={<i className="bi bi-chevron-right"></i>}
           aria-label="Next page"
         >
-          Next <i className="bi bi-chevron-right"></i>
-        </button>
+          Next
+        </Button>
       </div>
     </div>
   );

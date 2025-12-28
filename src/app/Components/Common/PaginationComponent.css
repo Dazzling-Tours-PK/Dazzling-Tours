@@ -53,25 +53,5 @@
   }
 }
 
-/* Button hover states */
-.pagination .btn:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.pagination .btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Active page button */
-.pagination .btn-primary {
-  background-color: #3b82f6;
-  border-color: #3b82f6;
-  color: white;
-}
-
-.pagination .btn-primary:hover {
-  background-color: #2563eb;
-  border-color: #2563eb;
-}
+/* Button styles are now handled by the Button component */
+/* Keeping only layout-specific styles here */

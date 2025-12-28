@@ -1,6 +1,4 @@
 "use client";
-import { useEffect } from "react";
-import loadBackgroundImages from "./loadBackgroundImages";
 import Link from "next/link";
 
 interface BreadCrumbProps {
@@ -9,10 +7,6 @@ interface BreadCrumbProps {
 }
 
 const BreadCrumb = ({ Title, bgImg }: BreadCrumbProps) => {
-  useEffect(() => {
-    loadBackgroundImages();
-  }, []);
-
   return (
     <section
       className="breadcrumb-wrapper fix bg-cover"

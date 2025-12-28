@@ -1,5 +1,5 @@
 import { PaginatedResponse, SingleResponse } from "./common";
-import { TourStatus } from "../enums/tour";
+import { TourPriceType, TourStatus } from "../enums/tour";
 import { SEOFields } from "./seo";
 
 export interface Tour {
@@ -8,6 +8,7 @@ export interface Tour {
   shortDescription: string;
   description: string;
   price: number;
+  priceType: TourPriceType;
   duration: string;
   location: string;
   category: string;
@@ -37,6 +38,7 @@ export interface CreateTourData {
   shortDescription: string;
   description: string;
   price: number;
+  priceType?: string;
   duration: string;
   location: string;
   category: string;

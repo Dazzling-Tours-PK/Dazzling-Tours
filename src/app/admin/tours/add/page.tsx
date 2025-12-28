@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { CreateTourData } from "@/lib/types/tour";
 import {
@@ -7,12 +7,15 @@ import {
   useNotification,
   useForm,
   useGetCategories,
+  useDebounceValue,
 } from "@/lib/hooks";
 import {
   TourStatus,
   TOUR_STATUS_OPTIONS,
   TourDifficulty,
   TOUR_DIFFICULTY_OPTIONS,
+  TourPriceType,
+  TOUR_PRICE_TYPE_OPTIONS,
 } from "@/lib/enums";
 import {
   TextInput,
@@ -26,7 +29,7 @@ import {
   ImageUpload,
   SEOFields,
 } from "@/app/Components/Form";
-import { Button, Page } from "@/app/Components/Common";
+import { Button, Page, Title, Text } from "@/app/Components/Common";
 import { createTourSchema } from "@/lib/validation/tour";
 
 const AddTour = () => {
@@ -35,10 +38,15 @@ const AddTour = () => {
   const { showSuccess, showError } = useNotification();
   const slugManuallyEditedRef = useRef(false);
   const metaTitleManuallyEditedRef = useRef(false);
+  const [categorySearchTerm, setCategorySearchTerm] = useState("");
+  const debouncedCategorySearch = useDebounceValue(categorySearchTerm, 500);
 
-  // Fetch categories for the select dropdown
-  const { data: categoriesData } = useGetCategories({ limit: 1000 });
-  const categoryOptions = React.useMemo(() => {
+  // Fetch categories for the select dropdown with search
+  const { data: categoriesData } = useGetCategories({
+    limit: 100,
+    search: debouncedCategorySearch || undefined,
+  });
+  const categoryOptions = useMemo(() => {
     const categories = categoriesData?.data || [];
     return categories.map((cat) => ({
       value: cat.name,
@@ -52,6 +60,7 @@ const AddTour = () => {
       description: "",
       shortDescription: "",
       price: 0,
+      priceType: TourPriceType.PER_PERSON,
       duration: "",
       location: "",
       category: "",
@@ -86,6 +95,41 @@ const AddTour = () => {
     },
     validateOnChange: true,
     validateOnBlur: true,
+    onValidationError: (errors) => {
+      // Get all error messages with field names
+      const errorEntries = Object.entries(errors).filter(([, message]) =>
+        Boolean(message)
+      );
+
+      if (errorEntries.length > 0) {
+        // Show all errors in a formatted way
+        const errorMessages = errorEntries.map(([field, message]) => {
+          // Convert field names to readable format
+          const fieldName = field
+            .replace(/([A-Z])/g, " $1")
+            .replace(/^./, (str) => str.toUpperCase())
+            .trim();
+          return `${fieldName}: ${message}`;
+        });
+
+        const errorCount = errorMessages.length;
+        if (errorCount === 1) {
+          showError(`Validation failed: ${errorMessages[0]}`);
+        } else {
+          // Show first error with count, and log all errors to console
+          console.error("All validation errors:", errorMessages);
+          showError(
+            `Validation failed: ${errorMessages[0]} (and ${
+              errorCount - 1
+            } more error${
+              errorCount - 1 > 1 ? "s" : ""
+            }). Check console for details.`
+          );
+        }
+      } else {
+        showError("Please fill in all required fields correctly.");
+      }
+    },
   });
 
   // Ensure SEO object exists (auto-generation is now handled in SEOFields component)
@@ -127,7 +171,10 @@ const AddTour = () => {
         router.push("/admin/tours");
       },
       onError: (error) => {
-        showError(error.message || "Failed to create tour");
+        const errorMessage =
+          error instanceof Error ? error.message : "Failed to create tour";
+        showError(errorMessage);
+        console.error("Tour creation error:", error);
       },
     });
   });
@@ -150,12 +197,24 @@ const AddTour = () => {
         <form id="tour-form" onSubmit={handleSubmit} className="tour-form">
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-info-circle"></i> Basic Information
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-info-circle"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Basic Information
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Essential details about your tour package
-              </p>
+              </Text>
             </div>
             <div className="form-grid">
               <TextInput
@@ -166,11 +225,22 @@ const AddTour = () => {
               />
 
               <NumberInput
-                label="Price (USD)"
-                placeholder="299"
+                label="Price (PKR)"
+                placeholder="10,000"
                 {...form.getFieldProps("price")}
                 min={0}
                 step={0.01}
+                currency="₨"
+                required
+              />
+
+              <Select
+                label="Price Type"
+                value={form.values.priceType}
+                onChange={(value) =>
+                  form.setFieldValue("priceType", value as TourPriceType)
+                }
+                data={TOUR_PRICE_TYPE_OPTIONS}
                 required
               />
 
@@ -190,11 +260,22 @@ const AddTour = () => {
 
               <Select
                 label="Category"
-                {...form.getFieldProps("category")}
+                value={form.values.category}
+                onChange={(value) => {
+                  form.setFieldValue("category", value);
+                  // Clear any existing error when a value is selected
+                  if (value && value.trim().length >= 2) {
+                    form.setFieldError("category", undefined);
+                  }
+                }}
+                onBlur={() => form.setFieldTouched("category", true)}
+                onFocus={() => form.setFieldTouched("category", false)}
                 placeholder="Select Category"
                 data={categoryOptions}
                 required
                 searchable
+                onSearchChange={setCategorySearchTerm}
+                error={form.errors.category}
               />
 
               <NumberInput
@@ -224,19 +305,31 @@ const AddTour = () => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-images"></i> Tour Images
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-images"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Tour Images
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Upload high-quality images showcasing your tour destinations and
                 activities
-              </p>
+              </Text>
             </div>
             <ImageUpload
               label="Tour Images"
               description="Upload multiple images to showcase your tour. First image will be used as the main cover image."
               {...form.getFieldProps("images")}
-              maxFiles={5}
+              maxFiles={3}
               maxSize={5}
               acceptedTypes={["image/jpeg", "image/png", "image/webp"]}
             />
@@ -244,12 +337,24 @@ const AddTour = () => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-file-text"></i> Tour Descriptions
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-file-text"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Tour Descriptions
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Provide detailed information about your tour
-              </p>
+              </Text>
             </div>
             <div className="form-group">
               <Textarea
@@ -279,12 +384,24 @@ const AddTour = () => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-star"></i> Highlights
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-star"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Highlights
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Add key features and attractions that make this tour special
-              </p>
+              </Text>
             </div>
 
             <ListManager
@@ -314,12 +431,24 @@ const AddTour = () => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-calendar-check"></i> Itinerary
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-calendar-check"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Itinerary
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Create a detailed day-by-day schedule for your tour
-              </p>
+              </Text>
             </div>
             <ItineraryManager
               label="Itinerary"
@@ -337,20 +466,31 @@ const AddTour = () => {
                   (form.values.itinerary || []).filter((_, i) => i !== index)
                 )
               }
-              maxItems={15}
               error={form.errors.itinerary}
             />
           </div>
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-check-circle"></i> Includes
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-check-circle"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Includes
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 List what&apos;s included in the tour price (meals,
                 transportation, accommodation, etc.)
-              </p>
+              </Text>
             </div>
             <ListManager
               label="Includes"
@@ -372,20 +512,31 @@ const AddTour = () => {
                   (form.values.includes || []).filter((_, i) => i !== index)
                 )
               }
-              maxItems={15}
               error={form.errors.includes}
             />
           </div>
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-x-circle"></i> Excludes
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-x-circle"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Excludes
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 List what&apos;s NOT included in the tour price (optional
                 activities, personal expenses, etc.)
-              </p>
+              </Text>
             </div>
             <ListManager
               label="Excludes"
@@ -407,18 +558,29 @@ const AddTour = () => {
                   (form.values.excludes || []).filter((_, i) => i !== index)
                 )
               }
-              maxItems={15}
             />
           </div>
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-gear"></i> Additional Options
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-gear"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                Additional Options
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Configure additional tour settings
-              </p>
+              </Text>
             </div>
             <Checkbox
               label="Featured Tour"
@@ -430,12 +592,24 @@ const AddTour = () => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-search"></i> SEO Settings
-              </h3>
-              <p className="section-description">
+              <Title
+                order={3}
+                weight={600}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.75rem",
+                }}
+              >
+                <i
+                  className="bi bi-search"
+                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
+                ></i>{" "}
+                SEO Settings
+              </Title>
+              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
                 Optimize your tour for search engines and social media sharing
-              </p>
+              </Text>
             </div>
             <SEOFields
               values={

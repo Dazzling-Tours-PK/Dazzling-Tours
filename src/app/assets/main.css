@@ -11777,3 +11777,92 @@ input.main-search-input::placeholder {
   option {
   color: #000;
 }
+
+/* Bootstrap Button Overrides - Use Orange Theme */
+/* Added here to ensure it loads after Bootstrap CSS */
+.btn.btn-primary,
+button.btn-primary,
+a.btn-primary {
+  background-color: #fd7d02 !important;
+  border-color: #fd7d02 !important;
+  color: #ffffff !important;
+}
+
+.btn.btn-primary:hover:not(:disabled),
+button.btn-primary:hover:not(:disabled),
+a.btn-primary:hover:not(:disabled) {
+  background-color: #cc5f00 !important;
+  border-color: #cc5f00 !important;
+  color: #ffffff !important;
+}
+
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active,
+button.btn-primary:focus,
+button.btn-primary:active,
+button.btn-primary.active,
+a.btn-primary:focus,
+a.btn-primary:active,
+a.btn-primary.active {
+  background-color: #cc5f00 !important;
+  border-color: #cc5f00 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 0.2rem rgba(253, 125, 2, 0.25) !important;
+}
+
+.btn.btn-outline-primary,
+button.btn-outline-primary,
+a.btn-outline-primary {
+  color: #fd7d02 !important;
+  border-color: #fd7d02 !important;
+  background-color: transparent !important;
+}
+
+.btn.btn-outline-primary:hover:not(:disabled),
+button.btn-outline-primary:hover:not(:disabled),
+a.btn-outline-primary:hover:not(:disabled) {
+  background-color: #fd7d02 !important;
+  border-color: #fd7d02 !important;
+  color: #ffffff !important;
+}
+
+.btn.btn-outline-primary:focus,
+.btn.btn-outline-primary:active,
+.btn.btn-outline-primary.active,
+button.btn-outline-primary:focus,
+button.btn-outline-primary:active,
+button.btn-outline-primary.active,
+a.btn-outline-primary:focus,
+a.btn-outline-primary:active,
+a.btn-outline-primary.active {
+  background-color: #fd7d02 !important;
+  border-color: #fd7d02 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 0.2rem rgba(253, 125, 2, 0.25) !important;
+}
+
+/* Bootstrap Primary Utility Classes Override - Use Orange Theme */
+.text-primary,
+.text-bg-primary {
+  color: #fd7d02 !important;
+}
+
+.bg-primary,
+.text-bg-primary {
+  background-color: #fd7d02 !important;
+  color: #ffffff !important;
+}
+
+.border-primary {
+  border-color: #fd7d02 !important;
+}
+
+.bg-primary-subtle {
+  background-color: rgba(253, 125, 2, 0.1) !important;
+  color: #fd7d02 !important;
+}
+
+.text-primary-emphasis {
+  color: #cc5f00 !important;
+}

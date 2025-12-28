@@ -11,6 +11,10 @@ import { Page, Group, Stack, Avatar } from "@/app/Components/Common";
 import { TextInput, Select } from "@/app/Components/Form";
 import StarRating from "@/app/Components/Form/StarRating";
 import PaginationComponent from "@/app/Components/Common/PaginationComponent";
+import {
+  TestimonialStatus,
+  TESTIMONIAL_STATUS_OPTIONS,
+} from "@/lib/enums/testimonial";
 
 const TestimonialsList = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -97,7 +101,10 @@ const TestimonialsList = () => {
     updateTestimonialMutation.mutate(
       {
         _id: id,
-        status: currentStatus === "Active" ? "Inactive" : "Active",
+        status:
+          currentStatus === TestimonialStatus.ACTIVE
+            ? TestimonialStatus.INACTIVE
+            : TestimonialStatus.ACTIVE,
       },
       {
         onSuccess: () => {
@@ -136,8 +143,7 @@ const TestimonialsList = () => {
             onChange={handleStatusChange}
             data={[
               { value: "all", label: "All Status" },
-              { value: "Active", label: "Active" },
-              { value: "Inactive", label: "Inactive" },
+              ...TESTIMONIAL_STATUS_OPTIONS,
             ]}
             searchable={false}
           />

@@ -32,3 +32,264 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Bootstrap Button Overrides - Use Orange Theme */
+/* Using direct color values for better browser compatibility with !important */
+.btn.btn-primary,
+button.btn-primary,
+a.btn-primary {
+  background-color: #fd7d02 !important;
+  border-color: #fd7d02 !important;
+  color: #ffffff !important;
+}
+
+.btn.btn-primary:hover:not(:disabled),
+button.btn-primary:hover:not(:disabled),
+a.btn-primary:hover:not(:disabled) {
+  background-color: #cc5f00 !important;
+  border-color: #cc5f00 !important;
+  color: #ffffff !important;
+}
+
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active,
+button.btn-primary:focus,
+button.btn-primary:active,
+button.btn-primary.active,
+a.btn-primary:focus,
+a.btn-primary:active,
+a.btn-primary.active {
+  background-color: #cc5f00 !important;
+  border-color: #cc5f00 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 0.2rem rgba(253, 125, 2, 0.25) !important;
+}
+
+.btn.btn-outline-primary,
+button.btn-outline-primary,
+a.btn-outline-primary {
+  color: #fd7d02 !important;
+  border-color: #fd7d02 !important;
+  background-color: transparent !important;
+}
+
+.btn.btn-outline-primary:hover:not(:disabled),
+button.btn-outline-primary:hover:not(:disabled),
+a.btn-outline-primary:hover:not(:disabled) {
+  background-color: #fd7d02 !important;
+  border-color: #fd7d02 !important;
+  color: #ffffff !important;
+}
+
+.btn.btn-outline-primary:focus,
+.btn.btn-outline-primary:active,
+.btn.btn-outline-primary.active,
+button.btn-outline-primary:focus,
+button.btn-outline-primary:active,
+button.btn-outline-primary.active,
+a.btn-outline-primary:focus,
+a.btn-outline-primary:active,
+a.btn-outline-primary.active {
+  background-color: #fd7d02 !important;
+  border-color: #fd7d02 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 0.2rem rgba(253, 125, 2, 0.25) !important;
+}
+
+/* Bootstrap Primary Utility Classes Override - Use Orange Theme */
+.text-primary,
+.text-bg-primary {
+  color: #fd7d02 !important;
+}
+
+.bg-primary,
+.text-bg-primary {
+  background-color: #fd7d02 !important;
+  color: #ffffff !important;
+}
+
+.border-primary {
+  border-color: #fd7d02 !important;
+}
+
+.bg-primary-subtle {
+  background-color: rgba(253, 125, 2, 0.1) !important;
+  color: #fd7d02 !important;
+}
+
+.text-primary-emphasis {
+  color: #cc5f00 !important;
+}
+
+/* ActionIcon Component Styles - For use in main app */
+.action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 1rem;
+  padding: 0.5rem;
+  line-height: 1;
+}
+
+.action-icon-xs {
+  width: 24px;
+  height: 24px;
+  font-size: 0.75rem;
+  padding: 0.25rem;
+}
+
+.action-icon-sm {
+  width: 32px;
+  height: 32px;
+  font-size: 0.875rem;
+  padding: 0.375rem;
+}
+
+.action-icon-md {
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.action-icon-lg {
+  width: 48px;
+  height: 48px;
+  font-size: 1.125rem;
+  padding: 0.625rem;
+}
+
+.action-icon-xl {
+  width: 56px;
+  height: 56px;
+  font-size: 1.25rem;
+  padding: 0.75rem;
+}
+
+.action-icon-radius-round {
+  border-radius: 50% !important;
+}
+
+/* Variants - Filled */
+.action-icon-filled {
+  color: white !important;
+}
+
+.action-icon-filled.action-icon-primary {
+  background-color: var(--primary, #fd7d02) !important;
+  color: white !important;
+}
+
+.action-icon-filled.action-icon-primary:hover:not(:disabled) {
+  background-color: var(--primary-dark, #cc5f00) !important;
+}
+
+/* Variants - Light */
+.action-icon-light {
+  background-color: transparent;
+}
+
+.action-icon-light.action-icon-primary {
+  color: var(--primary, #fd7d02) !important;
+  background-color: rgba(253, 125, 2, 0.1) !important;
+}
+
+.action-icon-light.action-icon-primary:hover:not(:disabled) {
+  background-color: rgba(253, 125, 2, 0.2) !important;
+}
+
+.action-icon:disabled,
+.action-icon-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ActionIcon Component Styles - For use in main app */
+.action-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 1rem;
+  padding: 0.5rem;
+  line-height: 1;
+}
+
+.action-icon-xs {
+  width: 24px;
+  height: 24px;
+  font-size: 0.75rem;
+  padding: 0.25rem;
+}
+
+.action-icon-sm {
+  width: 32px;
+  height: 32px;
+  font-size: 0.875rem;
+  padding: 0.375rem;
+}
+
+.action-icon-md {
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.action-icon-lg {
+  width: 48px;
+  height: 48px;
+  font-size: 1.125rem;
+  padding: 0.625rem;
+}
+
+.action-icon-xl {
+  width: 56px;
+  height: 56px;
+  font-size: 1.25rem;
+  padding: 0.75rem;
+}
+
+.action-icon-radius-round {
+  border-radius: 50%;
+}
+
+/* Variants - Filled */
+.action-icon-filled {
+  color: white !important;
+}
+
+.action-icon-filled.action-icon-primary {
+  background-color: var(--primary, #fd7d02) !important;
+  color: white !important;
+}
+
+.action-icon-filled.action-icon-primary:hover:not(:disabled) {
+  background-color: var(--primary-dark, #cc5f00) !important;
+}
+
+/* Variants - Light */
+.action-icon-light {
+  background-color: transparent;
+}
+
+.action-icon-light.action-icon-primary {
+  color: var(--primary, #fd7d02) !important;
+  background-color: rgba(253, 125, 2, 0.1) !important;
+}
+
+.action-icon-light.action-icon-primary:hover:not(:disabled) {
+  background-color: rgba(253, 125, 2, 0.2) !important;
+}
+
+.action-icon:disabled,
+.action-icon-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

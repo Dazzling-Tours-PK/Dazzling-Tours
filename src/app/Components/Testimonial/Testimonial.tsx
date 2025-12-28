@@ -3,10 +3,11 @@ import Image from "next/image";
 import React, { useRef, useState } from "react";
 import Slider from "react-slick";
 import { useGetTestimonials } from "@/lib/hooks";
+import { TestimonialStatus } from "@/lib/enums/testimonial";
 
 const Testimonial = () => {
   const { data: testimonialsData, isLoading: loading } = useGetTestimonials({
-    status: "Active",
+    status: TestimonialStatus.ACTIVE,
     featured: true,
     limit: 6,
   });

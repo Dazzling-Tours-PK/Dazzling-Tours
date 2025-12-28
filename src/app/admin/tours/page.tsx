@@ -9,6 +9,7 @@ import {
   useGetCategories,
 } from "@/lib/hooks";
 import { TourStatus, TOUR_STATUS_OPTIONS } from "@/lib/enums";
+import { formatCurrency } from "@/lib/utils/currencyConverter";
 import PaginationComponent from "@/app/Components/Common/PaginationComponent";
 import { TextInput, Select } from "@/app/Components/Form";
 import { Group, Stack, Page } from "@/app/Components/Common";
@@ -19,7 +20,7 @@ const ToursList = () => {
   const [filterCategory, setFilterCategory] = useState("all");
   const [filterFeatured, setFilterFeatured] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(10);
+  const pageSize = 10;
 
   const { data: toursData, isLoading: loading } = useGetTours({
     page: currentPage,
@@ -201,7 +202,13 @@ const ToursList = () => {
               <tr key={tour._id}>
                 <td>{tour.title}</td>
                 <td>{tour.location}</td>
-                <td>${tour.price}</td>
+                <td>
+                  {formatCurrency(tour.price)}
+                  <br />
+                  <small className="text-muted">
+                    {tour.priceType || "Per Person"}
+                  </small>
+                </td>
                 <td>{tour.duration}</td>
                 <td>{tour.category}</td>
                 <td>

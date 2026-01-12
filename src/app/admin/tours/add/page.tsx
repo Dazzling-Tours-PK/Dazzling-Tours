@@ -165,6 +165,8 @@ const AddTour = () => {
   // Character counters for SEO fields
 
   const handleSubmit = form.handleSubmit(async (values) => {
+    // ImageUpload component already uploads to Cloudinary and returns only Cloudinary URLs
+    // No need for additional filtering - just submit the values directly
     createTourMutation.mutate(values, {
       onSuccess: () => {
         showSuccess("Tour created successfully!");

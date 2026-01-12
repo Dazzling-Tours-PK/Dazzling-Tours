@@ -97,14 +97,11 @@ export const tourSchema = z.object({
     .array(
       z.string().refine(
         (val) => {
-          try {
-            new URL(val);
-            return true;
-          } catch {
-            return false;
-          }
+          // Reject data URLs - only accept HTTP/HTTPS URLs (Cloudinary URLs)
+          if (val.startsWith("data:")) return false;
+          return val.startsWith("http://") || val.startsWith("https://");
         },
-        { message: "Invalid image URL" }
+        { message: "Only Cloudinary URLs (HTTP/HTTPS) are allowed" }
       )
     )
     .optional()

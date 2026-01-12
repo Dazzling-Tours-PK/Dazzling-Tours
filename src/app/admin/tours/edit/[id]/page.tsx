@@ -32,6 +32,10 @@ import {
 } from "@/app/Components/Form";
 import { Button, Page, Title, Text } from "@/app/Components/Common";
 import { updateTourSchema } from "@/lib/validation/tour";
+import {
+  filterValidImageUrls,
+  filterValidImageUrl,
+} from "@/lib/utils/imageUtils";
 
 const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
   const router = useRouter();
@@ -105,6 +109,19 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
   useEffect(() => {
     if (tour && !initializedRef.current) {
       initializedRef.current = true;
+
+      // Filter out data URLs from existing images - only keep Cloudinary URLs (or any HTTP/HTTPS URLs)
+      let filteredImages: string[] = [];
+      if (tour.images && Array.isArray(tour.images)) {
+        filteredImages = filterValidImageUrls(tour.images);
+      }
+
+      // Filter out data URL from SEO ogImage if present
+      let filteredOgImage = "";
+      if (tour.seo?.ogImage) {
+        filteredOgImage = filterValidImageUrl(tour.seo.ogImage);
+      }
+
       form.setValues({
         _id: resolvedParams.id,
         title: tour.title || "",
@@ -115,7 +132,7 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
         duration: tour.duration || "",
         location: tour.location || "",
         category: tour.category || "",
-        images: tour.images || [],
+        images: filteredImages, // Use filtered images (no data URLs)
         highlights: tour.highlights || [],
         itinerary: tour.itinerary || [],
         includes: tour.includes || [],
@@ -126,12 +143,12 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
         reviews: tour.reviews || 0,
         featured: tour.featured || false,
         status: tour.status || TourStatus.ACTIVE,
-        seo: tour.seo || {
-          metaTitle: "",
-          metaDescription: "",
-          slug: "",
-          focusKeyword: "",
-          ogImage: "",
+        seo: {
+          metaTitle: tour.seo?.metaTitle || "",
+          metaDescription: tour.seo?.metaDescription || "",
+          slug: tour.seo?.slug || "",
+          focusKeyword: tour.seo?.focusKeyword || "",
+          ogImage: filteredOgImage, // Use filtered ogImage (no data URLs)
         },
       });
     }
@@ -139,6 +156,7 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
   }, [tour, resolvedParams.id]);
 
   const handleSubmit = form.handleSubmit(async (values) => {
+    // ImageUpload component already uploads to Cloudinary and returns only Cloudinary URLs
     // Ensure SEO object is included in submission
     const submitData: UpdateTourData = {
       ...values,

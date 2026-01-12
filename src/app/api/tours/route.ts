@@ -65,13 +65,39 @@ export async function GET(request: NextRequest) {
     const tours = await Tour.find(query)
       .sort({ createdAt: -1 })
       .skip(skip)
-      .limit(limit);
+      .limit(limit)
+      .lean();
+
+    // Filter out data URLs from images - only return Cloudinary URLs
+    const cleanedTours = tours.map((tour: Record<string, unknown>) => {
+      if (tour.images && Array.isArray(tour.images)) {
+        tour.images = tour.images.filter(
+          (url: string) =>
+            typeof url === "string" &&
+            !url.startsWith("data:") &&
+            (url.startsWith("http://") || url.startsWith("https://"))
+        );
+      }
+      if (tour.seo && typeof tour.seo === "object" && tour.seo !== null) {
+        const seo = tour.seo as Record<string, unknown>;
+        if (seo.ogImage && typeof seo.ogImage === "string") {
+          if (
+            seo.ogImage.startsWith("data:") ||
+            (!seo.ogImage.startsWith("http://") &&
+              !seo.ogImage.startsWith("https://"))
+          ) {
+            seo.ogImage = "";
+          }
+        }
+      }
+      return tour;
+    });
 
     const total = await Tour.countDocuments(query);
 
     return NextResponse.json({
       success: true,
-      data: tours,
+      data: cleanedTours,
       pagination: {
         page,
         limit,
@@ -128,6 +154,28 @@ export async function POST(request: NextRequest) {
         { success: false, error: "Rating must be between 0 and 5" },
         { status: 400 }
       );
+    }
+
+    // ImageUpload component already uploads to Cloudinary and returns only Cloudinary URLs
+    // Filter out any non-HTTP/HTTPS URLs as a safeguard (shouldn't happen, but just in case)
+    if (body.images && Array.isArray(body.images)) {
+      body.images = body.images.filter(
+        (url: string) =>
+          typeof url === "string" &&
+          !url.startsWith("data:") &&
+          (url.startsWith("http://") || url.startsWith("https://"))
+      );
+    }
+
+    // Filter SEO ogImage if present
+    if (body.seo?.ogImage && typeof body.seo.ogImage === "string") {
+      if (
+        body.seo.ogImage.startsWith("data:") ||
+        (!body.seo.ogImage.startsWith("http://") &&
+          !body.seo.ogImage.startsWith("https://"))
+      ) {
+        body.seo.ogImage = "";
+      }
     }
 
     // Clean the data using utility function

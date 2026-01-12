@@ -23,6 +23,7 @@
     "bcryptjs": "^3.0.2",
     "bootstrap": "^5.3.8",
     "bootstrap-icons": "^1.13.1",
+    "cloudinary": "^2.8.0",
     "html-react-parser": "^5.2.6",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.19.0",

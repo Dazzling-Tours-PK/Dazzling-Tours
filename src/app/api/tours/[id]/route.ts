@@ -25,6 +25,32 @@ export async function GET(
       ? tour.toObject({ flattenMaps: true })
       : tour;
 
+    // Filter out data URLs from images - only return Cloudinary URLs
+    if (tourData.images && Array.isArray(tourData.images)) {
+      tourData.images = tourData.images.filter(
+        (url: string) =>
+          typeof url === "string" &&
+          !url.startsWith("data:") &&
+          (url.startsWith("http://") || url.startsWith("https://"))
+      );
+    }
+    if (
+      tourData.seo &&
+      typeof tourData.seo === "object" &&
+      tourData.seo !== null
+    ) {
+      const seo = tourData.seo as Record<string, unknown>;
+      if (seo.ogImage && typeof seo.ogImage === "string") {
+        if (
+          seo.ogImage.startsWith("data:") ||
+          (!seo.ogImage.startsWith("http://") &&
+            !seo.ogImage.startsWith("https://"))
+        ) {
+          seo.ogImage = "";
+        }
+      }
+    }
+
     return NextResponse.json({
       success: true,
       data: tourData,
@@ -65,6 +91,17 @@ export async function PATCH(
       );
     }
 
+    // ImageUpload component already uploads to Cloudinary and returns only Cloudinary URLs
+    // Filter out any non-HTTP/HTTPS URLs as a safeguard
+    if (body.images && Array.isArray(body.images)) {
+      body.images = body.images.filter(
+        (url: string) =>
+          typeof url === "string" &&
+          !url.startsWith("data:") &&
+          (url.startsWith("http://") || url.startsWith("https://"))
+      );
+    }
+
     // Remove _id from body if present (shouldn't be updated)
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { _id, seo, ...otherData } = body;
@@ -81,12 +118,22 @@ export async function PATCH(
 
     // Handle SEO - set the entire object
     if (seo !== undefined) {
+      // Filter out data URLs from SEO ogImage
+      let ogImage = seo.ogImage || "";
+      if (
+        ogImage &&
+        (ogImage.startsWith("data:") ||
+          (!ogImage.startsWith("http://") && !ogImage.startsWith("https://")))
+      ) {
+        ogImage = "";
+      }
+
       updateQuery.seo = {
         metaTitle: seo.metaTitle || "",
         metaDescription: seo.metaDescription || "",
         slug: seo.slug || "",
         focusKeyword: seo.focusKeyword || "",
-        ogImage: seo.ogImage || "",
+        ogImage: ogImage,
       };
     }
 

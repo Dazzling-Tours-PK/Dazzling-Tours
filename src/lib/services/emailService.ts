@@ -13,6 +13,27 @@ interface EmailConfig {
 
 // Create transporter based on environment variables
 const createTransporter = () => {
+  // Check if Mailtrap is configured (preferred for development/testing)
+  const useMailtrap =
+    process.env.MAILTRAP_HOST &&
+    process.env.MAILTRAP_USER &&
+    process.env.MAILTRAP_PASS;
+
+  if (useMailtrap) {
+    // Mailtrap configuration
+    const config: EmailConfig = {
+      host: process.env.MAILTRAP_HOST || "sandbox.smtp.mailtrap.io",
+      port: parseInt(process.env.MAILTRAP_PORT || "2525"),
+      secure: false, // Mailtrap uses TLS on port 2525
+      auth: {
+        user: process.env.MAILTRAP_USER || "",
+        pass: process.env.MAILTRAP_PASS || "",
+      },
+    };
+    return nodemailer.createTransport(config);
+  }
+
+  // Fallback to SMTP configuration (for production)
   const config: EmailConfig = {
     host: process.env.SMTP_HOST || "smtp.gmail.com",
     port: parseInt(process.env.SMTP_PORT || "587"),
@@ -45,10 +66,16 @@ export interface EmailOptions {
 // Send email function
 export async function sendEmail(options: EmailOptions): Promise<boolean> {
   try {
-    // Check if SMTP is configured
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    // Check if email service is configured (Mailtrap or SMTP)
+    const hasMailtrap =
+      !!process.env.MAILTRAP_HOST &&
+      !!process.env.MAILTRAP_USER &&
+      !!process.env.MAILTRAP_PASS;
+    const hasSMTP = !!process.env.SMTP_USER && !!process.env.SMTP_PASS;
+
+    if (!hasMailtrap && !hasSMTP) {
       throw new Error(
-        "SMTP configuration is missing. Please set SMTP_USER and SMTP_PASS environment variables."
+        "Email configuration is missing. Please set either Mailtrap (MAILTRAP_HOST, MAILTRAP_USER, MAILTRAP_PASS) or SMTP (SMTP_USER, SMTP_PASS) environment variables."
       );
     }
 
@@ -66,8 +93,14 @@ export async function sendEmail(options: EmailOptions): Promise<boolean> {
       );
     }
 
-    const fromEmail =
-      options.from || process.env.SMTP_USER || "noreply@dazzlingtours.com";
+    const useMailtrap =
+      process.env.MAILTRAP_HOST &&
+      process.env.MAILTRAP_USER &&
+      process.env.MAILTRAP_PASS;
+    const defaultFromEmail = useMailtrap
+      ? "noreply@dazzlingtours.com"
+      : process.env.SMTP_USER || "noreply@dazzlingtours.com";
+    const fromEmail = options.from || defaultFromEmail;
     const fromName = process.env.SMTP_FROM_NAME || "Dazzling Tours";
 
     const mailOptions = {
@@ -148,10 +181,16 @@ export async function sendBulkEmails(
 // Verify email configuration
 export async function verifyEmailConfig(): Promise<boolean> {
   try {
-    // First check if required environment variables are set
-    if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    // Check if Mailtrap or SMTP is configured
+    const useMailtrap =
+      process.env.MAILTRAP_HOST &&
+      process.env.MAILTRAP_USER &&
+      process.env.MAILTRAP_PASS;
+    const useSMTP = process.env.SMTP_USER && process.env.SMTP_PASS;
+
+    if (!useMailtrap && !useSMTP) {
       console.error(
-        "SMTP configuration missing: SMTP_USER or SMTP_PASS not set"
+        "Email configuration missing: Please set either Mailtrap (MAILTRAP_HOST, MAILTRAP_USER, MAILTRAP_PASS) or SMTP (SMTP_USER, SMTP_PASS) environment variables."
       );
       return false;
     }

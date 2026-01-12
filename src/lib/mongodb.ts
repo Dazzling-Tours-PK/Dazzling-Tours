@@ -12,7 +12,9 @@ declare global {
 const MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost:27017/dazzling-tours";
 
-console.log("🔍 MongoDB URI:", MONGODB_URI);
+// Log connection type without exposing credentials
+const isAtlas = MONGODB_URI.includes("mongodb+srv://");
+console.log(`🔍 MongoDB: ${isAtlas ? "Atlas (Cloud)" : "Local"}`);
 
 if (!MONGODB_URI) {
   throw new Error(
@@ -39,8 +41,13 @@ async function connectDB() {
   if (!cached?.promise) {
     const opts = {
       bufferCommands: false,
-      serverSelectionTimeoutMS: 5000, // 5 second timeout
-      connectTimeoutMS: 5000,
+      serverSelectionTimeoutMS: 10000, // 10 second timeout (Atlas may need more time)
+      connectTimeoutMS: 10000,
+      // Atlas-specific options
+      ...(isAtlas && {
+        retryWrites: true,
+        w: "majority",
+      }),
     };
 
     cached!.promise = mongoose

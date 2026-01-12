@@ -100,31 +100,39 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
           return;
         }
 
-        console.log("Starting file processing...");
+        console.log("Starting file upload to Cloudinary...");
         setIsUploading(true);
 
         try {
-          // Convert files to data URLs for preview
-          const newUrls: string[] = [];
-          for (const file of validFiles) {
-            console.log("Converting file to data URL:", file.name);
-            const dataUrl = await new Promise<string>((resolve, reject) => {
-              const reader = new FileReader();
-              reader.onload = () => {
-                console.log("FileReader success for:", file.name);
-                resolve(reader.result as string);
-              };
-              reader.onerror = () => {
-                console.error("FileReader error for:", file.name);
-                reject(new Error(`Failed to read ${file.name}`));
-              };
-              reader.readAsDataURL(file);
-            });
-            newUrls.push(dataUrl);
+          // Upload files to Cloudinary via API
+          const formData = new FormData();
+          validFiles.forEach((file) => {
+            formData.append("files", file);
+          });
+          // Optional: add folder parameter if needed
+          // formData.append("folder", "tours");
+
+          const response = await fetch("/api/upload", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || "Failed to upload images");
           }
 
+          const result = await response.json();
+
+          if (!result.success || !result.data) {
+            throw new Error("Upload failed: Invalid response from server");
+          }
+
+          // Extract URLs from Cloudinary response
+          const newUrls = result.data.map((item: { url: string }) => item.url);
+
           const updatedUrls = multiple ? [...value, ...newUrls] : newUrls;
-          console.log("Adding images:", {
+          console.log("Images uploaded successfully:", {
             current: value.length,
             new: newUrls.length,
             total: updatedUrls.length,
@@ -134,11 +142,15 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
           onChangeRef.current?.(updatedUrls);
           console.log("onChange called with", updatedUrls.length, "images");
         } catch (err) {
-          console.error("Error processing files:", err);
-          showError("Error processing images");
+          console.error("Error uploading files:", err);
+          showError(
+            err instanceof Error
+              ? err.message
+              : "Error uploading images. Please try again."
+          );
         } finally {
           setIsUploading(false);
-          console.log("File processing completed");
+          console.log("File upload completed");
         }
       },
       [value, multiple, maxFiles, maxSize, acceptedTypes, disabled, showError]

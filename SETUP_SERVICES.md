@@ -193,7 +193,6 @@ Check the console for connection messages:
 ### MongoDB Atlas Connection Issues
 
 - **Error: "Authentication failed"**
-
   - Verify your username and password in the connection string
   - Check that the database user has the correct permissions
 
@@ -204,7 +203,6 @@ Check the console for connection messages:
 ### Cloudinary Upload Issues
 
 - **Error: "Invalid API credentials"**
-
   - Double-check your Cloud Name, API Key, and API Secret
   - Ensure there are no extra spaces in the environment variables
 

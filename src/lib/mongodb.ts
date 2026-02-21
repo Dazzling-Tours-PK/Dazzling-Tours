@@ -18,7 +18,7 @@ console.log(`🔍 MongoDB: ${isAtlas ? "Atlas (Cloud)" : "Local"}`);
 
 if (!MONGODB_URI) {
   throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env.local"
+    "Please define the MONGODB_URI environment variable inside .env.local",
   );
 }
 
@@ -46,7 +46,7 @@ async function connectDB() {
       // Atlas-specific options
       ...(isAtlas && {
         retryWrites: true,
-        w: "majority",
+        w: "majority" as const,
       }),
     };
 
@@ -59,7 +59,7 @@ async function connectDB() {
       .catch((error) => {
         console.warn("⚠️ MongoDB connection failed:", error.message);
         throw new Error(
-          "Database connection failed. Please ensure MongoDB is running."
+          "Database connection failed. Please ensure MongoDB is running.",
         );
       });
   }

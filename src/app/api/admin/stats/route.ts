@@ -1,13 +1,6 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
-import {
-  Tour,
-  Blog,
-  Contact,
-  Campaign,
-  Newsletter,
-  Testimonial,
-} from "@/models";
+import { Tour, Blog, Contact, Testimonial } from "@/models";
 
 // GET /api/admin/stats - Get dashboard statistics
 export async function GET() {
@@ -24,10 +17,6 @@ export async function GET() {
       featuredBlogs,
       totalContacts,
       newContacts,
-      totalCampaigns,
-      sentCampaigns,
-      totalNewsletters,
-      activeNewsletters,
       totalTestimonials,
       publishedTestimonials,
     ] = await Promise.all([
@@ -42,12 +31,7 @@ export async function GET() {
       // Contacts
       Contact.countDocuments(),
       Contact.countDocuments({ status: "New" }),
-      // Campaigns
-      Campaign.countDocuments(),
-      Campaign.countDocuments({ status: "Sent" }),
-      // Newsletters
-      Newsletter.countDocuments(),
-      Newsletter.countDocuments({ status: "Active" }),
+
       // Testimonials
       Testimonial.countDocuments(),
       Testimonial.countDocuments({ status: "Published" }),
@@ -70,14 +54,7 @@ export async function GET() {
           total: totalContacts,
           new: newContacts,
         },
-        campaigns: {
-          total: totalCampaigns,
-          sent: sentCampaigns,
-        },
-        newsletters: {
-          total: totalNewsletters,
-          active: activeNewsletters,
-        },
+
         testimonials: {
           total: totalTestimonials,
           published: publishedTestimonials,
@@ -88,7 +65,7 @@ export async function GET() {
     console.error("Error fetching dashboard stats:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch dashboard statistics" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

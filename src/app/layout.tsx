@@ -30,6 +30,9 @@ const kalam = Kalam({
 });
 
 export const metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  ),
   title: {
     absolute: "",
     default: "Dazzling Tours - Travel & Tour Agency",

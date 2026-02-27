@@ -86,7 +86,7 @@ const TourSchema = new Schema<ITour>(
   {
     timestamps: true,
     strict: true,
-  }
+  },
 );
 
 // Booking Model
@@ -158,7 +158,7 @@ const BookingSchema = new Schema<IBooking>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // Customer User Model (for frontend users)
@@ -178,7 +178,6 @@ export interface ICustomerUser extends Document {
     country: string;
   };
   preferences: {
-    newsletter: boolean;
     notifications: boolean;
   };
   createdAt: Date;
@@ -206,13 +205,12 @@ const CustomerUserSchema = new Schema<ICustomerUser>(
       country: { type: String },
     },
     preferences: {
-      newsletter: { type: Boolean, default: true },
       notifications: { type: Boolean, default: true },
     },
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // Contact/Inquiry Model
@@ -242,7 +240,7 @@ const ContactSchema = new Schema<IContact>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // Blog Model
@@ -290,99 +288,7 @@ const BlogSchema = new Schema<IBlog>(
   },
   {
     timestamps: true,
-  }
-);
-
-// Newsletter Subscription Model
-export interface INewsletter extends Document {
-  email: string;
-  status: "Active" | "Unsubscribed";
-  subscribedAt: Date;
-  unsubscribedAt?: Date;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-const NewsletterSchema = new Schema<INewsletter>(
-  {
-    email: { type: String, required: true, unique: true },
-    status: {
-      type: String,
-      enum: ["Active", "Unsubscribed"],
-      default: "Active",
-    },
-    subscribedAt: { type: Date, default: Date.now },
-    unsubscribedAt: { type: Date },
   },
-  {
-    timestamps: true,
-  }
-);
-
-// Newsletter Campaign Model
-export interface ICampaign extends Document {
-  title: string;
-  subject: string;
-  content: string;
-  templateType: "newsletter" | "promotion" | "custom";
-  status: "Draft" | "Scheduled" | "Sending" | "Sent" | "Failed";
-  scheduledAt?: Date;
-  sentAt?: Date;
-  recipients: {
-    type: "all" | "active" | "custom";
-    emails?: string[];
-  };
-  stats: {
-    total: number;
-    sent: number;
-    delivered: number;
-    opened: number;
-    clicked: number;
-    bounced: number;
-    failed: number;
-  };
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-const CampaignSchema = new Schema<ICampaign>(
-  {
-    title: { type: String, required: true },
-    subject: { type: String, required: true },
-    content: { type: String, required: true },
-    templateType: {
-      type: String,
-      enum: ["newsletter", "promotion", "custom"],
-      default: "newsletter",
-    },
-    status: {
-      type: String,
-      enum: ["Draft", "Scheduled", "Sending", "Sent", "Failed"],
-      default: "Draft",
-    },
-    scheduledAt: { type: Date },
-    sentAt: { type: Date },
-    recipients: {
-      type: {
-        type: String,
-        enum: ["all", "active", "custom"],
-        default: "active",
-      },
-      emails: [{ type: String }],
-    },
-    stats: {
-      total: { type: Number, default: 0 },
-      sent: { type: Number, default: 0 },
-      delivered: { type: Number, default: 0 },
-      opened: { type: Number, default: 0 },
-      clicked: { type: Number, default: 0 },
-      bounced: { type: Number, default: 0 },
-      failed: { type: Number, default: 0 },
-    },
-  },
-  {
-    timestamps: true,
-  }
 );
 
 // Testimonial Model
@@ -416,7 +322,7 @@ const TestimonialSchema = new Schema<ITestimonial>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // Guest Comment Model for Blogs
@@ -452,7 +358,7 @@ const CommentSchema = new Schema<IComment>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // Create models
@@ -467,12 +373,7 @@ export const Contact =
   mongoose.models.Contact || mongoose.model<IContact>("Contact", ContactSchema);
 export const Blog =
   mongoose.models.Blog || mongoose.model<IBlog>("Blog", BlogSchema);
-export const Newsletter =
-  mongoose.models.Newsletter ||
-  mongoose.model<INewsletter>("Newsletter", NewsletterSchema);
-export const Campaign =
-  mongoose.models.Campaign ||
-  mongoose.model<ICampaign>("Campaign", CampaignSchema);
+
 export const Testimonial =
   mongoose.models.Testimonial ||
   mongoose.model<ITestimonial>("Testimonial", TestimonialSchema);
@@ -552,7 +453,7 @@ const UserSchema = new Schema<IUser>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // Hash password before saving
@@ -577,7 +478,7 @@ UserSchema.pre("save", function (next) {
 
 // Instance method to check password
 UserSchema.methods.comparePassword = async function (
-  candidatePassword: string
+  candidatePassword: string,
 ): Promise<boolean> {
   const bcrypt = await import("bcryptjs");
   return bcrypt.compare(candidatePassword, this.password);
@@ -585,12 +486,12 @@ UserSchema.methods.comparePassword = async function (
 
 // Instance method to check if password changed after JWT was issued
 UserSchema.methods.changedPasswordAfter = function (
-  JWTTimestamp: number
+  JWTTimestamp: number,
 ): boolean {
   if (this.passwordChangedAt) {
     const changedTimestamp = parseInt(
       (this.passwordChangedAt.getTime() / 1000).toString(),
-      10
+      10,
     );
     return JWTTimestamp < changedTimestamp;
   }
@@ -652,7 +553,7 @@ const OTPSchema = new Schema<IOTP>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 // Index for efficient queries
@@ -668,7 +569,7 @@ OTPSchema.statics.generateOTP = function (): string {
 OTPSchema.statics.findValidOTP = function (
   email: string,
   otp: string,
-  type: string
+  type: string,
 ) {
   return this.findOne({
     email: email.toLowerCase(),
@@ -712,7 +613,7 @@ const CategorySchema = new Schema<ICategory>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 export const Category =

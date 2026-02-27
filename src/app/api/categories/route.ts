@@ -74,7 +74,7 @@ export async function GET(request: NextRequest) {
       error instanceof Error ? error.message : "Failed to fetch categories";
     return NextResponse.json(
       { success: false, error: errorMessage },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
     if (!name || !slug) {
       return NextResponse.json(
         { success: false, error: "Name and slug are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -101,7 +101,7 @@ export async function POST(request: NextRequest) {
           success: false,
           error: `Cannot create a category with the name '${UNCATEGORIZED_CATEGORY_NAME}'`,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -116,7 +116,7 @@ export async function POST(request: NextRequest) {
           success: false,
           error: "Category with this name or slug already exists",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -132,10 +132,10 @@ export async function POST(request: NextRequest) {
       success: true,
       data: category,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { success: false, error: "Failed to create category" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

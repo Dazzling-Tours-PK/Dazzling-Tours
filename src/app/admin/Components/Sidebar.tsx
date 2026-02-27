@@ -44,24 +44,7 @@ const Sidebar = () => {
         { title: "Add Testimonial", href: "/admin/testimonials/add" },
       ],
     },
-    {
-      title: "Newsletter",
-      href: "/admin/newsletter",
-      icon: "bi bi-envelope",
-      children: [
-        { title: "Subscribers", href: "/admin/newsletter" },
-        { title: "Statistics", href: "/admin/newsletter/stats" },
-      ],
-    },
-    {
-      title: "Campaigns",
-      href: "/admin/campaigns",
-      icon: "bi bi-megaphone",
-      children: [
-        { title: "All Campaigns", href: "/admin/campaigns" },
-        { title: "Create Campaign", href: "/admin/campaigns/create" },
-      ],
-    },
+
     {
       title: "Contact",
       href: "/admin/contact",

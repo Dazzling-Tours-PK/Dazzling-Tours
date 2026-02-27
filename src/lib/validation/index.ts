@@ -39,16 +39,6 @@ export const contactSchema = z.object({
     .trim(),
 });
 
-// Newsletter subscription schema
-export const newsletterSchema = z.object({
-  email: z
-    .string()
-    .min(1, "Email is required")
-    .email("Please enter a valid email address")
-    .max(100, "Email must be less than 100 characters")
-    .trim(),
-});
-
 // Blog comment schema
 export const commentSchema = z.object({
   name: z
@@ -160,7 +150,6 @@ export const resetPasswordSchema = z
 
 // Type inference from schemas
 export type ContactFormData = z.infer<typeof contactSchema>;
-export type NewsletterFormData = z.infer<typeof newsletterSchema>;
 export type CommentFormData = z.infer<typeof commentSchema>;
 export type TestimonialFormData = z.infer<typeof testimonialSchema>;
 export type LoginFormData = z.infer<typeof loginSchema>;
@@ -171,10 +160,6 @@ export type ResetPasswordFormData = z.infer<typeof resetPasswordSchema>;
 // Validation helper functions
 export const validateContactData = (data: unknown) => {
   return contactSchema.safeParse(data);
-};
-
-export const validateNewsletterData = (data: unknown) => {
-  return newsletterSchema.safeParse(data);
 };
 
 export const validateCommentData = (data: unknown) => {

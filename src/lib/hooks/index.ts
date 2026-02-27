@@ -15,8 +15,6 @@ export {
 export * from "./useTestimonials";
 export * from "./useComments";
 export * from "./useContact";
-export * from "./useNewsletter";
-export * from "./useCampaigns";
 export * from "./useDashboard";
 export * from "./useCategories";
 export * from "./useNotification";

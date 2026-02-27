@@ -39,7 +39,7 @@ export interface UseFormReturn<T extends object> {
   setFieldValue: <K extends keyof T>(field: K, value: T[K]) => void;
   setFieldError: <K extends keyof T>(
     field: K,
-    error: string | undefined
+    error: string | undefined,
   ) => void;
   setFieldTouched: <K extends keyof T>(field: K, touched: boolean) => void;
   setValues: (values: Partial<T>) => void;
@@ -49,10 +49,10 @@ export interface UseFormReturn<T extends object> {
   validate: () => boolean;
   validateField: <K extends keyof T>(field: K) => boolean;
   handleSubmit: (
-    onSubmit?: (values: T) => void | Promise<void>
+    onSubmit?: (values: T) => void | Promise<void>,
   ) => (e: React.FormEvent) => Promise<void>;
   getFieldProps: <K extends keyof T>(
-    field: K
+    field: K,
   ) => {
     value: T[K];
     error: string | undefined;
@@ -72,13 +72,13 @@ export function useForm<T extends object>({
 }: UseFormOptions<T>): UseFormReturn<T> {
   const [values, setValuesState] = useState<T>(initialValues);
   const [errors, setErrorsState] = useState<Partial<Record<keyof T, string>>>(
-    {}
+    {},
   );
   const [touched, setTouchedState] = useState<
     Partial<Record<keyof T, boolean>>
   >({});
   const [dirty, setDirtyState] = useState<Partial<Record<keyof T, boolean>>>(
-    {}
+    {},
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const initialValuesRef = useRef(initialValues);
@@ -110,7 +110,7 @@ export function useForm<T extends object>({
 
       return !fieldError;
     },
-    [values, validate, errors]
+    [values, validate, errors],
   );
 
   // Set field value
@@ -126,7 +126,7 @@ export function useForm<T extends object>({
         validateField(field);
       }
     },
-    [validateOnChange, validateField]
+    [validateOnChange, validateField],
   );
 
   // Set field error
@@ -134,7 +134,7 @@ export function useForm<T extends object>({
     <K extends keyof T>(field: K, error: string | undefined) => {
       setErrorsState((prev) => ({ ...prev, [field]: error }));
     },
-    []
+    [],
   );
 
   // Set field touched
@@ -146,7 +146,7 @@ export function useForm<T extends object>({
         validateField(field);
       }
     },
-    [validateOnBlur, validateField]
+    [validateOnBlur, validateField],
   );
 
   // Set multiple values
@@ -167,7 +167,7 @@ export function useForm<T extends object>({
     (newErrors: Partial<Record<keyof T, string>>) => {
       setErrorsState(newErrors);
     },
-    []
+    [],
   );
 
   // Set multiple touched
@@ -175,7 +175,7 @@ export function useForm<T extends object>({
     (newTouched: Partial<Record<keyof T, boolean>>) => {
       setTouchedState(newTouched);
     },
-    []
+    [],
   );
 
   // Reset form
@@ -194,10 +194,13 @@ export function useForm<T extends object>({
         e.preventDefault();
 
         // Mark all fields as touched
-        const allTouched = Object.keys(values).reduce((acc, key) => {
-          acc[key as keyof T] = true;
-          return acc;
-        }, {} as Partial<Record<keyof T, boolean>>);
+        const allTouched = Object.keys(values).reduce(
+          (acc, key) => {
+            acc[key as keyof T] = true;
+            return acc;
+          },
+          {} as Partial<Record<keyof T, boolean>>,
+        );
         setTouchedState(allTouched);
 
         // Validate form
@@ -217,7 +220,7 @@ export function useForm<T extends object>({
           if (firstErrorField) {
             // Try to find the input field by name or id
             const errorElement = document.querySelector(
-              `[name="${firstErrorField}"], [id="${firstErrorField}"]`
+              `[name="${firstErrorField}"], [id="${firstErrorField}"]`,
             ) as HTMLElement;
             if (errorElement) {
               errorElement.scrollIntoView({
@@ -237,13 +240,13 @@ export function useForm<T extends object>({
           if (submitHandler) {
             await submitHandler(values);
           }
-        } catch (error) {
+        } catch {
         } finally {
           setIsSubmitting(false);
         }
       };
     },
-    [values, validateForm, onSubmit, onValidationError, validate]
+    [values, validateForm, onSubmit, onValidationError, validate],
   );
 
   // Get field props for form components
@@ -257,7 +260,7 @@ export function useForm<T extends object>({
         onFocus: () => setFieldTouched(field, false),
       };
     },
-    [values, errors, setFieldValue, setFieldTouched]
+    [values, errors, setFieldValue, setFieldTouched],
   );
 
   return {

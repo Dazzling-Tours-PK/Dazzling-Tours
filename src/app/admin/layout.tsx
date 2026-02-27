@@ -87,8 +87,6 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     },
     { href: "/admin/blogs", label: "Blogs", icon: "bi bi-journal-text" },
 
-    { href: "/admin/newsletter", label: "Newsletter", icon: "bi bi-envelope" },
-    { href: "/admin/campaigns", label: "Campaigns", icon: "bi bi-megaphone" },
     { href: "/admin/contact", label: "Contact", icon: "bi bi-telephone" },
   ];
 

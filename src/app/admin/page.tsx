@@ -34,22 +34,7 @@ const AdminDashboard = () => {
           color: "warning",
           link: "/admin/contact",
         },
-        {
-          title: "Newsletter Subscribers",
-          value: stats.newsletters.total,
-          subtitle: `${stats.newsletters.active} Active`,
-          icon: "bi bi-people",
-          color: "success",
-          link: "/admin/newsletter",
-        },
-        {
-          title: "Email Campaigns",
-          value: stats.campaigns.total,
-          subtitle: `${stats.campaigns.sent} Sent`,
-          icon: "bi bi-megaphone",
-          color: "secondary",
-          link: "/admin/campaigns",
-        },
+
         {
           title: "Testimonials",
           value: stats.testimonials.total,
@@ -84,14 +69,14 @@ const AdminDashboard = () => {
                       stat.color === "primary"
                         ? "#e3f2fd"
                         : stat.color === "info"
-                        ? "#e1f5fe"
-                        : stat.color === "warning"
-                        ? "#fff3e0"
-                        : stat.color === "success"
-                        ? "#e8f5e9"
-                        : stat.color === "secondary"
-                        ? "#f3e5f5"
-                        : "#fce4ec",
+                          ? "#e1f5fe"
+                          : stat.color === "warning"
+                            ? "#fff3e0"
+                            : stat.color === "success"
+                              ? "#e8f5e9"
+                              : stat.color === "secondary"
+                                ? "#f3e5f5"
+                                : "#fce4ec",
                   }}
                 >
                   <i
@@ -101,14 +86,14 @@ const AdminDashboard = () => {
                         stat.color === "primary"
                           ? "#1976d2"
                           : stat.color === "info"
-                          ? "#0288d1"
-                          : stat.color === "warning"
-                          ? "#f57c00"
-                          : stat.color === "success"
-                          ? "#388e3c"
-                          : stat.color === "secondary"
-                          ? "#7b1fa2"
-                          : "#c2185b",
+                            ? "#0288d1"
+                            : stat.color === "warning"
+                              ? "#f57c00"
+                              : stat.color === "success"
+                                ? "#388e3c"
+                                : stat.color === "secondary"
+                                  ? "#7b1fa2"
+                                  : "#c2185b",
                     }}
                   ></i>
                 </div>
@@ -185,17 +170,7 @@ const AdminDashboard = () => {
             >
               <i className="bi bi-plus-circle"></i> Add New Blog
             </Link>
-            <Link
-              href="/admin/campaigns/create"
-              className="btn btn-info"
-              style={{
-                flex: "1 1 auto",
-                minWidth: "200px",
-                justifyContent: "center",
-              }}
-            >
-              <i className="bi bi-megaphone"></i> Create Campaign
-            </Link>
+
             <Link
               href="/admin/contact"
               className="btn btn-warning"

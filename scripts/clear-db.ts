@@ -5,8 +5,6 @@ import {
   CustomerUser,
   Contact,
   Blog,
-  Newsletter,
-  Campaign,
   Testimonial,
   Comment,
   User,
@@ -28,8 +26,6 @@ async function clearDatabase() {
       { name: "CustomerUser", model: CustomerUser },
       { name: "Contact", model: Contact },
       { name: "Blog", model: Blog },
-      { name: "Newsletter", model: Newsletter },
-      { name: "Campaign", model: Campaign },
       { name: "Testimonial", model: Testimonial },
       { name: "Comment", model: Comment },
       { name: "User", model: User },
@@ -41,7 +37,7 @@ async function clearDatabase() {
       try {
         const result = await collection.model.deleteMany({});
         console.log(
-          `✅ Cleared ${collection.name}: ${result.deletedCount} documents`
+          `✅ Cleared ${collection.name}: ${result.deletedCount} documents`,
         );
       } catch (error) {
         console.error(`❌ Error clearing ${collection.name}:`, error);

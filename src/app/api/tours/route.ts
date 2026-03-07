@@ -3,6 +3,8 @@ import connectDB from "@/lib/mongodb";
 import { Tour } from "@/models";
 import { MongoQuery } from "@/lib/types";
 import { cleanTourData } from "@/lib/utils/dataCleaning";
+import { deleteMultipleImages } from "@/lib/services/cloudinaryService";
+import { extractPublicId } from "@/lib/utils/imageUtils";
 
 // GET /api/tours - Get all tours
 export async function GET(request: NextRequest) {
@@ -75,7 +77,7 @@ export async function GET(request: NextRequest) {
           (url: string) =>
             typeof url === "string" &&
             !url.startsWith("data:") &&
-            (url.startsWith("http://") || url.startsWith("https://"))
+            (url.startsWith("http://") || url.startsWith("https://")),
         );
       }
       if (tour.seo && typeof tour.seo === "object" && tour.seo !== null) {
@@ -109,7 +111,7 @@ export async function GET(request: NextRequest) {
     console.error("Error fetching tours:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch tours" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -135,7 +137,7 @@ export async function POST(request: NextRequest) {
       if (!body[field]) {
         return NextResponse.json(
           { success: false, error: `${field} is required` },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
@@ -144,7 +146,7 @@ export async function POST(request: NextRequest) {
     if (body.price <= 0) {
       return NextResponse.json(
         { success: false, error: "Price must be greater than 0" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -152,7 +154,7 @@ export async function POST(request: NextRequest) {
     if (body.rating && (body.rating < 0 || body.rating > 5)) {
       return NextResponse.json(
         { success: false, error: "Rating must be between 0 and 5" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -163,7 +165,7 @@ export async function POST(request: NextRequest) {
         (url: string) =>
           typeof url === "string" &&
           !url.startsWith("data:") &&
-          (url.startsWith("http://") || url.startsWith("https://"))
+          (url.startsWith("http://") || url.startsWith("https://")),
       );
     }
 
@@ -230,13 +232,13 @@ export async function POST(request: NextRequest) {
         data: tourData,
         message: "Tour created successfully",
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error creating tour:", error);
     return NextResponse.json(
       { success: false, error: "Failed to create tour" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -252,7 +254,7 @@ export async function PUT(request: NextRequest) {
     if (!action || !tourIds || !Array.isArray(tourIds)) {
       return NextResponse.json(
         { success: false, error: "Action and tourIds are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -261,22 +263,49 @@ export async function PUT(request: NextRequest) {
       case "updateStatus":
         result = await Tour.updateMany(
           { _id: { $in: tourIds } },
-          { status: data.status }
+          { status: data.status },
         );
         break;
       case "updateFeatured":
         result = await Tour.updateMany(
           { _id: { $in: tourIds } },
-          { featured: data.featured }
+          { featured: data.featured },
         );
         break;
-      case "delete":
+      case "delete": {
+        // Fetch tours to get their image URLs before deletion
+        const toursToDelete = await Tour.find({ _id: { $in: tourIds } });
+        const allImages: string[] = [];
+
+        toursToDelete.forEach((tour) => {
+          if (tour.images && Array.isArray(tour.images)) {
+            allImages.push(...tour.images);
+          }
+          if (tour.seo?.ogImage) {
+            allImages.push(tour.seo.ogImage);
+          }
+        });
+
+        const publicIds = Array.from(new Set(allImages))
+          .map((url: string) => extractPublicId(url))
+          .filter((id: string | null): id is string => id !== null);
+
+        if (publicIds.length > 0) {
+          await deleteMultipleImages(publicIds).catch((err) =>
+            console.error(
+              "Failed to delete bulk tour images from Cloudinary:",
+              err,
+            ),
+          );
+        }
+
         result = await Tour.deleteMany({ _id: { $in: tourIds } });
         break;
+      }
       default:
         return NextResponse.json(
           { success: false, error: "Invalid action" },
-          { status: 400 }
+          { status: 400 },
         );
     }
 
@@ -289,7 +318,7 @@ export async function PUT(request: NextRequest) {
     console.error("Error updating tours:", error);
     return NextResponse.json(
       { success: false, error: "Failed to update tours" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

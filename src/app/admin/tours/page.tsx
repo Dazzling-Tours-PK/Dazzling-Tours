@@ -31,8 +31,8 @@ const ToursList = () => {
       filterFeatured === "all"
         ? undefined
         : filterFeatured === "true"
-        ? true
-        : false,
+          ? true
+          : false,
     search: searchTerm || undefined,
   });
 
@@ -75,10 +75,10 @@ const ToursList = () => {
       {
         onSuccess: () => {
           showSuccess(
-            `Tour ${!currentFeatured ? "featured" : "unfeatured"} successfully!`
+            `Tour ${!currentFeatured ? "featured" : "unfeatured"} successfully!`,
           );
         },
-      }
+      },
     );
   };
 
@@ -98,10 +98,10 @@ const ToursList = () => {
               currentStatus === TourStatus.ACTIVE
                 ? TourStatus.INACTIVE
                 : TourStatus.ACTIVE
-            }!`
+            }!`,
           );
         },
-      }
+      },
     );
   };
 

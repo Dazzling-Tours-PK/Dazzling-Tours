@@ -75,7 +75,7 @@ const ContactQueriesList = () => {
         onError: (error) => {
           showError(error.message || "Failed to update contact query");
         },
-      }
+      },
     );
   };
 
@@ -94,14 +94,14 @@ const ContactQueriesList = () => {
       {
         onSuccess: () => {
           showSuccess(
-            `${selectedQueries.length} contact query/queries updated successfully!`
+            `${selectedQueries.length} contact query/queries updated successfully!`,
           );
           setSelectedQueries([]);
         },
         onError: (error) => {
           showError(error.message || "Failed to update contact queries");
         },
-      }
+      },
     );
   };
 
@@ -113,7 +113,7 @@ const ContactQueriesList = () => {
 
     if (
       confirm(
-        `Are you sure you want to delete ${selectedQueries.length} contact query/queries?`
+        `Are you sure you want to delete ${selectedQueries.length} contact query/queries?`,
       )
     ) {
       bulkUpdateContactMutation.mutate(
@@ -124,14 +124,14 @@ const ContactQueriesList = () => {
         {
           onSuccess: () => {
             showSuccess(
-              `${selectedQueries.length} contact query/queries deleted successfully!`
+              `${selectedQueries.length} contact query/queries deleted successfully!`,
             );
             setSelectedQueries([]);
           },
           onError: (error) => {
             showError(error.message || "Failed to delete contact queries");
           },
-        }
+        },
       );
     }
   };
@@ -140,14 +140,14 @@ const ContactQueriesList = () => {
     setSelectedQueries((prev) =>
       prev.includes(id)
         ? prev.filter((queryId) => queryId !== id)
-        : [...prev, id]
+        : [...prev, id],
     );
   };
 
   const selectAllQueries = () => {
     const allQueryIds = queries.map((query) => query._id);
     setSelectedQueries(
-      selectedQueries.length === allQueryIds.length ? [] : allQueryIds
+      selectedQueries.length === allQueryIds.length ? [] : allQueryIds,
     );
   };
 
@@ -397,7 +397,7 @@ const ContactQueriesList = () => {
                       value={query.status}
                       onChange={(e) => updateStatus(query._id, e.target.value)}
                       className={`status-select ${getStatusBadgeClass(
-                        query.status
+                        query.status,
                       )}`}
                       style={{
                         padding: "0.25rem 0.5rem",

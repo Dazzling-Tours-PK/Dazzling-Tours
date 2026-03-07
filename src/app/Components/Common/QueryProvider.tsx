@@ -35,12 +35,12 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
             if (!(context as MutationContext)?.skipGlobalError) {
               showError(
                 error.message ||
-                  "An error occurred while processing your request"
+                  "An error occurred while processing your request",
               );
             }
           },
         }),
-      })
+      }),
   );
 
   return (

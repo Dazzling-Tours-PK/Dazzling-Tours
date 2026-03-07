@@ -5,7 +5,7 @@ import { Comment } from "@/models";
 // GET /api/comments/[id] - Get a single comment
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await connectDB();
@@ -18,7 +18,7 @@ export async function GET(
     if (!comment) {
       return NextResponse.json(
         { success: false, error: "Comment not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -30,7 +30,7 @@ export async function GET(
     console.error("Error fetching comment:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch comment" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -38,7 +38,7 @@ export async function GET(
 // PUT /api/comments/[id] - Update a comment
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await connectDB();
@@ -52,7 +52,7 @@ export async function PUT(
       if (!emailRegex.test(body.email)) {
         return NextResponse.json(
           { success: false, error: "Invalid email format" },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
@@ -60,7 +60,7 @@ export async function PUT(
     const comment = await Comment.findByIdAndUpdate(
       resolvedParams.id,
       { ...body, updatedAt: new Date() },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     )
       .populate("blogId", "title")
       .populate("parentId", "name content");
@@ -68,7 +68,7 @@ export async function PUT(
     if (!comment) {
       return NextResponse.json(
         { success: false, error: "Comment not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -81,7 +81,7 @@ export async function PUT(
     console.error("Error updating comment:", error);
     return NextResponse.json(
       { success: false, error: "Failed to update comment" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -89,7 +89,7 @@ export async function PUT(
 // DELETE /api/comments/[id] - Delete a comment
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await connectDB();
@@ -105,7 +105,7 @@ export async function DELETE(
     if (!comment) {
       return NextResponse.json(
         { success: false, error: "Comment not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -117,7 +117,7 @@ export async function DELETE(
     console.error("Error deleting comment:", error);
     return NextResponse.json(
       { success: false, error: "Failed to delete comment" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

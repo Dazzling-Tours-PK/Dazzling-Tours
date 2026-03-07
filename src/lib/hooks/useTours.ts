@@ -43,7 +43,7 @@ export const useGetTours = (params?: {
       }
 
       const response = await api.get<ToursResponse>(
-        `/api/tours?${searchParams.toString()}`
+        `/api/tours?${searchParams.toString()}`,
       );
       return response.data;
     },
@@ -94,7 +94,7 @@ export const useUpdateTour = () => {
       const { _id, ...updateData } = data;
       const response = await api.patch<TourResponse>(
         `/api/tours/${_id}`,
-        updateData
+        updateData,
       );
       return response.data;
     },
@@ -113,7 +113,7 @@ export const useDeleteTour = () => {
   return useMutation<{ success: boolean }, Error, string>({
     mutationFn: async (id) => {
       const response = await api.delete<{ success: boolean }>(
-        `/api/tours/${id}`
+        `/api/tours/${id}`,
       );
       return response.data;
     },
@@ -167,7 +167,7 @@ export const useGetTourLocations = (status?: string) => {
       }
 
       const response = await api.get<TourLocationsResponse>(
-        `/api/tours/locations?${params.toString()}`
+        `/api/tours/locations?${params.toString()}`,
       );
       return response.data;
     },
@@ -196,7 +196,7 @@ export const useGetTourDifficulties = (status?: string) => {
       }
 
       const response = await api.get<TourDifficultiesResponse>(
-        `/api/tours/difficulties?${params.toString()}`
+        `/api/tours/difficulties?${params.toString()}`,
       );
       return response.data;
     },
@@ -224,7 +224,7 @@ export const useGetTourActivities = (status?: string) => {
       }
 
       const response = await api.get<TourActivitiesResponse>(
-        `/api/tours/activities?${params.toString()}`
+        `/api/tours/activities?${params.toString()}`,
       );
       return response.data;
     },

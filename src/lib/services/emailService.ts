@@ -75,7 +75,7 @@ export async function sendEmail(options: EmailOptions): Promise<boolean> {
 
     if (!hasMailtrap && !hasSMTP) {
       throw new Error(
-        "Email configuration is missing. Please set either Mailtrap (MAILTRAP_HOST, MAILTRAP_USER, MAILTRAP_PASS) or SMTP (SMTP_USER, SMTP_PASS) environment variables."
+        "Email configuration is missing. Please set either Mailtrap (MAILTRAP_HOST, MAILTRAP_USER, MAILTRAP_PASS) or SMTP (SMTP_USER, SMTP_PASS) environment variables.",
       );
     }
 
@@ -89,7 +89,7 @@ export async function sendEmail(options: EmailOptions): Promise<boolean> {
       throw new Error(
         `SMTP connection failed: ${
           verifyError instanceof Error ? verifyError.message : "Unknown error"
-        }`
+        }`,
       );
     }
 
@@ -135,7 +135,7 @@ export async function sendBulkEmails(
   recipients: string[],
   options: Omit<EmailOptions, "to">,
   batchSize: number = 10,
-  delayMs: number = 1000
+  delayMs: number = 1000,
 ): Promise<{
   success: number;
   failed: number;
@@ -166,7 +166,7 @@ export async function sendBulkEmails(
             error: error instanceof Error ? error.message : "Unknown error",
           });
         }
-      })
+      }),
     );
 
     // Delay between batches to avoid rate limiting
@@ -190,7 +190,7 @@ export async function verifyEmailConfig(): Promise<boolean> {
 
     if (!useMailtrap && !useSMTP) {
       console.error(
-        "Email configuration missing: Please set either Mailtrap (MAILTRAP_HOST, MAILTRAP_USER, MAILTRAP_PASS) or SMTP (SMTP_USER, SMTP_PASS) environment variables."
+        "Email configuration missing: Please set either Mailtrap (MAILTRAP_HOST, MAILTRAP_USER, MAILTRAP_PASS) or SMTP (SMTP_USER, SMTP_PASS) environment variables.",
       );
       return false;
     }

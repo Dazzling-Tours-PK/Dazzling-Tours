@@ -1,11 +1,10 @@
 "use client";
 import React, { forwardRef, useEffect, useState } from "react";
 
-export interface CheckboxProps
-  extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    "type" | "size" | "onChange" | "onBlur" | "onFocus" | "checked"
-  > {
+export interface CheckboxProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "type" | "size" | "onChange" | "onBlur" | "onFocus" | "checked"
+> {
   label?: string;
   description?: string;
   error?: string;
@@ -39,10 +38,10 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
       onFocus: formOnFocus,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [internalError, setInternalError] = useState<string | undefined>(
-      error
+      error,
     );
 
     // Update internal error when external error changes
@@ -147,7 +146,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Checkbox.displayName = "Checkbox";

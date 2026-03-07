@@ -102,7 +102,7 @@ const Badge: React.FC<BadgeProps> = React.memo(
         {children}
       </span>
     );
-  }
+  },
 );
 
 Badge.displayName = "Badge";

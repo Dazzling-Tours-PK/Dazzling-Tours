@@ -54,7 +54,7 @@ export function isValidImageUrl(url: string): boolean {
  * Only keeps valid HTTP/HTTPS URLs (Cloudinary URLs, etc.)
  */
 export function filterValidImageUrls(
-  urls: (string | undefined | null)[]
+  urls: (string | undefined | null)[],
 ): string[] {
   if (!Array.isArray(urls)) return [];
 
@@ -73,4 +73,40 @@ export function filterValidImageUrl(url: string | undefined | null): string {
   if (!url || typeof url !== "string") return "";
   if (!isValidImageUrl(url)) return "";
   return url.trim();
+}
+/**
+ * Extract Cloudinary public ID from a secure URL
+ * Example: https://res.cloudinary.com/cloud-name/image/upload/v12345/folder/image_id.jpg
+ * Returns: "folder/image_id"
+ */
+export function extractPublicId(url: string): string | null {
+  if (!url || typeof url !== "string" || !isCloudinaryUrl(url)) return null;
+
+  try {
+    // Cloudinary URL format: https://res.cloudinary.com/cloud-name/image/upload/v12345/public_id.ext
+    // We need to handle folders as well: .../upload/v12345/folder/subfolder/public_id.ext
+
+    const parts = url.split("/");
+    const uploadIndex = parts.indexOf("upload");
+
+    if (uploadIndex === -1 || uploadIndex + 2 >= parts.length) return null;
+
+    // The public ID starts after the version (v12345) or immediately after 'upload' if no version
+    let startIndex = uploadIndex + 1;
+    if (
+      parts[startIndex].startsWith("v") &&
+      /^\d+$/.test(parts[startIndex].substring(1))
+    ) {
+      startIndex++;
+    }
+
+    const publicIdWithExt = parts.slice(startIndex).join("/");
+    // Remove the file extension
+    const lastDotIndex = publicIdWithExt.lastIndexOf(".");
+    if (lastDotIndex === -1) return publicIdWithExt;
+
+    return publicIdWithExt.substring(0, lastDotIndex);
+  } catch {
+    return null;
+  }
 }

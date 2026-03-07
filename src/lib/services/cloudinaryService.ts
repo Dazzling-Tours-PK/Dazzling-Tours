@@ -1,11 +1,13 @@
 import { v2 as cloudinary } from "cloudinary";
 
 // Configure Cloudinary
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+if (!process.env.CLOUDINARY_URL) {
+  cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  });
+}
 
 export interface UploadOptions {
   folder?: string;
@@ -30,16 +32,12 @@ export interface UploadResult {
  */
 export async function uploadImage(
   file: string | Buffer,
-  options: UploadOptions = {}
+  options: UploadOptions = {},
 ): Promise<UploadResult> {
   try {
-    if (
-      !process.env.CLOUDINARY_CLOUD_NAME ||
-      !process.env.CLOUDINARY_API_KEY ||
-      !process.env.CLOUDINARY_API_SECRET
-    ) {
+    if (!verifyCloudinaryConfig()) {
       throw new Error(
-        "Cloudinary configuration is missing. Please set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET environment variables."
+        "Cloudinary configuration is missing. Please set CLOUDINARY_URL or CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET environment variables.",
       );
     }
 
@@ -83,7 +81,7 @@ export async function uploadImage(
             if (error) reject(error);
             else if (result) resolve(result);
             else reject(new Error("Upload failed: No result returned"));
-          }
+          },
         );
         uploadStream.end(file);
       });
@@ -103,7 +101,7 @@ export async function uploadImage(
     throw new Error(
       `Failed to upload image to Cloudinary: ${
         error instanceof Error ? error.message : "Unknown error"
-      }`
+      }`,
     );
   }
 }
@@ -113,7 +111,7 @@ export async function uploadImage(
  */
 export async function uploadMultipleImages(
   files: (string | Buffer)[],
-  options: UploadOptions = {}
+  options: UploadOptions = {},
 ): Promise<UploadResult[]> {
   const uploadPromises = files.map((file, index) =>
     uploadImage(file, {
@@ -121,7 +119,7 @@ export async function uploadMultipleImages(
       public_id: options.public_id
         ? `${options.public_id}_${index}`
         : undefined,
-    })
+    }),
   );
 
   return Promise.all(uploadPromises);
@@ -132,11 +130,7 @@ export async function uploadMultipleImages(
  */
 export async function deleteImage(publicId: string): Promise<void> {
   try {
-    if (
-      !process.env.CLOUDINARY_CLOUD_NAME ||
-      !process.env.CLOUDINARY_API_KEY ||
-      !process.env.CLOUDINARY_API_SECRET
-    ) {
+    if (!verifyCloudinaryConfig()) {
       throw new Error("Cloudinary configuration is missing.");
     }
 
@@ -146,7 +140,7 @@ export async function deleteImage(publicId: string): Promise<void> {
     throw new Error(
       `Failed to delete image from Cloudinary: ${
         error instanceof Error ? error.message : "Unknown error"
-      }`
+      }`,
     );
   }
 }
@@ -156,11 +150,7 @@ export async function deleteImage(publicId: string): Promise<void> {
  */
 export async function deleteMultipleImages(publicIds: string[]): Promise<void> {
   try {
-    if (
-      !process.env.CLOUDINARY_CLOUD_NAME ||
-      !process.env.CLOUDINARY_API_KEY ||
-      !process.env.CLOUDINARY_API_SECRET
-    ) {
+    if (!verifyCloudinaryConfig()) {
       throw new Error("Cloudinary configuration is missing.");
     }
 
@@ -170,7 +160,7 @@ export async function deleteMultipleImages(publicIds: string[]): Promise<void> {
     throw new Error(
       `Failed to delete images from Cloudinary: ${
         error instanceof Error ? error.message : "Unknown error"
-      }`
+      }`,
     );
   }
 }
@@ -180,8 +170,9 @@ export async function deleteMultipleImages(publicIds: string[]): Promise<void> {
  */
 export function verifyCloudinaryConfig(): boolean {
   return !!(
-    process.env.CLOUDINARY_CLOUD_NAME &&
-    process.env.CLOUDINARY_API_KEY &&
-    process.env.CLOUDINARY_API_SECRET
+    process.env.CLOUDINARY_URL ||
+    (process.env.CLOUDINARY_CLOUD_NAME &&
+      process.env.CLOUDINARY_API_KEY &&
+      process.env.CLOUDINARY_API_SECRET)
   );
 }

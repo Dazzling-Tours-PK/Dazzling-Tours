@@ -99,7 +99,7 @@ export const useGetCommentsByBlog = (
   params?: {
     status?: string;
     includeReplies?: boolean;
-  }
+  },
 ) => {
   return useQuery<CommentsResponse>({
     queryKey: [...commentKeys.byBlog(blogId), params || {}],
@@ -114,7 +114,7 @@ export const useGetCommentsByBlog = (
       }
 
       const response = await fetch(
-        `/api/comments/blog/${blogId}?${searchParams.toString()}`
+        `/api/comments/blog/${blogId}?${searchParams.toString()}`,
       );
       if (!response.ok) {
         throw new Error("Failed to fetch blog comments");

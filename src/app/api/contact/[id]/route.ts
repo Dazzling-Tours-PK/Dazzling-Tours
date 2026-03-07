@@ -5,7 +5,7 @@ import { Contact } from "@/models";
 // GET /api/contact/[id] - Get a single contact query
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await connectDB();
@@ -16,7 +16,7 @@ export async function GET(
     if (!contact) {
       return NextResponse.json(
         { success: false, error: "Contact query not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -28,7 +28,7 @@ export async function GET(
     console.error("Error fetching contact query:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch contact query" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -36,7 +36,7 @@ export async function GET(
 // PUT /api/contact/[id] - Update a contact query
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await connectDB();
@@ -50,7 +50,7 @@ export async function PUT(
       if (!emailRegex.test(body.email)) {
         return NextResponse.json(
           { success: false, error: "Invalid email format" },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
@@ -58,13 +58,13 @@ export async function PUT(
     const contact = await Contact.findByIdAndUpdate(
       resolvedParams.id,
       { ...body, updatedAt: new Date() },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
 
     if (!contact) {
       return NextResponse.json(
         { success: false, error: "Contact query not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -77,7 +77,7 @@ export async function PUT(
     console.error("Error updating contact query:", error);
     return NextResponse.json(
       { success: false, error: "Failed to update contact query" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -85,7 +85,7 @@ export async function PUT(
 // DELETE /api/contact/[id] - Delete a contact query
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await connectDB();
@@ -96,7 +96,7 @@ export async function DELETE(
     if (!contact) {
       return NextResponse.json(
         { success: false, error: "Contact query not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -108,7 +108,7 @@ export async function DELETE(
     console.error("Error deleting contact query:", error);
     return NextResponse.json(
       { success: false, error: "Failed to delete contact query" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

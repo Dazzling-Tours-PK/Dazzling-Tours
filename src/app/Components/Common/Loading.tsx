@@ -114,7 +114,7 @@ const Loading: React.FC<LoadingProps> = ({
 
 // Preset loading components for common use cases
 export const LoadingSpinner: React.FC<Omit<LoadingProps, "variant">> = (
-  props
+  props,
 ) => <Loading variant="spinner" {...props} />;
 
 export const LoadingDots: React.FC<Omit<LoadingProps, "variant">> = (props) => (
@@ -122,16 +122,16 @@ export const LoadingDots: React.FC<Omit<LoadingProps, "variant">> = (props) => (
 );
 
 export const LoadingSkeleton: React.FC<Omit<LoadingProps, "variant">> = (
-  props
+  props,
 ) => <Loading variant="skeleton" {...props} />;
 
 export const LoadingPulse: React.FC<Omit<LoadingProps, "variant">> = (
-  props
+  props,
 ) => <Loading variant="pulse" {...props} />;
 
 // Full screen loading overlay
 export const LoadingOverlay: React.FC<Omit<LoadingProps, "fullScreen">> = (
-  props
+  props,
 ) => <Loading fullScreen={true} {...props} />;
 
 export default Loading;

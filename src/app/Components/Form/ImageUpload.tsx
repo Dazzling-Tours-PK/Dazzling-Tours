@@ -60,7 +60,7 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
         console.log(
           "handleFileSelect called with:",
           files?.length || 0,
-          "files"
+          "files",
         );
 
         if (!files || disabled) {
@@ -82,7 +82,7 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
           }
           if (file.size > maxSize * 1024 * 1024) {
             showError(
-              `${file.name} is too large. Maximum size is ${maxSize}MB`
+              `${file.name} is too large. Maximum size is ${maxSize}MB`,
             );
             continue;
           }
@@ -146,14 +146,14 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
           showError(
             err instanceof Error
               ? err.message
-              : "Error uploading images. Please try again."
+              : "Error uploading images. Please try again.",
           );
         } finally {
           setIsUploading(false);
           console.log("File upload completed");
         }
       },
-      [value, multiple, maxFiles, maxSize, acceptedTypes, disabled, showError]
+      [value, multiple, maxFiles, maxSize, acceptedTypes, disabled, showError],
     );
 
     const handleDrop = useCallback(
@@ -162,7 +162,7 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
         setIsDragOver(false);
         handleFileSelect(e.dataTransfer.files);
       },
-      [handleFileSelect]
+      [handleFileSelect],
     );
 
     const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -191,7 +191,7 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
         // Don't clear the input value immediately - let it stay for re-selection
         // The input will be cleared when new files are selected
       },
-      [handleFileSelect]
+      [handleFileSelect],
     );
 
     const removeImage = useCallback(
@@ -210,7 +210,7 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
           onChange(newUrls);
         }
       },
-      [value, disabled, onChange]
+      [value, disabled, onChange],
     );
 
     const canAddMore = value.length < maxFiles;
@@ -258,12 +258,12 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
               {isUploading
                 ? "Uploading..."
                 : value.length > 0
-                ? `${value.length} image${
-                    value.length === 1 ? "" : "s"
-                  } selected • Click here to add more`
-                : canAddMore
-                ? "Drag images here or click to select"
-                : `Maximum ${maxFiles} images reached`}
+                  ? `${value.length} image${
+                      value.length === 1 ? "" : "s"
+                    } selected • Click here to add more`
+                  : canAddMore
+                    ? "Drag images here or click to select"
+                    : `Maximum ${maxFiles} images reached`}
             </p>
             <p className="upload-hint">
               {acceptedTypes.join(", ")} • Max {maxSize}MB each
@@ -311,7 +311,7 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
         )}
       </div>
     );
-  }
+  },
 );
 
 ImageUpload.displayName = "ImageUpload";

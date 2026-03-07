@@ -31,8 +31,8 @@ const TestimonialsList = () => {
       filterFeatured === "all"
         ? undefined
         : filterFeatured === "featured"
-        ? true
-        : false,
+          ? true
+          : false,
     search: searchTerm || undefined,
   });
 
@@ -87,13 +87,13 @@ const TestimonialsList = () => {
           showSuccess(
             `Testimonial ${
               !currentFeatured ? "featured" : "unfeatured"
-            } successfully!`
+            } successfully!`,
           );
         },
         onError: (error) => {
           showError(error.message || "Failed to update testimonial");
         },
-      }
+      },
     );
   };
 
@@ -113,7 +113,7 @@ const TestimonialsList = () => {
         onError: (error) => {
           showError(error.message || "Failed to update testimonial");
         },
-      }
+      },
     );
   };
 

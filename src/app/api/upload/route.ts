@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
     if (!files || files.length === 0) {
       return NextResponse.json(
         { success: false, error: "No files provided" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
         error:
           error instanceof Error ? error.message : "Failed to upload images",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

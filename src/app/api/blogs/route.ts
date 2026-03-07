@@ -4,6 +4,9 @@ import { Blog } from "@/models";
 import { MongoQuery } from "@/lib/types";
 import { cleanBlogData } from "@/lib/utils/dataCleaning";
 import { UNCATEGORIZED_CATEGORY_NAME } from "@/lib/constants/categories";
+import { deleteMultipleImages } from "@/lib/services/cloudinaryService";
+import { extractPublicId } from "@/lib/utils/imageUtils";
+import { BlogStatus } from "@/lib/enums/blog";
 
 // GET /api/blogs - Get all blogs
 export async function GET(request: NextRequest) {
@@ -65,7 +68,7 @@ export async function GET(request: NextRequest) {
   } catch {
     return NextResponse.json(
       { success: false, error: "Failed to fetch blogs" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -89,13 +92,13 @@ export async function POST(request: NextRequest) {
       if (!body[field]) {
         return NextResponse.json(
           { success: false, error: `${field} is required` },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
 
     // Set publishedAt if status is Published and no publishedAt is provided
-    if (body.status === "Published" && !body.publishedAt) {
+    if (body.status === BlogStatus.PUBLISHED && !body.publishedAt) {
       body.publishedAt = new Date();
     }
 
@@ -141,12 +144,12 @@ export async function POST(request: NextRequest) {
         data: blogData,
         message: "Blog created successfully",
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch {
     return NextResponse.json(
       { success: false, error: "Failed to create blog" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -162,7 +165,7 @@ export async function PUT(request: NextRequest) {
     if (!action || !blogIds || !Array.isArray(blogIds)) {
       return NextResponse.json(
         { success: false, error: "Action and blogIds are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -172,7 +175,7 @@ export async function PUT(request: NextRequest) {
         const updateData: { status: string; publishedAt?: Date } = {
           status: data.status as string,
         };
-        if (data.status === "Published") {
+        if (data.status === BlogStatus.PUBLISHED) {
           updateData.publishedAt = new Date();
         }
         result = await Blog.updateMany({ _id: { $in: blogIds } }, updateData);
@@ -180,16 +183,43 @@ export async function PUT(request: NextRequest) {
       case "updateCategory":
         result = await Blog.updateMany(
           { _id: { $in: blogIds } },
-          { category: data.category }
+          { category: data.category },
         );
         break;
-      case "delete":
+      case "delete": {
+        // Fetch blogs to get their image URLs before deletion
+        const blogsToDelete = await Blog.find({ _id: { $in: blogIds } });
+        const allImages: string[] = [];
+
+        blogsToDelete.forEach((blog) => {
+          if (blog.featuredImage) {
+            allImages.push(blog.featuredImage);
+          }
+          if (blog.seo?.ogImage) {
+            allImages.push(blog.seo.ogImage);
+          }
+        });
+
+        const publicIds = Array.from(new Set(allImages))
+          .map((url: string) => extractPublicId(url))
+          .filter((id: string | null): id is string => id !== null);
+
+        if (publicIds.length > 0) {
+          await deleteMultipleImages(publicIds).catch((err) =>
+            console.error(
+              "Failed to delete bulk blog images from Cloudinary:",
+              err,
+            ),
+          );
+        }
+
         result = await Blog.deleteMany({ _id: { $in: blogIds } });
         break;
+      }
       default:
         return NextResponse.json(
           { success: false, error: "Invalid action" },
-          { status: 400 }
+          { status: 400 },
         );
     }
 
@@ -201,7 +231,7 @@ export async function PUT(request: NextRequest) {
   } catch {
     return NextResponse.json(
       { success: false, error: "Failed to update blogs" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

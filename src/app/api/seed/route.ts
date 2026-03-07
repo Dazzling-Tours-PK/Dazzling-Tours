@@ -14,7 +14,7 @@ export async function POST() {
           error:
             "Database is not empty. Seeding skipped to prevent data duplication.",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -30,7 +30,7 @@ export async function POST() {
     console.error("Error seeding database:", error);
     return NextResponse.json(
       { success: false, error: "Failed to seed database" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -51,7 +51,7 @@ export async function GET() {
     console.error("Error checking database:", error);
     return NextResponse.json(
       { success: false, error: "Failed to check database status" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

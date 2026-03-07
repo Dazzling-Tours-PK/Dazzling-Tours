@@ -16,7 +16,7 @@ export function isAxiosError(error: unknown): error is AxiosError {
  * Type guard to check if an error has a response with data
  */
 export function hasErrorResponse(
-  error: unknown
+  error: unknown,
 ): error is AxiosError<{ error?: string; message?: string }> {
   return (
     isAxiosError(error) &&
@@ -31,7 +31,7 @@ export function hasErrorResponse(
  */
 export function getErrorMessage(
   error: unknown,
-  defaultMessage: string = "An error occurred"
+  defaultMessage: string = "An error occurred",
 ): string {
   // Handle Axios errors with response
   if (hasErrorResponse(error)) {

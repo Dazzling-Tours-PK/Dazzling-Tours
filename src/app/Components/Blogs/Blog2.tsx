@@ -62,7 +62,7 @@ const Blog2 = () => {
             <div className="row">
               {blogs.map((blog) => {
                 const { day, month } = formatDate(
-                  blog.publishedAt || blog.createdAt
+                  blog.publishedAt || blog.createdAt,
                 );
                 const blogSlug = blog.seo?.slug || blog._id;
                 const blogUrl = `/blogs/${blogSlug}`;

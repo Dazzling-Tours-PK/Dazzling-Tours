@@ -45,7 +45,7 @@ export function getCurrencySymbol(currency: CurrencyCode = "PKR"): string {
  */
 export function formatCurrency(
   amount: number,
-  currency: CurrencyCode = "PKR"
+  currency: CurrencyCode = "PKR",
 ): string {
   const symbol = getCurrencySymbol(currency);
   const formattedAmount = new Intl.NumberFormat("en-US", {

@@ -9,6 +9,8 @@ import {
 } from "@/lib/middleware/auth";
 import { UserRole } from "@/lib/enums/roles";
 import { cleanTestimonialData } from "@/lib/utils/dataCleaning";
+import { deleteMultipleImages } from "@/lib/services/cloudinaryService";
+import { extractPublicId } from "@/lib/utils/imageUtils";
 
 // GET /api/testimonials - Get all testimonials
 export async function GET(request: NextRequest) {
@@ -61,7 +63,7 @@ export async function GET(request: NextRequest) {
     console.error("Error fetching testimonials:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch testimonials" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -95,7 +97,7 @@ export async function POST(request: NextRequest) {
     return createSuccessResponse(
       testimonial,
       "Testimonial created successfully",
-      201
+      201,
     );
   } catch (error) {
     console.error("Error creating testimonial:", error);
@@ -120,25 +122,51 @@ export const PUT = withRoleAuth(UserRole.SUPER_ADMIN, async (request) => {
       case "updateStatus":
         result = await Testimonial.updateMany(
           { _id: { $in: testimonialIds } },
-          { status: data.status }
+          { status: data.status },
         );
         break;
       case "updateFeatured":
         result = await Testimonial.updateMany(
           { _id: { $in: testimonialIds } },
-          { featured: data.featured }
+          { featured: data.featured },
         );
         break;
-      case "delete":
+      case "delete": {
+        // Fetch testimonials to get their image URLs before deletion
+        const testimonialsToDelete = await Testimonial.find({
+          _id: { $in: testimonialIds },
+        });
+        const allImages: string[] = [];
+
+        testimonialsToDelete.forEach((testimonial) => {
+          if (testimonial.image) {
+            allImages.push(testimonial.image);
+          }
+        });
+
+        const publicIds = Array.from(new Set(allImages))
+          .map((url: string) => extractPublicId(url))
+          .filter((id: string | null): id is string => id !== null);
+
+        if (publicIds.length > 0) {
+          await deleteMultipleImages(publicIds).catch((err) =>
+            console.error(
+              "Failed to delete bulk testimonial images from Cloudinary:",
+              err,
+            ),
+          );
+        }
+
         result = await Testimonial.deleteMany({ _id: { $in: testimonialIds } });
         break;
+      }
       default:
         return createErrorResponse("Invalid action", 400);
     }
 
     return createSuccessResponse(
       result,
-      `Testimonials ${action} completed successfully`
+      `Testimonials ${action} completed successfully`,
     );
   } catch (error) {
     console.error("Error updating testimonials:", error);

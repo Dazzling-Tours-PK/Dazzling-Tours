@@ -31,14 +31,14 @@ export const tourSchema = z.object({
         const textContent = stripHtmlTags(val);
         return textContent.length >= 10;
       },
-      { message: "Description must be at least 10 characters" }
+      { message: "Description must be at least 10 characters" },
     )
     .refine(
       (val) => {
         const textContent = stripHtmlTags(val);
         return textContent.length <= 2000;
       },
-      { message: "Description must be less than 2000 characters" }
+      { message: "Description must be less than 2000 characters" },
     ),
 
   shortDescription: z
@@ -82,14 +82,14 @@ export const tourSchema = z.object({
         const trimmed = val.trim();
         return trimmed.length >= 2;
       },
-      { message: "Category must be at least 2 characters" }
+      { message: "Category must be at least 2 characters" },
     )
     .refine(
       (val) => {
         const trimmed = val.trim();
         return trimmed.length <= 50;
       },
-      { message: "Category must be less than 50 characters" }
+      { message: "Category must be less than 50 characters" },
     )
     .transform((val) => val.trim()),
 
@@ -101,8 +101,8 @@ export const tourSchema = z.object({
           if (val.startsWith("data:")) return false;
           return val.startsWith("http://") || val.startsWith("https://");
         },
-        { message: "Only Cloudinary URLs (HTTP/HTTPS) are allowed" }
-      )
+        { message: "Only Cloudinary URLs (HTTP/HTTPS) are allowed" },
+      ),
     )
     .optional()
     .default([]),
@@ -128,14 +128,14 @@ export const tourSchema = z.object({
               const trimmed = val.trim();
               return trimmed.length >= 3;
             },
-            { message: "Itinerary title must be at least 3 characters" }
+            { message: "Itinerary title must be at least 3 characters" },
           )
           .refine(
             (val) => {
               const trimmed = val.trim();
               return trimmed.length <= 100;
             },
-            { message: "Itinerary title must be less than 100 characters" }
+            { message: "Itinerary title must be less than 100 characters" },
           )
           .transform((val) => val.trim()),
         description: z
@@ -146,7 +146,7 @@ export const tourSchema = z.object({
               const trimmed = val.trim();
               return trimmed.length >= 10;
             },
-            { message: "Itinerary description must be at least 10 characters" }
+            { message: "Itinerary description must be at least 10 characters" },
           )
           .refine(
             (val) => {
@@ -155,10 +155,10 @@ export const tourSchema = z.object({
             },
             {
               message: "Itinerary description must be less than 500 characters",
-            }
+            },
           )
           .transform((val) => val.trim()),
-      })
+      }),
     )
     .max(30, "Maximum 30 itinerary days allowed")
     .optional()
@@ -222,7 +222,7 @@ export const tourSchema = z.object({
         .max(100, "Slug must be less than 100 characters")
         .regex(
           /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
-          "Slug can only contain lowercase letters, numbers, and hyphens"
+          "Slug can only contain lowercase letters, numbers, and hyphens",
         )
         .trim()
         .optional(),
@@ -243,7 +243,7 @@ export const tourSchema = z.object({
               return false;
             }
           },
-          { message: "Invalid OG image URL" }
+          { message: "Invalid OG image URL" },
         )
         .optional(),
     })
@@ -318,7 +318,7 @@ export const validateExcludes = (excludes: string[]) => {
 };
 
 export const validateItinerary = (
-  itinerary: Array<{ day: number; title: string; description: string }>
+  itinerary: Array<{ day: number; title: string; description: string }>,
 ) => {
   return tourSchema.shape.itinerary.safeParse(itinerary);
 };

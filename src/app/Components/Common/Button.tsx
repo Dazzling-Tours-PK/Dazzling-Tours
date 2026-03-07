@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "filled" | "light" | "outline" | "subtle" | "transparent";
   color?: "primary" | "secondary" | "success" | "warning" | "error" | "gray";
   size?: "xs" | "sm" | "md" | "lg" | "xl";
@@ -49,11 +48,11 @@ const Button: React.FC<ButtonProps> = React.memo(
     };
 
     const sizeClasses = {
-      xs: "btn-sm", // Bootstrap doesn't have xs, use sm
-      sm: "btn-sm",
-      md: "", // Bootstrap's default size
-      lg: "btn-lg",
-      xl: "btn-lg", // Bootstrap doesn't have xl, use lg
+      xs: "admin-btn-xs",
+      sm: "admin-btn-sm",
+      md: "admin-btn-md",
+      lg: "admin-btn-lg",
+      xl: "admin-btn-xl",
     };
 
     const radiusClasses = {
@@ -100,7 +99,7 @@ const Button: React.FC<ButtonProps> = React.memo(
         )}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

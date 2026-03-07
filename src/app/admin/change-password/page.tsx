@@ -2,11 +2,11 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth, useNotification, useForm } from "@/lib/hooks";
-import { Page, Stack, Group, Button } from "@/app/Components/Common";
+import { Page, Stack, Group, Button, Card } from "@/app/Components/Common";
 import { TextInput } from "@/app/Components/Form";
 
 const ChangePasswordPage = () => {
-  const { changePassword, isAuthenticated, user } = useAuth();
+  const { changePassword, isAuthenticated, user, logout } = useAuth();
   const { showSuccess, showError } = useNotification();
   const router = useRouter();
 
@@ -67,13 +67,21 @@ const ChangePasswordPage = () => {
     try {
       const result = await changePassword(
         form.values.currentPassword,
-        form.values.newPassword
+        form.values.newPassword,
       );
 
       if (result.success) {
-        showSuccess("Password changed successfully!");
+        showSuccess(
+          "Password changed successfully! You will be redirected to the login page.",
+        );
         // Clear form
         form.reset();
+
+        // Redirect after delay
+        setTimeout(() => {
+          logout();
+          router.push("/admin/login");
+        }, 300);
       } else {
         showError(result.message || "Password change failed");
         if (result.message?.toLowerCase().includes("current password")) {
@@ -111,16 +119,7 @@ const ChangePasswordPage = () => {
     >
       <form onSubmit={handleSubmit}>
         <Stack>
-          <div
-            style={{
-              maxWidth: "600px",
-              margin: "0 auto",
-              background: "#fff",
-              borderRadius: "8px",
-              padding: "2rem",
-              border: "1px solid #e5e7eb",
-            }}
-          >
+          <Card padding="xl">
             <TextInput
               label="Current Password"
               type="password"
@@ -163,13 +162,13 @@ const ChangePasswordPage = () => {
                   !form.values.currentPassword ||
                   !form.values.newPassword ||
                   !form.values.confirmPassword ||
-                  Object.keys(form.errors).length > 0
+                  !form.isValid
                 }
               >
                 <i className="bi bi-key"></i> Change Password
               </Button>
             </Group>
-          </div>
+          </Card>
         </Stack>
       </form>
     </Page>

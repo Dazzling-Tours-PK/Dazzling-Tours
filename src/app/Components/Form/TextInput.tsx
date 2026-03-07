@@ -1,18 +1,17 @@
 "use client";
 import React, { forwardRef, useEffect, useState } from "react";
 
-export interface TextInputProps
-  extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    "size" | "onChange" | "onBlur" | "onFocus" | "value"
-  > {
+export interface TextInputProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "size" | "onChange" | "onBlur" | "onFocus" | "value"
+> {
   label?: string;
   description?: string;
   error?: string;
   required?: boolean;
   leftIcon?: React.ReactNode;
   rightIcon?: React.ReactNode;
-  size?: "xs" | "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
   variant?: "default" | "filled" | "unstyled";
   disabled?: boolean;
   className?: string;
@@ -47,10 +46,10 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       onFocus: formOnFocus,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [internalError, setInternalError] = useState<string | undefined>(
-      error
+      error,
     );
     const [hasBeenTouched, setHasBeenTouched] = useState(false);
 
@@ -100,6 +99,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       sm: "form-input-sm",
       md: "form-input-md",
       lg: "form-input-lg",
+      xl: "form-input-xl",
     };
 
     const variantClasses = {
@@ -156,7 +156,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 TextInput.displayName = "TextInput";

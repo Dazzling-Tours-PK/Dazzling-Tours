@@ -6,7 +6,7 @@ import { UNCATEGORIZED_CATEGORY_NAME } from "@/lib/constants/categories";
 // GET /api/categories/[id] - Get a single category
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await connectDB();
@@ -17,7 +17,7 @@ export async function GET(
     if (!category) {
       return NextResponse.json(
         { success: false, error: "Category not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -29,7 +29,7 @@ export async function GET(
     console.error("Error fetching category:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch category" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -37,7 +37,7 @@ export async function GET(
 // PUT /api/categories/[id] - Update a category
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await connectDB();
@@ -51,7 +51,7 @@ export async function PUT(
     if (!category) {
       return NextResponse.json(
         { success: false, error: "Category not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -66,7 +66,7 @@ export async function PUT(
           success: false,
           error: `Cannot rename the '${UNCATEGORIZED_CATEGORY_NAME}' category`,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -80,7 +80,7 @@ export async function PUT(
           success: false,
           error: `Cannot create or rename a category to '${UNCATEGORIZED_CATEGORY_NAME}'`,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -97,7 +97,7 @@ export async function PUT(
             success: false,
             error: "Category with this name or slug already exists",
           },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
@@ -111,18 +111,18 @@ export async function PUT(
     const updatedCategory = await Category.findByIdAndUpdate(
       id,
       { $set: updateData },
-      { new: true }
+      { new: true },
     );
 
     // If category name changed, update all tours and blogs using this category
     if (name && name !== category.name) {
       await Tour.updateMany(
         { category: category.name },
-        { $set: { category: name } }
+        { $set: { category: name } },
       );
       await Blog.updateMany(
         { category: category.name },
-        { $set: { category: name } }
+        { $set: { category: name } },
       );
     }
 
@@ -134,7 +134,7 @@ export async function PUT(
     console.error("Error updating category:", error);
     return NextResponse.json(
       { success: false, error: "Failed to update category" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -142,7 +142,7 @@ export async function PUT(
 // DELETE /api/categories/[id] - Delete a category
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await connectDB();
@@ -153,7 +153,7 @@ export async function DELETE(
     if (!category) {
       return NextResponse.json(
         { success: false, error: "Category not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -164,18 +164,18 @@ export async function DELETE(
           success: false,
           error: `Cannot delete the '${UNCATEGORIZED_CATEGORY_NAME}' category`,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     // Update all tours and blogs using this category to "Uncategorized"
     await Tour.updateMany(
       { category: category.name },
-      { $set: { category: UNCATEGORIZED_CATEGORY_NAME } }
+      { $set: { category: UNCATEGORIZED_CATEGORY_NAME } },
     );
     await Blog.updateMany(
       { category: category.name },
-      { $set: { category: UNCATEGORIZED_CATEGORY_NAME } }
+      { $set: { category: UNCATEGORIZED_CATEGORY_NAME } },
     );
 
     // Delete the category
@@ -189,7 +189,7 @@ export async function DELETE(
     console.error("Error deleting category:", error);
     return NextResponse.json(
       { success: false, error: "Failed to delete category" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

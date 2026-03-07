@@ -5,7 +5,7 @@
  */
 export function cleanDataForMongoDB<T extends Record<string, unknown>>(
   data: T,
-  optionalFields: (keyof T)[] = []
+  optionalFields: (keyof T)[] = [],
 ): Partial<T> {
   const cleanedData = { ...data };
 
@@ -124,7 +124,7 @@ export function generateSlug(title: string): string {
 export function generateMetaTitle(
   title: string,
   location?: string,
-  customTitle?: string
+  customTitle?: string,
 ): string;
 export function generateMetaTitle(
   title: string,
@@ -133,7 +133,7 @@ export function generateMetaTitle(
     brandName?: string;
     customTitle?: string;
     maxLength?: number;
-  }
+  },
 ): string;
 export function generateMetaTitle(
   title: string,
@@ -145,7 +145,7 @@ export function generateMetaTitle(
         customTitle?: string;
         maxLength?: number;
       },
-  customTitle?: string
+  customTitle?: string,
 ): string {
   // Support legacy signature: generateMetaTitle(title, location, customTitle)
   let location: string | undefined;
@@ -243,7 +243,7 @@ export function generateMetaDescription(
   location?: string,
   price?: number,
   duration?: string,
-  customDescription?: string
+  customDescription?: string,
 ): string;
 export function generateMetaDescription(
   shortDescription: string,
@@ -257,7 +257,7 @@ export function generateMetaDescription(
     durationPrefix?: string;
     pricePrefix?: string;
     priceFormat?: (price: number) => string;
-  }
+  },
 ): string;
 export function generateMetaDescription(
   shortDescription: string,
@@ -276,7 +276,7 @@ export function generateMetaDescription(
       },
   price?: number,
   duration?: string,
-  customDescription?: string
+  customDescription?: string,
 ): string {
   // Support legacy signature: generateMetaDescription(shortDescription, location, price, duration, customDescription)
   let location: string | undefined;

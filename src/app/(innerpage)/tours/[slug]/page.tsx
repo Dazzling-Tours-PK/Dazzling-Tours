@@ -33,7 +33,7 @@ async function getTourBySlug(slug: string) {
     console.log("📋 Raw tour images type:", typeof tourRecord.images);
     console.log(
       "📋 Raw tour images is array:",
-      Array.isArray(tourRecord.images)
+      Array.isArray(tourRecord.images),
     );
 
     // Try to get images directly from the document using Mongoose methods
@@ -66,7 +66,7 @@ async function getTourBySlug(slug: string) {
     console.log("🔄 After toObject - images type:", typeof tourData.images);
     console.log(
       "🔄 After toObject - is array:",
-      Array.isArray(tourData.images)
+      Array.isArray(tourData.images),
     );
 
     // Ensure description is always a string (not undefined or null)
@@ -85,13 +85,13 @@ async function getTourBySlug(slug: string) {
     // Filter out any invalid image URLs
     const originalLength = tourData.images.length;
     tourData.images = tourData.images.filter(
-      (img: string) => img && typeof img === "string" && img.trim().length > 0
+      (img: string) => img && typeof img === "string" && img.trim().length > 0,
     );
     console.log(
       "🔍 Filtered images:",
       originalLength,
       "->",
-      tourData.images.length
+      tourData.images.length,
     );
 
     // Serialize to plain JSON to ensure all special types (ObjectId, Date, Buffer) are converted
@@ -102,7 +102,7 @@ async function getTourBySlug(slug: string) {
     console.log("📦 After serialization - images:", serialized.images);
     console.log(
       "📦 After serialization - images length:",
-      serialized.images?.length
+      serialized.images?.length,
     );
 
     // Ensure description is always a string after serialization
@@ -113,20 +113,21 @@ async function getTourBySlug(slug: string) {
     // Ensure images array exists after serialization
     if (!serialized.images || !Array.isArray(serialized.images)) {
       console.log(
-        "⚠️ Images missing after serialization, setting to empty array"
+        "⚠️ Images missing after serialization, setting to empty array",
       );
       serialized.images = [];
     } else {
       // Ensure all image items are strings and filter out invalid ones
       serialized.images = (serialized.images as unknown[]).filter(
-        (img): img is string => typeof img === "string" && img.trim().length > 0
+        (img): img is string =>
+          typeof img === "string" && img.trim().length > 0,
       );
     }
 
     console.log("✅ Final tour data - images:", serialized.images);
     console.log(
       "✅ Final tour data - images length:",
-      serialized.images.length
+      serialized.images.length,
     );
     console.log("✅ Final tour data - first image:", serialized.images[0]);
 

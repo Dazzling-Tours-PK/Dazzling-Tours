@@ -5,7 +5,7 @@ import { Comment, IComment } from "@/models";
 // GET /api/comments/blog/[blogId] - Get all comments for a specific blog
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ blogId: string }> }
+  { params }: { params: Promise<{ blogId: string }> },
 ) {
   try {
     await connectDB();
@@ -48,7 +48,7 @@ export async function GET(
     console.error("Error fetching blog comments:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch blog comments" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -67,7 +67,7 @@ interface CommentWithReplies {
 }
 
 function organizeCommentsHierarchically(
-  comments: IComment[]
+  comments: IComment[],
 ): CommentWithReplies[] {
   const commentMap = new Map<string, CommentWithReplies>();
   const rootComments: CommentWithReplies[] = [];

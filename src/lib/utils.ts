@@ -17,7 +17,7 @@ export function isValidPhone(phone: string): boolean {
 // Utility function to format currency
 export function formatCurrency(
   amount: number,
-  currency: string = "USD"
+  currency: string = "USD",
 ): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -29,7 +29,7 @@ export function formatCurrency(
 export function calculateBookingTotal(
   price: number,
   participants: number,
-  discount?: number
+  discount?: number,
 ): number {
   let total = price * participants;
   if (discount && discount > 0) {
@@ -48,7 +48,7 @@ export function generateBookingReference(): string {
 // Utility function to validate required fields
 export function validateRequiredFields(
   data: Record<string, unknown>,
-  requiredFields: string[]
+  requiredFields: string[],
 ): string[] {
   const missingFields: string[] = [];
 
@@ -88,7 +88,7 @@ export function paginateResults(page: number, limit: number, total: number) {
 // Utility function to handle API errors
 export function handleApiError(
   error: unknown,
-  message: string = "An error occurred"
+  message: string = "An error occurred",
 ) {
   console.error("API Error:", error);
 
@@ -104,10 +104,10 @@ export function handleApiError(
         success: false,
         error: "Validation Error",
         details: Object.values(
-          (error as { errors: Record<string, { message: string }> }).errors
+          (error as { errors: Record<string, { message: string }> }).errors,
         ).map((err) => err.message),
       },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -123,7 +123,7 @@ export function handleApiError(
         error: "Duplicate entry",
         message: "This record already exists",
       },
-      { status: 409 }
+      { status: 409 },
     );
   }
 

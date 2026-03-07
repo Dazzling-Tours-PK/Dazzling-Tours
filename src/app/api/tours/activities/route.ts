@@ -69,7 +69,7 @@ export async function GET(request: NextRequest) {
     console.error("Error fetching tour activities:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch tour activities" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

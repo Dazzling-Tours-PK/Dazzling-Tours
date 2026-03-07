@@ -100,7 +100,7 @@ const Title: React.FC<TitleProps> = ({
       style: mergedStyle,
       ...rest,
     },
-    children
+    children,
   );
 };
 

@@ -143,7 +143,7 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
   const removeTag = (index: number) => {
     form.setFieldValue(
       "tags",
-      (form.values.tags || []).filter((_, i) => i !== index)
+      (form.values.tags || []).filter((_, i) => i !== index),
     );
   };
 

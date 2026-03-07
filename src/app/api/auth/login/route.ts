@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json(
         { success: false, message: "Invalid credentials" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     if (!user.isActive) {
       return NextResponse.json(
         { success: false, message: "Account is deactivated" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     if (!isPasswordValid) {
       return NextResponse.json(
         { success: false, message: "Invalid credentials" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
         role: user.role,
       },
       process.env.JWT_SECRET || "fallback-secret",
-      { expiresIn: "7d" }
+      { expiresIn: "7d" },
     );
 
     // Update last login
@@ -78,13 +78,13 @@ export async function POST(request: NextRequest) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { success: false, message: "Validation error", errors: error.issues },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     return NextResponse.json(
       { success: false, message: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

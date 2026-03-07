@@ -40,7 +40,7 @@ export const useGetBlogs = (params?: {
       }
 
       const response = await api.get<BlogsResponse>(
-        `/api/blogs?${searchParams.toString()}`
+        `/api/blogs?${searchParams.toString()}`,
       );
       return response.data;
     },
@@ -80,7 +80,7 @@ export const useUpdateBlog = () => {
       const { _id, ...updateData } = data;
       const response = await api.patch<BlogResponse>(
         `/api/blogs/${_id}`,
-        updateData
+        updateData,
       );
       return response.data;
     },
@@ -109,7 +109,7 @@ export const useUpdateBlog = () => {
               data: data.data.map((blog) =>
                 blog._id === newData._id
                   ? { ...blog, featured: newData.featured ?? blog.featured }
-                  : blog
+                  : blog,
               ),
             });
           }
@@ -156,7 +156,7 @@ export const useDeleteBlog = () => {
   return useMutation<{ success: boolean }, Error, string>({
     mutationFn: async (id) => {
       const response = await api.delete<{ success: boolean }>(
-        `/api/blogs/${id}`
+        `/api/blogs/${id}`,
       );
       return response.data;
     },

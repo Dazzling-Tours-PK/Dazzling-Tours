@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import { Testimonial } from "@/models";
+import { deleteImage } from "@/lib/services/cloudinaryService";
+import { extractPublicId } from "@/lib/utils/imageUtils";
 import {
   createErrorResponse,
   createSuccessResponse,
@@ -10,7 +12,7 @@ import { cleanTestimonialData } from "@/lib/utils/dataCleaning";
 // GET /api/testimonials/[id] - Get a single testimonial
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await connectDB();
@@ -18,13 +20,13 @@ export async function GET(
     const resolvedParams = await params;
     const testimonial = await Testimonial.findById(resolvedParams.id).populate(
       "tourId",
-      "title"
+      "title",
     );
 
     if (!testimonial) {
       return NextResponse.json(
         { success: false, error: "Testimonial not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -36,7 +38,7 @@ export async function GET(
     console.error("Error fetching testimonial:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch testimonial" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -61,6 +63,24 @@ export async function PUT(request: NextRequest) {
     // Clean the data using utility function
     const cleanedData = cleanTestimonialData(body);
 
+    // Handle image deletion if image was changed
+    const existingTestimonial = await Testimonial.findById(id);
+    if (
+      existingTestimonial &&
+      body.image !== undefined &&
+      existingTestimonial.image !== body.image
+    ) {
+      const publicId = extractPublicId(existingTestimonial.image);
+      if (publicId) {
+        await deleteImage(publicId).catch((err) =>
+          console.error(
+            "Failed to delete old testimonial image from Cloudinary:",
+            err,
+          ),
+        );
+      }
+    }
+
     const testimonial = await Testimonial.findByIdAndUpdate(id, cleanedData, {
       new: true,
       runValidators: true,
@@ -72,7 +92,7 @@ export async function PUT(request: NextRequest) {
 
     return createSuccessResponse(
       testimonial,
-      "Testimonial updated successfully"
+      "Testimonial updated successfully",
     );
   } catch (error) {
     console.error("Error updating testimonial:", error);
@@ -90,11 +110,26 @@ export async function DELETE(request: NextRequest) {
     const pathSegments = url.pathname.split("/");
     const id = pathSegments[pathSegments.length - 1];
 
-    const testimonial = await Testimonial.findByIdAndDelete(id);
+    const testimonial = await Testimonial.findById(id);
 
     if (!testimonial) {
       return createErrorResponse("Testimonial not found", 404);
     }
+
+    // Delete image from Cloudinary
+    if (testimonial.image) {
+      const publicId = extractPublicId(testimonial.image);
+      if (publicId) {
+        await deleteImage(publicId).catch((err) =>
+          console.error(
+            "Failed to delete testimonial image from Cloudinary:",
+            err,
+          ),
+        );
+      }
+    }
+
+    await Testimonial.findByIdAndDelete(id);
 
     return createSuccessResponse(null, "Testimonial deleted successfully");
   } catch (error) {

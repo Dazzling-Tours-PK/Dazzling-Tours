@@ -52,7 +52,7 @@ export async function GET(request: NextRequest) {
     console.error("Error fetching comments:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch comments" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
       if (!body[field]) {
         return NextResponse.json(
           { success: false, error: `${field} is required` },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
     if (!emailRegex.test(body.email)) {
       return NextResponse.json(
         { success: false, error: "Invalid email format" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -112,13 +112,13 @@ export async function POST(request: NextRequest) {
         data: comment,
         message: "Comment submitted successfully",
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error creating comment:", error);
     return NextResponse.json(
       { success: false, error: "Failed to submit comment" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -134,7 +134,7 @@ export async function PUT(request: NextRequest) {
     if (!action || !commentIds || !Array.isArray(commentIds)) {
       return NextResponse.json(
         { success: false, error: "Action and commentIds are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -143,19 +143,19 @@ export async function PUT(request: NextRequest) {
       case "updateStatus":
         result = await Comment.updateMany(
           { _id: { $in: commentIds } },
-          { status: data.status }
+          { status: data.status },
         );
         break;
       case "approve":
         result = await Comment.updateMany(
           { _id: { $in: commentIds } },
-          { status: "Approved" }
+          { status: "Approved" },
         );
         break;
       case "reject":
         result = await Comment.updateMany(
           { _id: { $in: commentIds } },
-          { status: "Rejected" }
+          { status: "Rejected" },
         );
         break;
       case "delete":
@@ -164,7 +164,7 @@ export async function PUT(request: NextRequest) {
       default:
         return NextResponse.json(
           { success: false, error: "Invalid action" },
-          { status: 400 }
+          { status: 400 },
         );
     }
 
@@ -177,7 +177,7 @@ export async function PUT(request: NextRequest) {
     console.error("Error updating comments:", error);
     return NextResponse.json(
       { success: false, error: "Failed to update comments" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

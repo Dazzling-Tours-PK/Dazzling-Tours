@@ -63,7 +63,7 @@ const EditTestimonial = ({ params }: { params: Promise<{ id: string }> }) => {
 
   // Helper function to extract tour ID
   const getTourId = (
-    tourId: string | { _id: string; title: string } | undefined
+    tourId: string | { _id: string; title: string } | undefined,
   ): string => {
     if (typeof tourId === "string") return tourId;
     if (tourId && typeof tourId === "object" && tourId._id) return tourId._id;

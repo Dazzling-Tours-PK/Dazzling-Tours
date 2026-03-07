@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import { Tour, Blog, Contact, Testimonial } from "@/models";
+import { BlogStatus } from "@/lib/enums/blog";
 
 // GET /api/admin/stats - Get dashboard statistics
 export async function GET() {
@@ -26,7 +27,7 @@ export async function GET() {
       Tour.countDocuments({ featured: true }),
       // Blogs
       Blog.countDocuments(),
-      Blog.countDocuments({ status: "Published" }),
+      Blog.countDocuments({ status: BlogStatus.PUBLISHED }),
       Blog.countDocuments({ featured: true }),
       // Contacts
       Contact.countDocuments(),

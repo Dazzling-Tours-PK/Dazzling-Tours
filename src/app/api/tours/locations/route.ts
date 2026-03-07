@@ -61,7 +61,7 @@ export async function GET(request: NextRequest) {
     console.error("Error fetching tour locations:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch tour locations" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

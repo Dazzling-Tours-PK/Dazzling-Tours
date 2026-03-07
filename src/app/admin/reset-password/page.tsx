@@ -1,168 +1,151 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useAuth, useNotification } from "@/lib/hooks";
+import { useAuth, useNotification, useForm } from "@/lib/hooks";
+import {
+  LoginCard,
+  CardHeader,
+  LockIcon,
+} from "../login/components/LoginComponents";
+import { TextInput } from "@/app/Components/Form";
+import { Button } from "@/app/Components/Common";
 
 const ResetPasswordPage = () => {
-  const [email, setEmail] = useState("");
-  const [otp, setOtp] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
   const { resetPassword } = useAuth();
   const { showSuccess, showError } = useNotification();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const emailParam = searchParams.get("email") || "";
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (newPassword !== confirmPassword) {
-      showError("Passwords do not match");
-      return;
-    }
-
-    if (newPassword.length < 6) {
-      showError("Password must be at least 6 characters long");
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      const result = await resetPassword(email, otp, newPassword);
-
-      if (result.success) {
-        showSuccess(
-          "Password reset successfully! You can now login with your new password."
+  const { isSubmitting, getFieldProps, handleSubmit, setFieldValue } = useForm({
+    initialValues: {
+      email: emailParam,
+      otp: "",
+      newPassword: "",
+      confirmPassword: "",
+    },
+    validate: (values) => {
+      const errs: Record<string, string> = {};
+      if (!values.email) errs.email = "Email is required";
+      if (!values.otp) errs.otp = "OTP is required";
+      else if (values.otp.length !== 6) errs.otp = "OTP must be 6 digits";
+      if (!values.newPassword) errs.newPassword = "New password is required";
+      else if (values.newPassword.length < 6)
+        errs.newPassword = "Password must be at least 6 characters";
+      if (values.newPassword !== values.confirmPassword)
+        errs.confirmPassword = "Passwords do not match";
+      return errs;
+    },
+    onSubmit: async (values) => {
+      try {
+        const result = await resetPassword(
+          values.email,
+          values.otp,
+          values.newPassword,
         );
-        router.push("/admin/login");
-      } else {
-        showError(result.message);
+        if (result.success) {
+          showSuccess("Password reset successfully! You can now login.");
+          router.push("/admin/login");
+        } else {
+          showError(result.message);
+        }
+      } catch {
+        showError("Failed to reset password. Please try again.");
       }
-    } catch {
-      showError("Password reset failed. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    },
+  });
+
+  useEffect(() => {
+    if (emailParam) setFieldValue("email", emailParam);
+  }, [emailParam]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+    <LoginCard>
+      <CardHeader
+        title="Reset Password"
+        subtitle="Securely change your admin password"
+        icon={<LockIcon size="md" />}
+      />
+
+      <form className="space-y-4" onSubmit={handleSubmit()}>
+        <TextInput
+          {...getFieldProps("email")}
+          label="Admin Email"
+          placeholder="admin@dazzlingtours.com"
+          required
+          size="xs"
+          type="email"
+          autoComplete="email"
+          className="bg-gray-50/50 backdrop-blur-sm"
+        />
+
+        <TextInput
+          {...getFieldProps("otp")}
+          label="6-Digit OTP"
+          placeholder="000000"
+          required
+          maxLength={6}
+          size="xs"
+          className="bg-gray-50/50 backdrop-blur-sm text-center tracking-[0.5em] font-bold text-lg"
+        />
+
+        <TextInput
+          {...getFieldProps("newPassword")}
+          label="New Password"
+          placeholder="••••••••"
+          required
+          size="xs"
+          type="password"
+          className="bg-gray-50/50 backdrop-blur-sm"
+        />
+
+        <TextInput
+          {...getFieldProps("confirmPassword")}
+          label="Confirm New Password"
+          placeholder="••••••••"
+          required
+          size="xs"
+          type="password"
+          className="bg-gray-50/50 backdrop-blur-sm"
+        />
+
+        <div className="pt-2">
+          <Button
+            type="submit"
+            fullWidth
+            loading={isSubmitting}
+            size="xs"
+            variant="filled"
+            className="bg-gradient-to-r from-[#fd7d02] to-[#ff9d42] border-none text-white font-bold py-2.5 rounded-2xl shadow-lg shadow-orange-100/50 hover:shadow-orange-200/50 active:scale-[0.98] transition-all"
+          >
             Reset Password
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Enter your email, OTP, and new password
-          </p>
+          </Button>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="space-y-4">
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Email address
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
-              />
-            </div>
 
-            <div>
-              <label
-                htmlFor="otp"
-                className="block text-sm font-medium text-gray-700"
-              >
-                OTP Code
-              </label>
-              <input
-                id="otp"
-                name="otp"
-                type="text"
-                required
-                maxLength={6}
-                value={otp}
-                onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-                className="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm text-center text-lg tracking-widest"
-                placeholder="000000"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="newPassword"
-                className="block text-sm font-medium text-gray-700"
-              >
-                New Password
-              </label>
-              <input
-                id="newPassword"
-                name="newPassword"
-                type="password"
-                autoComplete="new-password"
-                required
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                className="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="New password"
-              />
-            </div>
-
-            <div>
-              <label
-                htmlFor="confirmPassword"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Confirm New Password
-              </label>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                autoComplete="new-password"
-                required
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="mt-1 appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Confirm new password"
-              />
-            </div>
-          </div>
-
-          <div>
-            <button
-              type="submit"
-              disabled={isLoading || otp.length !== 6 || newPassword.length < 6}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+        <div className="text-center pt-2">
+          <Link
+            href="/admin/login"
+            className="text-xs font-bold text-gray-400 hover:text-gray-700 transition-colors inline-flex items-center group"
+          >
+            <svg
+              className="w-4 h-4 mr-1.5 transition-transform group-hover:-translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              {isLoading ? "Resetting..." : "Reset Password"}
-            </button>
-          </div>
-
-          <div className="text-center">
-            <Link
-              href="/admin/login"
-              className="text-indigo-600 hover:text-indigo-500 text-sm"
-            >
-              Back to Login
-            </Link>
-          </div>
-        </form>
-      </div>
-    </div>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            Back to Login
+          </Link>
+        </div>
+      </form>
+    </LoginCard>
   );
 };
 

@@ -1,11 +1,10 @@
 "use client";
 import React, { forwardRef, useEffect, useState } from "react";
 
-export interface TextareaProps
-  extends Omit<
-    React.TextareaHTMLAttributes<HTMLTextAreaElement>,
-    "size" | "onChange" | "onBlur" | "onFocus" | "value"
-  > {
+export interface TextareaProps extends Omit<
+  React.TextareaHTMLAttributes<HTMLTextAreaElement>,
+  "size" | "onChange" | "onBlur" | "onFocus" | "value"
+> {
   label?: string;
   description?: string;
   error?: string;
@@ -45,10 +44,10 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       onFocus: formOnFocus,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [internalError, setInternalError] = useState<string | undefined>(
-      error
+      error,
     );
 
     // Update internal error when external error changes
@@ -159,7 +158,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Textarea.displayName = "Textarea";

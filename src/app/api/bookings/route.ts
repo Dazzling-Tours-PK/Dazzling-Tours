@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
     console.error("Error fetching bookings:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch bookings" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -67,13 +67,13 @@ export async function POST(request: NextRequest) {
         data: booking,
         message: "Booking created successfully",
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error creating booking:", error);
     return NextResponse.json(
       { success: false, error: "Failed to create booking" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

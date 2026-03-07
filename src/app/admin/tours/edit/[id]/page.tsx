@@ -417,7 +417,7 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
               onRemove={(index) =>
                 form.setFieldValue(
                   "highlights",
-                  (form.values.highlights || []).filter((_, i) => i !== index)
+                  (form.values.highlights || []).filter((_, i) => i !== index),
                 )
               }
               maxItems={10}
@@ -458,7 +458,7 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
               onRemove={(index) =>
                 form.setFieldValue(
                   "itinerary",
-                  (form.values.itinerary || []).filter((_, i) => i !== index)
+                  (form.values.itinerary || []).filter((_, i) => i !== index),
                 )
               }
             />
@@ -503,7 +503,7 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
               onRemove={(index) =>
                 form.setFieldValue(
                   "includes",
-                  (form.values.includes || []).filter((_, i) => i !== index)
+                  (form.values.includes || []).filter((_, i) => i !== index),
                 )
               }
             />
@@ -548,7 +548,7 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
               onRemove={(index) =>
                 form.setFieldValue(
                   "excludes",
-                  (form.values.excludes || []).filter((_, i) => i !== index)
+                  (form.values.excludes || []).filter((_, i) => i !== index),
                 )
               }
               maxItems={15}

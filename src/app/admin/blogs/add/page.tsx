@@ -138,7 +138,7 @@ const AddBlog = () => {
   const removeTag = (index: number) => {
     form.setFieldValue(
       "tags",
-      (form.values.tags || []).filter((_, i) => i !== index)
+      (form.values.tags || []).filter((_, i) => i !== index),
     );
   };
 

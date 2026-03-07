@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 
-export interface ActionIconProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ActionIconProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "filled" | "light" | "outline" | "subtle" | "transparent";
   color?: "primary" | "secondary" | "success" | "warning" | "error" | "gray";
   size?: "xs" | "sm" | "md" | "lg" | "xl";
@@ -85,7 +84,7 @@ const ActionIcon: React.FC<ActionIconProps> = React.memo(
         )}
       </button>
     );
-  }
+  },
 );
 
 ActionIcon.displayName = "ActionIcon";

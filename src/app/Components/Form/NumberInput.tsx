@@ -1,11 +1,10 @@
 "use client";
 import React, { forwardRef, useEffect, useState } from "react";
 
-export interface NumberInputProps
-  extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    "type" | "size" | "onChange" | "onBlur" | "onFocus" | "value"
-  > {
+export interface NumberInputProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "type" | "size" | "onChange" | "onBlur" | "onFocus" | "value"
+> {
   label?: string;
   description?: string;
   error?: string;
@@ -57,10 +56,10 @@ const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
       onFocus: formOnFocus,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [internalError, setInternalError] = useState<string | undefined>(
-      error
+      error,
     );
     const [hasBeenTouched, setHasBeenTouched] = useState(false);
 
@@ -187,7 +186,7 @@ const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 NumberInput.displayName = "NumberInput";

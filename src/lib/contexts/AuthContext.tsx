@@ -26,12 +26,12 @@ interface AuthContextType {
   isAuthenticated: boolean;
   login: (
     email: string,
-    password: string
+    password: string,
   ) => Promise<{ success: boolean; message: string }>;
   verifyOTP: (
     email: string,
     otp: string,
-    type: string
+    type: string,
   ) => Promise<{
     success: boolean;
     message: string;
@@ -39,16 +39,16 @@ interface AuthContextType {
     user?: User;
   }>;
   forgotPassword: (
-    email: string
+    email: string,
   ) => Promise<{ success: boolean; message: string }>;
   resetPassword: (
     email: string,
     otp: string,
-    newPassword: string
+    newPassword: string,
   ) => Promise<{ success: boolean; message: string }>;
   changePassword: (
     currentPassword: string,
-    newPassword: string
+    newPassword: string,
   ) => Promise<{ success: boolean; message: string }>;
   logout: () => void;
   refreshUser: () => Promise<void>;
@@ -206,7 +206,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const resetPassword = async (
     email: string,
     otp: string,
-    newPassword: string
+    newPassword: string,
   ) => {
     try {
       const response = await fetch("/api/auth/reset-password", {
@@ -230,7 +230,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const changePassword = async (
     currentPassword: string,
-    newPassword: string
+    newPassword: string,
   ) => {
     try {
       const response = await api.post<{ success: boolean; message: string }>(
@@ -238,7 +238,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         {
           currentPassword,
           newPassword,
-        }
+        },
       );
 
       const data = response.data;

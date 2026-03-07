@@ -5,7 +5,7 @@ import { Tour } from "@/models";
 // GET /api/tours/slug/[slug] - Get a single tour by slug
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<{ slug: string }> },
 ) {
   try {
     await connectDB();
@@ -19,7 +19,7 @@ export async function GET(
     if (!tour) {
       return NextResponse.json(
         { success: false, error: "Tour not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -36,7 +36,7 @@ export async function GET(
     console.error("Error fetching tour by slug:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch tour" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

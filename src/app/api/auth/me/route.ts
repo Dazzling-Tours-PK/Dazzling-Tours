@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return NextResponse.json(
         { success: false, message: "Authorization token required" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -23,12 +23,12 @@ export async function GET(request: NextRequest) {
     try {
       decoded = jwt.verify(
         token,
-        process.env.JWT_SECRET || "fallback-secret"
+        process.env.JWT_SECRET || "fallback-secret",
       ) as { userId: string; email: string; role: string; iat?: number };
     } catch {
       return NextResponse.json(
         { success: false, message: "Invalid or expired token" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
     if (!user) {
       return NextResponse.json(
         { success: false, message: "User not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
     if (!user.isActive) {
       return NextResponse.json(
         { success: false, message: "Account is deactivated" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
           success: false,
           message: "Password was changed. Please login again.",
         },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -79,7 +79,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(
       { success: false, message: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

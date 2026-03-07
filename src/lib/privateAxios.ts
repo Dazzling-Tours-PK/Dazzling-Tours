@@ -32,7 +32,7 @@ privateAxios.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 // Response interceptor to handle common errors
@@ -66,7 +66,7 @@ privateAxios.interceptors.response.use(
           // Server error
           console.error(
             "Server error:",
-            data?.error || "Internal server error"
+            data?.error || "Internal server error",
           );
           break;
         default:
@@ -81,7 +81,7 @@ privateAxios.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 // Helper functions for common HTTP methods
@@ -89,7 +89,7 @@ export const api = {
   // GET request
   get: <T = unknown>(
     url: string,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> => {
     return privateAxios.get<T>(url, config);
   },
@@ -98,7 +98,7 @@ export const api = {
   post: <T = unknown>(
     url: string,
     data?: unknown,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> => {
     return privateAxios.post<T>(url, data, config);
   },
@@ -107,7 +107,7 @@ export const api = {
   put: <T = unknown>(
     url: string,
     data?: unknown,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> => {
     return privateAxios.put<T>(url, data, config);
   },
@@ -116,7 +116,7 @@ export const api = {
   patch: <T = unknown>(
     url: string,
     data?: unknown,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> => {
     return privateAxios.patch<T>(url, data, config);
   },
@@ -124,7 +124,7 @@ export const api = {
   // DELETE request
   delete: <T = unknown>(
     url: string,
-    config?: AxiosRequestConfig
+    config?: AxiosRequestConfig,
   ): Promise<AxiosResponse<T>> => {
     return privateAxios.delete<T>(url, config);
   },

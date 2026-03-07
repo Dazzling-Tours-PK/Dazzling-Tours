@@ -115,7 +115,10 @@ export function requireRole(requiredRole: UserRole) {
  * Usage: export const POST = withAuth(async (request, context) => { ... })
  */
 export function withAuth(
-  handler: (request: NextRequest, context: AuthContext) => Promise<NextResponse>
+  handler: (
+    request: NextRequest,
+    context: AuthContext,
+  ) => Promise<NextResponse>,
 ) {
   return async (request: NextRequest): Promise<NextResponse> => {
     const authResult = await authenticateUser(request);
@@ -123,7 +126,7 @@ export function withAuth(
     if (!authResult.success) {
       return NextResponse.json(
         { success: false, error: authResult.error },
-        { status: authResult.statusCode || 401 }
+        { status: authResult.statusCode || 401 },
       );
     }
 
@@ -142,7 +145,10 @@ export function withAuth(
  */
 export function withRoleAuth(
   requiredRole: UserRole,
-  handler: (request: NextRequest, context: AuthContext) => Promise<NextResponse>
+  handler: (
+    request: NextRequest,
+    context: AuthContext,
+  ) => Promise<NextResponse>,
 ) {
   return withAuth(async (request, context) => {
     if (!requireRole(requiredRole)(context.user)) {
@@ -151,7 +157,7 @@ export function withRoleAuth(
           success: false,
           error: `Access denied. Required role: ${requiredRole}`,
         },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -164,11 +170,11 @@ export function withRoleAuth(
  */
 export function createErrorResponse(
   message: string,
-  statusCode: number = 400
+  statusCode: number = 400,
 ): NextResponse {
   return NextResponse.json(
     { success: false, error: message },
-    { status: statusCode }
+    { status: statusCode },
   );
 }
 
@@ -178,7 +184,7 @@ export function createErrorResponse(
 export function createSuccessResponse<T = unknown>(
   data: T,
   message?: string,
-  statusCode: number = 200
+  statusCode: number = 200,
 ): NextResponse {
   return NextResponse.json(
     {
@@ -186,6 +192,6 @@ export function createSuccessResponse<T = unknown>(
       data,
       ...(message && { message }),
     },
-    { status: statusCode }
+    { status: statusCode },
   );
 }

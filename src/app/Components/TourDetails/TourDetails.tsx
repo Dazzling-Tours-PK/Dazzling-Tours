@@ -14,7 +14,7 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
     console.log("🖼️ TourDetails - tour.images type:", typeof tour.images);
     console.log(
       "🖼️ TourDetails - tour.images is array:",
-      Array.isArray(tour.images)
+      Array.isArray(tour.images),
     );
     console.log("🖼️ TourDetails - tour.images length:", tour.images?.length);
     console.log("🖼️ TourDetails - first image:", tour.images?.[0]);

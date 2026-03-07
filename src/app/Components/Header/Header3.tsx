@@ -139,7 +139,8 @@ export default function Header3() {
                     <Link href="/contact" className="theme-btn">
                       <span>
                         {" "}
-                        Request A Quote <i className="bi bi-arrow-right"></i>{" "}
+                        Request A Quote{" "}
+                        <i className="bi bi-arrow-right"></i>{" "}
                       </span>
                     </Link>
                   </div>

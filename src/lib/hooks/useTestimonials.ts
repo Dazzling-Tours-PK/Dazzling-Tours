@@ -40,7 +40,7 @@ export const useGetTestimonials = (params?: {
       }
 
       const response = await api.get<TestimonialsResponse>(
-        `/api/testimonials?${searchParams.toString()}`
+        `/api/testimonials?${searchParams.toString()}`,
       );
       return response.data;
     },
@@ -52,7 +52,7 @@ export const useGetTestimonial = (id: string) => {
     queryKey: testimonialKeys.detail(id),
     queryFn: async () => {
       const response = await api.get<TestimonialResponse>(
-        `/api/testimonials/${id}`
+        `/api/testimonials/${id}`,
       );
       return response.data;
     },
@@ -67,7 +67,7 @@ export const useCreateTestimonial = () => {
     mutationFn: async (data) => {
       const response = await api.post<TestimonialResponse>(
         "/api/testimonials",
-        data
+        data,
       );
       return response.data;
     },
@@ -85,7 +85,7 @@ export const useUpdateTestimonial = () => {
       const { _id, ...updateData } = data;
       const response = await api.put<TestimonialResponse>(
         `/api/testimonials/${_id}`,
-        updateData
+        updateData,
       );
       return response.data;
     },
@@ -104,7 +104,7 @@ export const useDeleteTestimonial = () => {
   return useMutation<{ success: boolean }, Error, string>({
     mutationFn: async (id) => {
       const response = await api.delete<{ success: boolean }>(
-        `/api/testimonials/${id}`
+        `/api/testimonials/${id}`,
       );
       return response.data;
     },
@@ -125,7 +125,7 @@ export const useBulkUpdateTestimonials = () => {
     mutationFn: async ({ ids, action, data }) => {
       const response = await api.put<{ success: boolean }>(
         "/api/testimonials",
-        { ids, action, ...data }
+        { ids, action, ...data },
       );
       return response.data;
     },

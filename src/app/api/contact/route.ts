@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
     console.error("Error fetching contacts:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch contacts" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
       if (!body[field]) {
         return NextResponse.json(
           { success: false, error: `${field} is required` },
-          { status: 400 }
+          { status: 400 },
         );
       }
     }
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
     if (!emailRegex.test(body.email)) {
       return NextResponse.json(
         { success: false, error: "Invalid email format" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -91,13 +91,13 @@ export async function POST(request: NextRequest) {
         data: contact,
         message: "Contact inquiry submitted successfully",
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Error creating contact:", error);
     return NextResponse.json(
       { success: false, error: "Failed to submit contact inquiry" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -113,7 +113,7 @@ export async function PUT(request: NextRequest) {
     if (!action || !ids || !Array.isArray(ids)) {
       return NextResponse.json(
         { success: false, error: "Action and ids are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -122,7 +122,7 @@ export async function PUT(request: NextRequest) {
       case "updateStatus":
         result = await Contact.updateMany(
           { _id: { $in: ids } },
-          { status: data.status }
+          { status: data.status },
         );
         break;
       case "delete":
@@ -131,7 +131,7 @@ export async function PUT(request: NextRequest) {
       default:
         return NextResponse.json(
           { success: false, error: "Invalid action" },
-          { status: 400 }
+          { status: 400 },
         );
     }
 
@@ -144,7 +144,7 @@ export async function PUT(request: NextRequest) {
     console.error("Error updating contact inquiries:", error);
     return NextResponse.json(
       { success: false, error: "Failed to update contact inquiries" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

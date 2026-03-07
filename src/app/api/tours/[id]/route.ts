@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import { Tour } from "@/models";
+import { deleteMultipleImages } from "@/lib/services/cloudinaryService";
+import { extractPublicId } from "@/lib/utils/imageUtils";
 
 // GET /api/tours/[id] - Get a single tour
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await connectDB();
@@ -16,7 +18,7 @@ export async function GET(
     if (!tour) {
       return NextResponse.json(
         { success: false, error: "Tour not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -31,7 +33,7 @@ export async function GET(
         (url: string) =>
           typeof url === "string" &&
           !url.startsWith("data:") &&
-          (url.startsWith("http://") || url.startsWith("https://"))
+          (url.startsWith("http://") || url.startsWith("https://")),
       );
     }
     if (
@@ -59,7 +61,7 @@ export async function GET(
     console.error("Error fetching tour:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch tour" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -67,7 +69,7 @@ export async function GET(
 // PATCH /api/tours/[id] - Update a tour
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await connectDB();
@@ -79,7 +81,7 @@ export async function PATCH(
     if (body.price && body.price <= 0) {
       return NextResponse.json(
         { success: false, error: "Price must be greater than 0" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -87,7 +89,7 @@ export async function PATCH(
     if (body.rating && (body.rating < 0 || body.rating > 5)) {
       return NextResponse.json(
         { success: false, error: "Rating must be between 0 and 5" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -98,7 +100,7 @@ export async function PATCH(
         (url: string) =>
           typeof url === "string" &&
           !url.startsWith("data:") &&
-          (url.startsWith("http://") || url.startsWith("https://"))
+          (url.startsWith("http://") || url.startsWith("https://")),
       );
     }
 
@@ -137,6 +139,29 @@ export async function PATCH(
       };
     }
 
+    // Handle image deletions if images were removed
+    const existingTour = await Tour.findById(resolvedParams.id);
+    if (existingTour && body.images && Array.isArray(body.images)) {
+      const removedImages = existingTour.images.filter(
+        (img: string) => !body.images.includes(img),
+      );
+
+      if (removedImages.length > 0) {
+        const publicIds = removedImages
+          .map((url: string) => extractPublicId(url))
+          .filter((id: string | null): id is string => id !== null);
+
+        if (publicIds.length > 0) {
+          await deleteMultipleImages(publicIds).catch((err) =>
+            console.error(
+              "Failed to delete removed images from Cloudinary:",
+              err,
+            ),
+          );
+        }
+      }
+    }
+
     // Use findByIdAndUpdate with $set operator
     const tour = await Tour.findByIdAndUpdate(
       resolvedParams.id,
@@ -146,13 +171,13 @@ export async function PATCH(
         runValidators: true,
         upsert: false,
         setDefaultsOnInsert: true,
-      }
+      },
     );
 
     if (!tour) {
       return NextResponse.json(
         { success: false, error: "Tour not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -173,7 +198,7 @@ export async function PATCH(
         success: false,
         error: error instanceof Error ? error.message : "Failed to update tour",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
@@ -181,20 +206,38 @@ export async function PATCH(
 // DELETE /api/tours/[id] - Delete a tour
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     await connectDB();
 
     const resolvedParams = await params;
-    const tour = await Tour.findByIdAndDelete(resolvedParams.id);
+    const tour = await Tour.findById(resolvedParams.id);
 
     if (!tour) {
       return NextResponse.json(
         { success: false, error: "Tour not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
+
+    // Delete images from Cloudinary
+    const allImages = [...(tour.images || [])];
+    if (tour.seo?.ogImage) {
+      allImages.push(tour.seo.ogImage);
+    }
+
+    const publicIds = Array.from(new Set(allImages))
+      .map((url: string) => extractPublicId(url))
+      .filter((id: string | null): id is string => id !== null);
+
+    if (publicIds.length > 0) {
+      await deleteMultipleImages(publicIds).catch((err) =>
+        console.error("Failed to delete tour images from Cloudinary:", err),
+      );
+    }
+
+    await Tour.findByIdAndDelete(resolvedParams.id);
 
     return NextResponse.json({
       success: true,
@@ -204,7 +247,7 @@ export async function DELETE(
     console.error("Error deleting tour:", error);
     return NextResponse.json(
       { success: false, error: "Failed to delete tour" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

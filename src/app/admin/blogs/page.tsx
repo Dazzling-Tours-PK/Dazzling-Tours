@@ -32,8 +32,8 @@ const BlogsList = () => {
       filterFeatured === "all"
         ? undefined
         : filterFeatured === "true"
-        ? true
-        : false,
+          ? true
+          : false,
     search: searchTerm || undefined,
   });
 
@@ -92,13 +92,13 @@ const BlogsList = () => {
       {
         onSuccess: () => {
           showSuccess(
-            `Blog ${newFeaturedValue ? "featured" : "unfeatured"} successfully!`
+            `Blog ${newFeaturedValue ? "featured" : "unfeatured"} successfully!`,
           );
         },
         onError: (error) => {
           showError(error.message || "Failed to update blog");
         },
-      }
+      },
     );
   };
 
@@ -113,13 +113,13 @@ const BlogsList = () => {
           showSuccess(
             `Blog status updated to ${
               currentStatus === "Published" ? "Draft" : "Published"
-            }!`
+            }!`,
           );
         },
         onError: (error) => {
           showError(error.message || "Failed to update blog status");
         },
-      }
+      },
     );
   };
 
@@ -143,7 +143,7 @@ const BlogsList = () => {
         onError: (error) => {
           showError(error.message || "Failed to update blogs");
         },
-      }
+      },
     );
   };
 
@@ -155,7 +155,7 @@ const BlogsList = () => {
 
     if (
       confirm(
-        `Are you sure you want to delete ${selectedBlogs.length} blog(s)?`
+        `Are you sure you want to delete ${selectedBlogs.length} blog(s)?`,
       )
     ) {
       bulkUpdateBlogsMutation.mutate(
@@ -166,28 +166,30 @@ const BlogsList = () => {
         {
           onSuccess: () => {
             showSuccess(
-              `${selectedBlogs.length} blog(s) deleted successfully!`
+              `${selectedBlogs.length} blog(s) deleted successfully!`,
             );
             setSelectedBlogs([]);
           },
           onError: (error) => {
             showError(error.message || "Failed to delete blogs");
           },
-        }
+        },
       );
     }
   };
 
   const toggleBlogSelection = (id: string) => {
     setSelectedBlogs((prev) =>
-      prev.includes(id) ? prev.filter((blogId) => blogId !== id) : [...prev, id]
+      prev.includes(id)
+        ? prev.filter((blogId) => blogId !== id)
+        : [...prev, id],
     );
   };
 
   const selectAllBlogs = () => {
     const allBlogIds = blogs.map((blog) => blog._id);
     setSelectedBlogs(
-      selectedBlogs.length === allBlogIds.length ? [] : allBlogIds
+      selectedBlogs.length === allBlogIds.length ? [] : allBlogIds,
     );
   };
 
@@ -502,7 +504,7 @@ const BlogsList = () => {
                   <td style={{ textAlign: "center" }}>
                     <span
                       className={`badge ${getCategoryBadgeClass(
-                        blog.category || UNCATEGORIZED_CATEGORY_NAME
+                        blog.category || UNCATEGORIZED_CATEGORY_NAME,
                       )}`}
                     >
                       {blog.category || UNCATEGORIZED_CATEGORY_NAME}
@@ -512,7 +514,7 @@ const BlogsList = () => {
                     <button
                       onClick={() => toggleStatus(blog._id, blog.status)}
                       className={`status-badge ${getStatusBadgeClass(
-                        blog.status
+                        blog.status,
                       )} clickable`}
                       style={{ cursor: "pointer", border: "none" }}
                     >

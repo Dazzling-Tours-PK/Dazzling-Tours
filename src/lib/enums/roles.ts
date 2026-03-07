@@ -41,7 +41,7 @@ export const ROLE_PERMISSIONS: Record<UserRole, Permission[]> = {
 // Helper function to check if user has specific permission
 export function hasPermission(
   userRole: UserRole,
-  permission: Permission
+  permission: Permission,
 ): boolean {
   return ROLE_PERMISSIONS[userRole]?.includes(permission) ?? false;
 }
@@ -49,7 +49,7 @@ export function hasPermission(
 // Helper function to check if user has any of the specified permissions
 export function hasAnyPermission(
   userRole: UserRole,
-  permissions: Permission[]
+  permissions: Permission[],
 ): boolean {
   return permissions.some((permission) => hasPermission(userRole, permission));
 }
@@ -57,7 +57,7 @@ export function hasAnyPermission(
 // Helper function to check if user has all specified permissions
 export function hasAllPermissions(
   userRole: UserRole,
-  permissions: Permission[]
+  permissions: Permission[],
 ): boolean {
   return permissions.every((permission) => hasPermission(userRole, permission));
 }

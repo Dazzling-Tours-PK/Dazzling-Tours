@@ -98,7 +98,7 @@ const AddTour = () => {
     onValidationError: (errors) => {
       // Get all error messages with field names
       const errorEntries = Object.entries(errors).filter(([, message]) =>
-        Boolean(message)
+        Boolean(message),
       );
 
       if (errorEntries.length > 0) {
@@ -123,7 +123,7 @@ const AddTour = () => {
               errorCount - 1
             } more error${
               errorCount - 1 > 1 ? "s" : ""
-            }). Check console for details.`
+            }). Check console for details.`,
           );
         }
       } else {
@@ -423,7 +423,7 @@ const AddTour = () => {
               onRemove={(index) =>
                 form.setFieldValue(
                   "highlights",
-                  (form.values.highlights || []).filter((_, i) => i !== index)
+                  (form.values.highlights || []).filter((_, i) => i !== index),
                 )
               }
               maxItems={10}
@@ -465,7 +465,7 @@ const AddTour = () => {
               onRemove={(index) =>
                 form.setFieldValue(
                   "itinerary",
-                  (form.values.itinerary || []).filter((_, i) => i !== index)
+                  (form.values.itinerary || []).filter((_, i) => i !== index),
                 )
               }
               error={form.errors.itinerary}
@@ -511,7 +511,7 @@ const AddTour = () => {
               onRemove={(index) =>
                 form.setFieldValue(
                   "includes",
-                  (form.values.includes || []).filter((_, i) => i !== index)
+                  (form.values.includes || []).filter((_, i) => i !== index),
                 )
               }
               error={form.errors.includes}
@@ -557,7 +557,7 @@ const AddTour = () => {
               onRemove={(index) =>
                 form.setFieldValue(
                   "excludes",
-                  (form.values.excludes || []).filter((_, i) => i !== index)
+                  (form.values.excludes || []).filter((_, i) => i !== index),
                 )
               }
             />

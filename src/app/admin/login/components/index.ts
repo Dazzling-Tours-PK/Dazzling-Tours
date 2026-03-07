@@ -1,35 +1,10 @@
-// Component Exports
-export {
-  // Icons
-  LockIcon,
-  CheckIcon,
-  ErrorIcon,
+// Icon Components
+export { LockIcon, CheckIcon, ErrorIcon } from "./LoginComponents";
+export type { IconProps } from "./LoginComponents";
 
-  // Layout Components
-  LoginCard,
-  CardHeader,
-
-  // Form Components
-  FormGroup,
-  FormLabel,
-  FormControl,
-  FormControlOTP,
-
-  // Button Components
-  Button,
-
-  // Layout Components
-  FormFooter,
-  FormActions,
-
-  // Utility Components
-  Alert,
-  LoadingSpinner,
-} from "./LoginComponents";
-
-// Form Components
-export { LoginForm } from "./LoginForm";
-export { OTPVerification } from "./OTPVerification";
+// Layout Components
+export { LoginCard, CardHeader } from "./LoginComponents";
+export type { LoginCardProps, CardHeaderProps } from "./LoginComponents";
 
 // Configuration
 export {
@@ -39,23 +14,3 @@ export {
   animations,
   accessibility,
 } from "../config/theme";
-
-// Types
-export type {
-  IconProps,
-  LoginCardProps,
-  CardHeaderProps,
-  FormGroupProps,
-  FormLabelProps,
-  FormControlProps,
-  FormControlOTPProps,
-  ButtonProps,
-  FormFooterProps,
-  FormActionsProps,
-  AlertProps,
-  LoadingSpinnerProps,
-} from "./LoginComponents";
-
-export type { LoginFormProps } from "./LoginForm";
-
-export type { OTPVerificationProps } from "./OTPVerification";

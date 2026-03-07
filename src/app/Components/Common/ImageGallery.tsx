@@ -58,7 +58,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
                 className="gallery-nav gallery-nav-prev"
                 onClick={() =>
                   setSelectedIndex(
-                    selectedIndex === 0 ? images.length - 1 : selectedIndex - 1
+                    selectedIndex === 0 ? images.length - 1 : selectedIndex - 1,
                   )
                 }
                 disabled={images.length <= 1}
@@ -69,7 +69,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({
                 className="gallery-nav gallery-nav-next"
                 onClick={() =>
                   setSelectedIndex(
-                    selectedIndex === images.length - 1 ? 0 : selectedIndex + 1
+                    selectedIndex === images.length - 1 ? 0 : selectedIndex + 1,
                   )
                 }
                 disabled={images.length <= 1}

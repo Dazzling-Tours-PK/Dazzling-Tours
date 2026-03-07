@@ -1,37 +1,57 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth, useNotification } from "@/lib/hooks";
-import { LoginForm } from "./components";
+import Link from "next/link";
+import { useAuth, useNotification, useAdminSeed, useForm } from "@/lib/hooks";
+import { LoginCard, CardHeader, LockIcon } from "./components/LoginComponents";
+import { TextInput } from "@/app/Components/Form";
+import { Button } from "@/app/Components/Common";
 import { validationRules } from "./config/theme";
 
-interface FormErrors {
-  email?: string;
-  password?: string;
-  otp?: string;
-}
-
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState<FormErrors>({});
-
   const { login, isAuthenticated } = useAuth();
   const { showSuccess, showError } = useNotification();
+  const { mutate: seedAdmin } = useAdminSeed();
   const router = useRouter();
 
-  // Run seeder on first mount to create admin if missing
-  const hasSeededRef = useRef(false);
-  useEffect(() => {
-    if (hasSeededRef.current) return;
-    hasSeededRef.current = true;
+  const { isSubmitting, getFieldProps, handleSubmit } = useForm({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validate: (values) => {
+      const errs: Record<string, string> = {};
+      if (!values.email) {
+        errs.email = "Email is required";
+      } else if (!validationRules.email.pattern.test(values.email)) {
+        errs.email = validationRules.email.message;
+      }
+      if (!values.password) {
+        errs.password = "Password is required";
+      } else if (values.password.length < validationRules.password.minLength) {
+        errs.password = validationRules.password.message;
+      }
+      return errs;
+    },
+    onSubmit: async (values) => {
+      try {
+        const result = await login(values.email, values.password);
+        if (result.success) {
+          showSuccess("Login successful!");
+          router.push("/admin");
+        } else {
+          showError(result.message);
+        }
+      } catch {
+        showError("Login failed. Please try again.");
+      }
+    },
+  });
 
-    // Fire-and-forget; seed endpoint is idempotent for existing admin
-    fetch("/api/auth/seed", { method: "POST" }).catch(() => {
-      // Silently ignore; seeding is best-effort
-    });
-  }, []);
+  // Run seeder on first mount
+  useEffect(() => {
+    seedAdmin();
+  }, [seedAdmin]);
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -40,80 +60,58 @@ const LoginPage = () => {
     }
   }, [isAuthenticated, router]);
 
-  // Validation functions
-  const validateEmail = (email: string): string | undefined => {
-    if (!email) return "Email is required";
-    if (!validationRules.email.pattern.test(email)) {
-      return validationRules.email.message;
-    }
-    return undefined;
-  };
-
-  const validatePassword = (password: string): string | undefined => {
-    if (!password) return "Password is required";
-    if (password.length < validationRules.password.minLength) {
-      return validationRules.password.message;
-    }
-    return undefined;
-  };
-
-  // OTP validation removed; login now returns token directly
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Validate form
-    const emailError = validateEmail(email);
-    const passwordError = validatePassword(password);
-
-    if (emailError || passwordError) {
-      setErrors({
-        email: emailError,
-        password: passwordError,
-      });
-      return;
-    }
-
-    setErrors({});
-    setIsLoading(true);
-
-    try {
-      const result = await login(email, password);
-      if (result.success) {
-        showSuccess("Login successful!");
-        router.push("/admin");
-      } else {
-        showError(result.message);
-        setErrors({
-          email: result.message.includes("email") ? result.message : undefined,
-          password: result.message.includes("password")
-            ? result.message
-            : undefined,
-        });
-      }
-    } catch {
-      showError("Login failed. Please try again.");
-      setErrors({
-        email: "Login failed. Please try again.",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // OTP flow removed; login now returns token directly
-
   return (
-    <LoginForm
-      email={email}
-      setEmail={setEmail}
-      password={password}
-      setPassword={setPassword}
-      isLoading={isLoading}
-      onSubmit={handleLogin}
-      emailError={errors.email}
-      passwordError={errors.password}
-    />
+    <LoginCard>
+      <CardHeader
+        title="Admin Login"
+        subtitle="Sign in to your admin account"
+        icon={<LockIcon size="md" />}
+      />
+
+      <form onSubmit={handleSubmit()} className="space-y-4">
+        <TextInput
+          {...getFieldProps("email")}
+          label="Email Address"
+          placeholder="abc@example.com"
+          required
+          size="md"
+          type="email"
+          autoComplete="email"
+          className="bg-gray-50/50 backdrop-blur-sm"
+        />
+
+        <TextInput
+          {...getFieldProps("password")}
+          label="Password"
+          placeholder="••••••••"
+          required
+          size="md"
+          type="password"
+          autoComplete="current-password"
+          className="bg-gray-50/50 backdrop-blur-sm"
+        />
+
+        <div className="flex justify-end pt-1">
+          <Link
+            href="/admin/forgot-password"
+            className="text-xs font-bold text-[#fd7d02] hover:text-orange-600 transition-colors"
+          >
+            Forgot your password?
+          </Link>
+        </div>
+
+        <Button
+          type="submit"
+          fullWidth
+          loading={isSubmitting}
+          size="md"
+          variant="filled"
+          className="bg-gradient-to-r from-[#fd7d02] to-[#ff9d42] border-none text-white font-bold rounded-2xl shadow-lg shadow-orange-100/50 hover:shadow-orange-200/50 active:scale-[0.98] transition-all"
+        >
+          Sign in
+        </Button>
+      </form>
+    </LoginCard>
   );
 };
 

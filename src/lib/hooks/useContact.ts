@@ -84,7 +84,7 @@ export const useGetContactInquiries = (params?: {
       }
 
       const response = await api.get<ContactResponse>(
-        `/api/contact?${searchParams.toString()}`
+        `/api/contact?${searchParams.toString()}`,
       );
       return response.data;
     },
@@ -96,7 +96,7 @@ export const useGetContactInquiry = (id: string) => {
     queryKey: contactKeys.detail(id),
     queryFn: async () => {
       const response = await api.get<ContactInquiryResponse>(
-        `/api/contact/${id}`
+        `/api/contact/${id}`,
       );
       return response.data;
     },
@@ -108,9 +108,8 @@ export const useGetContactStats = () => {
   return useQuery<ContactStatsResponse>({
     queryKey: contactKeys.stats(),
     queryFn: async () => {
-      const response = await api.get<ContactStatsResponse>(
-        "/api/contact/stats"
-      );
+      const response =
+        await api.get<ContactStatsResponse>("/api/contact/stats");
       return response.data;
     },
   });
@@ -123,7 +122,7 @@ export const useCreateContactInquiry = () => {
     mutationFn: async (data) => {
       const response = await api.post<ContactInquiryResponse>(
         "/api/contact",
-        data
+        data,
       );
       return response.data;
     },
@@ -142,7 +141,7 @@ export const useUpdateContactInquiry = () => {
       const { _id, ...updateData } = data;
       const response = await api.put<ContactInquiryResponse>(
         `/api/contact/${_id}`,
-        updateData
+        updateData,
       );
       return response.data;
     },
@@ -162,7 +161,7 @@ export const useDeleteContactInquiry = () => {
   return useMutation<{ success: boolean }, Error, string>({
     mutationFn: async (id) => {
       const response = await api.delete<{ success: boolean }>(
-        `/api/contact/${id}`
+        `/api/contact/${id}`,
       );
       return response.data;
     },

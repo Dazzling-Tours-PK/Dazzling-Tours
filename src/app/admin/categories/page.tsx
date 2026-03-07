@@ -29,7 +29,7 @@ const CategoriesList = () => {
 
   const categories = useMemo(
     () => categoriesData?.data || [],
-    [categoriesData?.data]
+    [categoriesData?.data],
   );
   const pagination = categoriesData?.pagination;
 
@@ -42,14 +42,14 @@ const CategoriesList = () => {
 
     if (
       window.confirm(
-        `Are you sure you want to delete this category? Tours and blogs using this category will be set to '${UNCATEGORIZED_CATEGORY_NAME}'.`
+        `Are you sure you want to delete this category? Tours and blogs using this category will be set to '${UNCATEGORIZED_CATEGORY_NAME}'.`,
       )
     ) {
       deleteCategoryMutation.mutate(id, {
         onSuccess: () => {
           showSuccess("Category deleted successfully");
           setSelectedCategories(
-            selectedCategories.filter((catId) => catId !== id)
+            selectedCategories.filter((catId) => catId !== id),
           );
         },
       });
@@ -63,14 +63,14 @@ const CategoriesList = () => {
       return;
     }
     setSelectedCategories((prev) =>
-      prev.includes(id) ? prev.filter((catId) => catId !== id) : [...prev, id]
+      prev.includes(id) ? prev.filter((catId) => catId !== id) : [...prev, id],
     );
   };
 
   const toggleSelectAll = () => {
     // Exclude "Uncategorized" from selection
     const selectableCategories = categories.filter(
-      (cat) => cat.name !== UNCATEGORIZED_CATEGORY_NAME
+      (cat) => cat.name !== UNCATEGORIZED_CATEGORY_NAME,
     );
     const selectableIds = selectableCategories.map((cat) => cat._id);
 
@@ -97,15 +97,15 @@ const CategoriesList = () => {
 
     if (
       window.confirm(
-        `Are you sure you want to delete ${categoriesToDelete.length} category(ies)? Tours and blogs using these categories will be set to '${UNCATEGORIZED_CATEGORY_NAME}'.`
+        `Are you sure you want to delete ${categoriesToDelete.length} category(ies)? Tours and blogs using these categories will be set to '${UNCATEGORIZED_CATEGORY_NAME}'.`,
       )
     ) {
       Promise.all(
-        categoriesToDelete.map((id) => deleteCategoryMutation.mutateAsync(id))
+        categoriesToDelete.map((id) => deleteCategoryMutation.mutateAsync(id)),
       )
         .then(() => {
           showSuccess(
-            `${categoriesToDelete.length} category(ies) deleted successfully`
+            `${categoriesToDelete.length} category(ies) deleted successfully`,
           );
           setSelectedCategories([]);
         })
@@ -206,11 +206,11 @@ const CategoriesList = () => {
                         type="checkbox"
                         checked={
                           categories.filter(
-                            (cat) => cat.name !== UNCATEGORIZED_CATEGORY_NAME
+                            (cat) => cat.name !== UNCATEGORIZED_CATEGORY_NAME,
                           ).length > 0 &&
                           selectedCategories.length ===
                             categories.filter(
-                              (cat) => cat.name !== UNCATEGORIZED_CATEGORY_NAME
+                              (cat) => cat.name !== UNCATEGORIZED_CATEGORY_NAME,
                             ).length
                         }
                         onChange={toggleSelectAll}

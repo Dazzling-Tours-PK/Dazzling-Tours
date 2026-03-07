@@ -3,6 +3,8 @@ import { UserRole } from "@/lib/enums/roles";
 import { TourStatus, TourDifficulty, TourPriceType } from "@/lib/enums/tour";
 import { TestimonialStatus } from "@/lib/enums/testimonial";
 import { ContactStatus } from "@/lib/types/enums";
+import { BlogStatus } from "@/lib/enums/blog";
+import { SEOFields } from "@/lib/types/seo";
 
 // Tour Model
 export interface ITour extends Document {
@@ -29,13 +31,7 @@ export interface ITour extends Document {
   reviews: number;
   featured: boolean;
   status: TourStatus;
-  seo?: {
-    metaTitle?: string;
-    metaDescription?: string;
-    slug?: string;
-    focusKeyword?: string;
-    ogImage?: string;
-  };
+  seo?: SEOFields;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -252,16 +248,10 @@ export interface IBlog extends Document {
   category: string;
   tags: string[];
   featuredImage?: string;
-  status: "Draft" | "Published";
+  status: BlogStatus;
   featured: boolean;
   publishedAt?: Date;
-  seo?: {
-    metaTitle?: string;
-    metaDescription?: string;
-    slug?: string;
-    focusKeyword?: string;
-    ogImage?: string;
-  };
+  seo?: SEOFields;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -275,7 +265,11 @@ const BlogSchema = new Schema<IBlog>(
     category: { type: String, required: true },
     tags: [{ type: String }],
     featuredImage: { type: String },
-    status: { type: String, enum: ["Draft", "Published"], default: "Draft" },
+    status: {
+      type: String,
+      enum: Object.values(BlogStatus),
+      default: BlogStatus.DRAFT,
+    },
     featured: { type: Boolean, default: false },
     publishedAt: { type: Date },
     seo: {

@@ -32,6 +32,8 @@ export interface TextProps extends React.HTMLAttributes<HTMLElement> {
   truncate?: boolean;
   /** Component to render as */
   component?: "p" | "span" | "div" | "label" | "strong" | "em" | "small";
+  /** HTML for attribute (for labels) */
+  htmlFor?: string;
   children: React.ReactNode;
 }
 
@@ -89,8 +91,8 @@ const Text: React.FC<TextProps> = ({
     textDecoration: underline
       ? "underline"
       : strikethrough
-      ? "line-through"
-      : "none",
+        ? "line-through"
+        : "none",
     fontStyle: italic ? "italic" : "normal",
     overflow: truncate ? "hidden" : undefined,
     textOverflow: truncate ? "ellipsis" : undefined,

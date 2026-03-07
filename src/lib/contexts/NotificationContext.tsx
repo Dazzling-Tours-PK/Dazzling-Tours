@@ -12,14 +12,14 @@ import {
 } from "@/lib/types/notification";
 
 const NotificationContext = createContext<NotificationContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export const useNotifications = () => {
   const context = useContext(NotificationContext);
   if (!context) {
     throw new Error(
-      "useNotifications must be used within a NotificationProvider"
+      "useNotifications must be used within a NotificationProvider",
     );
   }
   return context;
@@ -82,7 +82,7 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
 
       return id;
     },
-    [generateId, limit, hideNotification]
+    [generateId, limit, hideNotification],
   );
 
   const updateNotification = useCallback(
@@ -91,11 +91,11 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
         prev.map((notification) =>
           notification.id === id
             ? { ...notification, ...updates }
-            : notification
-        )
+            : notification,
+        ),
       );
     },
-    []
+    [],
   );
 
   const clearAll = useCallback(() => {
@@ -112,7 +112,7 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({
         duration: 2000,
       });
     },
-    [showNotification]
+    [showNotification],
   );
 
   const value: NotificationContextType = {
@@ -157,7 +157,7 @@ const GlobalErrorHandler: React.FC<GlobalErrorHandlerProps> = ({ onError }) => {
     return () => {
       window.removeEventListener(
         "unhandledrejection",
-        handleUnhandledRejection
+        handleUnhandledRejection,
       );
       window.removeEventListener("error", handleError);
     };

@@ -46,9 +46,8 @@ export const useGetDashboardStats = () => {
   return useQuery<DashboardStatsResponse>({
     queryKey: dashboardKeys.stats(),
     queryFn: async () => {
-      const response = await api.get<DashboardStatsResponse>(
-        "/api/admin/stats"
-      );
+      const response =
+        await api.get<DashboardStatsResponse>("/api/admin/stats");
       return response.data;
     },
     refetchOnWindowFocus: true,

@@ -32,7 +32,7 @@ export const useGetCategories = (filters?: {
       if (filters?.search) params.append("search", filters.search);
 
       const response = await api.get<CategoriesResponse>(
-        `/api/categories?${params.toString()}`
+        `/api/categories?${params.toString()}`,
       );
       return response.data;
     },
@@ -59,7 +59,7 @@ export const useCreateCategory = () => {
     mutationFn: async (data: CreateCategoryData) => {
       const response = await api.post<CategoryResponse>(
         "/api/categories",
-        data
+        data,
       );
       return response.data;
     },
@@ -78,7 +78,7 @@ export const useUpdateCategory = () => {
       const { _id, ...updateData } = data;
       const response = await api.put<CategoryResponse>(
         `/api/categories/${_id}`,
-        updateData
+        updateData,
       );
       return response.data;
     },

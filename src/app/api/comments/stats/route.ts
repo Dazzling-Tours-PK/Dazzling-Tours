@@ -81,7 +81,7 @@ export async function GET(request: NextRequest) {
     console.error("Error fetching comment statistics:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch comment statistics" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

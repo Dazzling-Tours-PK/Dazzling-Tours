@@ -19,7 +19,7 @@ const toGap = (spacing?: Spacing) => {
 };
 
 const mapPosition = (
-  position?: GroupProps["position"]
+  position?: GroupProps["position"],
 ): React.CSSProperties["justifyContent"] | undefined => {
   switch (position) {
     case "left":

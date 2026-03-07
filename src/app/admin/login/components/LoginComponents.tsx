@@ -1,5 +1,6 @@
 import React from "react";
 import "../../styles/admin-theme.css";
+import { Card, Text, Title } from "@/app/Components/Common";
 
 // Icon Components
 export interface IconProps {
@@ -106,28 +107,22 @@ export const LoginCard: React.FC<LoginCardProps> = ({
   className = "",
 }) => {
   return (
-    <div
-      className={`admin-container ${className}`}
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "var(--admin-spacing-md)",
-        background:
-          "linear-gradient(135deg, var(--admin-primary-light) 0%, var(--admin-background) 50%, var(--admin-background-light) 100%)",
-      }}
-    >
+    <div className="min-h-screen flex items-center justify-center bg-[#fdfaf8] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-[-10%] right-[-10%] w-96 h-96 bg-[#fd7d02] rounded-full filter blur-[100px] opacity-10 animate-pulse"></div>
       <div
-        style={{
-          width: "100%",
-          minWidth: "300px",
-          maxWidth: "400px",
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
-      >
-        <div className="admin-card">{children}</div>
+        className="absolute bottom-[-10%] left-[-10%] w-96 h-96 bg-[#026df7] rounded-full filter blur-[100px] opacity-5 animate-pulse"
+        style={{ animationDelay: "2s" }}
+      ></div>
+
+      <div className="max-w-[400px] w-full z-10 transition-all duration-500">
+        <Card
+          padding="md"
+          variant="shadow"
+          className="bg-white/90 backdrop-blur-xl border border-white/40 rounded-[2.5rem] shadow-2xl shadow-orange-100/50 overflow-hidden"
+        >
+          <div className="p-2 sm:p-4">{children}</div>
+        </Card>
       </div>
     </div>
   );
@@ -147,234 +142,40 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
   className = "",
 }) => {
   return (
-    <div className={`admin-header ${className}`}>
-      {icon && (
-        <div
-          style={{
-            margin: "0 auto var(--admin-spacing-lg)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: "var(--admin-radius-full)",
-            width: "64px",
-            height: "64px",
-            backgroundColor: "var(--admin-primary-light)",
-          }}
+    <div className={`text-center mb-8 ${className}`}>
+      <div className="mb-4">
+        <Text
+          size="xs"
+          weight={900}
+          italic
+          transform="uppercase"
+          className="tracking-tighter opacity-80"
         >
+          DAZZLING<span className="text-[#fd7d02]">TOURS</span>
+        </Text>
+      </div>
+      {icon && (
+        <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-2xl bg-[#fff5eb] mb-6 text-[#fd7d02] shadow-inner shadow-orange-100/50">
           {icon}
         </div>
       )}
-      <h1 className="admin-title">{title}</h1>
-      <div className="admin-subtitle">{subtitle}</div>
+      <Title
+        order={5}
+        weight={800}
+        align="center"
+        className="mb-1 text-gray-900"
+      >
+        {title}
+      </Title>
+      <Text
+        size="xs"
+        color="dimmed"
+        align="center"
+        weight={500}
+        className="px-4"
+      >
+        {subtitle}
+      </Text>
     </div>
-  );
-};
-
-// Form Components
-export interface FormGroupProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export const FormGroup: React.FC<FormGroupProps> = ({
-  children,
-  className = "",
-}) => {
-  return <div className={`admin-form-group ${className}`}>{children}</div>;
-};
-
-export interface FormLabelProps {
-  htmlFor?: string;
-  children: React.ReactNode;
-  required?: boolean;
-  className?: string;
-}
-
-export const FormLabel: React.FC<FormLabelProps> = ({
-  htmlFor,
-  children,
-  required = false,
-  className = "",
-}) => {
-  return (
-    <label htmlFor={htmlFor} className={`admin-form-label ${className}`}>
-      {children}
-      {required && <span className="text-danger ms-1">*</span>}
-    </label>
-  );
-};
-
-export interface FormControlProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
-  error?: boolean;
-  errorMessage?: string;
-  success?: boolean;
-  successMessage?: string;
-  size?: "sm" | "md" | "lg";
-}
-
-export const FormControl: React.FC<FormControlProps> = ({
-  error = false,
-  errorMessage,
-  success = false,
-  successMessage,
-  size = "md",
-  className = "",
-  ...props
-}) => {
-  const sizeClass = size === "lg" ? "form-control-lg" : "";
-  const errorClass = error ? "error" : "";
-  const successClass = success ? "success" : "";
-
-  return (
-    <div>
-      <input
-        className={`admin-form-control ${sizeClass} ${errorClass} ${successClass} ${className}`}
-        {...props}
-      />
-      {error && errorMessage && (
-        <div className="error-message">{errorMessage}</div>
-      )}
-      {success && successMessage && (
-        <div className="success-message">{successMessage}</div>
-      )}
-    </div>
-  );
-};
-
-export interface FormControlOTPProps
-  extends Omit<FormControlProps, "size" | "onChange"> {
-  length?: number;
-  value: string;
-  onChange: (value: string) => void;
-}
-
-export const FormControlOTP: React.FC<FormControlOTPProps> = ({
-  length = 6,
-  value,
-  onChange,
-  className = "",
-  ...props
-}) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value.replace(/\D/g, "").slice(0, length);
-    onChange(inputValue);
-  };
-
-  return (
-    <input
-      type="text"
-      maxLength={length}
-      value={value}
-      onChange={handleChange}
-      className={`form-control form-control-lg form-control-otp ${className}`}
-      placeholder={"0".repeat(length)}
-      {...props}
-    />
-  );
-};
-
-// Button Components
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "link" | "link-muted";
-  size?: "sm" | "md" | "lg";
-  isLoading?: boolean;
-  loadingText?: string;
-  fullWidth?: boolean;
-  children: React.ReactNode;
-}
-
-export const Button: React.FC<ButtonProps> = ({
-  variant = "primary",
-  size = "md",
-  isLoading = false,
-  loadingText,
-  fullWidth = false,
-  className = "",
-  children,
-  ...props
-}) => {
-  const sizeClass = size === "lg" ? "btn-lg" : size === "sm" ? "btn-sm" : "";
-  const widthClass = fullWidth ? "w-100" : "";
-  const loadingClass = isLoading ? "btn-loading" : "";
-
-  return (
-    <button
-      className={`admin-btn admin-btn-${variant} ${sizeClass} ${widthClass} ${loadingClass} ${className}`}
-      disabled={isLoading || props.disabled}
-      {...props}
-    >
-      {isLoading && loadingText ? loadingText : children}
-    </button>
-  );
-};
-
-// Layout Components
-export interface FormFooterProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export const FormFooter: React.FC<FormFooterProps> = ({
-  children,
-  className = "",
-}) => {
-  return <div className={`form-footer ${className}`}>{children}</div>;
-};
-
-export interface FormActionsProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export const FormActions: React.FC<FormActionsProps> = ({
-  children,
-  className = "",
-}) => {
-  return <div className={`form-actions ${className}`}>{children}</div>;
-};
-
-// Utility Components
-export interface AlertProps {
-  type: "success" | "error" | "warning" | "info";
-  message: string;
-  className?: string;
-}
-
-export const Alert: React.FC<AlertProps> = ({
-  type,
-  message,
-  className = "",
-}) => {
-  const typeClass = `alert-${type}`;
-
-  return (
-    <div className={`alert ${typeClass} ${className}`} role="alert">
-      {message}
-    </div>
-  );
-};
-
-export interface LoadingSpinnerProps {
-  size?: "sm" | "md" | "lg";
-  className?: string;
-}
-
-export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
-  size = "md",
-  className = "",
-}) => {
-  const sizeMap = {
-    sm: "16px",
-    md: "24px",
-    lg: "32px",
-  };
-
-  return (
-    <div
-      className={`loading-spinner ${className}`}
-      style={{ width: sizeMap[size], height: sizeMap[size] }}
-    />
   );
 };

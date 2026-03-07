@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return NextResponse.json(
         { success: false, message: "Authorization token required" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -29,12 +29,12 @@ export async function POST(request: NextRequest) {
     try {
       decoded = jwt.verify(
         token,
-        process.env.JWT_SECRET || "fallback-secret"
+        process.env.JWT_SECRET || "fallback-secret",
       ) as { userId: string; email: string; role: string; iat?: number };
     } catch {
       return NextResponse.json(
         { success: false, message: "Invalid or expired token" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json(
         { success: false, message: "User not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
     if (!user.isActive) {
       return NextResponse.json(
         { success: false, message: "Account is deactivated" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     if (!isCurrentPasswordValid) {
       return NextResponse.json(
         { success: false, message: "Current password is incorrect" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
           success: false,
           message: "New password must be different from current password",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -94,13 +94,13 @@ export async function POST(request: NextRequest) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { success: false, message: "Validation error", errors: error.issues },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     return NextResponse.json(
       { success: false, message: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

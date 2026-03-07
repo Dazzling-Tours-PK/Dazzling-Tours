@@ -29,7 +29,7 @@ const CommentsList = () => {
   const deleteComment = (id: string) => {
     if (
       confirm(
-        "Are you sure you want to delete this comment and all its replies?"
+        "Are you sure you want to delete this comment and all its replies?",
       )
     ) {
       deleteCommentMutation.mutate(id);
@@ -52,7 +52,7 @@ const CommentsList = () => {
         onSuccess: () => {
           setSelectedComments([]);
         },
-      }
+      },
     );
   };
 
@@ -64,7 +64,7 @@ const CommentsList = () => {
 
     if (
       confirm(
-        `Are you sure you want to delete ${selectedComments.length} comments?`
+        `Are you sure you want to delete ${selectedComments.length} comments?`,
       )
     ) {
       bulkUpdateCommentsMutation.mutate(
@@ -76,7 +76,7 @@ const CommentsList = () => {
           onSuccess: () => {
             setSelectedComments([]);
           },
-        }
+        },
       );
     }
   };
@@ -85,7 +85,7 @@ const CommentsList = () => {
     setSelectedComments((prev) =>
       prev.includes(id)
         ? prev.filter((commentId) => commentId !== id)
-        : [...prev, id]
+        : [...prev, id],
     );
   };
 
@@ -94,7 +94,7 @@ const CommentsList = () => {
     setSelectedComments(
       selectedComments.length === filteredCommentIds.length
         ? []
-        : filteredCommentIds
+        : filteredCommentIds,
     );
   };
 

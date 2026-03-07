@@ -149,7 +149,7 @@ const SEOFieldsComponent: React.FC<SEOFieldsProps> = ({
         shortDescription,
         location,
         price,
-        duration
+        duration,
       );
       if (autoMetaDesc && autoMetaDesc.trim() !== "") {
         // Always regenerate if meta description is empty or if it was previously auto-generated
@@ -166,11 +166,11 @@ const SEOFieldsComponent: React.FC<SEOFieldsProps> = ({
             // If so, allow regeneration when source changes
             const currentStart = currentMetaDescription.substring(
               0,
-              Math.min(50, currentMetaDescription.length)
+              Math.min(50, currentMetaDescription.length),
             );
             const autoStart = autoMetaDesc.substring(
               0,
-              Math.min(50, autoMetaDesc.length)
+              Math.min(50, autoMetaDesc.length),
             );
             // If they start the same, it was likely auto-generated, so allow regeneration
             if (

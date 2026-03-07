@@ -1,11 +1,10 @@
 "use client";
 import React, { forwardRef, useEffect, useState, useRef } from "react";
 
-export interface SelectProps
-  extends Omit<
-    React.SelectHTMLAttributes<HTMLSelectElement>,
-    "size" | "onChange" | "onBlur" | "onFocus" | "value"
-  > {
+export interface SelectProps extends Omit<
+  React.SelectHTMLAttributes<HTMLSelectElement>,
+  "size" | "onChange" | "onBlur" | "onFocus" | "value"
+> {
   label?: string;
   description?: string;
   error?: string;
@@ -56,10 +55,10 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
       onSearchChange,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [internalError, setInternalError] = useState<string | undefined>(
-      error
+      error,
     );
     const [hasBeenTouched, setHasBeenTouched] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
@@ -127,7 +126,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
     // Filter data based on search term
     const filteredData =
       data?.filter((item) =>
-        item.label.toLowerCase().includes(searchTerm.toLowerCase())
+        item.label.toLowerCase().includes(searchTerm.toLowerCase()),
       ) || [];
 
     const handleChange = (value: string) => {
@@ -360,7 +359,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Select.displayName = "Select";

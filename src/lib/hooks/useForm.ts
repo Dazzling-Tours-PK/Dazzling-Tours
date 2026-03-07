@@ -105,7 +105,15 @@ export function useForm<T extends object>({
       const fieldError = fieldErrors[field];
 
       if (fieldError !== errors[field]) {
-        setErrorsState((prev) => ({ ...prev, [field]: fieldError }));
+        setErrorsState((prev) => {
+          const newErrors = { ...prev };
+          if (fieldError) {
+            newErrors[field] = fieldError;
+          } else {
+            delete newErrors[field];
+          }
+          return newErrors;
+        });
       }
 
       return !fieldError;
@@ -132,7 +140,15 @@ export function useForm<T extends object>({
   // Set field error
   const setFieldError = useCallback(
     <K extends keyof T>(field: K, error: string | undefined) => {
-      setErrorsState((prev) => ({ ...prev, [field]: error }));
+      setErrorsState((prev) => {
+        const newErrors = { ...prev };
+        if (error) {
+          newErrors[field] = error;
+        } else {
+          delete newErrors[field];
+        }
+        return newErrors;
+      });
     },
     [],
   );

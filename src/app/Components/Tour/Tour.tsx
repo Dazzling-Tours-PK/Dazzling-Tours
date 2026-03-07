@@ -112,7 +112,7 @@ const Tour = () => {
   // Handle difficulty filter change
   const handleDifficultyChange = (
     difficulty: TourDifficulty,
-    checked: boolean
+    checked: boolean,
   ) => {
     setSelectedDifficulties((prev) => {
       if (checked) {
@@ -408,12 +408,12 @@ const Tour = () => {
                               <input
                                 type="checkbox"
                                 checked={selectedLocations.includes(
-                                  location.name
+                                  location.name,
                                 )}
                                 onChange={(e) =>
                                   handleLocationChange(
                                     location.name,
-                                    e.target.checked
+                                    e.target.checked,
                                   )
                                 }
                               />
@@ -475,12 +475,12 @@ const Tour = () => {
                               <input
                                 type="checkbox"
                                 checked={selectedDifficulties.includes(
-                                  difficulty.value as TourDifficulty
+                                  difficulty.value as TourDifficulty,
                                 )}
                                 onChange={(e) =>
                                   handleDifficultyChange(
                                     difficulty.value as TourDifficulty,
-                                    e.target.checked
+                                    e.target.checked,
                                   )
                                 }
                               />

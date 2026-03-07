@@ -46,7 +46,7 @@ const ContactQueryDetails = ({
         onError: (error) => {
           showError(error.message || "Failed to update contact query status");
         },
-      }
+      },
     );
   };
 
@@ -116,7 +116,7 @@ const ContactQueryDetails = ({
                   </span>
                   <span
                     className={`status-badge ${getStatusBadgeClass(
-                      query.status
+                      query.status,
                     )}`}
                   >
                     {query.status}

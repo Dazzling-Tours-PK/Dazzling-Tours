@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
         value: difficulty,
         label: difficulty,
         count: difficultyCounts[difficulty] || 0,
-      })
+      }),
     );
 
     return NextResponse.json({
@@ -51,7 +51,7 @@ export async function GET(request: NextRequest) {
     console.error("Error fetching tour difficulties:", error);
     return NextResponse.json(
       { success: false, error: "Failed to fetch tour difficulties" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -12,7 +12,7 @@ export async function POST(request: NextRequest) {
     if (!email || !type) {
       return NextResponse.json(
         { success: false, message: "Email and OTP type are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     if (!validTypes.includes(type)) {
       return NextResponse.json(
         { success: false, message: "Invalid OTP type" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     if (!user) {
       return NextResponse.json(
         { success: false, message: "User not found" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
           success: false,
           message: "Access denied. Super admin privileges required",
         },
-        { status: 403 }
+        { status: 403 },
       );
     }
 
@@ -80,13 +80,13 @@ export async function POST(request: NextRequest) {
           otp: process.env.NODE_ENV === "development" ? otpCode : undefined,
         },
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Send OTP error:", error);
     return NextResponse.json(
       { success: false, message: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

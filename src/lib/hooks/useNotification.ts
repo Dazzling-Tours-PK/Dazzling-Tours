@@ -12,7 +12,7 @@ export const useNotification = () => {
         title?: string;
         duration?: number;
         action?: { label: string; onClick: () => void };
-      }
+      },
     ) => {
       return showNotification({
         type: "success",
@@ -22,7 +22,7 @@ export const useNotification = () => {
         action: options?.action,
       });
     },
-    [showNotification]
+    [showNotification],
   );
 
   const showError = useCallback(
@@ -32,7 +32,7 @@ export const useNotification = () => {
         title?: string;
         duration?: number;
         action?: { label: string; onClick: () => void };
-      }
+      },
     ) => {
       return showNotification({
         type: "error",
@@ -42,7 +42,7 @@ export const useNotification = () => {
         action: options?.action,
       });
     },
-    [showNotification]
+    [showNotification],
   );
 
   const showWarning = useCallback(
@@ -52,7 +52,7 @@ export const useNotification = () => {
         title?: string;
         duration?: number;
         action?: { label: string; onClick: () => void };
-      }
+      },
     ) => {
       return showNotification({
         type: "warning",
@@ -62,7 +62,7 @@ export const useNotification = () => {
         action: options?.action,
       });
     },
-    [showNotification]
+    [showNotification],
   );
 
   const showInfo = useCallback(
@@ -72,7 +72,7 @@ export const useNotification = () => {
         title?: string;
         duration?: number;
         action?: { label: string; onClick: () => void };
-      }
+      },
     ) => {
       return showNotification({
         type: "info",
@@ -82,7 +82,7 @@ export const useNotification = () => {
         action: options?.action,
       });
     },
-    [showNotification]
+    [showNotification],
   );
 
   const showLoading = useCallback(
@@ -95,7 +95,7 @@ export const useNotification = () => {
         autoClose: false,
       });
     },
-    [showNotification]
+    [showNotification],
   );
 
   return {

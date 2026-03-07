@@ -10,12 +10,12 @@ import { useNotification } from "./useNotification";
 export const withGlobalError = <TData, TError, TVariables, TContext>(
   mutationFn: (
     variables: TVariables,
-    options?: UseMutationOptions<TData, TError, TVariables, TContext>
-  ) => UseMutationResult<TData, TError, TVariables, TContext>
+    options?: UseMutationOptions<TData, TError, TVariables, TContext>,
+  ) => UseMutationResult<TData, TError, TVariables, TContext>,
 ) => {
   return (
     variables: TVariables,
-    options?: UseMutationOptions<TData, TError, TVariables, TContext>
+    options?: UseMutationOptions<TData, TError, TVariables, TContext>,
   ) => {
     const { showError } = useNotification();
 
@@ -25,7 +25,7 @@ export const withGlobalError = <TData, TError, TVariables, TContext>(
         error: TError,
         variables: TVariables,
         onMutateResult: TContext | undefined,
-        context: unknown
+        context: unknown,
       ) => {
         // Call custom error handler if provided
         if (options?.onError) {
@@ -34,7 +34,7 @@ export const withGlobalError = <TData, TError, TVariables, TContext>(
               error: TError,
               variables: TVariables,
               onMutateResult: TContext | undefined,
-              context: unknown
+              context: unknown,
             ) => void
           )(error, variables, onMutateResult, context);
         }
@@ -43,7 +43,7 @@ export const withGlobalError = <TData, TError, TVariables, TContext>(
         showError(
           error instanceof Error
             ? error.message
-            : "An unexpected error occurred"
+            : "An unexpected error occurred",
         );
       },
     });
@@ -53,8 +53,8 @@ export const withGlobalError = <TData, TError, TVariables, TContext>(
 // Higher-order function to wrap queries with global error handling
 export const withGlobalQueryError = <TData, TError>(
   queryFn: (
-    options?: UseQueryOptions<TData, TError>
-  ) => UseQueryResult<TData, TError>
+    options?: UseQueryOptions<TData, TError>,
+  ) => UseQueryResult<TData, TError>,
 ) => {
   return (options?: UseQueryOptions<TData, TError>) => {
     return queryFn(options);

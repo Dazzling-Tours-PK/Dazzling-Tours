@@ -79,8 +79,10 @@ export const AdminFormLabel: React.FC<AdminFormLabelProps> = ({
   );
 };
 
-export interface AdminFormControlProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
+export interface AdminFormControlProps extends Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "size"
+> {
   error?: boolean;
   errorMessage?: string;
   success?: boolean;
@@ -118,8 +120,7 @@ export const AdminFormControl: React.FC<AdminFormControlProps> = ({
 };
 
 // Admin Button Components
-export interface AdminButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface AdminButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "link";
   size?: "sm" | "md" | "lg";
   isLoading?: boolean;

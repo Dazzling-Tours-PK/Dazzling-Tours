@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useRef, useCallback } from "react";
 import Image from "next/image";
-import { useNotification } from "@/lib/hooks";
+import { useNotification, useUploadImages, useDeleteImage } from "@/lib/hooks";
 import { Group, ActionIcon } from "../Common";
 
 export interface ImageUploadProps {
@@ -34,11 +34,13 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
     className = "",
     disabled = false,
   }) => {
-    const { showError } = useNotification();
+    const { showError, showSuccess } = useNotification();
     const [isDragOver, setIsDragOver] = useState(false);
-    const [isUploading, setIsUploading] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const onChangeRef = useRef(onChange);
+
+    const uploadMutation = useUploadImages();
+    const deleteMutation = useDeleteImage();
 
     // Update ref when onChange changes
     React.useEffect(() => {
@@ -63,8 +65,12 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
           "files",
         );
 
-        if (!files || disabled) {
-          console.log("No files or disabled:", { files: !!files, disabled });
+        if (!files || disabled || uploadMutation.isPending) {
+          console.log("No files, disabled, or already uploading:", { 
+            files: !!files, 
+            disabled, 
+            uploading: uploadMutation.isPending 
+          });
           return;
         }
 
@@ -101,35 +107,18 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
         }
 
         console.log("Starting file upload to Cloudinary...");
-        setIsUploading(true);
 
         try {
-          // Upload files to Cloudinary via API
+          // Upload files to Cloudinary via mutation
           const formData = new FormData();
           validFiles.forEach((file) => {
             formData.append("files", file);
           });
-          // Optional: add folder parameter if needed
-          // formData.append("folder", "tours");
 
-          const response = await fetch("/api/upload", {
-            method: "POST",
-            body: formData,
-          });
-
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || "Failed to upload images");
-          }
-
-          const result = await response.json();
-
-          if (!result.success || !result.data) {
-            throw new Error("Upload failed: Invalid response from server");
-          }
+          const result = await uploadMutation.mutateAsync(formData);
 
           // Extract URLs from Cloudinary response
-          const newUrls = result.data.map((item: { url: string }) => item.url);
+          const newUrls = result.data.map((item) => item.url);
 
           const updatedUrls = multiple ? [...value, ...newUrls] : newUrls;
           console.log("Images uploaded successfully:", {
@@ -140,7 +129,11 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
 
           // Call onChange using ref to avoid dependency issues
           onChangeRef.current?.(updatedUrls);
-          console.log("onChange called with", updatedUrls.length, "images");
+          showSuccess("Images uploaded successfully");
+          
+          if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+          }
         } catch (err) {
           console.error("Error uploading files:", err);
           showError(
@@ -148,12 +141,9 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
               ? err.message
               : "Error uploading images. Please try again.",
           );
-        } finally {
-          setIsUploading(false);
-          console.log("File upload completed");
         }
       },
-      [value, multiple, maxFiles, maxSize, acceptedTypes, disabled, showError],
+      [value, multiple, maxFiles, maxSize, acceptedTypes, disabled, showError, showSuccess, uploadMutation],
     );
 
     const handleDrop = useCallback(
@@ -195,30 +185,41 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
     );
 
     const removeImage = useCallback(
-      (index: number) => {
-        if (disabled) return;
-        console.log("Removing image at index:", index);
-        console.log("Current images:", value.length);
+      async (index: number) => {
+        if (disabled || deleteMutation.isPending) return;
+        
+        const imageUrl = value[index];
+        console.log("Removing image at index:", index, "URL:", imageUrl);
+        
+        // Optimistically update UI
         const newUrls = value.filter((_, i) => i !== index);
-        console.log("New images count:", newUrls.length);
-        console.log("Calling onChange with:", newUrls);
-
-        // Try both onChange methods to ensure state update
+        
         if (onChangeRef.current) {
           onChangeRef.current(newUrls);
         } else if (onChange) {
           onChange(newUrls);
         }
+
+        // Call API to delete from Cloudinary via mutation
+        try {
+          await deleteMutation.mutateAsync({ url: imageUrl });
+          console.log("Image deleted from Cloudinary successfully");
+        } catch (err) {
+          console.error("Error calling delete API:", err);
+          // Optional: handle error notification
+        }
       },
-      [value, disabled, onChange],
+      [value, disabled, onChange, deleteMutation],
     );
 
     const canAddMore = value.length < maxFiles;
 
     const handleUploadAreaClick = useCallback(() => {
-      if (disabled || !canAddMore) return;
+      if (disabled || !canAddMore || uploadMutation.isPending) return;
       fileInputRef.current?.click();
-    }, [disabled, canAddMore]);
+    }, [disabled, canAddMore, uploadMutation.isPending]);
+
+    const isUploading = uploadMutation.isPending;
 
     return (
       <div className={`form-group ${className}`}>
@@ -234,13 +235,13 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
         {/* Upload Area */}
         <div
           className={`image-upload-area ${isDragOver ? "drag-over" : ""} ${
-            disabled ? "disabled" : ""
-          } ${canAddMore ? "clickable" : ""}`}
+            disabled || isUploading ? "disabled" : ""
+          } ${canAddMore && !isUploading ? "clickable" : ""}`}
           onDrop={handleDrop}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onClick={handleUploadAreaClick}
-          style={{ cursor: disabled || !canAddMore ? "default" : "pointer" }}
+          style={{ cursor: disabled || !canAddMore || isUploading ? "default" : "pointer" }}
         >
           <input
             ref={fileInputRef}
@@ -249,11 +250,11 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
             accept={acceptedTypes.join(",")}
             onChange={handleFileInputChange}
             className="hidden"
-            disabled={disabled}
+            disabled={disabled || isUploading}
           />
 
           <div className="upload-content">
-            <i className="bi bi-cloud-upload upload-icon"></i>
+            <i className={`bi ${isUploading ? "bi-arrow-repeat spin" : "bi-cloud-upload"} upload-icon`}></i>
             <p className="upload-text">
               {isUploading
                 ? "Uploading..."
@@ -294,8 +295,9 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
                       removeImage(index);
                     }}
                     title="Remove image"
+                    disabled={deleteMutation.isPending}
                   >
-                    <i className="bi bi-x"></i>
+                    <i className={`bi ${deleteMutation.isPending ? "bi-arrow-repeat spin" : "bi-x"}`}></i>
                   </ActionIcon>
                 )}
               </div>

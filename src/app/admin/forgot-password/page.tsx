@@ -55,7 +55,7 @@ const ForgotPasswordPage = () => {
           title="Check Your Email"
           subtitle={
             <>
-              We've sent a 6-digit verification code to <br />
+              We&apos;ve sent a 6-digit verification code to <br />
               <span className="font-bold text-gray-900">{submittedEmail}</span>
             </>
           }

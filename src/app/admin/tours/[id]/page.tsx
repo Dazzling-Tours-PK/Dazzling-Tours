@@ -37,7 +37,7 @@ import {
   filterValidImageUrl,
 } from "@/lib/utils/imageUtils";
 
-const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
+const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
   const router = useRouter();
   const resolvedParams = use(params);
   const { data, isLoading } = useGetTour(resolvedParams.id);
@@ -65,14 +65,14 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
   const form = useForm<UpdateTourData>({
     initialValues: {
       _id: resolvedParams.id,
-      title: "",
-      description: "",
-      shortDescription: "",
+      title: "New Tour Draft",
+      description: "Draft Description",
+      shortDescription: "Draft Short Description",
       price: 0,
       priceType: TourPriceType.PER_PERSON,
-      duration: "",
-      location: "",
-      category: "",
+      duration: "Draft Duration",
+      location: "Draft Location",
+      category: "Draft Category",
       images: [],
       highlights: [],
       itinerary: [],
@@ -83,7 +83,7 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
       rating: 0,
       reviews: 0,
       featured: false,
-      status: TourStatus.ACTIVE,
+      status: TourStatus.DRAFT,
       seo: {
         metaTitle: "",
         metaDescription: "",
@@ -122,38 +122,84 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
         filteredOgImage = filterValidImageUrl(tour.seo.ogImage);
       }
 
-      form.setValues({
-        _id: resolvedParams.id,
-        title: tour.title || "",
-        description: tour.description || "",
-        shortDescription: tour.shortDescription || "",
-        price: tour.price || 0,
-        priceType: tour.priceType || TourPriceType.PER_PERSON,
-        duration: tour.duration || "",
-        location: tour.location || "",
-        category: tour.category || "",
-        images: filteredImages, // Use filtered images (no data URLs)
-        highlights: tour.highlights || [],
-        itinerary: tour.itinerary || [],
-        includes: tour.includes || [],
-        excludes: tour.excludes || [],
-        difficulty: tour.difficulty || TourDifficulty.EASY,
-        groupSize: tour.groupSize || 10,
-        rating: tour.rating || 0,
-        reviews: tour.reviews || 0,
-        featured: tour.featured || false,
-        status: tour.status || TourStatus.ACTIVE,
-        seo: {
-          metaTitle: tour.seo?.metaTitle || "",
-          metaDescription: tour.seo?.metaDescription || "",
-          slug: tour.seo?.slug || "",
-          focusKeyword: tour.seo?.focusKeyword || "",
-          ogImage: filteredOgImage, // Use filtered ogImage (no data URLs)
+      form.setValues(
+        {
+          _id: resolvedParams.id,
+          title: tour.title || "",
+          description: tour.description || "",
+          shortDescription: tour.shortDescription || "",
+          price: tour.price || 0,
+          priceType: tour.priceType,
+          duration: tour.duration || "",
+          location: tour.location || "",
+          category: tour.category || "",
+          images: filteredImages, // Use filtered images (no data URLs)
+          highlights: tour.highlights || [],
+          itinerary: tour.itinerary || [],
+          includes: tour.includes || [],
+          excludes: tour.excludes || [],
+          difficulty: tour.difficulty,
+          groupSize: tour.groupSize || 10,
+          rating: tour.rating || 0,
+          reviews: tour.reviews || 0,
+          featured: tour.featured || false,
+          status: tour.status,
+          seo: {
+            metaTitle: tour.seo?.metaTitle || "",
+            metaDescription: tour.seo?.metaDescription || "",
+            slug: tour.seo?.slug || "",
+            focusKeyword: tour.seo?.focusKeyword || "",
+            ogImage: filteredOgImage, // Use filtered ogImage (no data URLs)
+          },
         },
-      });
+        { shouldReinitialize: true },
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tour, resolvedParams.id]);
+
+  // Debounced Auto-Save
+  const debouncedValues = useDebounceValue(form.values, 3000);
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    // Only auto-save if the form is dirty.
+    // We check form.isDirty here rather than in the dependencies to avoid
+    // triggering a save with stale debouncedValues when the form first becomes dirty.
+    if (!form.isDirty) return;
+
+    const autoSave = async () => {
+      try {
+        await updateTourMutation.mutateAsync({
+          ...debouncedValues,
+          _id: resolvedParams.id,
+        });
+        // Sync original values baseline with the saved state to clear dirty flags
+        // We use baselineSyncOnly: true to prevent overwriting user's active typing
+        form.setValues(debouncedValues, { baselineSyncOnly: true });
+      } catch (err) {
+        console.error("[ManageTour] Auto-save failed:", err);
+      }
+    };
+
+    autoSave();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedValues, resolvedParams.id, isLoading]);
+
+  // Navigation Guard: Warn user before leaving page with unsaved changes
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (form.isDirty) {
+        e.preventDefault();
+        e.returnValue = "";
+        return "";
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [form.isDirty]);
 
   const handleSubmit = form.handleSubmit(async (values) => {
     // ImageUpload component already uploads to Cloudinary and returns only Cloudinary URLs
@@ -186,8 +232,8 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <Page
-      title="Edit Tour"
-      description="Update tour details and settings"
+      title="Manage Tour"
+      description="Update tour details, manage images, and configure settings"
       loading={isLoading}
       headerActions={
         <Button
@@ -682,4 +728,4 @@ const EditTour = ({ params }: { params: Promise<{ id: string }> }) => {
   );
 };
 
-export default EditTour;
+export default ManageTour;

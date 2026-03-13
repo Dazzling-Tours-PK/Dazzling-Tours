@@ -475,7 +475,7 @@ tr:hover {
 }
 
 .form-description {
-  margin: 0 0 4px 0;
+  margin: 0 0 2px 0;
   color: #6c757d;
   font-size: 0.9rem;
   font-style: italic;
@@ -495,7 +495,7 @@ tr:hover {
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 1rem !important;
 }
 
 .form-group label {
@@ -939,14 +939,14 @@ tr:hover {
 .form-description {
   font-size: 0.85rem;
   color: #6c757d;
-  margin: 0.25rem 0;
+  margin: 0px 0 2px 0;
   line-height: 1.4;
 }
 
 .form-error {
   font-size: 0.8rem;
   color: #dc3545;
-  margin: 0.5rem 0 0 0;
+  margin: 1px 0 0 0;
   display: flex;
   align-items: center;
 }
@@ -965,6 +965,20 @@ tr:hover {
   background-color: white;
   appearance: none;
   background-image: none;
+}
+
+textarea.form-input-base {
+  height: auto !important;
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
+  min-height: 80px;
+  line-height: 1.5;
+}
+
+select.form-input-base {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  line-height: 1.5;
 }
 
 .form-input-base:focus {
@@ -1023,7 +1037,7 @@ tr:hover {
 /* Form Input Container */
 .form-input-container {
   position: relative;
-  margin-top: 0;
+  margin-top: 0px;
 }
 
 .form-input-icon-left {
@@ -1051,11 +1065,11 @@ tr:hover {
 }
 
 .form-input-with-left-icon {
-  padding-left: 2.5rem;
+  padding-left: 2.75rem !important;
 }
 
 .form-input-with-right-icon {
-  padding-right: 2.25rem;
+  padding-right: 2.25rem !important;
 }
 
 .form-error-icon {
@@ -1088,11 +1102,11 @@ tr:hover {
 }
 
 .form-mt-1 {
-  margin-top: 0.25rem;
+  margin-top: 2px;
 }
 
 .form-mt-2 {
-  margin-top: 0.5rem;
+  margin-top: 4px;
 }
 
 .form-flex-1 {
@@ -1226,7 +1240,7 @@ tr:hover {
 .form-error {
   color: #dc2626;
   font-size: 0.875rem;
-  margin-top: 0.25rem;
+  margin-top: 0px;
   display: flex;
   align-items: center;
   gap: 0.25rem;
@@ -3452,8 +3466,7 @@ tr:hover {
   align-items: center;
   justify-content: space-between;
   position: relative;
-  min-height: 38px;
-  padding: 8px 12px;
+  padding: 0 12px;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   background-color: #ffffff;

@@ -35,6 +35,7 @@ export interface MongoQuery {
     | number
     | { $regex: string; $options: string }
     | { $in: (string | number)[] }
+    | { $ne: unknown }
     | { $or: Array<{ [key: string]: { $regex: string; $options: string } }> }
     | Array<{ [key: string]: { $regex: string; $options: string } }>
     | undefined

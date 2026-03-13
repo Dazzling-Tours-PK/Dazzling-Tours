@@ -149,7 +149,7 @@ const AdminDashboard = () => {
             }}
           >
             <Link
-              href="/admin/tours/add"
+              href="/admin/tours"
               className="btn btn-primary"
               style={{
                 flex: "1 1 auto",

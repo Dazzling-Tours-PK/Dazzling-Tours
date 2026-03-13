@@ -1,11 +1,15 @@
 export enum TourStatus {
+  DRAFT = "Draft",
   ACTIVE = "Active",
   INACTIVE = "Inactive",
+  ARCHIVED = "Archived",
 }
 
 export const TOUR_STATUS_OPTIONS = [
+  { value: TourStatus.DRAFT, label: "Draft" },
   { value: TourStatus.ACTIVE, label: "Active" },
   { value: TourStatus.INACTIVE, label: "Inactive" },
+  { value: TourStatus.ARCHIVED, label: "Archived" },
 ] as { value: TourStatus; label: string }[];
 
 export enum TourDifficulty {

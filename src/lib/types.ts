@@ -1,12 +1,14 @@
-// MongoDB Query Types
 export interface MongoQuery {
   [key: string]:
     | string
     | boolean
     | number
     | { $regex: string; $options: string }
+    | { $in: (string | number)[] }
+    | { $ne: unknown }
     | Array<{ [key: string]: { $regex: string; $options: string } }>
-    | undefined;
+    | undefined
+    | Record<string, unknown>;
 }
 
 // API Response Types

@@ -176,3 +176,44 @@ export function verifyCloudinaryConfig(): boolean {
       process.env.CLOUDINARY_API_SECRET)
   );
 }
+
+/**
+ * Extract public_id from a Cloudinary URL
+ */
+export function extractPublicIdFromUrl(url: string): string | null {
+  try {
+    // Standard Cloudinary URL format: 
+    // https://res.cloudinary.com/[cloud_name]/[resource_type]/upload/v[version]/[public_id].[extension]
+    // or with transformations:
+    // https://res.cloudinary.com/[cloud_name]/[resource_type]/upload/[transformations]/v[version]/[public_id].[extension]
+    
+    if (!url || !url.includes("cloudinary.com")) return null;
+
+    const parts = url.split("/");
+    const uploadIndex = parts.indexOf("upload");
+    if (uploadIndex === -1) return null;
+
+    // Find the version part (v followed by digits)
+    let versionIndex = -1;
+    for (let i = uploadIndex + 1; i < parts.length; i++) {
+      if (parts[i].startsWith("v") && /^\d+$/.test(parts[i].substring(1))) {
+        versionIndex = i;
+        break;
+      }
+    }
+
+    // If version index is found, the public ID starts after it
+    // If not found, it might be right after 'upload' or transformations
+    // But Cloudinary usually provides a version.
+    const startIndex = versionIndex !== -1 ? versionIndex + 1 : uploadIndex + 1;
+    
+    // Join the remaining parts to get public_id with extension
+    const publicIdWithExtension = parts.slice(startIndex).join("/");
+    
+    // Remove the file extension (last dot and everything after it)
+    return publicIdWithExtension.replace(/\.[^/.]+$/, "");
+  } catch (error) {
+    console.error("Error extracting publicId from URL:", error);
+    return null;
+  }
+}

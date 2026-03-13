@@ -48,10 +48,7 @@ export const tourSchema = z.object({
     .max(200, "Short description must be less than 200 characters")
     .trim(),
 
-  price: z
-    .number()
-    .min(0, "Price must be greater than or equal to 0")
-    .refine((val) => val > 0, { message: "Price must be greater than 0" }),
+  price: z.number().min(0, "Price must be greater than or equal to 0"),
 
   priceType: z
     .enum(["Per Person", "Couple (2 Persons)", "Group", "Package"], {
@@ -198,9 +195,17 @@ export const tourSchema = z.object({
   featured: z.boolean().default(false),
 
   status: z
-    .enum([TourStatus.ACTIVE, TourStatus.INACTIVE], {
-      message: "Status must be Active or Inactive",
-    })
+    .enum(
+      [
+        TourStatus.ACTIVE,
+        TourStatus.INACTIVE,
+        TourStatus.DRAFT,
+        TourStatus.ARCHIVED,
+      ],
+      {
+        message: "Status must be Active, Inactive, Draft, or Archived",
+      },
+    )
     .default(TourStatus.ACTIVE),
 
   // SEO fields (optional)

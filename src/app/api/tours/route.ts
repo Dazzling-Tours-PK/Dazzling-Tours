@@ -5,6 +5,7 @@ import { MongoQuery } from "@/lib/types";
 import { cleanTourData } from "@/lib/utils/dataCleaning";
 import { deleteMultipleImages } from "@/lib/services/cloudinaryService";
 import { extractPublicId } from "@/lib/utils/imageUtils";
+import { TourStatus } from "@/lib/enums";
 
 // GET /api/tours - Get all tours
 export async function GET(request: NextRequest) {
@@ -23,9 +24,12 @@ export async function GET(request: NextRequest) {
 
     const query: MongoQuery = {};
 
-    // Apply status filter: if provided and not "all", use it; otherwise show all tours
+    // Apply status filter: if provided and not "all", use it; otherwise show all tours except drafts
     if (status && status !== "all") {
       query.status = status;
+    } else if (!status || status === "") {
+      // By default, don't show drafts to the public
+      query.status = { $ne: TourStatus.DRAFT };
     }
 
     if (category) query.category = category;
@@ -123,35 +127,37 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
 
-    // Validate required fields
-    const requiredFields = [
-      "title",
-      "description",
-      "shortDescription",
-      "price",
-      "duration",
-      "location",
-      "category",
-    ];
-    for (const field of requiredFields) {
-      if (!body[field]) {
+    // Validate required fields (skip for drafts)
+    if (body.status !== "Draft") {
+      const requiredFields = [
+        "title",
+        "description",
+        "shortDescription",
+        "price",
+        "duration",
+        "location",
+        "category",
+      ];
+      for (const field of requiredFields) {
+        if (!body[field]) {
+          return NextResponse.json(
+            { success: false, error: `${field} is required` },
+            { status: 400 },
+          );
+        }
+      }
+
+      // Validate price is positive
+      if (body.price <= 0) {
         return NextResponse.json(
-          { success: false, error: `${field} is required` },
+          { success: false, error: "Price must be greater than 0" },
           { status: 400 },
         );
       }
     }
 
-    // Validate price is positive
-    if (body.price <= 0) {
-      return NextResponse.json(
-        { success: false, error: "Price must be greater than 0" },
-        { status: 400 },
-      );
-    }
-
-    // Validate rating is between 0 and 5
-    if (body.rating && (body.rating < 0 || body.rating > 5)) {
+    // Validate rating is between 0 and 5 if provided
+    if (body.rating !== undefined && (body.rating < 0 || body.rating > 5)) {
       return NextResponse.json(
         { success: false, error: "Rating must be between 0 and 5" },
         { status: 400 },

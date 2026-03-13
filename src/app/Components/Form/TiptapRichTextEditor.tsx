@@ -66,7 +66,7 @@ const TiptapRichTextEditor: React.FC<TiptapRichTextEditorProps> = ({
   });
 
   useEffect(() => {
-    if (editor && value !== editor.getHTML()) {
+    if (editor && !editor.isFocused && value !== editor.getHTML()) {
       editor.commands.setContent(value);
     }
   }, [editor, value]);

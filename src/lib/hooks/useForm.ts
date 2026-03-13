@@ -1,5 +1,5 @@
 "use client";
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { z } from "zod";
 
 export interface FormField<T = unknown> {
@@ -26,6 +26,7 @@ export interface UseFormOptions<T extends object> {
   validateOnBlur?: boolean;
   onSubmit?: (values: T) => void | Promise<void>;
   onValidationError?: (errors: Partial<Record<keyof T, string>>) => void;
+  persistKey?: string;
 }
 
 export interface UseFormReturn<T extends object> {
@@ -36,16 +37,29 @@ export interface UseFormReturn<T extends object> {
   isValid: boolean;
   isSubmitting: boolean;
   isDirty: boolean;
-  setFieldValue: <K extends keyof T>(field: K, value: T[K]) => void;
+  setFieldValue: <K extends keyof T>(
+    field: K,
+    value: T[K],
+    options?: { shouldMarkDirty?: boolean },
+  ) => void;
   setFieldError: <K extends keyof T>(
     field: K,
     error: string | undefined,
   ) => void;
   setFieldTouched: <K extends keyof T>(field: K, touched: boolean) => void;
-  setValues: (values: Partial<T>) => void;
+  setValues: (
+    values: Partial<T>,
+    options?: {
+      shouldMarkDirty?: boolean;
+      shouldReinitialize?: boolean;
+      baselineSyncOnly?: boolean;
+    },
+  ) => void;
   setErrors: (errors: Partial<Record<keyof T, string>>) => void;
   setTouched: (touched: Partial<Record<keyof T, boolean>>) => void;
+  setDirty: (isDirty: boolean) => void;
   reset: () => void;
+  clearDraft: () => void;
   validate: () => boolean;
   validateField: <K extends keyof T>(field: K) => boolean;
   handleSubmit: (
@@ -69,6 +83,7 @@ export function useForm<T extends object>({
   validateOnBlur = true,
   onSubmit,
   onValidationError,
+  persistKey,
 }: UseFormOptions<T>): UseFormReturn<T> {
   const [values, setValuesState] = useState<T>(initialValues);
   const [errors, setErrorsState] = useState<Partial<Record<keyof T, string>>>(
@@ -82,6 +97,30 @@ export function useForm<T extends object>({
   );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const initialValuesRef = useRef(initialValues);
+  const isInitialized = useRef(false);
+
+  // Load from localStorage on mount
+  useEffect(() => {
+    if (persistKey && typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem(persistKey);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          setValuesState((prev) => ({ ...prev, ...parsed }));
+        }
+      } catch (e) {
+        console.error("Failed to load form draft:", e);
+      }
+    }
+    isInitialized.current = true;
+  }, [persistKey]);
+
+  // Save to localStorage on change
+  useEffect(() => {
+    if (persistKey && isInitialized.current && typeof window !== "undefined") {
+      localStorage.setItem(persistKey, JSON.stringify(values));
+    }
+  }, [values, persistKey]);
 
   // Calculate derived state
   const isValid = Object.keys(errors).length === 0;
@@ -123,12 +162,19 @@ export function useForm<T extends object>({
 
   // Set field value
   const setFieldValue = useCallback(
-    <K extends keyof T>(field: K, value: T[K]) => {
+    <K extends keyof T>(
+      field: K,
+      value: T[K],
+      options?: { shouldMarkDirty?: boolean },
+    ) => {
       setValuesState((prev) => ({ ...prev, [field]: value }));
-      setDirtyState((prev) => ({
-        ...prev,
-        [field]: value !== initialValuesRef.current[field],
-      }));
+
+      if (options?.shouldMarkDirty !== false) {
+        setDirtyState((prev) => ({
+          ...prev,
+          [field]: value !== initialValuesRef.current[field],
+        }));
+      }
 
       if (validateOnChange) {
         validateField(field);
@@ -166,17 +212,49 @@ export function useForm<T extends object>({
   );
 
   // Set multiple values
-  const setValues = useCallback((newValues: Partial<T>) => {
-    setValuesState((prev) => ({ ...prev, ...newValues }));
-    setDirtyState((prev) => {
-      const newDirty = { ...prev };
-      Object.keys(newValues).forEach((key) => {
-        const field = key as keyof T;
-        newDirty[field] = newValues[field] !== initialValuesRef.current[field];
-      });
-      return newDirty;
-    });
-  }, []);
+  const setValues = useCallback(
+    (
+      newValues: Partial<T>,
+      options?: {
+        shouldMarkDirty?: boolean;
+        shouldReinitialize?: boolean;
+        baselineSyncOnly?: boolean;
+      },
+    ) => {
+      if (!options?.baselineSyncOnly) {
+        setValuesState((prev) => ({ ...prev, ...newValues }));
+      }
+
+      if (options?.shouldReinitialize || options?.baselineSyncOnly) {
+        initialValuesRef.current = {
+          ...initialValuesRef.current,
+          ...newValues,
+        };
+        // Reset dirty state for fields that were just synced
+        setDirtyState((prev) => {
+          const newDirty = { ...prev };
+          Object.keys(newValues).forEach((key) => {
+            delete newDirty[key as keyof T];
+          });
+          return newDirty;
+        });
+        return;
+      }
+
+      if (options?.shouldMarkDirty !== false) {
+        setDirtyState((prev) => {
+          const newDirty = { ...prev };
+          Object.keys(newValues).forEach((key) => {
+            const field = key as keyof T;
+            newDirty[field] =
+              newValues[field] !== initialValuesRef.current[field];
+          });
+          return newDirty;
+        });
+      }
+    },
+    [],
+  );
 
   // Set multiple errors
   const setErrors = useCallback(
@@ -194,6 +272,23 @@ export function useForm<T extends object>({
     [],
   );
 
+  // Set dirty state manually
+  const setDirty = useCallback((isDirty: boolean) => {
+    if (!isDirty) {
+      setDirtyState({});
+    } else {
+      // Mark all as dirty if needed, but usually we just want to clear it
+      const allDirty = Object.keys(values).reduce(
+        (acc, key) => {
+          acc[key as keyof T] = true;
+          return acc;
+        },
+        {} as Partial<Record<keyof T, boolean>>,
+      );
+      setDirtyState(allDirty);
+    }
+  }, [values]);
+
   // Reset form
   const reset = useCallback(() => {
     setValuesState(initialValuesRef.current);
@@ -202,6 +297,13 @@ export function useForm<T extends object>({
     setDirtyState({});
     setIsSubmitting(false);
   }, []);
+
+  // Clear localStorage draft
+  const clearDraft = useCallback(() => {
+    if (persistKey && typeof window !== "undefined") {
+      localStorage.removeItem(persistKey);
+    }
+  }, [persistKey]);
 
   // Handle form submission
   const handleSubmit = useCallback(
@@ -293,7 +395,9 @@ export function useForm<T extends object>({
     setValues,
     setErrors,
     setTouched,
+    setDirty,
     reset,
+    clearDraft,
     validate: validateForm,
     validateField,
     handleSubmit,

@@ -23,3 +23,4 @@ export * from "./useAuth";
 export * from "./useForm";
 export * from "./useDebounceValue";
 export * from "./useAdminSeed";
+export * from "./useUpload";

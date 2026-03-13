@@ -124,7 +124,11 @@ const Sidebar = () => {
                   {item.children.map((child) => (
                     <li key={child.title}>
                       <Link
-                        href={child.href}
+                        href={
+                          child.href === "/admin/tours/add"
+                            ? "/admin/tours"
+                            : child.href
+                        }
                         className={`block px-3 py-2 text-sm rounded-lg transition-colors ${
                           pathname === child.href
                             ? "bg-indigo-500 text-white"

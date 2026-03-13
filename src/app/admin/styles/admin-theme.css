@@ -100,14 +100,14 @@
 
 /* Admin Form Components */
 .admin-form-group {
-  margin-bottom: var(--admin-spacing-md);
+  margin-bottom: var(--admin-spacing-xs);
 }
 
 .admin-form-label {
   display: block;
   font-weight: 500;
   color: var(--admin-text-primary, #171717);
-  margin-bottom: 2px !important;
+  margin-bottom: 0px !important;
   font-size: 0.875rem;
 }
 
@@ -174,31 +174,36 @@
 /* Form Input Sizes */
 .form-input-xs {
   height: var(--control-height-xs) !important;
-  padding: 0 0.75rem !important;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
   font-size: 0.75rem;
 }
 
 .form-input-sm {
   height: var(--control-height-sm) !important;
-  padding: 0 0.75rem !important;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
   font-size: 0.875rem;
 }
 
 .form-input-md {
   height: var(--control-height-md) !important;
-  padding: 0 1rem !important;
+  padding-left: 1rem;
+  padding-right: 1rem;
   font-size: 0.875rem;
 }
 
 .form-input-lg {
   height: var(--control-height-lg) !important;
-  padding: 0 1.25rem !important;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
   font-size: 1rem;
 }
 
 .form-input-xl {
   height: var(--control-height-xl) !important;
-  padding: 0 1.5rem !important;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   font-size: 1.125rem;
 }
 .admin-btn-xs {

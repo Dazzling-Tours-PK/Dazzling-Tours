@@ -38,25 +38,25 @@ export interface ITour extends Document {
 
 const TourSchema = new Schema<ITour>(
   {
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    shortDescription: { type: String, required: true },
-    price: { type: Number, required: true },
+    title: { type: String },
+    description: { type: String },
+    shortDescription: { type: String },
+    price: { type: Number },
     priceType: {
       type: String,
       enum: Object.values(TourPriceType),
       default: TourPriceType.PER_PERSON,
     },
-    duration: { type: String, required: true },
-    location: { type: String, required: true },
-    category: { type: String, required: true },
+    duration: { type: String },
+    location: { type: String },
+    category: { type: String },
     images: [{ type: String }],
     highlights: [{ type: String }],
     itinerary: [
       {
-        day: { type: Number, required: true },
-        title: { type: String, required: true },
-        description: { type: String, required: true },
+        day: { type: Number },
+        title: { type: String },
+        description: { type: String },
       },
     ],
     includes: [{ type: String }],
@@ -70,7 +70,11 @@ const TourSchema = new Schema<ITour>(
     rating: { type: Number, default: 0, min: 0, max: 5 },
     reviews: { type: Number, default: 0 },
     featured: { type: Boolean, default: false },
-    status: { type: String, enum: TourStatus, default: TourStatus.ACTIVE },
+    status: {
+      type: String,
+      enum: Object.values(TourStatus),
+      default: TourStatus.ACTIVE,
+    },
     seo: {
       metaTitle: { type: String, default: "" },
       metaDescription: { type: String, default: "" },
@@ -356,6 +360,9 @@ const CommentSchema = new Schema<IComment>(
 );
 
 // Create models
+if (process.env.NODE_ENV === "development") {
+  delete (mongoose.models as Record<string, unknown>).Tour;
+}
 export const Tour =
   mongoose.models.Tour || mongoose.model<ITour>("Tour", TourSchema);
 export const Booking =

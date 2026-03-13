@@ -58,7 +58,7 @@ const ResetPasswordPage = () => {
 
   useEffect(() => {
     if (emailParam) setFieldValue("email", emailParam);
-  }, [emailParam]);
+  }, [emailParam, setFieldValue]);
 
   return (
     <LoginCard>

@@ -3,11 +3,14 @@ import React, { useState } from "react";
 import Link from "next/link";
 import {
   useGetTours,
+  useCreateTour,
   useUpdateTour,
   useDeleteTour,
   useNotification,
   useGetCategories,
 } from "@/lib/hooks";
+import { CreateTourData } from "@/lib/types/tour";
+import { useRouter } from "next/navigation";
 import { TourStatus, TOUR_STATUS_OPTIONS } from "@/lib/enums";
 import { formatCurrency } from "@/lib/utils/currencyConverter";
 import PaginationComponent from "@/app/Components/Common/PaginationComponent";
@@ -25,7 +28,7 @@ const ToursList = () => {
   const { data: toursData, isLoading: loading } = useGetTours({
     page: currentPage,
     limit: pageSize,
-    status: filterStatus === "all" ? undefined : filterStatus,
+    status: filterStatus,
     category: filterCategory === "all" ? undefined : filterCategory,
     featured:
       filterFeatured === "all"
@@ -135,15 +138,56 @@ const ToursList = () => {
     setCurrentPage(page);
   };
 
+  const router = useRouter();
+  const createTourMutation = useCreateTour();
+
+  const handleCreateTour = async () => {
+    try {
+      const result = await createTourMutation.mutateAsync({
+        status: TourStatus.DRAFT,
+        title: "New Tour Draft",
+        description: "Draft Description",
+        shortDescription: "Draft Short Description",
+        price: 0,
+        duration: "Draft Duration",
+        location: "Draft Location",
+        category: "Draft Category",
+        images: [],
+      } as CreateTourData);
+
+      // Successfully created draft, route to unified management page
+      router.push(`/admin/tours/${result.data._id}`);
+    } catch (err) {
+      console.error("Failed to create tour draft:", err);
+    }
+  };
+
   return (
     <Page
       title="Tours Management"
       description="Manage your tour packages, view bookings, and update tour information"
       loading={loading}
       headerActions={
-        <Link href="/admin/tours/add" className="btn btn-primary">
-          <i className="bi bi-plus-circle"></i> Add New Tour
-        </Link>
+        <button
+          onClick={handleCreateTour}
+          className="btn btn-primary"
+          disabled={createTourMutation.isPending}
+        >
+          {createTourMutation.isPending ? (
+            <>
+              <span
+                className="spinner-border spinner-border-sm me-2"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Creating...
+            </>
+          ) : (
+            <>
+              <i className="bi bi-plus-circle"></i> Add New Tour
+            </>
+          )}
+        </button>
       }
     >
       <Stack>
@@ -234,13 +278,13 @@ const ToursList = () => {
                 <td>
                   <div className="action-buttons">
                     <Link
-                      href={`/admin/tours/edit/${tour._id}`}
+                      href={`/admin/tours/${tour._id}`}
                       className="btn btn-sm btn-outline-primary"
                     >
                       <i className="bi bi-pencil"></i>
                     </Link>
                     <Link
-                      href={`/admin/tours/view/${tour._id}`}
+                      href={`/admin/tours/${tour._id}`}
                       className="btn btn-sm btn-outline-info"
                     >
                       <i className="bi bi-eye"></i>

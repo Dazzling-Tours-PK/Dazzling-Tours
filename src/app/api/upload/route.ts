@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { uploadMultipleImages } from "@/lib/services/cloudinaryService";
+import {
+  uploadMultipleImages,
+  deleteImage,
+  extractPublicIdFromUrl,
+} from "@/lib/services/cloudinaryService";
 
 /**
  * POST /api/upload - Upload single or multiple images to Cloudinary
@@ -55,6 +59,47 @@ export async function POST(request: NextRequest) {
         success: false,
         error:
           error instanceof Error ? error.message : "Failed to upload images",
+      },
+      { status: 500 },
+    );
+  }
+}
+
+/**
+ * DELETE /api/upload - Delete an image from Cloudinary
+ */
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const url = searchParams.get("url");
+    const publicId = searchParams.get("publicId");
+
+    let targetPublicId = publicId;
+
+    if (!targetPublicId && url) {
+      targetPublicId = extractPublicIdFromUrl(url);
+    }
+
+    if (!targetPublicId) {
+      return NextResponse.json(
+        { success: false, error: "No publicId or url provided" },
+        { status: 400 },
+      );
+    }
+
+    await deleteImage(targetPublicId);
+
+    return NextResponse.json({
+      success: true,
+      message: "Image deleted successfully",
+    });
+  } catch (error) {
+    console.error("Delete error:", error);
+    return NextResponse.json(
+      {
+        success: false,
+        error:
+          error instanceof Error ? error.message : "Failed to delete image",
       },
       { status: 500 },
     );

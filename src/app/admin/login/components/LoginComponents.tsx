@@ -107,7 +107,7 @@ export const LoginCard: React.FC<LoginCardProps> = ({
   className = "",
 }) => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#fdfaf8] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className={`min-h-screen flex items-center justify-center bg-[#fdfaf8] py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden ${className}`}>
       {/* Decorative elements */}
       <div className="absolute top-[-10%] right-[-10%] w-96 h-96 bg-[#fd7d02] rounded-full filter blur-[100px] opacity-10 animate-pulse"></div>
       <div

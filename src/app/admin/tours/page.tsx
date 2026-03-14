@@ -108,33 +108,27 @@ const ToursList = () => {
     );
   };
 
-  // Reset to first page when filters change
   const handleSearchChange = (value: string) => {
-    console.log(value);
     setSearchTerm(value);
     setCurrentPage(1);
   };
 
   const handleStatusChange = (value: string) => {
-    console.log(value);
     setFilterStatus(value);
     setCurrentPage(1);
   };
 
   const handleCategoryChange = (value: string) => {
-    console.log(value);
     setFilterCategory(value);
     setCurrentPage(1);
   };
 
   const handleFeaturedChange = (value: string) => {
-    console.log(value);
     setFilterFeatured(value);
     setCurrentPage(1);
   };
 
   const handlePageChange = (page: number) => {
-    console.log(page);
     setCurrentPage(page);
   };
 

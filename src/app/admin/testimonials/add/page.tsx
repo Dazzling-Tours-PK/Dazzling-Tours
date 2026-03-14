@@ -7,7 +7,9 @@ import { useGetTours } from "@/lib/hooks/useTours";
 import { Page, Button, Card } from "@/app/Components/Common";
 import {
   TestimonialStatus,
+  TestimonialSource,
   TESTIMONIAL_STATUS_OPTIONS,
+  TESTIMONIAL_SOURCE_OPTIONS,
 } from "@/lib/enums/testimonial";
 import {
   TextInput,
@@ -27,12 +29,16 @@ const AddTestimonial = () => {
   const form = useForm<CreateTestimonialData>({
     initialValues: {
       name: "",
+      email: "",
+      phone: "",
       content: "",
       rating: 5,
       image: "",
+      designation: "",
       location: "",
       tourId: "",
       status: TestimonialStatus.ACTIVE,
+      source: TestimonialSource.ADMIN,
       featured: false,
     },
     validate: (values) => {
@@ -115,6 +121,24 @@ const AddTestimonial = () => {
                 onChange={(value) => form.setFieldValue("name", value)}
                 error={form.errors.name}
                 required
+              />
+              <TextInput
+                label="Email"
+                placeholder="e.g., john@example.com"
+                value={form.values.email}
+                onChange={(value) => form.setFieldValue("email", value)}
+              />
+              <TextInput
+                label="Phone"
+                placeholder="e.g., +1 234 567 890"
+                value={form.values.phone}
+                onChange={(value) => form.setFieldValue("phone", value)}
+              />
+              <TextInput
+                label="Traveler Type"
+                placeholder="e.g., Family Trip, Solo Traveler"
+                value={form.values.designation}
+                onChange={(value) => form.setFieldValue("designation", value)}
               />
               <TextInput
                 label="Location"
@@ -214,7 +238,7 @@ const AddTestimonial = () => {
                 Configure testimonial visibility and status
               </p>
             </div>
-            <div className="form-row">
+            <div className="form-grid">
               <Checkbox
                 label="Featured Testimonial"
                 description="Display this testimonial prominently on the homepage"
@@ -228,6 +252,14 @@ const AddTestimonial = () => {
                   form.setFieldValue("status", value as TestimonialStatus)
                 }
                 data={TESTIMONIAL_STATUS_OPTIONS}
+              />
+              <Select
+                label="Source"
+                value={form.values.source}
+                onChange={(value) =>
+                  form.setFieldValue("source", value as TestimonialSource)
+                }
+                data={TESTIMONIAL_SOURCE_OPTIONS}
               />
             </div>
           </Card>

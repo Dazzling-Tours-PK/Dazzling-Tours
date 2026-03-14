@@ -59,29 +59,15 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
 
     const handleFileSelect = useCallback(
       async (files: FileList | null) => {
-        console.log(
-          "handleFileSelect called with:",
-          files?.length || 0,
-          "files",
-        );
-
         if (!files || disabled || uploadMutation.isPending) {
-          console.log("No files, disabled, or already uploading:", { 
-            files: !!files, 
-            disabled, 
-            uploading: uploadMutation.isPending 
-          });
           return;
         }
 
         const fileArray = Array.from(files);
-        console.log("Processing files:", fileArray.length);
 
         const validFiles: File[] = [];
 
-        // Validate files
         for (const file of fileArray) {
-          console.log("Validating file:", file.name, file.type, file.size);
           if (!acceptedTypes.includes(file.type)) {
             showError(`${file.name} is not a supported image type`);
             continue;
@@ -96,7 +82,6 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
         }
 
         if (validFiles.length === 0) {
-          console.log("No valid files after validation");
           return;
         }
 
@@ -106,7 +91,7 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
           return;
         }
 
-        console.log("Starting file upload to Cloudinary...");
+        // Create FormData and upload
 
         try {
           // Upload files to Cloudinary via mutation
@@ -121,11 +106,6 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
           const newUrls = result.data.map((item) => item.url);
 
           const updatedUrls = multiple ? [...value, ...newUrls] : newUrls;
-          console.log("Images uploaded successfully:", {
-            current: value.length,
-            new: newUrls.length,
-            total: updatedUrls.length,
-          });
 
           // Call onChange using ref to avoid dependency issues
           onChangeRef.current?.(updatedUrls);
@@ -168,14 +148,9 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
     const handleFileInputChange = useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
-        console.log("File input changed:", files?.length || 0, "files");
-
         if (files && files.length > 0) {
-          console.log("Files selected, processing...");
           // Process files immediately
           handleFileSelect(files);
-        } else {
-          console.log("No files selected (user cancelled)");
         }
 
         // Don't clear the input value immediately - let it stay for re-selection
@@ -189,7 +164,6 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
         if (disabled || deleteMutation.isPending) return;
         
         const imageUrl = value[index];
-        console.log("Removing image at index:", index, "URL:", imageUrl);
         
         // Optimistically update UI
         const newUrls = value.filter((_, i) => i !== index);
@@ -203,7 +177,6 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
         // Call API to delete from Cloudinary via mutation
         try {
           await deleteMutation.mutateAsync({ url: imageUrl });
-          console.log("Image deleted from Cloudinary successfully");
         } catch (err) {
           console.error("Error calling delete API:", err);
           // Optional: handle error notification

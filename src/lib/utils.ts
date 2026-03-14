@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
-import { Tour, Booking, Contact } from "@/models";
+import { Tour, Contact } from "@/models";
 
 // Utility function to validate email
 export function isValidEmail(email: string): boolean {
@@ -23,26 +23,6 @@ export function formatCurrency(
     style: "currency",
     currency: currency,
   }).format(amount);
-}
-
-// Utility function to calculate booking total
-export function calculateBookingTotal(
-  price: number,
-  participants: number,
-  discount?: number,
-): number {
-  let total = price * participants;
-  if (discount && discount > 0) {
-    total = total - (total * discount) / 100;
-  }
-  return total;
-}
-
-// Utility function to generate booking reference
-export function generateBookingReference(): string {
-  const timestamp = Date.now().toString(36);
-  const random = Math.random().toString(36).substr(2, 5);
-  return `DT-${timestamp}-${random}`.toUpperCase();
 }
 
 // Utility function to validate required fields
@@ -131,12 +111,9 @@ export function handleApiError(
 }
 
 // Utility function to send email (placeholder - implement with your email service)
-export async function sendEmail(to: string, subject: string, body: string) {
+export async function sendEmail() {
   // Implement email sending logic here
   // You can use services like SendGrid, Nodemailer, etc.
-  console.log(`Email would be sent to: ${to}`);
-  console.log(`Subject: ${subject}`);
-  console.log(`Body: ${body}`);
 }
 
 // Database utility functions
@@ -155,27 +132,6 @@ export async function getTourStats() {
     };
   } catch (error) {
     console.error("Error getting tour stats:", error);
-    return null;
-  }
-}
-
-export async function getBookingStats() {
-  try {
-    await connectDB();
-
-    const totalBookings = await Booking.countDocuments();
-    const pendingBookings = await Booking.countDocuments({ status: "Pending" });
-    const confirmedBookings = await Booking.countDocuments({
-      status: "Confirmed",
-    });
-
-    return {
-      totalBookings,
-      pendingBookings,
-      confirmedBookings,
-    };
-  } catch (error) {
-    console.error("Error getting booking stats:", error);
     return null;
   }
 }

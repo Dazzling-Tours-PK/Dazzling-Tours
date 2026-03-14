@@ -1,18 +1,25 @@
 import { PaginatedResponse, SingleResponse } from "./common";
-import { TestimonialStatus } from "@/lib/enums/testimonial";
+import {
+  TestimonialStatus,
+  TestimonialSource,
+} from "@/lib/enums/testimonial";
 
 export interface Testimonial {
   _id: string;
   name: string;
+  email?: string;
+  phone?: string;
   content: string;
   rating: number;
   image?: string;
+  designation?: string;
   location?: string;
   tourId?: {
     _id: string;
     title: string;
   };
   status: TestimonialStatus;
+  source: TestimonialSource;
   featured: boolean;
   createdAt: string;
   updatedAt: string;
@@ -20,12 +27,16 @@ export interface Testimonial {
 
 export interface CreateTestimonialData {
   name: string;
+  email?: string;
+  phone?: string;
   content: string;
   rating: number;
   image?: string;
+  designation?: string;
   location?: string;
   tourId?: string;
   status?: TestimonialStatus;
+  source?: TestimonialSource;
   featured?: boolean;
 }
 

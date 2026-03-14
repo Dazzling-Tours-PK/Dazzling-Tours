@@ -23,6 +23,7 @@ export const useUploadImages = () => {
         headers: {
           "Content-Type": "multipart/form-data",
         },
+        timeout: 60000, // 60 seconds for image upload
       });
       return response.data;
     },

@@ -1,5 +1,5 @@
 import { PaginatedResponse, SingleResponse } from "./common";
-import { ContactStatus } from "./enums";
+import { ContactStatus, ContactGroupType } from "./enums";
 
 export interface Contact {
   _id: string;
@@ -9,6 +9,15 @@ export interface Contact {
   subject: string;
   message: string;
   status: ContactStatus;
+  tourId?: string;
+  startDate?: string;
+  endDate?: string;
+  participants?: number;
+  groupType?: ContactGroupType;
+  numberOfDays?: number;
+  numberOfRooms?: number;
+  departureCity?: string;
+  placesToVisit?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -20,10 +29,29 @@ export interface CreateContactData {
   subject: string;
   message: string;
   status?: ContactStatus;
+  tourId?: string;
+  startDate?: string;
+  endDate?: string;
+  participants?: number;
+  groupType?: ContactGroupType;
+  numberOfDays?: number;
+  numberOfRooms?: number;
+  departureCity?: string;
+  placesToVisit?: string;
 }
 
 export interface UpdateContactData extends Partial<CreateContactData> {
   _id: string;
+}
+
+export interface ContactStatsResponse {
+  success: boolean;
+  data: {
+    total: number;
+    byStatus: Record<string, number>;
+    recentActivity: number;
+    monthlyTrends: Array<{ month: string; count: number }>;
+  };
 }
 
 export type ContactsResponse = PaginatedResponse<Contact>;

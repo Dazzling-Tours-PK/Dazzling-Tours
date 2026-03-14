@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { User } from "@/models";
+import { User, IUser } from "@/models";
 import { verifyToken, getTokenFromRequest } from "@/lib/auth";
 import { UserRole } from "@/lib/enums/roles";
 
@@ -70,7 +70,7 @@ export async function authenticateUser(request: NextRequest): Promise<{
     }
 
     // Check if password was changed after token was issued
-    if (user.changedPasswordAfter(decoded.iat || 0)) {
+    if ((user as unknown as IUser).changedPasswordAfter(decoded.iat || 0)) {
       return {
         success: false,
         error: "Password was changed. Please login again.",
@@ -78,16 +78,17 @@ export async function authenticateUser(request: NextRequest): Promise<{
       };
     }
 
+    const typedUser = user as unknown as IUser;
     return {
       success: true,
       user: {
-        _id: user._id.toString(),
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        role: user.role,
-        isEmailVerified: user.isEmailVerified,
-        lastLogin: user.lastLogin,
+        _id: String(typedUser._id),
+        email: typedUser.email,
+        firstName: typedUser.firstName,
+        lastName: typedUser.lastName,
+        role: typedUser.role,
+        isEmailVerified: typedUser.isEmailVerified,
+        lastLogin: typedUser.lastLogin,
       },
       token,
     };

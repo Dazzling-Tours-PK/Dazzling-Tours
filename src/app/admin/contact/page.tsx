@@ -66,7 +66,7 @@ const ContactQueriesList = () => {
     updateContactMutation.mutate(
       {
         _id: id,
-        status: newStatus,
+        status: newStatus as ContactStatus,
       },
       {
         onSuccess: () => {
@@ -89,7 +89,7 @@ const ContactQueriesList = () => {
       {
         ids: selectedQueries,
         action: "updateStatus",
-        data: { status },
+        data: { status: status as ContactStatus },
       },
       {
         onSuccess: () => {

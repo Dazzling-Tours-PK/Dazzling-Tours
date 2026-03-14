@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
-import { User } from "@/models";
+import { User, IUser } from "@/models";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
 
@@ -59,8 +59,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify current password
-    const isCurrentPasswordValid = await user.comparePassword(currentPassword);
-    if (!isCurrentPasswordValid) {
+    const isMatch = await (user as unknown as IUser).comparePassword(
+      currentPassword,
+    );
+    if (!isMatch) {
       return NextResponse.json(
         { success: false, message: "Current password is incorrect" },
         { status: 400 },
@@ -68,7 +70,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if new password is different from current password
-    const isSamePassword = await user.comparePassword(newPassword);
+    const isSamePassword = await (user as unknown as IUser).comparePassword(
+      newPassword,
+    );
     if (isSamePassword) {
       return NextResponse.json(
         {

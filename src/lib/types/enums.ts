@@ -76,3 +76,25 @@ export const getContactStatuses = (): Array<{
     { value: ContactStatus.CLOSED, label: "Closed" },
   ];
 };
+
+// Contact/Booking Group Types
+export enum ContactGroupType {
+  INDIVIDUAL = "Individual",
+  COUPLE = "Couple",
+  FAMILY_GROUP = "Family Group",
+  FRIEND_GROUP = "Friend Group",
+  OTHER = "Other",
+}
+
+export const getContactGroupTypes = (): Array<{
+  value: ContactGroupType;
+  label: string;
+}> => {
+  return [
+    { value: ContactGroupType.INDIVIDUAL, label: "Individual" },
+    { value: ContactGroupType.COUPLE, label: "Couple" },
+    { value: ContactGroupType.FAMILY_GROUP, label: "Family Group" },
+    { value: ContactGroupType.FRIEND_GROUP, label: "Friend Group" },
+    { value: ContactGroupType.OTHER, label: "Other" },
+  ];
+};

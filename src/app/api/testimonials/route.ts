@@ -91,7 +91,10 @@ export async function POST(request: NextRequest) {
     // Clean the data using utility function
     const cleanedData = cleanTestimonialData(body);
 
-    const testimonial = new Testimonial(cleanedData);
+    const testimonial = new Testimonial({
+      ...cleanedData,
+      source: body.source || "Public", // Ensure source is set based on field provided
+    });
     await testimonial.save();
 
     return createSuccessResponse(

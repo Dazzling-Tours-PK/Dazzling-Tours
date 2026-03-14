@@ -54,7 +54,6 @@ export async function POST(request: NextRequest) {
     });
 
     // TODO: Send OTP via email
-    console.log(`Password reset OTP for ${user.email}: ${otpCode}`);
 
     // Import email service and template
     const { sendEmail } = await import("@/lib/services/emailService");

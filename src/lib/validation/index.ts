@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { ContactGroupType, ContactStatus } from "@/lib/types/enums";
 
 // Contact form validation schema
 export const contactSchema = z.object({
@@ -21,22 +22,37 @@ export const contactSchema = z.object({
     .min(1, "Phone number is required")
     .min(10, "Phone number must be at least 10 digits")
     .max(20, "Phone number must be less than 20 characters")
-    .regex(/^[\+]?[1-9][\d]{0,15}$/, "Please enter a valid phone number")
+    .regex(/^[\+]?[0-9\-\s\(\)]{1,15}$/, "Please enter a valid phone number")
     .trim(),
 
   subject: z
     .string()
     .min(1, "Subject is required")
-    .min(3, "Subject must be at least 3 characters")
     .max(200, "Subject must be less than 200 characters")
-    .trim(),
+    .trim()
+    .optional()
+    .or(z.literal("")),
 
   message: z
     .string()
     .min(1, "Message is required")
-    .min(10, "Message must be at least 10 characters")
     .max(1000, "Message must be less than 1000 characters")
-    .trim(),
+    .trim()
+    .optional()
+    .or(z.literal("")),
+
+  status: z.nativeEnum(ContactStatus).optional(),
+
+  // Enhanced fields
+  tourId: z.string().optional(),
+  startDate: z.string().optional(),
+  endDate: z.string().optional(),
+  participants: z.number().min(1, "At least 1 participant required").optional(),
+  groupType: z.nativeEnum(ContactGroupType).optional(),
+  numberOfDays: z.number().min(1).optional(),
+  numberOfRooms: z.number().min(1).optional(),
+  departureCity: z.string().optional(),
+  placesToVisit: z.string().optional(),
 });
 
 // Blog comment schema

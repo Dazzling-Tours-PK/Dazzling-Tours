@@ -11,7 +11,7 @@ interface TemplateData {
 const baseTemplate = (content: string, data: TemplateData = {}): string => {
   const companyName = data.companyName || "Dazzling Tours";
   const companyLogo =
-    data.companyLogo || "/assets/img/logo dazzling/Dazzling Tours Png.png";
+    data.companyLogo || "/assets/img/logo dazzling/Logo White.png";
   const year = new Date().getFullYear();
 
   return `

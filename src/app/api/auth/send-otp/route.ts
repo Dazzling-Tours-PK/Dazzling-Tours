@@ -66,8 +66,6 @@ export async function POST(request: NextRequest) {
     await otp.save();
 
     // TODO: Send OTP via email
-    // For now, we'll log it to console (remove in production)
-    console.log(`OTP for ${user.email} (${type}): ${otpCode}`);
 
     return NextResponse.json(
       {

@@ -89,13 +89,28 @@ export async function PATCH(
       body.featuredImage !== undefined &&
       existingBlog.featuredImage !== body.featuredImage
     ) {
-      const publicId = extractPublicId(existingBlog.featuredImage);
+      const publicId = extractPublicId(existingBlog.featuredImage || "");
       if (publicId) {
         await deleteImage(publicId).catch((err) =>
           console.error(
             "Failed to delete old featured image from Cloudinary:",
             err,
           ),
+        );
+      }
+    }
+
+    // Check for duplicate slug if slug is being updated
+    if (seo?.slug) {
+      const duplicateBlog = await Blog.findOne({
+        "seo.slug": seo.slug,
+        _id: { $ne: resolvedParams.id }, // Exclude the current blog
+      });
+
+      if (duplicateBlog) {
+        return NextResponse.json(
+          { success: false, error: "Slug already exists" },
+          { status: 400 },
         );
       }
     }

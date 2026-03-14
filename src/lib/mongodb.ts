@@ -14,7 +14,6 @@ const MONGODB_URI =
 
 // Log connection type without exposing credentials
 const isAtlas = MONGODB_URI.includes("mongodb+srv://");
-console.log(`🔍 MongoDB: ${isAtlas ? "Atlas (Cloud)" : "Local"}`);
 
 if (!MONGODB_URI) {
   throw new Error(
@@ -53,7 +52,6 @@ async function connectDB() {
     cached!.promise = mongoose
       .connect(MONGODB_URI, opts)
       .then((mongooseInstance) => {
-        console.log("✅ Connected to MongoDB");
         return mongooseInstance;
       })
       .catch((error) => {

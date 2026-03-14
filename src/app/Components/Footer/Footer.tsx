@@ -28,10 +28,10 @@ const Footer = () => {
                 <div className="widget-head mb-3">
                   <Link href="/" className="d-flex justify-content-center">
                     <Image
-                      src="/assets/img/logo dazzling/Dazzling Tours Png.png"
+                      src="/assets/img/logo dazzling/Logo Black.png"
                       alt="Dazzling Tours"
                       width={200}
-                      height={200}
+                      height={70}
                       style={{ display: "block", margin: "0 auto" }}
                     />
                   </Link>

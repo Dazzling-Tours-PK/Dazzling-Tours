@@ -42,10 +42,10 @@ export default function Header1() {
               <div className="cs_main_header_left">
                 <Link className="cs_site_branding" href="/">
                   <Image
-                    src="/assets/img/logo dazzling/Dazzling Tours Png.png"
-                    alt="img"
-                    width={100}
-                    height={100}
+                    src="/assets/img/logo dazzling/Logo Black.png"
+                    alt="Dazzling Tours"
+                    width={110}
+                    height={40}
                   />
                 </Link>
               </div>

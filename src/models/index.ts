@@ -1,8 +1,11 @@
 import mongoose, { Document, Schema } from "mongoose";
 import { UserRole } from "@/lib/enums/roles";
 import { TourStatus, TourDifficulty, TourPriceType } from "@/lib/enums/tour";
-import { TestimonialStatus } from "@/lib/enums/testimonial";
-import { ContactStatus } from "@/lib/types/enums";
+import {
+  TestimonialStatus,
+  TestimonialSource,
+} from "@/lib/enums/testimonial";
+import { ContactStatus, ContactGroupType } from "@/lib/types/enums";
 import { BlogStatus } from "@/lib/enums/blog";
 import { SEOFields } from "@/lib/types/seo";
 
@@ -89,77 +92,6 @@ const TourSchema = new Schema<ITour>(
   },
 );
 
-// Booking Model
-export interface IBooking extends Document {
-  tourId: mongoose.Types.ObjectId;
-  userId?: mongoose.Types.ObjectId;
-  customerInfo: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    address?: string;
-  };
-  bookingDetails: {
-    startDate: Date;
-    endDate: Date;
-    participants: number;
-    totalPrice: number;
-    specialRequests?: string;
-  };
-  payment: {
-    method: "Credit Card" | "PayPal" | "Bank Transfer" | "Cash";
-    status: "Pending" | "Completed" | "Failed" | "Refunded";
-    transactionId?: string;
-    paidAt?: Date;
-  };
-  status: "Pending" | "Confirmed" | "Cancelled" | "Completed";
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-const BookingSchema = new Schema<IBooking>(
-  {
-    tourId: { type: Schema.Types.ObjectId, ref: "Tour", required: true },
-    userId: { type: Schema.Types.ObjectId, ref: "User" },
-    customerInfo: {
-      firstName: { type: String, required: true },
-      lastName: { type: String, required: true },
-      email: { type: String, required: true },
-      phone: { type: String, required: true },
-      address: { type: String },
-    },
-    bookingDetails: {
-      startDate: { type: Date, required: true },
-      endDate: { type: Date, required: true },
-      participants: { type: Number, required: true, min: 1 },
-      totalPrice: { type: Number, required: true },
-      specialRequests: { type: String },
-    },
-    payment: {
-      method: {
-        type: String,
-        enum: ["Credit Card", "PayPal", "Bank Transfer", "Cash"],
-        required: true,
-      },
-      status: {
-        type: String,
-        enum: ["Pending", "Completed", "Failed", "Refunded"],
-        default: "Pending",
-      },
-      transactionId: { type: String },
-      paidAt: { type: Date },
-    },
-    status: {
-      type: String,
-      enum: ["Pending", "Confirmed", "Cancelled", "Completed"],
-      default: "Pending",
-    },
-  },
-  {
-    timestamps: true,
-  },
-);
 
 // Customer User Model (for frontend users)
 export interface ICustomerUser extends Document {
@@ -221,6 +153,16 @@ export interface IContact extends Document {
   subject: string;
   message: string;
   status: ContactStatus;
+  // Enhanced fields for tour enquiries (from Booking)
+  tourId?: mongoose.Types.ObjectId;
+  startDate?: Date;
+  endDate?: Date;
+  participants?: number;
+  groupType?: ContactGroupType;
+  numberOfDays?: number;
+  numberOfRooms?: number;
+  departureCity?: string;
+  placesToVisit?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -230,13 +172,26 @@ const ContactSchema = new Schema<IContact>(
     name: { type: String, required: true },
     email: { type: String, required: true },
     phone: { type: String },
-    subject: { type: String, required: true },
-    message: { type: String, required: true },
+    subject: { type: String },
+    message: { type: String },
     status: {
       type: String,
       enum: Object.values(ContactStatus),
       default: ContactStatus.NEW,
     },
+    // Enhanced fields
+    tourId: { type: Schema.Types.ObjectId, ref: "Tour" },
+    startDate: { type: Date },
+    endDate: { type: Date },
+    participants: { type: Number, min: 1 },
+    groupType: {
+      type: String,
+      enum: Object.values(ContactGroupType),
+    },
+    numberOfDays: { type: Number },
+    numberOfRooms: { type: Number },
+    departureCity: { type: String },
+    placesToVisit: { type: String },
   },
   {
     timestamps: true,
@@ -292,12 +247,16 @@ const BlogSchema = new Schema<IBlog>(
 // Testimonial Model
 export interface ITestimonial extends Document {
   name: string;
+  email?: string;
+  phone?: string;
   content: string;
   rating: number;
+  designation?: string;
   image?: string;
   location?: string;
   tourId?: mongoose.Types.ObjectId;
   status: TestimonialStatus;
+  source: TestimonialSource;
   featured: boolean;
   createdAt: Date;
   updatedAt: Date;
@@ -306,15 +265,23 @@ export interface ITestimonial extends Document {
 const TestimonialSchema = new Schema<ITestimonial>(
   {
     name: { type: String, required: true },
+    email: { type: String },
+    phone: { type: String },
     content: { type: String, required: true },
     rating: { type: Number, required: true, min: 1, max: 5 },
     image: { type: String },
+    designation: { type: String },
     location: { type: String },
     tourId: { type: Schema.Types.ObjectId, ref: "Tour" },
     status: {
       type: String,
       enum: Object.values(TestimonialStatus),
-      default: TestimonialStatus.ACTIVE,
+      default: TestimonialStatus.PENDING,
+    },
+    source: {
+      type: String,
+      enum: Object.values(TestimonialSource),
+      default: TestimonialSource.PUBLIC,
     },
     featured: { type: Boolean, default: false },
   },
@@ -361,32 +328,32 @@ const CommentSchema = new Schema<IComment>(
 
 // Create models
 if (process.env.NODE_ENV === "development") {
-  delete (mongoose.models as Record<string, unknown>).Tour;
+  Object.keys(mongoose.models).forEach((model) => {
+    delete (mongoose.models as Record<string, mongoose.Model<unknown>>)[model];
+  });
 }
-export const Tour =
+export const Tour: mongoose.Model<ITour> =
   mongoose.models.Tour || mongoose.model<ITour>("Tour", TourSchema);
-export const Booking =
-  mongoose.models.Booking || mongoose.model<IBooking>("Booking", BookingSchema);
-export const CustomerUser =
+export const CustomerUser: mongoose.Model<ICustomerUser> =
   mongoose.models.CustomerUser ||
   mongoose.model<ICustomerUser>("CustomerUser", CustomerUserSchema);
-export const Contact =
+export const Contact: mongoose.Model<IContact> =
   mongoose.models.Contact || mongoose.model<IContact>("Contact", ContactSchema);
-export const Blog =
+export const Blog: mongoose.Model<IBlog> =
   mongoose.models.Blog || mongoose.model<IBlog>("Blog", BlogSchema);
 
-export const Testimonial =
+export const Testimonial: mongoose.Model<ITestimonial> =
   mongoose.models.Testimonial ||
   mongoose.model<ITestimonial>("Testimonial", TestimonialSchema);
-export const Comment =
+export const Comment: mongoose.Model<IComment> =
   mongoose.models.Comment || mongoose.model<IComment>("Comment", CommentSchema);
 
 // User Model
 export interface IUser extends Document {
-  email: string;
-  password: string;
   firstName: string;
   lastName: string;
+  email: string;
+  password: string;
   role: UserRole;
   isActive: boolean;
   isEmailVerified: boolean;
@@ -394,6 +361,8 @@ export interface IUser extends Document {
   passwordChangedAt?: Date;
   resetPasswordToken?: string;
   resetPasswordExpires?: Date;
+  comparePassword(candidatePassword: string): Promise<boolean>;
+  changedPasswordAfter(JWTTimestamp: number): boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -457,24 +426,22 @@ const UserSchema = new Schema<IUser>(
   },
 );
 
-// Hash password before saving
-UserSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) return next();
+// Hash password and update passwordChangedAt before saving
+UserSchema.pre("save", async function () {
+  if (!this.isModified("password")) return;
 
   try {
     const bcrypt = await import("bcryptjs");
     this.password = await bcrypt.hash(this.password, 12);
-    next();
-  } catch (error) {
-    next(error as Error);
-  }
-});
 
-// Update passwordChangedAt when password is modified
-UserSchema.pre("save", function (next) {
-  if (!this.isModified("password") || this.isNew) return next();
-  this.passwordChangedAt = new Date(Date.now() - 1000);
-  next();
+    if (!this.isNew) {
+      this.passwordChangedAt = new Date(Date.now() - 1000);
+    }
+
+    return;
+  } catch (error) {
+    throw error;
+  }
 });
 
 // Instance method to check password
@@ -504,7 +471,7 @@ UserSchema.statics.findByEmail = function (email: string) {
   return this.findOne({ email: email.toLowerCase() });
 };
 
-export const User =
+export const User: mongoose.Model<IUser> =
   mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
 
 // OTP Model
@@ -515,6 +482,8 @@ export interface IOTP extends Document {
   expiresAt: Date;
   isUsed: boolean;
   attempts: number;
+  markAsUsed(): Promise<IOTP>;
+  incrementAttempts(): Promise<IOTP>;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -594,7 +563,7 @@ OTPSchema.methods.incrementAttempts = function () {
   return this.save();
 };
 
-export const OTP =
+export const OTP: mongoose.Model<IOTP> =
   mongoose.models.OTP || mongoose.model<IOTP>("OTP", OTPSchema);
 
 // Category Model
@@ -617,6 +586,6 @@ const CategorySchema = new Schema<ICategory>(
   },
 );
 
-export const Category =
+export const Category: mongoose.Model<ICategory> =
   mongoose.models.Category ||
   mongoose.model<ICategory>("Category", CategorySchema);

@@ -70,7 +70,7 @@ export async function PUT(request: NextRequest) {
       body.image !== undefined &&
       existingTestimonial.image !== body.image
     ) {
-      const publicId = extractPublicId(existingTestimonial.image);
+      const publicId = extractPublicId(existingTestimonial.image || "");
       if (publicId) {
         await deleteImage(publicId).catch((err) =>
           console.error(

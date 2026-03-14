@@ -12,7 +12,9 @@ import { useGetTours } from "@/lib/hooks/useTours";
 import { Page, Button } from "@/app/Components/Common";
 import {
   TestimonialStatus,
+  TestimonialSource,
   TESTIMONIAL_STATUS_OPTIONS,
+  TESTIMONIAL_SOURCE_OPTIONS,
 } from "@/lib/enums/testimonial";
 import {
   TextInput,
@@ -36,12 +38,16 @@ const EditTestimonial = ({ params }: { params: Promise<{ id: string }> }) => {
     initialValues: {
       _id: resolvedParams.id,
       name: "",
+      email: "",
+      phone: "",
       content: "",
       rating: 5,
       image: "",
+      designation: "",
       location: "",
       tourId: "",
       status: TestimonialStatus.ACTIVE,
+      source: TestimonialSource.ADMIN,
       featured: false,
     },
     validate: (values) => {
@@ -76,12 +82,16 @@ const EditTestimonial = ({ params }: { params: Promise<{ id: string }> }) => {
       form.setValues({
         _id: testimonial._id,
         name: testimonial.name,
+        email: testimonial.email || "",
+        phone: testimonial.phone || "",
         content: testimonial.content,
         rating: testimonial.rating,
         image: testimonial.image || "",
+        designation: testimonial.designation || "",
         location: testimonial.location || "",
         tourId: getTourId(testimonial.tourId),
         status: testimonial.status as TestimonialStatus,
+        source: testimonial.source as TestimonialSource,
         featured: testimonial.featured,
       });
     }
@@ -197,6 +207,24 @@ const EditTestimonial = ({ params }: { params: Promise<{ id: string }> }) => {
                 required
               />
               <TextInput
+                label="Email"
+                placeholder="e.g., john@example.com"
+                value={form.values.email}
+                onChange={(value) => form.setFieldValue("email", value)}
+              />
+              <TextInput
+                label="Phone"
+                placeholder="e.g., +1 234 567 890"
+                value={form.values.phone}
+                onChange={(value) => form.setFieldValue("phone", value)}
+              />
+              <TextInput
+                label="Traveler Type"
+                placeholder="e.g., Family Trip, Solo Traveler"
+                value={form.values.designation}
+                onChange={(value) => form.setFieldValue("designation", value)}
+              />
+              <TextInput
                 label="Location"
                 placeholder="City, Country (optional)"
                 value={form.values.location}
@@ -291,7 +319,7 @@ const EditTestimonial = ({ params }: { params: Promise<{ id: string }> }) => {
                 Configure testimonial visibility and status
               </p>
             </div>
-            <div className="form-row">
+            <div className="form-grid">
               <Checkbox
                 label="Featured Testimonial"
                 description="Display this testimonial prominently on the homepage"
@@ -305,6 +333,14 @@ const EditTestimonial = ({ params }: { params: Promise<{ id: string }> }) => {
                   form.setFieldValue("status", value as TestimonialStatus)
                 }
                 data={TESTIMONIAL_STATUS_OPTIONS}
+              />
+              <Select
+                label="Source"
+                value={form.values.source}
+                onChange={(value) =>
+                  form.setFieldValue("source", value as TestimonialSource)
+                }
+                data={TESTIMONIAL_SOURCE_OPTIONS}
               />
             </div>
           </div>

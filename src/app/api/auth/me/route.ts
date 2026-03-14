@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
-import { User } from "@/models";
+import { User, IUser } from "@/models";
 import jwt from "jsonwebtoken";
 
 export async function GET(request: NextRequest) {
@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Check if password was changed after token was issued
-    if (user.changedPasswordAfter(decoded.iat)) {
+    if ((user as unknown as IUser).changedPasswordAfter(decoded.iat || 0)) {
       return NextResponse.json(
         {
           success: false,

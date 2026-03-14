@@ -62,8 +62,12 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
 
+    const contactData = {
+      ...body,
+    };
+
     // Validate required fields
-    const requiredFields = ["name", "email", "subject", "message"];
+    const requiredFields = ["name", "email"];
     for (const field of requiredFields) {
       if (!body[field]) {
         return NextResponse.json(
@@ -82,7 +86,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const contact = new Contact(body);
+    const contact = new Contact(contactData);
     await contact.save();
 
     return NextResponse.json(

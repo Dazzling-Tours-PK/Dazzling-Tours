@@ -98,7 +98,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <aside className="admin-sidebar">
         <div className="sidebar-header">
           <Image
-            src="/assets/img/logo dazzling/Dazzling Tours Png.png"
+            src="/assets/img/logo dazzling/Logo White.png"
             alt="Dazzling Tours"
             width={80}
             height={80}

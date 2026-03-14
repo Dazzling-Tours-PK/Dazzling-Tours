@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   useGetContactInquiry,
@@ -37,7 +38,7 @@ const ContactQueryDetails = ({
     updateContactMutation.mutate(
       {
         _id: query._id,
-        status: newStatus,
+        status: newStatus as ContactStatus,
       },
       {
         onSuccess: () => {
@@ -230,6 +231,180 @@ const ContactQueryDetails = ({
               )}
             </div>
           </div>
+
+          {/* Tour Inquiry Details */}
+          {(query.tourId ||
+            query.participants ||
+            query.groupType ||
+            query.departureCity) && (
+            <div
+              style={{
+                background: "#f9fafb",
+                borderRadius: "8px",
+                padding: "1.5rem",
+                border: "1px solid #e5e7eb",
+                marginBottom: "1.5rem",
+              }}
+            >
+              <h3
+                style={{
+                  margin: 0,
+                  marginBottom: "1rem",
+                  fontSize: "1.25rem",
+                  fontWeight: 600,
+                }}
+              >
+                Tour Inquiry Details
+              </h3>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                  gap: "1.5rem",
+                }}
+              >
+                {query.tourId && (
+                  <div>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        color: "#6c757d",
+                        marginBottom: "0.25rem",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Tour
+                    </label>
+                    <div style={{ fontWeight: 500 }}>
+                      <Link
+                        href={`/admin/tours/edit/${query.tourId}`}
+                        style={{ color: "#1976d2", textDecoration: "none" }}
+                      >
+                        View Tour <i className="bi bi-box-arrow-up-right"></i>
+                      </Link>
+                    </div>
+                  </div>
+                )}
+                {query.participants && (
+                  <div>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        color: "#6c757d",
+                        marginBottom: "0.25rem",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Participants
+                    </label>
+                    <div style={{ fontWeight: 500 }}>{query.participants}</div>
+                  </div>
+                )}
+                {query.groupType && (
+                  <div>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        color: "#6c757d",
+                        marginBottom: "0.25rem",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Group Type
+                    </label>
+                    <div style={{ fontWeight: 500 }}>{query.groupType}</div>
+                  </div>
+                )}
+                {query.departureCity && (
+                  <div>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        color: "#6c757d",
+                        marginBottom: "0.25rem",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Departure City
+                    </label>
+                    <div style={{ fontWeight: 500 }}>{query.departureCity}</div>
+                  </div>
+                )}
+                {query.startDate && (
+                  <div>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        color: "#6c757d",
+                        marginBottom: "0.25rem",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Travel Date
+                    </label>
+                    <div style={{ fontWeight: 500 }}>
+                      {new Date(query.startDate).toLocaleDateString()}
+                    </div>
+                  </div>
+                )}
+                {query.numberOfDays && (
+                  <div>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        color: "#6c757d",
+                        marginBottom: "0.25rem",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Duration
+                    </label>
+                    <div style={{ fontWeight: 500 }}>
+                      {query.numberOfDays} Days
+                    </div>
+                  </div>
+                )}
+                {query.numberOfRooms && (
+                  <div>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        color: "#6c757d",
+                        marginBottom: "0.25rem",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Rooms
+                    </label>
+                    <div style={{ fontWeight: 500 }}>{query.numberOfRooms}</div>
+                  </div>
+                )}
+                {query.placesToVisit && (
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <label
+                      style={{
+                        display: "block",
+                        fontSize: "0.875rem",
+                        color: "#6c757d",
+                        marginBottom: "0.25rem",
+                        fontWeight: 500,
+                      }}
+                    >
+                      Places to Visit
+                    </label>
+                    <div style={{ fontWeight: 500 }}>{query.placesToVisit}</div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* Message */}
           <div

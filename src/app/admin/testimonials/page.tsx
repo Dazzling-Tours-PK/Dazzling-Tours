@@ -7,12 +7,13 @@ import {
   useDeleteTestimonial,
   useNotification,
 } from "@/lib/hooks";
-import { Page, Group, Stack, Avatar } from "@/app/Components/Common";
+import { Page, Group, Stack, Avatar, Badge } from "@/app/Components/Common";
 import { TextInput, Select } from "@/app/Components/Form";
 import StarRating from "@/app/Components/Form/StarRating";
 import PaginationComponent from "@/app/Components/Common/PaginationComponent";
 import {
   TestimonialStatus,
+  TestimonialSource,
   TESTIMONIAL_STATUS_OPTIONS,
 } from "@/lib/enums/testimonial";
 
@@ -166,6 +167,7 @@ const TestimonialsList = () => {
             <tr>
               <th>Name</th>
               <th>Location</th>
+              <th>Source</th>
               <th>Rating</th>
               <th>Content</th>
               <th>Related Tour</th>
@@ -178,12 +180,40 @@ const TestimonialsList = () => {
             {testimonials.map((testimonial) => (
               <tr key={testimonial._id}>
                 <td>
-                  <Group>
+                  <Group spacing="xs">
                     <Avatar src={testimonial.image} size="sm" shape="circle" />
-                    <strong>{testimonial.name}</strong>
+                    <Stack spacing="none">
+                      <strong>{testimonial.name}</strong>
+                      <small
+                        className="text-muted"
+                        style={{ display: "block" }}
+                      >
+                        {testimonial.email}
+                      </small>
+                      {testimonial.phone && (
+                        <small
+                          className="text-muted"
+                          style={{ display: "block" }}
+                        >
+                          {testimonial.phone}
+                        </small>
+                      )}
+                    </Stack>
                   </Group>
                 </td>
                 <td>{testimonial.location || "N/A"}</td>
+                <td>
+                  <Badge
+                    variant="light"
+                    color={
+                      testimonial.source === TestimonialSource.ADMIN
+                        ? "blue"
+                        : "gray"
+                    }
+                  >
+                    {testimonial.source}
+                  </Badge>
+                </td>
                 <td>
                   <StarRating
                     rating={testimonial.rating}
@@ -212,14 +242,28 @@ const TestimonialsList = () => {
                   )}
                 </td>
                 <td>
-                  <button
+                  <Badge
+                    variant={
+                      testimonial.status === TestimonialStatus.PENDING
+                        ? "filled"
+                        : "light"
+                    }
+                    color={
+                      testimonial.status === TestimonialStatus.ACTIVE
+                        ? "success"
+                        : testimonial.status === TestimonialStatus.PENDING
+                          ? "warning"
+                          : "gray"
+                    }
+                    style={{ cursor: "pointer" }}
                     onClick={() =>
                       toggleStatus(testimonial._id, testimonial.status)
                     }
-                    className={`status-badge ${testimonial.status.toLowerCase()} clickable`}
                   >
-                    {testimonial.status}
-                  </button>
+                    {testimonial.status === TestimonialStatus.PENDING
+                      ? "Pending (Approve)"
+                      : testimonial.status}
+                  </Badge>
                 </td>
                 <td>
                   <button
@@ -237,6 +281,17 @@ const TestimonialsList = () => {
                 </td>
                 <td>
                   <div className="action-buttons">
+                    {testimonial.status === TestimonialStatus.PENDING && (
+                      <button
+                        onClick={() =>
+                          toggleStatus(testimonial._id, testimonial.status)
+                        }
+                        className="btn btn-sm btn-success text-white"
+                        title="Approve"
+                      >
+                        <i className="bi bi-check-lg"></i> Approve
+                      </button>
+                    )}
                     <Link
                       href={`/admin/testimonials/edit/${testimonial._id}`}
                       className="btn btn-sm btn-outline-primary"

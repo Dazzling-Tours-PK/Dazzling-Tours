@@ -2,54 +2,14 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/privateAxios";
 import { Pagination } from "@/lib/types/common";
 
-// Types
-export interface ContactInquiry {
-  _id: string;
-  name: string;
-  email: string;
-  phone?: string;
-  subject: string;
-  message: string;
-  status: string;
-  ipAddress?: string;
-  userAgent?: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface CreateContactData {
-  name: string;
-  email: string;
-  phone?: string;
-  subject: string;
-  message: string;
-}
-
-export interface UpdateContactData extends Partial<CreateContactData> {
-  _id: string;
-  status?: string;
-}
-
-export interface ContactResponse {
-  success: boolean;
-  data: ContactInquiry[];
-  pagination?: Pagination;
-}
-
-export interface ContactInquiryResponse {
-  success: boolean;
-  data: ContactInquiry;
-}
-
-export interface ContactStatsResponse {
-  success: boolean;
-  data: {
-    total: number;
-    byStatus: Record<string, number>;
-    recentActivity: number;
-    monthlyTrends: Array<{ month: string; count: number }>;
-  };
-}
+import {
+  Contact,
+  CreateContactData,
+  UpdateContactData,
+  ContactsResponse,
+  ContactResponse,
+  ContactStatsResponse,
+} from "@/lib/types/contact";
 
 // Query Keys
 export const contactKeys = {
@@ -71,7 +31,7 @@ export const useGetContactInquiries = (params?: {
   dateFrom?: string;
   dateTo?: string;
 }) => {
-  return useQuery<ContactResponse>({
+  return useQuery<ContactsResponse>({
     queryKey: contactKeys.list(params || {}),
     queryFn: async () => {
       const searchParams = new URLSearchParams();
@@ -83,7 +43,7 @@ export const useGetContactInquiries = (params?: {
         });
       }
 
-      const response = await api.get<ContactResponse>(
+      const response = await api.get<ContactsResponse>(
         `/api/contact?${searchParams.toString()}`,
       );
       return response.data;
@@ -92,10 +52,10 @@ export const useGetContactInquiries = (params?: {
 };
 
 export const useGetContactInquiry = (id: string) => {
-  return useQuery<ContactInquiryResponse>({
+  return useQuery<ContactResponse>({
     queryKey: contactKeys.detail(id),
     queryFn: async () => {
-      const response = await api.get<ContactInquiryResponse>(
+      const response = await api.get<ContactResponse>(
         `/api/contact/${id}`,
       );
       return response.data;
@@ -118,9 +78,9 @@ export const useGetContactStats = () => {
 export const useCreateContactInquiry = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<ContactInquiryResponse, Error, CreateContactData>({
+  return useMutation<ContactResponse, Error, CreateContactData>({
     mutationFn: async (data) => {
-      const response = await api.post<ContactInquiryResponse>(
+      const response = await api.post<ContactResponse>(
         "/api/contact",
         data,
       );
@@ -136,10 +96,10 @@ export const useCreateContactInquiry = () => {
 export const useUpdateContactInquiry = () => {
   const queryClient = useQueryClient();
 
-  return useMutation<ContactInquiryResponse, Error, UpdateContactData>({
+  return useMutation<ContactResponse, Error, UpdateContactData>({
     mutationFn: async (data) => {
       const { _id, ...updateData } = data;
-      const response = await api.put<ContactInquiryResponse>(
+      const response = await api.put<ContactResponse>(
         `/api/contact/${_id}`,
         updateData,
       );

@@ -1,7 +1,6 @@
 import connectDB from "../src/lib/mongodb";
 import {
   Tour,
-  Booking,
   CustomerUser,
   Contact,
   Blog,
@@ -22,7 +21,6 @@ async function clearDatabase() {
     // Clear all collections
     const collections = [
       { name: "Tour", model: Tour },
-      { name: "Booking", model: Booking },
       { name: "CustomerUser", model: CustomerUser },
       { name: "Contact", model: Contact },
       { name: "Blog", model: Blog },
@@ -35,7 +33,7 @@ async function clearDatabase() {
 
     for (const collection of collections) {
       try {
-        const result = await collection.model.deleteMany({});
+        const result = await (collection.model as any).deleteMany({});
         console.log(
           `✅ Cleared ${collection.name}: ${result.deletedCount} documents`,
         );

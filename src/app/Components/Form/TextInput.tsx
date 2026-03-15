@@ -17,6 +17,8 @@ export interface TextInputProps extends Omit<
   className?: string;
   validateOnChange?: boolean;
   validator?: (value: string) => string | undefined;
+  maxLength?: number;
+  showCharCount?: boolean;
   // Form integration props
   value?: string;
   onChange?: (value: string) => void;
@@ -39,6 +41,8 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       className = "",
       validateOnChange = false,
       validator,
+      maxLength,
+      showCharCount = false,
       // Form integration props
       value: formValue,
       onChange: formOnChange,
@@ -94,6 +98,10 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         formOnFocus();
       }
     };
+
+    const currentValue = formValue !== undefined ? formValue : "";
+    const currentLength = currentValue ? String(currentValue).length : 0;
+
     const sizeClasses = {
       xs: "form-input-xs",
       sm: "form-input-sm",
@@ -136,10 +144,11 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
               leftIcon ? "form-input-with-left-icon" : ""
             } ${rightIcon ? "form-input-with-right-icon" : ""}`}
             disabled={disabled}
-            value={formValue !== undefined ? formValue : ""}
+            value={currentValue}
             onChange={handleChange}
             onBlur={handleBlur}
             onFocus={handleFocus}
+            maxLength={maxLength}
             {...props}
           />
 
@@ -148,7 +157,22 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           )}
         </div>
 
-        {internalError && (
+        {(showCharCount || maxLength) && (
+          <div className="form-flex form-justify-between form-items-center form-mt-1">
+            {internalError && (
+              <p className="form-error">
+                <i className="bi bi-exclamation-circle form-error-icon"></i>
+                {internalError}
+              </p>
+            )}
+            <div className="form-text-xs form-text-gray-500 form-ml-auto">
+              {currentLength}
+              {maxLength ? `/${maxLength}` : ""} characters
+            </div>
+          </div>
+        )}
+
+        {internalError && !showCharCount && !maxLength && (
           <p className="form-error">
             <i className="bi bi-exclamation-circle form-error-icon"></i>
             {internalError}

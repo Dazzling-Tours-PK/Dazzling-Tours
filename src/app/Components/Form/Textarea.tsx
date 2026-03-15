@@ -136,7 +136,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         </div>
 
         {(showCharCount || maxLength) && (
-          <div className="form-flex form-justify-between form-items-center">
+          <div className="form-flex form-justify-between form-items-center form-mt-1">
             {internalError && (
               <p className="form-error">
                 <i className="bi bi-exclamation-circle form-error-icon"></i>

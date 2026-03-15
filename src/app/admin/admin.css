@@ -475,7 +475,7 @@ tr:hover {
 }
 
 .form-description {
-  margin: 0 0 2px 0;
+  margin: 0 0 1px 0;
   color: #6c757d;
   font-size: 0.9rem;
   font-style: italic;
@@ -500,7 +500,7 @@ tr:hover {
 
 .form-group label {
   display: block;
-  margin-bottom: 2px !important;
+  margin-bottom: 1px !important;
   font-weight: 500;
   color: #2c3e50;
   font-family: "Manrope", sans-serif;
@@ -551,13 +551,13 @@ tr:hover {
 
 /* List Manager Styles */
 .list-manager {
-  margin-top: 1rem;
+  margin-top: 2px;
 }
 
 .add-item {
   display: flex;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2px;
 }
 
 .add-item input,
@@ -1109,8 +1109,24 @@ select.form-input-base {
   margin-top: 4px;
 }
 
+.form-flex {
+  display: flex;
+}
+
 .form-flex-1 {
   flex: 1;
+}
+
+.form-gap-1 {
+  gap: 0.25rem;
+}
+
+.form-gap-2 {
+  gap: 0.5rem;
+}
+
+.form-gap-3 {
+  gap: 1rem;
 }
 
 .form-text-xs {
@@ -1127,6 +1143,10 @@ select.form-input-base {
 
 .form-text-gray-500 {
   color: #6b7280;
+}
+
+.form-text-red-500 {
+  color: #ef4444;
 }
 
 .form-text-gray-400 {
@@ -1549,17 +1569,17 @@ select.form-input-base {
 }
 
 .list-manager {
-  margin-top: 1.5rem;
+  margin-top: 2px;
 }
 
 .add-item {
   display: flex;
-  gap: 0.75rem;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
+  gap: 0.5rem;
+  margin-bottom: 2px;
+  padding: 0.5rem;
   background-color: #f8f9fa;
   border-radius: 8px;
-  border: 2px dashed #dee2e6;
+  border: 1px dashed #dee2e6;
 }
 
 .add-item input {

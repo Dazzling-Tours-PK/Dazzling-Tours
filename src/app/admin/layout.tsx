@@ -102,8 +102,10 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             alt="Dazzling Tours"
             width={80}
             height={80}
-            onClick={() => router.push("/")}
+            priority
+            objectFit="contain"
             style={{ cursor: "pointer" }}
+            onClick={() => router.push("/")}
           />
           <h3 style={{ color: "white" }}>Dazzling Tours</h3>
         </div>

@@ -25,6 +25,16 @@ export interface ApiResponse<T = unknown> {
   };
 }
 
+// Global Error Interface
+export interface ErrorResponse {
+  response?: {
+    data?: {
+      error?: string;
+    };
+  };
+  message?: string;
+}
+
 // Query Parameters Types
 export interface QueryParams {
   page?: string;

@@ -81,7 +81,10 @@ export const useCreateTour = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: tourKeys.lists() });
+      queryClient.invalidateQueries({
+        queryKey: tourKeys.lists(),
+        type: "all",
+      });
     },
   });
 };
@@ -99,9 +102,13 @@ export const useUpdateTour = () => {
       return response.data;
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: tourKeys.lists() });
+      queryClient.invalidateQueries({
+        queryKey: tourKeys.lists(),
+        type: "all",
+      });
       queryClient.invalidateQueries({
         queryKey: tourKeys.detail(data.data._id),
+        type: "all",
       });
     },
   });
@@ -118,7 +125,10 @@ export const useDeleteTour = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: tourKeys.lists() });
+      queryClient.invalidateQueries({
+        queryKey: tourKeys.lists(),
+        type: "all",
+      });
     },
   });
 };
@@ -140,7 +150,10 @@ export const useBulkUpdateTours = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: tourKeys.lists() });
+      queryClient.invalidateQueries({
+        queryKey: tourKeys.lists(),
+        type: "all",
+      });
     },
   });
 };

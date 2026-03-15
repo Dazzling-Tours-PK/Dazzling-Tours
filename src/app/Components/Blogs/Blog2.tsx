@@ -153,7 +153,7 @@ const Blog2 = () => {
             </div>
           </div>
           <div className="col-12 col-lg-4">
-            <div className="main-sideber">
+            <div className="main-sidebar">
               <div className="single-sidebar-widget">
                 <div className="wid-title">
                   <h4>Search</h4>

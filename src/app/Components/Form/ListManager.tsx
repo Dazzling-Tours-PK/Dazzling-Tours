@@ -14,6 +14,9 @@ export interface ListManagerProps {
   onAdd: (item: string) => void;
   onRemove: (index: number) => void;
   maxItems?: number;
+  maxWords?: number;
+  maxLength?: number;
+  showCharCount?: boolean;
   className?: string;
   itemClassName?: string;
   addButtonClassName?: string;
@@ -23,7 +26,7 @@ export interface ListManagerProps {
 const ListManager: React.FC<ListManagerProps> = ({
   label,
   description,
-  error,
+  error: propError,
   required = false,
   placeholder = "Add item...",
   addButtonText = "Add",
@@ -33,17 +36,35 @@ const ListManager: React.FC<ListManagerProps> = ({
   onAdd,
   onRemove,
   maxItems,
+  maxWords,
+  maxLength,
+  showCharCount = false,
   className = "",
   itemClassName = "",
   addButtonClassName = "",
   removeButtonClassName = "",
 }) => {
   const [newItem, setNewItem] = useState("");
+  const [localError, setLocalError] = useState("");
+
+  const getWordCount = (text: string) => {
+    return text.trim().split(/\s+/).filter(Boolean).length;
+  };
 
   const handleAdd = () => {
+    const wordCount = getWordCount(newItem);
+
+    if (maxWords && wordCount > maxWords) {
+      setLocalError(
+        `Each item must be ${maxWords} words or less (currently ${wordCount} words)`,
+      );
+      return;
+    }
+
     if (newItem.trim() && (!maxItems || items.length < maxItems)) {
       onAdd(newItem.trim());
       setNewItem("");
+      setLocalError("");
     }
   };
 
@@ -72,10 +93,14 @@ const ListManager: React.FC<ListManagerProps> = ({
           <input
             type="text"
             value={newItem}
-            onChange={(e) => setNewItem(e.target.value)}
+            onChange={(e) => {
+              setNewItem(e.target.value);
+              if (localError) setLocalError("");
+            }}
             onKeyDown={handleKeyDown}
             placeholder={placeholder}
             disabled={maxItems ? items.length >= maxItems : false}
+            maxLength={maxLength}
             className="form-flex-1"
           />
           <button
@@ -87,6 +112,34 @@ const ListManager: React.FC<ListManagerProps> = ({
             <i className="bi bi-plus"></i> {addButtonText}
           </button>
         </div>
+
+        <div className="form-flex form-items-center form-justify-between form-mt-1">
+          <div className="form-flex form-gap-3">
+            {maxWords && (
+              <div
+                className={`form-text-xs ${getWordCount(newItem) > maxWords ? "form-text-red-500" : "form-text-gray-500"}`}
+              >
+                {getWordCount(newItem)}/{maxWords} words
+              </div>
+            )}
+
+            {(showCharCount || maxLength) && (
+              <div
+                className={`form-text-xs ${maxLength && newItem.length >= maxLength ? "form-text-red-500" : "form-text-gray-500"}`}
+              >
+                {newItem.length}
+                {maxLength ? `/${maxLength}` : ""} characters
+              </div>
+            )}
+          </div>
+        </div>
+
+        {localError && (
+          <p className="form-error form-mt-1">
+            <i className="bi bi-exclamation-circle form-error-icon"></i>
+            {localError}
+          </p>
+        )}
 
         <div className="item-list">
           {items.map((item, index) => (
@@ -112,16 +165,16 @@ const ListManager: React.FC<ListManagerProps> = ({
         </div>
 
         {maxItems && (
-          <div className="form-text-xs form-text-gray-500 form-mt-2">
+          <div className="form-text-xs form-text-gray-500 form-mt-1">
             {items.length}/{maxItems} items
           </div>
         )}
       </div>
 
-      {error && (
+      {propError && (
         <p className="form-error">
           <i className="bi bi-exclamation-circle form-error-icon"></i>
-          {error}
+          {propError}
         </p>
       )}
     </div>

@@ -10,22 +10,10 @@ import {
   useGetCategories,
   useDebounceValue,
 } from "@/lib/hooks";
+import { TourStatus, TourDifficulty, TourPriceType } from "@/lib/enums";
 import {
-  TourStatus,
-  TOUR_STATUS_OPTIONS,
-  TourDifficulty,
-  TOUR_DIFFICULTY_OPTIONS,
-  TourPriceType,
-  TOUR_PRICE_TYPE_OPTIONS,
-} from "@/lib/enums";
-import {
-  TextInput,
   NumberInput,
-  Textarea,
-  TiptapRichTextEditor,
-  Select,
   Checkbox,
-  ListManager,
   ItineraryManager,
   ImageUpload,
   SEOFields,
@@ -36,6 +24,9 @@ import {
   filterValidImageUrls,
   filterValidImageUrl,
 } from "@/lib/utils/imageUtils";
+import { BasicInfoSection } from "./components/BasicInfoSection";
+import { DescriptionsSection } from "./components/DescriptionsSection";
+import { ListsSection } from "./components/ListsSection";
 
 const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
   const router = useRouter();
@@ -247,103 +238,11 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
     >
       <div className="form-container">
         <form id="edit-tour-form" onSubmit={handleSubmit} className="tour-form">
-          <div className="form-section">
-            <div className="section-header">
-              <Title
-                order={3}
-                weight={600}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                }}
-              >
-                <i
-                  className="bi bi-info-circle"
-                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
-                ></i>{" "}
-                Basic Information
-              </Title>
-              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
-                Essential details about your tour package
-              </Text>
-            </div>
-            <div className="form-grid">
-              <TextInput
-                label="Tour Title"
-                placeholder="e.g., Amazing 3-Day Cultural Heritage Tour"
-                {...form.getFieldProps("title")}
-                required
-              />
-
-              <NumberInput
-                label="Price (PKR)"
-                placeholder="10,000"
-                {...form.getFieldProps("price")}
-                min={0}
-                step={1}
-                currency="₨"
-                required
-              />
-
-              <Select
-                label="Price Type"
-                value={form.values.priceType}
-                onChange={(value) =>
-                  form.setFieldValue("priceType", value as TourPriceType)
-                }
-                data={TOUR_PRICE_TYPE_OPTIONS}
-                required
-              />
-
-              <TextInput
-                label="Duration"
-                placeholder="e.g., 3 days, 5 days, 1 week"
-                {...form.getFieldProps("duration")}
-                required
-              />
-
-              <TextInput
-                label="Location/Destination"
-                placeholder="e.g., Paris, France or Bali, Indonesia"
-                {...form.getFieldProps("location")}
-                required
-              />
-
-              <Select
-                label="Category"
-                {...form.getFieldProps("category")}
-                placeholder="Select Category"
-                data={categoryOptions}
-                required
-                searchable
-                onSearchChange={setCategorySearchTerm}
-              />
-
-              <NumberInput
-                label="Maximum Group Size"
-                placeholder="15"
-                {...form.getFieldProps("groupSize")}
-                min={1}
-                max={50}
-              />
-
-              <Select
-                label="Difficulty Level"
-                {...form.getFieldProps("difficulty")}
-                data={TOUR_DIFFICULTY_OPTIONS}
-              />
-
-              <Select
-                label="Status"
-                value={form.values.status}
-                onChange={(value) =>
-                  form.setFieldValue("status", value as TourStatus)
-                }
-                data={TOUR_STATUS_OPTIONS}
-              />
-            </div>
-          </div>
+          <BasicInfoSection
+            form={form}
+            categoryOptions={categoryOptions}
+            setCategorySearchTerm={setCategorySearchTerm}
+          />
 
           <div className="form-section">
             <div className="section-header">
@@ -377,98 +276,9 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
             />
           </div>
 
-          <div className="form-section">
-            <div className="section-header">
-              <Title
-                order={3}
-                weight={600}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                }}
-              >
-                <i
-                  className="bi bi-file-text"
-                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
-                ></i>{" "}
-                Tour Descriptions
-              </Title>
-              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
-                Provide detailed information about your tour
-              </Text>
-            </div>
-            <div className="form-group">
-              <Textarea
-                label="Short Description"
-                description="Brief overview (2-3 sentences) that appears in tour listings"
-                {...form.getFieldProps("shortDescription")}
-                placeholder="e.g., Discover the rich cultural heritage of ancient temples and bustling markets in this immersive 3-day journey through historic landmarks and local traditions."
-                rows={3}
-                maxLength={200}
-                showCharCount
-                required
-              />
-            </div>
-            <div className="form-group">
-              <TiptapRichTextEditor
-                label="Full Description"
-                description="Detailed description that appears on the tour details page"
-                {...form.getFieldProps("description")}
-                placeholder="e.g., Embark on an unforgettable journey through centuries of history and culture. This comprehensive tour takes you through ancient temples, traditional villages, and modern cities, offering a perfect blend of historical exploration and contemporary experiences. Our expert guides will share fascinating stories and insights about local traditions, architecture, and way of life. You'll have the opportunity to interact with local communities, taste authentic cuisine, and participate in traditional activities. The tour includes comfortable accommodations, all meals, and transportation, ensuring a hassle-free and enriching experience."
-                rows={6}
-                maxLength={2000}
-                showCharCount
-                required
-              />
-            </div>
-          </div>
+          <DescriptionsSection form={form} />
 
-          <div className="form-section">
-            <div className="section-header">
-              <Title
-                order={3}
-                weight={600}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                }}
-              >
-                <i
-                  className="bi bi-star"
-                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
-                ></i>{" "}
-                Highlights
-              </Title>
-              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
-                Add key features and attractions that make this tour special
-              </Text>
-            </div>
-
-            <ListManager
-              label="Highlights"
-              description="Add key features and attractions that make this tour special"
-              placeholder="e.g., Visit ancient temples, Scenic mountain views, Local cultural experience"
-              addButtonText="Add Highlight"
-              emptyStateText="No highlights added yet"
-              emptyStateIcon={<i className="bi bi-star"></i>}
-              items={form.values.highlights || []}
-              onAdd={(item) =>
-                form.setFieldValue("highlights", [
-                  ...(form.values.highlights || []),
-                  item,
-                ])
-              }
-              onRemove={(index) =>
-                form.setFieldValue(
-                  "highlights",
-                  (form.values.highlights || []).filter((_, i) => i !== index),
-                )
-              }
-              maxItems={10}
-            />
-          </div>
+          <ListsSection form={form} />
 
           <div className="form-section">
             <div className="section-header">
@@ -507,97 +317,6 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
                   (form.values.itinerary || []).filter((_, i) => i !== index),
                 )
               }
-            />
-          </div>
-
-          <div className="form-section">
-            <div className="section-header">
-              <Title
-                order={3}
-                weight={600}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                }}
-              >
-                <i
-                  className="bi bi-check-circle"
-                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
-                ></i>{" "}
-                Includes
-              </Title>
-              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
-                List what&apos;s included in the tour price (meals,
-                transportation, accommodation, etc.)
-              </Text>
-            </div>
-            <ListManager
-              label="Includes"
-              description="List what's included in the tour price (meals, transportation, accommodation, etc.)"
-              placeholder="e.g., All meals included, Professional guide, Hotel accommodation, Airport transfers"
-              addButtonText="Add Include"
-              emptyStateText="No includes added yet"
-              emptyStateIcon={<i className="bi bi-check-circle"></i>}
-              items={form.values.includes || []}
-              onAdd={(item) =>
-                form.setFieldValue("includes", [
-                  ...(form.values.includes || []),
-                  item,
-                ])
-              }
-              onRemove={(index) =>
-                form.setFieldValue(
-                  "includes",
-                  (form.values.includes || []).filter((_, i) => i !== index),
-                )
-              }
-            />
-          </div>
-
-          <div className="form-section">
-            <div className="section-header">
-              <Title
-                order={3}
-                weight={600}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.75rem",
-                }}
-              >
-                <i
-                  className="bi bi-x-circle"
-                  style={{ color: "#fd7d02", fontSize: "1.2rem" }}
-                ></i>{" "}
-                Excludes
-              </Title>
-              <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
-                List what&apos;s NOT included in the tour price (optional
-                activities, personal expenses, etc.)
-              </Text>
-            </div>
-            <ListManager
-              label="Excludes"
-              description="List what's NOT included in the tour price (optional activities, personal expenses, etc.)"
-              placeholder="e.g., International flights, Travel insurance, Personal expenses, Optional activities"
-              addButtonText="Add Exclude"
-              emptyStateText="No excludes added yet"
-              emptyStateIcon={<i className="bi bi-x-circle"></i>}
-              items={form.values.excludes || []}
-              onAdd={(item) =>
-                form.setFieldValue("excludes", [
-                  ...(form.values.excludes || []),
-                  item,
-                ])
-              }
-              onRemove={(index) =>
-                form.setFieldValue(
-                  "excludes",
-                  (form.values.excludes || []).filter((_, i) => i !== index),
-                )
-              }
-              maxItems={15}
             />
           </div>
 

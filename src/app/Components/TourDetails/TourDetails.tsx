@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
 import { Modal } from "react-bootstrap";
-import { Tour } from "@/lib/types/tour";
+import { Tour, ItineraryItem } from "@/lib/types/tour";
 import {
   useGetTestimonials,
   useCreateTestimonial,
@@ -13,13 +13,57 @@ import {
 } from "@/lib/hooks";
 import { TestimonialStatus } from "@/lib/enums";
 import { ContactGroupType } from "@/lib/types/enums";
+import { Accordion } from "@/app/Components/Common";
+import { ErrorResponse } from "@/lib/types";
 
 interface TourDetailsProps {
   tour: Tour;
 }
 
+const TourInfoBox = ({
+  icon,
+  label,
+  value,
+}: {
+  icon: string;
+  label: string;
+  value: string | number;
+}) => (
+  <div className="d-flex align-items-center gap-3 py-1">
+    <div
+      className="d-flex justify-content-center align-items-center flex-shrink-0"
+      style={{
+        width: "48px",
+        height: "48px",
+        backgroundColor: "white",
+        borderRadius: "12px",
+        border: "1px solid #eef2f6",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+      }}
+    >
+      <i
+        className={`bi ${icon} text-primary`}
+        style={{ fontSize: "1.25rem" }}
+      ></i>
+    </div>
+    <div className="d-flex flex-column align-items-start" style={{ gap: "0" }}>
+      <span
+        className="text-muted"
+        style={{ fontSize: "0.85rem", fontWeight: 500 }}
+      >
+        {label}
+      </span>
+      <h6
+        className="fw-bold m-0"
+        style={{ fontSize: "1rem", color: "#2c3e50" }}
+      >
+        {value}
+      </h6>
+    </div>
+  </div>
+);
+
 const TourDetails = ({ tour }: TourDetailsProps) => {
-  const [openItemIndex, setOpenItemIndex] = useState(0);
   const [nav1, setNav1] = useState<Slider | null>(null);
   const [nav2, setNav2] = useState<Slider | null>(null);
   const slider1 = useRef<Slider | null>(null);
@@ -55,10 +99,7 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
             showSuccess("Review submitted! It will be visible after approval.");
             form.reset();
           },
-          onError: (error: {
-            response?: { data?: { error?: string } };
-            message?: string;
-          }) => {
+          onError: (error: ErrorResponse) => {
             showError(
               "Failed to submit review: " +
                 (error.response?.data?.error ||
@@ -121,7 +162,7 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
             showSuccess("Your enquiry has been sent successfully!");
             bookingForm.reset();
           },
-          onError: (error: any) => {
+          onError: (error: ErrorResponse) => {
             showError(
               "Failed to send enquiry: " +
                 (error.response?.data?.error ||
@@ -172,14 +213,6 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
         },
       },
     ],
-  };
-
-  const handleItemClick = (index: number) => {
-    if (index === openItemIndex) {
-      setOpenItemIndex(-1);
-    } else {
-      setOpenItemIndex(index);
-    }
   };
 
   return (
@@ -341,162 +374,82 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                       </div>
                     )}
                   </div>
-                  <div className="activities-box-wrap">
-                    <div className="activities-box-area mb-0">
-                      <div
-                        className="activities-box-item text-center"
-                        style={{ width: "auto" }}
-                      >
-                        <div className="icon d-flex justify-content-center align-items-center mx-auto">
-                          <Image
-                            src="/assets/img/icon/27.svg"
-                            alt="img"
-                            width={26}
-                            height={27}
+                  <div className="activities-box-wrap mb-4">
+                    <div className="bg-light-subtle rounded-4 p-3 border border-light shadow-sm">
+                      <div className="row g-4">
+                        <div className="col-12 col-md-4">
+                          <TourInfoBox
+                            icon="bi-geo-alt"
+                            label="Location"
+                            value={tour.location || "N/A"}
                           />
                         </div>
-                        <div className="content">
-                          <span>Location</span>
-                          <h6>{tour.location || "N/A"}</h6>
-                        </div>
+                        {tour.duration && (
+                          <div className="col-12 col-md-4">
+                            <TourInfoBox
+                              icon="bi-clock"
+                              label="Duration"
+                              value={tour.duration}
+                            />
+                          </div>
+                        )}
+                        {tour.difficulty && (
+                          <div className="col-12 col-md-4">
+                            <TourInfoBox
+                              icon="bi-speedometer2"
+                              label="Difficulty"
+                              value={tour.difficulty}
+                            />
+                          </div>
+                        )}
+                        {typeof tour.groupSize === "number" && (
+                          <div className="col-12 col-md-4">
+                            <TourInfoBox
+                              icon="bi-people"
+                              label="Group Size"
+                              value={`${tour.groupSize} People`}
+                            />
+                          </div>
+                        )}
+                        {typeof tour.price === "number" && (
+                          <div className="col-12 col-md-4">
+                            <TourInfoBox
+                              icon="bi-tags"
+                              label="Price"
+                              value={`PKR ${tour.price} / ${tour.priceType}`}
+                            />
+                          </div>
+                        )}
                       </div>
-                      {tour.duration && (
-                        <div
-                          className="activities-box-item text-center"
-                          style={{ width: "auto" }}
-                        >
-                          <div className="icon d-flex justify-content-center align-items-center mx-auto">
-                            <Image
-                              src="/assets/img/icon/29.svg"
-                              alt="img"
-                              width={26}
-                              height={27}
-                            />
-                          </div>
-                          <div className="content">
-                            <span>Duration</span>
-                            <h6>{tour.duration}</h6>
-                          </div>
-                        </div>
-                      )}
-                      {tour.difficulty && (
-                        <div
-                          className="activities-box-item text-center"
-                          style={{ width: "auto" }}
-                        >
-                          <div className="icon d-flex justify-content-center align-items-center mx-auto">
-                            <Image
-                              src="/assets/img/icon/30.svg"
-                              alt="img"
-                              width={26}
-                              height={27}
-                            />
-                          </div>
-                          <div className="content">
-                            <span>Difficulty</span>
-                            <h6>{tour.difficulty}</h6>
-                          </div>
-                        </div>
-                      )}
-                      {typeof tour.groupSize === "number" && (
-                        <div
-                          className="activities-box-item text-center"
-                          style={{ width: "auto" }}
-                        >
-                          <div className="icon d-flex justify-content-center align-items-center mx-auto">
-                            <Image
-                              src="/assets/img/icon/31.svg"
-                              alt="img"
-                              width={26}
-                              height={27}
-                            />
-                          </div>
-                          <div className="content">
-                            <span>Group Size</span>
-                            <h6>{tour.groupSize} people</h6>
-                          </div>
-                        </div>
-                      )}
-                      {typeof tour.price === "number" && (
-                        <div
-                          className="activities-box-item text-center"
-                          style={{ width: "auto" }}
-                        >
-                          <div className="icon d-flex justify-content-center align-items-center mx-auto">
-                            <Image
-                              src="/assets/img/icon/32.svg"
-                              alt="img"
-                              width={26}
-                              height={27}
-                            />
-                          </div>
-                          <div className="content">
-                            <span>Price</span>
-                            <h6>PKR {tour.price} / person</h6>
-                          </div>
-                        </div>
-                      )}
                     </div>
                   </div>
                   {tour.itinerary && tour.itinerary.length > 0 && (
                     <div className="faq-items">
-                      <h3>Tour Plan</h3>
-                      <div className="faq-accordion">
-                        <div className="accordion" id="accordion">
-                          {tour.itinerary.map((item, index) => (
+                      <h3 className="mb-4">Tour Plan</h3>
+                      <Accordion
+                        items={tour.itinerary.map((item: ItineraryItem) => ({
+                          title: `Day ${item.day}: ${item.title}`,
+                          content: item.description ? (
                             <div
-                              key={index}
-                              className={`accordion-item mb-3 ${
-                                index === openItemIndex ? "active" : ""
-                              }`}
-                            >
-                              <h5
-                                className="accordion-header"
-                                id={`heading${index}`}
-                              >
-                                <button
-                                  className={`accordion-button ${index === openItemIndex ? "" : "collapsed"}`}
-                                  type="button"
-                                  onClick={() => handleItemClick(index)}
-                                  aria-expanded={index === openItemIndex}
-                                  aria-controls={`faq${index}`}
-                                >
-                                  Day {item.day}: {item.title}
-                                </button>
-                              </h5>
-                              <div
-                                id={`faq${index}`}
-                                className="custom-accordion-content py-3"
-                                style={{
-                                  display:
-                                    index === openItemIndex ? "block" : "none",
-                                }}
-                              >
-                                <div className="p-4 bg-white border rounded shadow-sm">
-                                  {item.description ? (
-                                    <div
-                                      className="accordion-content-text"
-                                      style={{
-                                        color: "#333",
-                                        fontSize: "16px",
-                                        lineHeight: "1.6",
-                                      }}
-                                      dangerouslySetInnerHTML={{
-                                        __html: item.description,
-                                      }}
-                                      suppressHydrationWarning
-                                    />
-                                  ) : (
-                                    <p className="text-muted">
-                                      No details provided for this day.
-                                    </p>
-                                  )}
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+                              className="accordion-content-text"
+                              style={{
+                                color: "#333",
+                                fontSize: "16px",
+                                lineHeight: "1.6",
+                              }}
+                              dangerouslySetInnerHTML={{
+                                __html: item.description,
+                              }}
+                              suppressHydrationWarning
+                            />
+                          ) : (
+                            <p className="text-muted">
+                              No details provided for this day.
+                            </p>
+                          ),
+                        }))}
+                        defaultOpenIndex={0}
+                      />
                     </div>
                   )}
 
@@ -527,21 +480,21 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                       </div>
                     </>
                   )}
-                  <div className="cliect-review-area">
+                  <div className="client-review-area">
                     <h3>Reviews ({testimonials.length})</h3>
                     {isLoadingTestimonials ? (
                       <div className="text-center p-4">Loading reviews...</div>
                     ) : testimonials.length > 0 ? (
                       <ul className="review-items">
-                        {testimonials.map((testi, index) => (
-                          <li key={testi._id || index}>
+                        {testimonials.map((testimonial, index) => (
+                          <li key={testimonial._id || index}>
                             <div className="thumb">
                               <Image
                                 src={
-                                  testi.image ||
+                                  testimonial.image ||
                                   "/assets/img/testimonial/default-avatar.png"
                                 }
-                                alt={testi.name}
+                                alt={testimonial.name}
                                 width={110}
                                 height={110}
                                 className="rounded-circle"
@@ -556,31 +509,32 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                                 {Array.from({ length: 5 }, (_, i) => (
                                   <i
                                     key={i}
-                                    className={`bi bi-star${i < (testi.rating || 5) ? "-fill" : ""}`}
+                                    className={`bi bi-star${i < (testimonial.rating || 5) ? "-fill" : ""}`}
                                   ></i>
                                 ))}
                               </div>
-                              <h5>{testi.name}</h5>
+                              <h5>{testimonial.name}</h5>
                               <div className="d-flex align-items-center gap-2 mb-2">
-                                {testi.designation && (
+                                {testimonial.designation && (
                                   <span className="badge bg-light text-dark border">
-                                    {testi.designation}
+                                    {testimonial.designation}
                                   </span>
                                 )}
-                                {testi.location && (
+                                {testimonial.location && (
                                   <span className="text-muted small">
                                     <i className="bi bi-geo-alt me-1"></i>
-                                    {testi.location}
+                                    {testimonial.location}
                                   </span>
                                 )}
-                                {testi.status === "Active" && (
+                                {testimonial.status ===
+                                  TestimonialStatus.ACTIVE && (
                                   <span className="text-success small fw-bold">
                                     <i className="bi bi-patch-check-fill me-1"></i>
                                     Verified Traveler
                                   </span>
                                 )}
                               </div>
-                              <p>{testi.content}</p>
+                              <p>{testimonial.content}</p>
                             </div>
                           </li>
                         ))}
@@ -700,12 +654,12 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
               </div>
               <div className="col-12 col-lg-4">
                 <div className="main-bar">
-                  <div className="main-sideber">
+                  <div className="main-sidebar">
                     <div className="single-sidebar-widget">
                       <div className="wid-title">
                         <h4>Make My Trip</h4>
                       </div>
-                      <div className="desti-booking-form">
+                      <div className="destination-booking-form">
                         <form
                           onSubmit={bookingForm.handleSubmit()}
                           id="booking-form"
@@ -841,7 +795,9 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                                       "participants",
                                       Math.max(
                                         1,
-                                        (Number(bookingForm.values.participants) || 0) - 1,
+                                        (Number(
+                                          bookingForm.values.participants,
+                                        ) || 0) - 1,
                                       ),
                                     )
                                   }
@@ -861,7 +817,9 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                                   onClick={() =>
                                     bookingForm.setFieldValue(
                                       "participants",
-                                      (Number(bookingForm.values.participants) || 0) + 1,
+                                      (Number(
+                                        bookingForm.values.participants,
+                                      ) || 0) + 1,
                                     )
                                   }
                                 >
@@ -888,7 +846,9 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                                       "numberOfDays",
                                       Math.max(
                                         1,
-                                        (Number(bookingForm.values.numberOfDays) || 0) - 1,
+                                        (Number(
+                                          bookingForm.values.numberOfDays,
+                                        ) || 0) - 1,
                                       ),
                                     )
                                   }
@@ -908,7 +868,9 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                                   onClick={() =>
                                     bookingForm.setFieldValue(
                                       "numberOfDays",
-                                      (Number(bookingForm.values.numberOfDays) || 0) + 1,
+                                      (Number(
+                                        bookingForm.values.numberOfDays,
+                                      ) || 0) + 1,
                                     )
                                   }
                                 >
@@ -935,7 +897,9 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                                       "numberOfRooms",
                                       Math.max(
                                         1,
-                                        (Number(bookingForm.values.numberOfRooms) || 0) - 1,
+                                        (Number(
+                                          bookingForm.values.numberOfRooms,
+                                        ) || 0) - 1,
                                       ),
                                     )
                                   }
@@ -955,7 +919,9 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                                   onClick={() =>
                                     bookingForm.setFieldValue(
                                       "numberOfRooms",
-                                      (Number(bookingForm.values.numberOfRooms) || 0) + 1,
+                                      (Number(
+                                        bookingForm.values.numberOfRooms,
+                                      ) || 0) + 1,
                                     )
                                   }
                                 >

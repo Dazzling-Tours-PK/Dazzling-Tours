@@ -2,6 +2,12 @@ import { PaginatedResponse, SingleResponse } from "./common";
 import { TourPriceType, TourStatus } from "../enums/tour";
 import { SEOFields } from "./seo";
 
+export interface ItineraryItem {
+  day: number;
+  title: string;
+  description: string;
+}
+
 export interface Tour {
   _id: string;
   title: string;
@@ -14,11 +20,7 @@ export interface Tour {
   category: string;
   images: string[];
   highlights: string[];
-  itinerary: Array<{
-    day: number;
-    title: string;
-    description: string;
-  }>;
+  itinerary: ItineraryItem[];
   includes: string[];
   excludes: string[];
   difficulty: string;
@@ -44,11 +46,7 @@ export interface CreateTourData {
   category: string;
   images: string[];
   highlights?: string[];
-  itinerary?: Array<{
-    day: number;
-    title: string;
-    description: string;
-  }>;
+  itinerary?: ItineraryItem[];
   includes?: string[];
   excludes?: string[];
   difficulty?: string;

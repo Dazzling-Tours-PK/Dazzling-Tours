@@ -75,27 +75,35 @@ const ItineraryManager: React.FC<ItineraryManagerProps> = ({
       <div className="list-manager">
         <div className="add-item itinerary-form">
           <Stack>
-            <Group grow fullWidth>
-              <NumberInput
-                label="Day"
-                value={newDay}
-                onChange={(value) => setNewDay(value)}
-                placeholder="1"
-                min={1}
-              />
-              <TextInput
-                label="Location"
-                value={newTitle}
-                onChange={(value) => setNewTitle(value)}
-                placeholder="e.g., Sakardu, Arrival & City Tour"
-              />
+            <Group fullWidth style={{ gap: 16 }}>
+              <div style={{ flex: 1 }}>
+                <NumberInput
+                  label="Day"
+                  value={newDay}
+                  onChange={(value) => setNewDay(value)}
+                  placeholder="1"
+                  min={1}
+                />
+              </div>
+              <div style={{ flex: 2, minWidth: 220 }}>
+                <TextInput
+                  label="Location"
+                  value={newTitle}
+                  onChange={(value) => setNewTitle(value)}
+                  placeholder="e.g., Skardu, Arrival & City Tour"
+                  style={{ width: "100%" }}
+                />
+              </div>
             </Group>
             <Textarea
               label="Activity Description"
               value={newDescription}
               onChange={(value) => setNewDescription(value)}
               placeholder="e.g., Arrive at the airport, transfer to hotel, city tour including historical sites, lunch at local restaurant, evening free time"
-              rows={2}
+              rows={4}
+              style={{ width: "100%", minWidth: 320, resize: "vertical" }}
+              maxLength={400}
+              showCharCount
             />
           </Stack>
           <Button
@@ -149,7 +157,7 @@ const ItineraryManager: React.FC<ItineraryManagerProps> = ({
         </Stack>
 
         {maxItems && (
-          <div className="form-text-xs form-text-gray-500 form-mt-2">
+          <div className="form-text-xs form-text-gray-500 form-mt-1">
             {items.length}/{maxItems} days
           </div>
         )}

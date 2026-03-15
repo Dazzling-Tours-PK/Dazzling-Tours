@@ -6,14 +6,13 @@
 
 _**User (2025-09-28 09:51Z)**_
 
-#fd7d02 this is the main color for my application, what do you suggest with this color? 
+#fd7d02 this is the main color for my application, what do you suggest with this color?
 
 ---
 
 _**Assistant (default)**_
 
 Reviewing the current design to propose a palette around #fd7d02.
-
 
 ---
 
@@ -42,59 +41,57 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `--body: #fff;` | L5 |
-| `--black: #000;` | L6 |
-| `--white: #fff;` | L7 |
-| `--theme: #1ca8cb;` | L8 |
-| `--theme-2: #113d48;` | L9 |
-| `--header: #0a1f24;` | L10 |
-| `--text: #687179;` | L11 |
-| `--border: #e1e4e5;` | L12 |
-| `--border-2: #bdbdbd;` | L13 |
-| `--bg: #f7f7f7;` | L14 |
-| `background-color: var(--theme);` | L27 |
-| `color: var(--white);` | L28 |
-| `background-color: var(--header);` | L52 |
-| `color: var(--white);` | L58 |
-| `color: var(--theme);` | L79 |
-| `color: #535353;` | L86 |
-| `color: var(--theme);` | L89 |
-| `color: var(--theme) !important;` | L92 |
-| `color: var(--text);` | L103 |
-| `background-color: var(--white);` | L104 |
-| `background-color: transparent;` | L118 |
-| `color: var(--white);` | L123 |
-| `color: var(--white);` | L128 |
-| `color: var(--header);` | L140 |
-| `color: var(--header);` | L239 |
-| `background-color: var(--theme-2);` | L309 |
-| `color: var(--white);` | L310 |
-| `color: var(--white);` | L350 |
-| `background-color: var(--theme);` | L388 |
-| `color: var(--white);` | L404 |
-| `color: var(--white);` | L409 |
-| `background-color: var(--theme);` | L449 |
-| `background: var(--theme);` | L628 |
-| `background-color: var(--theme-2);` | L640 |
-| `background-color: var(--theme);` | L643 |
-| `background-color: rgb(239, 243, 250);` | L754 |
-| `background: #e1e4e5;` | L1199 |
-| `background: #e1e4e5;` | L1213 |
-| `color: var(--white);` | L1262 |
-| `color: var(--white);` | L1266 |
-| `background-color: transparent;` | L1270 |
-| `color: var(--white);` | L1276 |
-| `background: rgba(var(--n1), 0.45);` | L1310 |
-| `background: var(--theme);` | L1316 |
-| `background: var(--theme);` | L1322 |
-| `background: var(--theme);` | L1359 |
-| `background: none;` | L1367 |
-| `background: rgba(5, 5, 5, 0.486);` | L1377 |
-| `background: none;` | L1382 |
-
+| Content                                 | Line  |
+| --------------------------------------- | ----- |
+| `--body: #fff;`                         | L5    |
+| `--black: #000;`                        | L6    |
+| `--white: #fff;`                        | L7    |
+| `--theme: #1ca8cb;`                     | L8    |
+| `--theme-2: #113d48;`                   | L9    |
+| `--header: #0a1f24;`                    | L10   |
+| `--text: #687179;`                      | L11   |
+| `--border: #e1e4e5;`                    | L12   |
+| `--border-2: #bdbdbd;`                  | L13   |
+| `--bg: #f7f7f7;`                        | L14   |
+| `background-color: var(--theme);`       | L27   |
+| `color: var(--white);`                  | L28   |
+| `background-color: var(--header);`      | L52   |
+| `color: var(--white);`                  | L58   |
+| `color: var(--theme);`                  | L79   |
+| `color: #535353;`                       | L86   |
+| `color: var(--theme);`                  | L89   |
+| `color: var(--theme) !important;`       | L92   |
+| `color: var(--text);`                   | L103  |
+| `background-color: var(--white);`       | L104  |
+| `background-color: transparent;`        | L118  |
+| `color: var(--white);`                  | L123  |
+| `color: var(--white);`                  | L128  |
+| `color: var(--header);`                 | L140  |
+| `color: var(--header);`                 | L239  |
+| `background-color: var(--theme-2);`     | L309  |
+| `color: var(--white);`                  | L310  |
+| `color: var(--white);`                  | L350  |
+| `background-color: var(--theme);`       | L388  |
+| `color: var(--white);`                  | L404  |
+| `color: var(--white);`                  | L409  |
+| `background-color: var(--theme);`       | L449  |
+| `background: var(--theme);`             | L628  |
+| `background-color: var(--theme-2);`     | L640  |
+| `background-color: var(--theme);`       | L643  |
+| `background-color: rgb(239, 243, 250);` | L754  |
+| `background: #e1e4e5;`                  | L1199 |
+| `background: #e1e4e5;`                  | L1213 |
+| `color: var(--white);`                  | L1262 |
+| `color: var(--white);`                  | L1266 |
+| `background-color: transparent;`        | L1270 |
+| `color: var(--white);`                  | L1276 |
+| `background: rgba(var(--n1), 0.45);`    | L1310 |
+| `background: var(--theme);`             | L1316 |
+| `background: var(--theme);`             | L1322 |
+| `background: var(--theme);`             | L1359 |
+| `background: none;`                     | L1367 |
+| `background: rgba(5, 5, 5, 0.486);`     | L1377 |
+| `background: none;`                     | L1382 |
 
 </details>
 
@@ -116,6 +113,7 @@ Tool use: **web_search**
 ## Color Palette Recommendations for #fd7d02
 
 ### 1. **Primary Palette (Recommended)**
+
 - **Primary Orange**: `#fd7d02`
 - **Complementary Blue**: `#026df7`
 - **Neutral Dark**: `#1a1a1a`
@@ -123,6 +121,7 @@ Tool use: **web_search**
 - **Accent Yellow**: `#ffc107`
 
 ### 2. **Warm Analogous Scheme**
+
 - **Primary**: `#fd7d02`
 - **Secondary Orange**: `#ff8c00`
 - **Golden Yellow**: `#ffb347`
@@ -130,6 +129,7 @@ Tool use: **web_search**
 - **Cream**: `#fff8dc`
 
 ### 3. **Modern Triadic Scheme**
+
 - **Primary Orange**: `#fd7d02`
 - **Teal**: `#20c997`
 - **Purple**: `#6f42c1`
@@ -137,6 +137,7 @@ Tool use: **web_search**
 - **Light Gray**: `#e9ecef`
 
 ### 4. **Monochromatic Variations**
+
 - **Base**: `#fd7d02`
 - **Light Tint**: `#ffb366`
 - **Lighter Tint**: `#ffd9b3`
@@ -146,12 +147,14 @@ Tool use: **web_search**
 ## Implementation Suggestions
 
 ### For Your Travel/Tourism App:
+
 1. **Primary Orange (#fd7d02)** — CTAs, highlights, accents
 2. **Complementary Blue (#026df7)** — trust, reliability
 3. **Neutral Grays** — text and backgrounds
 4. **Warm Accents** — secondary actions and highlights
 
 ### CSS Variables to Add:
+
 ```css
 :root {
   --primary: #fd7d02;
@@ -165,6 +168,7 @@ Tool use: **web_search**
 ```
 
 ### Usage Guidelines:
+
 - **Primary Orange**: Buttons, links, highlights, badges
 - **Complementary Blue**: Secondary buttons, info elements
 - **Neutral Colors**: Text, backgrounds, borders
@@ -183,7 +187,6 @@ yes
 _**Assistant (default)**_
 
 Implementing the #fd7d02 palette: updating CSS variables and applying it across components.
-
 
 ---
 
@@ -206,7 +209,6 @@ Read file: src/app/assets/main.css
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -253,7 +255,6 @@ Tool use: **todo_write**
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/globals.css</summary>
 
 **Chunk 1**
@@ -271,7 +272,7 @@ Lines added: 7, lines removed: undefined
 +   --neutral-dark: #1a1a1a;
 +   --neutral-light: #f8f9fa;
   }
-  
+
 ```
 
 </details>
@@ -309,33 +310,30 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.cta-items \{` | L1696 |
-| `.cta-items \{` | L1709 |
-| `.cta-items .cta-text h2 \{` | L1713 |
-| `.cta-items .cta-text p \{` | L1720 |
-| `.cta-items .cta-text p \{` | L1728 |
-| `.cta-items .theme-btn \{` | L1732 |
-| `.cta-items .cta-image \{` | L1737 |
-| `.cta-items .cta-image \{` | L1743 |
-| `.cta-items .cta-image img \{` | L1748 |
-| `.cta-items.style-2 \{` | L1753 |
-| `.cta-section \{` | L1763 |
+| Content                         | Line  |
+| ------------------------------- | ----- |
+| `.cta-items \{`                 | L1696 |
+| `.cta-items \{`                 | L1709 |
+| `.cta-items .cta-text h2 \{`    | L1713 |
+| `.cta-items .cta-text p \{`     | L1720 |
+| `.cta-items .cta-text p \{`     | L1728 |
+| `.cta-items .theme-btn \{`      | L1732 |
+| `.cta-items .cta-image \{`      | L1737 |
+| `.cta-items .cta-image \{`      | L1743 |
+| `.cta-items .cta-image img \{`  | L1748 |
+| `.cta-items.style-2 \{`         | L1753 |
+| `.cta-section \{`               | L1763 |
 | `.cta-section .mobile-shape \{` | L1766 |
 | `.cta-section .mobile-shape \{` | L1772 |
-| `.cta-section-2 \{` | L2034 |
+| `.cta-section-2 \{`             | L2034 |
 | `.cta-section-2 .left-shape \{` | L2037 |
 | `.cta-section-2 .left-shape \{` | L2043 |
-
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -366,7 +364,6 @@ Lines added: 5, lines removed: 6
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -415,14 +412,12 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.theme-btn \{` | L21 |
-| `.theme-btn \{` | L41 |
-| `.theme-btn i \{` | L45 |
-| `.theme-btn:before \{` | L48 |
-
+| Content                | Line |
+| ---------------------- | ---- |
+| `.theme-btn \{`        | L21  |
+| `.theme-btn \{`        | L41  |
+| `.theme-btn i \{`      | L45  |
+| `.theme-btn:before \{` | L48  |
 
 </details>
 
@@ -435,26 +430,24 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.theme-btn:hover \{` | L60 |
-| `.theme-btn:hover::before \{` | L64 |
-| `.swiper-3d-section .card3d-content .theme-btn:hover \{` | L1278 |
-| `.swiper-3d-section .card3d-content .theme-btn:hover::before \{` | L1283 |
+| Content                                                                          | Line  |
+| -------------------------------------------------------------------------------- | ----- |
+| `.theme-btn:hover \{`                                                            | L60   |
+| `.theme-btn:hover::before \{`                                                    | L64   |
+| `.swiper-3d-section .card3d-content .theme-btn:hover \{`                         | L1278 |
+| `.swiper-3d-section .card3d-content .theme-btn:hover::before \{`                 | L1283 |
 | `.contact-us-wrapper .contact-us-contact .comment-form-wrap .theme-btn:hover \{` | L1673 |
-| `.theme-btn:hover::before \{` | L1680 |
-| `.cta-box-items .cta-content .theme-btn:hover \{` | L2074 |
-| `.cta-box-items .cta-content .theme-btn:hover::before \{` | L2078 |
-| `.destination-wrapper .main-box .box .destination-content .theme-btn:hover \{` | L3030 |
-| `.theme-btn:hover::before \{` | L3038 |
-| `.featured-flight-items .featured-content .featured-rating .theme-btn:hover \{` | L4415 |
-| `.theme-btn:hover::before \{` | L4422 |
-| `.theme-btn:hover \{` | L6549 |
-| `.hero-bottom .filter-wrapper .serch-button .theme-btn:hover \{` | L7681 |
-| `.hero-bottom .filter-wrapper .serch-button .theme-btn:hover::before \{` | L7685 |
-| `.theme-btn:hover \{` | L8012 |
-
+| `.theme-btn:hover::before \{`                                                    | L1680 |
+| `.cta-box-items .cta-content .theme-btn:hover \{`                                | L2074 |
+| `.cta-box-items .cta-content .theme-btn:hover::before \{`                        | L2078 |
+| `.destination-wrapper .main-box .box .destination-content .theme-btn:hover \{`   | L3030 |
+| `.theme-btn:hover::before \{`                                                    | L3038 |
+| `.featured-flight-items .featured-content .featured-rating .theme-btn:hover \{`  | L4415 |
+| `.theme-btn:hover::before \{`                                                    | L4422 |
+| `.theme-btn:hover \{`                                                            | L6549 |
+| `.hero-bottom .filter-wrapper .serch-button .theme-btn:hover \{`                 | L7681 |
+| `.hero-bottom .filter-wrapper .serch-button .theme-btn:hover::before \{`         | L7685 |
+| `.theme-btn:hover \{`                                                            | L8012 |
 
 </details>
 
@@ -467,24 +460,21 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.theme-btn:before \{` | L48 |
-| `.about-wrapper-2 .about-content .theme-btn:before \{` | L645 |
+| Content                                                                           | Line  |
+| --------------------------------------------------------------------------------- | ----- |
+| `.theme-btn:before \{`                                                            | L48   |
+| `.about-wrapper-2 .about-content .theme-btn:before \{`                            | L645  |
 | `.contact-us-wrapper .contact-us-contact .comment-form-wrap .theme-btn:before \{` | L1670 |
-| `.cta-box-items .cta-content .theme-btn:before \{` | L2071 |
-| `.destination-wrapper .main-box .box .destination-content .theme-btn:before \{` | L3027 |
-| `.featured-flight-items .featured-content .featured-rating .theme-btn:before \{` | L4412 |
-| `.hero-bottom .filter-wrapper .serch-button .theme-btn:before \{` | L7678 |
-
+| `.cta-box-items .cta-content .theme-btn:before \{`                                | L2071 |
+| `.destination-wrapper .main-box .box .destination-content .theme-btn:before \{`   | L3027 |
+| `.featured-flight-items .featured-content .featured-rating .theme-btn:before \{`  | L4412 |
+| `.hero-bottom .filter-wrapper .serch-button .theme-btn:before \{`                 | L7678 |
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -529,8 +519,8 @@ Lint paths:
 
 Lint results
 
-
 **No lint errors found**
+
 </details>
 
 ---
@@ -540,6 +530,7 @@ Implemented the #fd7d02 color palette across the app. Summary of changes:
 ## Color palette implementation complete
 
 ### **Updated CSS variables**
+
 - **Primary Orange**: `#fd7d02`
 - **Light Orange**: `#ffb366`
 - **Dark Orange**: `#cc5f00`
@@ -570,6 +561,7 @@ Implemented the #fd7d02 color palette across the app. Summary of changes:
    - Buttons use the new orange palette
 
 ### **Color usage guidelines**
+
 - **Primary Orange (#fd7d02)**: Main CTAs, highlights, primary actions
 - **Complementary Blue (#026df7)**: Secondary actions, trust elements
 - **Accent Yellow (#ffc107)**: Special offers, notifications
@@ -589,7 +581,6 @@ _**Assistant (default)**_
 
 Checking the header sticky scroll behavior and updating its colors to the new palette.
 
-
 ---
 
 Tool use: **read_file**
@@ -605,48 +596,45 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.sticky \{` | L6670 |
-| `.sticky.header-11 .header-logo \{` | L6682 |
-| `.sticky.header-11 .logo-2 \{` | L6685 |
-| `.sticky.header-3 .header-logo-2 \{` | L6688 |
-| `.sticky.header-3 .header-logo \{` | L6691 |
-| `.sticky.header-3 .header-main .main-menu ul li a \{` | L6694 |
-| `.sticky.header-3 .header-main .main-menu ul li a:hover \{` | L6697 |
-| `.sticky.header-3 .header-main .main-menu ul li .submenu \{` | L6700 |
-| `.sticky.header-3 .header-main .main-menu ul li .submenu li a \{` | L6703 |
-| `.sticky.header-3 .header-main .sidebar__toggle \{` | L6706 |
-| `.sticky.header-3 .theme-btn \{` | L6710 |
-| `.sticky.header-3 .search-icon \{` | L6714 |
-| `.sticky.header-3 .theme-btn \{` | L6718 |
-| `.cs_site_header.cs_style_1.cs-sticky-active \{` | L10418 |
-| `.cs_sticky_header \{` | L10500 |
-| `.cs-gescout_sticky \{` | L10505 |
-| `.cs-gescout_sticky .cs_nav .cs_nav_list li a \{` | L10718 |
-| `.cs-gescout_sticky .cs_main_header \{` | L10721 |
-| `.header_sticky_style1.cs-gescout_sticky \{` | L10739 |
-| `.header_style_2_0.header_sticky_style1.cs-gescout_sticky \{` | L10742 |
-| `.header_style_2_1.header_sticky_style1.cs-gescout_sticky \{` | L10745 |
-| `.header_sticky_style1.cs-gescout_sticky .cs_main_header \{` | L10748 |
-| `.header_sticky_style1.cs-gescout_sticky .cs_nav .cs_nav_list > li > a \{` | L10752 |
-| `.header_style_2_0.header_sticky_style1.cs-gescout_sticky` | L10761 |
-| `.header_style_2_1.header_sticky_style1.cs-gescout_sticky` | L10768 |
-| `.cs-gescout_sticky \{` | L10936 |
-| `.header_sticky_style2 .cs-munu_toggle span,` | L10940 |
-| `.header_sticky_style2 .cs-munu_toggle span:before,` | L10941 |
-| `.header_sticky_style2 .cs-munu_toggle span:after \{` | L10942 |
+| Content                                                                             | Line   |
+| ----------------------------------------------------------------------------------- | ------ |
+| `.sticky \{`                                                                        | L6670  |
+| `.sticky.header-11 .header-logo \{`                                                 | L6682  |
+| `.sticky.header-11 .logo-2 \{`                                                      | L6685  |
+| `.sticky.header-3 .header-logo-2 \{`                                                | L6688  |
+| `.sticky.header-3 .header-logo \{`                                                  | L6691  |
+| `.sticky.header-3 .header-main .main-menu ul li a \{`                               | L6694  |
+| `.sticky.header-3 .header-main .main-menu ul li a:hover \{`                         | L6697  |
+| `.sticky.header-3 .header-main .main-menu ul li .submenu \{`                        | L6700  |
+| `.sticky.header-3 .header-main .main-menu ul li .submenu li a \{`                   | L6703  |
+| `.sticky.header-3 .header-main .sidebar__toggle \{`                                 | L6706  |
+| `.sticky.header-3 .theme-btn \{`                                                    | L6710  |
+| `.sticky.header-3 .search-icon \{`                                                  | L6714  |
+| `.sticky.header-3 .theme-btn \{`                                                    | L6718  |
+| `.cs_site_header.cs_style_1.cs-sticky-active \{`                                    | L10418 |
+| `.cs_sticky_header \{`                                                              | L10500 |
+| `.cs-gescout_sticky \{`                                                             | L10505 |
+| `.cs-gescout_sticky .cs_nav .cs_nav_list li a \{`                                   | L10718 |
+| `.cs-gescout_sticky .cs_main_header \{`                                             | L10721 |
+| `.header_sticky_style1.cs-gescout_sticky \{`                                        | L10739 |
+| `.header_style_2_0.header_sticky_style1.cs-gescout_sticky \{`                       | L10742 |
+| `.header_style_2_1.header_sticky_style1.cs-gescout_sticky \{`                       | L10745 |
+| `.header_sticky_style1.cs-gescout_sticky .cs_main_header \{`                        | L10748 |
+| `.header_sticky_style1.cs-gescout_sticky .cs_nav .cs_nav_list > li > a \{`          | L10752 |
+| `.header_style_2_0.header_sticky_style1.cs-gescout_sticky`                          | L10761 |
+| `.header_style_2_1.header_sticky_style1.cs-gescout_sticky`                          | L10768 |
+| `.cs-gescout_sticky \{`                                                             | L10936 |
+| `.header_sticky_style2 .cs-munu_toggle span,`                                       | L10940 |
+| `.header_sticky_style2 .cs-munu_toggle span:before,`                                | L10941 |
+| `.header_sticky_style2 .cs-munu_toggle span:after \{`                               | L10942 |
 | `.cs_site_header.header_style_2.cs_style_1.cs-gescout_sticky .container::before \{` | L11099 |
-| `.cs_site_header.header_style_2.cs_style_1.cs-gescout_sticky` | L11128 |
-
+| `.cs_site_header.header_style_2.cs_style_1.cs-gescout_sticky`                       | L11128 |
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -673,7 +661,6 @@ Lines added: 2, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -694,7 +681,6 @@ Lines added: 1, lines removed: 1
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -717,7 +703,6 @@ Lines added: 1, lines removed: 1
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -730,7 +715,7 @@ Lines added: 1, lines removed: 1
 -     background-color: #000;
 +     background-color: var(--header);
     }
-  
+
 ```
 
 </details>
@@ -738,7 +723,6 @@ Lines added: 1, lines removed: 1
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -770,8 +754,8 @@ Lint paths:
 
 Lint results
 
-
 **No lint errors found**
+
 </details>
 
 ---
@@ -794,6 +778,7 @@ Updated the sticky header colors to use the new palette.
    - Updated toggle spans to use `var(--header)` instead of hardcoded `#000`
 
 ### **Result:**
+
 - Scrolling down: header uses the orange theme color (#fd7d02)
 - Scrolling up: header shows with the orange background
 - Mobile menu: toggle uses the dark neutral color
@@ -812,7 +797,6 @@ still there is old color in other pages confirm this. when I navigate to the oth
 _**Assistant (default)**_
 
 Checking other header components and pages for old color values.
-
 
 ---
 
@@ -835,15 +819,13 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `background-color: #1ca8cb;` | L2096 |
-| `background: linear-gradient(180deg, rgba(10, 31, 36, 0) 0%, #0a1f24 100%);` | L2748 |
-| `border: 1px solid #1ca8cb;` | L4446 |
-| `background-color: #113d48;` | L6013 |
-| `border-top: 2px solid #1ca8cb;` | L10671 |
-
+| Content                                                                      | Line   |
+| ---------------------------------------------------------------------------- | ------ |
+| `background-color: #1ca8cb;`                                                 | L2096  |
+| `background: linear-gradient(180deg, rgba(10, 31, 36, 0) 0%, #0a1f24 100%);` | L2748  |
+| `border: 1px solid #1ca8cb;`                                                 | L4446  |
+| `background-color: #113d48;`                                                 | L6013  |
+| `border-top: 2px solid #1ca8cb;`                                             | L10671 |
 
 </details>
 
@@ -860,7 +842,6 @@ Tool use: **todo_write**
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -883,7 +864,6 @@ Lines added: 1, lines removed: 1
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -904,7 +884,6 @@ Lines added: 1, lines removed: 1
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -927,7 +906,6 @@ Lines added: 1, lines removed: 1
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -948,7 +926,6 @@ Lines added: 1, lines removed: 1
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -976,18 +953,15 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
+| Content                | Line  |
+| ---------------------- | ----- |
 | `background: #017db9;` | L2049 |
-
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -1059,29 +1033,26 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.header_style_2_2 .cs_nav .cs_nav_list > li > a \{` | L10623 |
-| `.header_style_2_2 .cs_nav .cs_nav_list > li > a:hover \{` | L10626 |
-| `.header_style_2_1 .cs_nav .cs_nav_list > li > a \{` | L10629 |
-| `.header_style_2_1.header_sticky_style1.cs-gescout_sticky \{` | L10745 |
-| `.header_style_2_1.header_sticky_style1.cs-gescout_sticky` | L10768 |
-| `.header_style_2_1 .cs-munu_toggle span,` | L10953 |
-| `.header_style_2_1 .cs-munu_toggle span:before,` | L10954 |
-| `.header_style_2_1 .cs-munu_toggle span:after \{` | L10955 |
+| Content                                                                            | Line   |
+| ---------------------------------------------------------------------------------- | ------ |
+| `.header_style_2_2 .cs_nav .cs_nav_list > li > a \{`                               | L10623 |
+| `.header_style_2_2 .cs_nav .cs_nav_list > li > a:hover \{`                         | L10626 |
+| `.header_style_2_1 .cs_nav .cs_nav_list > li > a \{`                               | L10629 |
+| `.header_style_2_1.header_sticky_style1.cs-gescout_sticky \{`                      | L10745 |
+| `.header_style_2_1.header_sticky_style1.cs-gescout_sticky`                         | L10768 |
+| `.header_style_2_1 .cs-munu_toggle span,`                                          | L10953 |
+| `.header_style_2_1 .cs-munu_toggle span:before,`                                   | L10954 |
+| `.header_style_2_1 .cs-munu_toggle span:after \{`                                  | L10955 |
 | `.header_style_2_2.cs_site_header.header_style_2.cs_style_1 .cs_main_header_in \{` | L11095 |
-| `.header_style_2_1 .cs_btn.cs_style_1 \{` | L11224 |
-| `.header_style_2_2 \{` | L11291 |
-| `.header_style_2_1 \{` | L11342 |
-
+| `.header_style_2_1 .cs_btn.cs_style_1 \{`                                          | L11224 |
+| `.header_style_2_2 \{`                                                             | L11291 |
+| `.header_style_2_1 \{`                                                             | L11342 |
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -1113,36 +1084,33 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `--body: #fff;` | L5 |
-| `--black: #000;` | L6 |
-| `--white: #fff;` | L7 |
-| `border: 2px solid #fff;` | L7149 |
-| `border: 2px solid #000;` | L7160 |
-| `border: 2px solid #000;` | L7170 |
-| `border-bottom: 2px solid #fff;` | L7416 |
-| `border-right: 2px solid #fff;` | L7417 |
-| `color: #fff;` | L10197 |
-| `background: #000;` | L10231 |
-| `background: #fff;` | L10280 |
-| `background: #fff;` | L10342 |
-| `background: #fff;` | L10358 |
-| `background: #000;` | L10368 |
-| `background-color: #fff;` | L10444 |
-| `color: #fff;` | L10493 |
-| `color: #fff;` | L10542 |
-| `background-color: #fff;` | L10549 |
-| `color: #fff;` | L10593 |
-
+| Content                          | Line   |
+| -------------------------------- | ------ |
+| `--body: #fff;`                  | L5     |
+| `--black: #000;`                 | L6     |
+| `--white: #fff;`                 | L7     |
+| `border: 2px solid #fff;`        | L7149  |
+| `border: 2px solid #000;`        | L7160  |
+| `border: 2px solid #000;`        | L7170  |
+| `border-bottom: 2px solid #fff;` | L7416  |
+| `border-right: 2px solid #fff;`  | L7417  |
+| `color: #fff;`                   | L10197 |
+| `background: #000;`              | L10231 |
+| `background: #fff;`              | L10280 |
+| `background: #fff;`              | L10342 |
+| `background: #fff;`              | L10358 |
+| `background: #000;`              | L10368 |
+| `background-color: #fff;`        | L10444 |
+| `color: #fff;`                   | L10493 |
+| `color: #fff;`                   | L10542 |
+| `background-color: #fff;`        | L10549 |
+| `color: #fff;`                   | L10593 |
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -1164,7 +1132,6 @@ Lines added: 1, lines removed: 1
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -1200,7 +1167,6 @@ Lines added: 1, lines removed: 1
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -1223,7 +1189,6 @@ Lines added: 2, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -1384,7 +1349,6 @@ Lines added: 1, lines removed: 1
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -1410,7 +1374,7 @@ Lines added: 1, lines removed: 1
 -   background: #000;
 +   background: var(--black);
   }
-  
+
 ```
 
 </details>
@@ -1418,7 +1382,6 @@ Lines added: 1, lines removed: 1
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -1466,7 +1429,6 @@ Lines added: 1, lines removed: 1
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -1585,111 +1547,109 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| Do not use empty rulesets | 7113:1-7113:21 | DIAGNOSTIC_SEVERITY_WARNING |
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 864:12-864:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 872:12-872:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 900:20-900:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 908:12-908:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1023:12-1023:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1038:12-1038:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1108:24-1108:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1117:16-1117:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1123:16-1123:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1126:16-1126:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2722:29-2722:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3171:4-3171:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3185:4-3185:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3195:6-3195:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3205:6-3205:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3221:6-3221:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3321:10-3321:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3326:10-3326:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3331:10-3331:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3350:10-3350:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3359:10-3359:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3362:10-3362:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3365:10-3365:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3368:10-3368:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3386:10-3386:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3390:10-3390:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3394:10-3394:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3399:10-3399:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4715:4-4715:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4729:4-4729:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4739:6-4739:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4749:6-4749:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4765:6-4765:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4777:57-4777:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4780:57-4780:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4786:57-4786:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4794:4-4794:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5410:58-5410:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5415:4-5415:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5426:6-5426:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5434:4-5434:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5441:4-5441:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5449:6-5449:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5457:4-5457:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5466:4-5466:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5476:4-5476:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5485:4-5485:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5497:4-5497:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6173:15-6173:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6466:36-6466:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6474:36-6474:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6474:46-6474:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6481:38-6481:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6481:48-6481:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6485:36-6485:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6485:46-6485:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6485:62-6485:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6492:8-6492:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6493:4-6493:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6494:4-6494:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6495:4-6495:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6502:8-6502:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6503:4-6503:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6504:4-6504:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6505:4-6505:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6525:8-6525:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6526:4-6526:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6527:4-6527:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6528:4-6528:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 6993:2-6993:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7665:31-7665:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7670:31-7670:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7674:31-7674:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7678:31-7678:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7681:31-7681:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7685:31-7685:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7921:19-7921:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8085:19-8085:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8382:7-8382:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8388:7-8388:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8391:7-8391:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8395:7-8395:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8406:7-8406:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8419:7-8419:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8422:7-8422:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8432:7-8432:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8435:7-8435:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8439:7-8439:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8448:7-8448:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8451:7-8451:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8454:7-8454:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8459:7-8459:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8465:7-8465:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| Do not use empty rulesets    | 7113:1-7113:21  | DIAGNOSTIC_SEVERITY_WARNING     |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 864:12-864:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 872:12-872:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 900:20-900:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 908:12-908:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1023:12-1023:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1038:12-1038:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1108:24-1108:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1117:16-1117:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1123:16-1123:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1126:16-1126:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2722:29-2722:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3171:4-3171:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3185:4-3185:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3195:6-3195:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3205:6-3205:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3221:6-3221:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3321:10-3321:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3326:10-3326:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3331:10-3331:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3350:10-3350:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3359:10-3359:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3362:10-3362:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3365:10-3365:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3368:10-3368:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3386:10-3386:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3390:10-3390:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3394:10-3394:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3399:10-3399:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4715:4-4715:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4729:4-4729:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4739:6-4739:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4749:6-4749:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4765:6-4765:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4777:57-4777:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4780:57-4780:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4786:57-4786:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4794:4-4794:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5410:58-5410:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5415:4-5415:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5426:6-5426:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5434:4-5434:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5441:4-5441:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5449:6-5449:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5457:4-5457:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5466:4-5466:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5476:4-5476:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5485:4-5485:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5497:4-5497:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6173:15-6173:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6466:36-6466:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6474:36-6474:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6474:46-6474:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6481:38-6481:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6481:48-6481:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6485:36-6485:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6485:46-6485:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6485:62-6485:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6492:8-6492:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6493:4-6493:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6494:4-6494:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6495:4-6495:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6502:8-6502:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6503:4-6503:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6504:4-6504:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6505:4-6505:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6525:8-6525:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6526:4-6526:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6527:4-6527:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6528:4-6528:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 6993:2-6993:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7665:31-7665:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7670:31-7670:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7674:31-7674:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7678:31-7678:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7681:31-7681:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7685:31-7685:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7921:19-7921:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8085:19-8085:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8382:7-8382:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8388:7-8388:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8391:7-8391:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8395:7-8395:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8406:7-8406:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8419:7-8419:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8422:7-8422:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8432:7-8432:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8435:7-8435:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8439:7-8439:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8448:7-8448:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8451:7-8451:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8454:7-8454:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8459:7-8459:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8465:7-8465:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -1702,11 +1662,9 @@ Tool use: **grep**
 
 Output mode: content
 
-
 | Content | Line |
-|------|------|
-| `\}` | L19 |
-
+| ------- | ---- |
+| `\}`    | L19  |
 
 </details>
 
@@ -1719,7 +1677,6 @@ Read file: src/app/assets/main.css
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -1752,110 +1709,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 864:12-864:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 872:12-872:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 900:20-900:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 908:12-908:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1023:12-1023:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1038:12-1038:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1108:24-1108:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1117:16-1117:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1123:16-1123:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1126:16-1126:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2722:29-2722:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3171:4-3171:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3185:4-3185:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3195:6-3195:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3205:6-3205:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3221:6-3221:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3321:10-3321:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3326:10-3326:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3331:10-3331:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3350:10-3350:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3359:10-3359:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3362:10-3362:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3365:10-3365:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3368:10-3368:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3386:10-3386:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3390:10-3390:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3394:10-3394:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3399:10-3399:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4715:4-4715:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4729:4-4729:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4739:6-4739:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4749:6-4749:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4765:6-4765:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4777:57-4777:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4780:57-4780:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4786:57-4786:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4794:4-4794:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5410:58-5410:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5415:4-5415:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5426:6-5426:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5434:4-5434:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5441:4-5441:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5449:6-5449:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5457:4-5457:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5466:4-5466:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5476:4-5476:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5485:4-5485:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5497:4-5497:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6173:15-6173:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6466:36-6466:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6474:36-6474:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6474:46-6474:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6481:38-6481:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6481:48-6481:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6485:36-6485:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6485:46-6485:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6485:62-6485:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6492:8-6492:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6493:4-6493:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6494:4-6494:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6495:4-6495:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6502:8-6502:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6503:4-6503:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6504:4-6504:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6505:4-6505:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6525:8-6525:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6526:4-6526:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6527:4-6527:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6528:4-6528:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 6993:2-6993:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7666:31-7666:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7671:31-7671:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7675:31-7675:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7679:31-7679:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7682:31-7682:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7686:31-7686:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7922:19-7922:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8086:19-8086:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8383:7-8383:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8389:7-8389:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8392:7-8392:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8396:7-8396:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8407:7-8407:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8420:7-8420:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8423:7-8423:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8433:7-8433:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8436:7-8436:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8440:7-8440:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8449:7-8449:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8452:7-8452:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8455:7-8455:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8460:7-8460:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8466:7-8466:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 864:12-864:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 872:12-872:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 900:20-900:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 908:12-908:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1023:12-1023:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1038:12-1038:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1108:24-1108:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1117:16-1117:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1123:16-1123:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1126:16-1126:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2722:29-2722:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3171:4-3171:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3185:4-3185:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3195:6-3195:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3205:6-3205:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3221:6-3221:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3321:10-3321:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3326:10-3326:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3331:10-3331:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3350:10-3350:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3359:10-3359:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3362:10-3362:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3365:10-3365:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3368:10-3368:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3386:10-3386:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3390:10-3390:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3394:10-3394:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3399:10-3399:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4715:4-4715:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4729:4-4729:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4739:6-4739:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4749:6-4749:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4765:6-4765:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4777:57-4777:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4780:57-4780:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4786:57-4786:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4794:4-4794:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5410:58-5410:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5415:4-5415:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5426:6-5426:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5434:4-5434:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5441:4-5441:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5449:6-5449:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5457:4-5457:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5466:4-5466:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5476:4-5476:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5485:4-5485:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5497:4-5497:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6173:15-6173:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6466:36-6466:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6474:36-6474:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6474:46-6474:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6481:38-6481:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6481:48-6481:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6485:36-6485:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6485:46-6485:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6485:62-6485:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6492:8-6492:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6493:4-6493:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6494:4-6494:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6495:4-6495:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6502:8-6502:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6503:4-6503:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6504:4-6504:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6505:4-6505:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6525:8-6525:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6526:4-6526:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6527:4-6527:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6528:4-6528:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 6993:2-6993:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7666:31-7666:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7671:31-7671:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7675:31-7675:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7679:31-7679:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7682:31-7682:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7686:31-7686:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7922:19-7922:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8086:19-8086:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8383:7-8383:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8389:7-8389:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8392:7-8392:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8396:7-8396:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8407:7-8407:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8420:7-8420:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8423:7-8423:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8433:7-8433:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8436:7-8436:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8440:7-8440:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8449:7-8449:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8452:7-8452:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8455:7-8455:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8460:7-8460:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8466:7-8466:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -1887,6 +1842,7 @@ Updated all remaining old color values across the app. Summary of changes:
    - Resolved empty ruleset warning
 
 ### **Pages now using the new color scheme:**
+
 - **Home page** (Header1) - Orange theme
 - **About page** (Header2) - Orange theme
 - **Contact page** (Header2) - Orange theme
@@ -1894,7 +1850,9 @@ Updated all remaining old color values across the app. Summary of changes:
 - **All other inner pages** - Consistent orange theme
 
 ### **Result:**
+
 All pages now use the orange palette (#fd7d02) with:
+
 - **Primary Orange**: Main buttons, CTAs, highlights
 - **Complementary Blue**: Secondary elements, trust indicators
 - **Dark Neutral**: Headers, text, borders
@@ -1906,7 +1864,7 @@ The color scheme is consistent across the app.
 
 _**User (2025-09-28 09:51Z)**_
 
-and Header and Footer will be common on all pages, because currently I am on about link it is showing me the old header. 
+and Header and Footer will be common on all pages, because currently I am on about link it is showing me the old header.
 
 Put the header and footer on a common page. so I will not make seperate changes for each of one
 
@@ -1915,7 +1873,6 @@ Put the header and footer on a common page. so I will not make seperate changes 
 _**Assistant (default)**_
 
 Centralizing the header and footer in the root layout so all pages share the same components.
-
 
 ---
 
@@ -1937,7 +1894,6 @@ Read file: src/app/layout.tsx
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/layout.tsx</summary>
 
 **Chunk 1**
@@ -1949,7 +1905,7 @@ Lines added: 2, lines removed: undefined
   import "./assets/main.css";
 + import Header1 from "./Components/Header/Header1";
 + import Footer1 from "./Components/Footer/Footer1";
-  
+
   const manrope = Manrope({
 ```
 
@@ -1958,7 +1914,6 @@ Lines added: 2, lines removed: undefined
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/layout.tsx</summary>
 
@@ -1995,7 +1950,6 @@ Tool use: **todo_write**
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/(innerpage)/layout.tsx</summary>
 
 **Chunk 1**
@@ -2006,7 +1960,7 @@ Lines added: 2, lines removed: 6
   import React from "react";
 - import Header2 from "../Components/Header/Header2";
 - import Footer1 from "../Components/Footer/Footer1";
-  
+
   const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
     return (
 -     <div className="main-page-area">
@@ -2026,7 +1980,6 @@ Lines added: 2, lines removed: 6
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/page.tsx</summary>
 
 **Chunk 1**
@@ -2038,7 +1991,7 @@ Lines added: 1, lines removed: 4
   import Instagram1 from "@/app/Components/Instagram/Instagram1";
 - import Footer1 from "@/app/Components/Footer/Footer1";
 - import Header1 from "@/app/Components/Header/Header1";
-  
+
   const HomePage = () => {
     return (
 -     <div className="main-page-area">
@@ -2091,19 +2044,16 @@ Lint results
 
 Lint errors for `src/app/page.tsx`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| 'Destination1' is defined but never used. | 4:8-4:20 | DIAGNOSTIC_SEVERITY_WARNING |
-| 'Destination1' is declared but its value is never read. | 4:1-4:70 | DIAGNOSTIC_SEVERITY_HINT |
-
+| Message                                                 | Range    | Severity                    |
+| ------------------------------------------------------- | -------- | --------------------------- |
+| 'Destination1' is defined but never used.               | 4:8-4:20 | DIAGNOSTIC_SEVERITY_WARNING |
+| 'Destination1' is declared but its value is never read. | 4:1-4:70 | DIAGNOSTIC_SEVERITY_HINT    |
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/page.tsx</summary>
 
@@ -2134,8 +2084,8 @@ Lint paths:
 
 Lint results
 
-
 **No lint errors found**
+
 </details>
 
 ---
@@ -2162,12 +2112,14 @@ Centralized the header and footer in the root layout.
    - Removed unused `Destination1` import
 
 ### **Result:**
+
 - All pages use the same header and footer
 - Consistent orange theme across the app
 - Single place to update header/footer
 - No duplicate components
 
 ### **Pages now using common header/footer:**
+
 - Home page
 - About page
 - Contact page
@@ -2187,7 +2139,6 @@ make sure admin (cms) layout will be seperate and other website layout will be s
 _**Assistant (default)**_
 
 Separating the admin CMS layout from the public site layout.
-
 
 ---
 
@@ -2209,7 +2160,6 @@ Read file: src/app/admin/layout.tsx
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/layout.tsx</summary>
 
 **Chunk 1**
@@ -2222,7 +2172,7 @@ Lines added: 1, lines removed: 2
 - import Header1 from "./Components/Header/Header1";
 - import Footer1 from "./Components/Footer/Footer1";
 + import ConditionalLayout from "./Components/Common/ConditionalLayout";
-  
+
   const manrope = Manrope({
 ```
 
@@ -2231,7 +2181,6 @@ Lines added: 1, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/layout.tsx</summary>
 
@@ -2282,8 +2231,8 @@ Lint paths:
 
 Lint results
 
-
 **No lint errors found**
+
 </details>
 
 ---
@@ -2311,6 +2260,7 @@ Separated the admin CMS layout from the public site layout.
 ### **Layout structure:**
 
 **Website pages** (/, /about, /contact, etc.):
+
 ```
 Root Layout
 ├── ConditionalLayout
@@ -2320,6 +2270,7 @@ Root Layout
 ```
 
 **Admin pages** (/admin, /admin/tours, etc.):
+
 ```
 Root Layout
 ├── ConditionalLayout
@@ -2330,6 +2281,7 @@ Root Layout
 ```
 
 ### **Benefits:**
+
 - Admin CMS is isolated from the public site
 - Website pages use the orange theme consistently
 - Admin pages use their own styling and navigation
@@ -2343,9 +2295,11 @@ Admin pages use the CMS layout; all other pages use the website layout with the 
 _**User (2025-09-28 09:51Z)**_
 
 For the code present, we get this error:
+
 ```
 Cannot find module './Components/Common/ConditionalLayout' or its corresponding type declarations.
 ```
+
 How can I resolve this? If you propose a fix, please make it concise.
 
 ---
@@ -2353,7 +2307,6 @@ How can I resolve this? If you propose a fix, please make it concise.
 _**Assistant (default)**_
 
 Fixing the import path: `ConditionalLayout` is in `src/app/Components/Common/`, but the root layout imports it from `./Components/Common/`. Updating the import to the correct path.
-
 
 ---
 
@@ -2395,7 +2348,6 @@ TypeScript compilation passed, so the import path is correct. This is likely an 
 2. Clear the Next.js cache: `rm -rf .next`
 3. Restart the dev server: `npm run dev`
 
-
 ---
 
 Tool use: **run_terminal_cmd**
@@ -2416,14 +2368,13 @@ $ rm -rf .next
 
 _**User (2025-09-28 10:19Z)**_
 
-make sure admin pannel have the simmilar font like we have in application. 
+make sure admin pannel have the simmilar font like we have in application.
 
 ---
 
 _**Assistant (default)**_
 
 Updating the admin layout to use the same fonts as the main app.
-
 
 ---
 
@@ -2439,7 +2390,6 @@ Invalid: old_string and new_string are exactly the same.
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/admin/admin.css</summary>
 
 **Chunk 1**
@@ -2451,7 +2401,7 @@ Lines added: 1, lines removed: undefined
     background-color: #f8f9fa;
 +   font-family: "Manrope", sans-serif;
   }
-  
+
 ```
 
 </details>
@@ -2459,7 +2409,6 @@ Lines added: 1, lines removed: undefined
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/admin/admin.css</summary>
 
@@ -2472,7 +2421,7 @@ Lines added: 1, lines removed: undefined
     font-weight: 600;
 +   font-family: "Manrope", sans-serif;
   }
-  
+
 ```
 
 </details>
@@ -2480,7 +2429,6 @@ Lines added: 1, lines removed: undefined
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/admin/admin.css</summary>
 
@@ -2494,7 +2442,7 @@ Lines added: 2, lines removed: undefined
 +   font-family: "Manrope", sans-serif;
 +   font-weight: 700;
   }
-  
+
 ```
 
 </details>
@@ -2502,7 +2450,6 @@ Lines added: 2, lines removed: undefined
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/admin/admin.css</summary>
 
@@ -2516,7 +2463,7 @@ Lines added: 2, lines removed: undefined
 +   font-family: "Manrope", sans-serif;
 +   font-weight: 700;
   }
-  
+
 ```
 
 </details>
@@ -2524,7 +2471,6 @@ Lines added: 2, lines removed: undefined
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/admin/admin.css</summary>
 
@@ -2537,7 +2483,7 @@ Lines added: 1, lines removed: undefined
     color: #2c3e50;
 +   font-family: "Manrope", sans-serif;
   }
-  
+
 ```
 
 </details>
@@ -2545,7 +2491,6 @@ Lines added: 1, lines removed: undefined
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/admin/admin.css</summary>
 
@@ -2558,7 +2503,7 @@ Lines added: 1, lines removed: undefined
     color: #2c3e50;
 +   font-family: "Manrope", sans-serif;
   }
-  
+
 ```
 
 </details>
@@ -2566,7 +2511,6 @@ Lines added: 1, lines removed: undefined
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/admin/admin.css</summary>
 
@@ -2579,7 +2523,7 @@ Lines added: 1, lines removed: undefined
     color: #2c3e50;
 +   font-family: "Manrope", sans-serif;
   }
-  
+
 ```
 
 </details>
@@ -2587,7 +2531,6 @@ Lines added: 1, lines removed: undefined
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/admin/admin.css</summary>
 
@@ -2601,7 +2544,7 @@ Lines added: 2, lines removed: undefined
 +   font-family: "Manrope", sans-serif;
 +   font-weight: 500;
   }
-  
+
 ```
 
 </details>
@@ -2609,7 +2552,6 @@ Lines added: 2, lines removed: undefined
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/admin/admin.css</summary>
 
@@ -2622,7 +2564,7 @@ Lines added: 1, lines removed: undefined
     font-weight: 600;
 +   font-family: "Manrope", sans-serif;
   }
-  
+
 ```
 
 </details>
@@ -2640,8 +2582,8 @@ Lint paths:
 
 Lint results
 
-
 **No lint errors found**
+
 </details>
 
 ---
@@ -2668,6 +2610,7 @@ Updated the admin panel to use the same Manrope font as the main site.
    - Applied Manrope to `.btn` with `font-weight: 500`
 
 ### **Result:**
+
 - Consistent typography across the site and admin
 - Improved readability
 - Unified branding
@@ -2677,9 +2620,11 @@ Updated the admin panel to use the same Manrope font as the main site.
 _**User (2025-09-28 10:19Z)**_
 
 For the code present, we get this error:
+
 ```
 Cannot find name 'HeroBanner2'.
 ```
+
 How can I resolve this? If you propose a fix, please make it concise.
 
 ---
@@ -2688,11 +2633,9 @@ _**Assistant (default)**_
 
 Adding the missing `HeroBanner2` import in `src/app/page.tsx`.
 
-
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/page.tsx</summary>
 
@@ -2702,7 +2645,7 @@ Lines added: 1, lines removed: 1
 ```diff
 @@ -1,4 +1,4 @@
   import React from "react";
-- 
+-
 + import HeroBanner2 from "@/app/Components/HeroBanner/HeroBanner2";
   import FeaturedTour1 from "@/app/Components/FeaturedTour/FeaturedTour1";
   import About1 from "@/app/Components/About/About1";
@@ -2719,9 +2662,11 @@ Lines added: 1, lines removed: 1
 _**User (2025-09-28 10:19Z)**_
 
 For the code present, we get this error:
+
 ```
 Cannot find module '@/app/Components/HeroBanner/HeroBanner2' or its corresponding type declarations.
 ```
+
 How can I resolve this? If you propose a fix, please make it concise.
 
 ---
@@ -2729,7 +2674,6 @@ How can I resolve this? If you propose a fix, please make it concise.
 _**Assistant (default)**_
 
 Checking for `HeroBanner2.tsx` in `src/app/Components/HeroBanner` and fixing the import path if needed.
-
 
 ---
 
@@ -2744,7 +2688,6 @@ No results found
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/page.tsx</summary>
 
@@ -2765,7 +2708,6 @@ Lines added: 1, lines removed: 1
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/page.tsx</summary>
 
@@ -2792,15 +2734,13 @@ Lines added: 1, lines removed: 1
 
 _**User (2025-09-28 10:19Z)**_
 
-Check my About2 component set the images according to the theme, like this 
-
+Check my About2 component set the images according to the theme, like this
 
 ---
 
 _**Assistant (default)**_
 
 Reviewing `About2` to align images with the travel theme.
-
 
 ---
 
@@ -2841,7 +2781,6 @@ No results found
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/About/About2.tsx</summary>
 
@@ -2916,7 +2855,6 @@ Lines added: 4, lines removed: 4
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/Components/About/About2.tsx</summary>
 
 **Chunk 1**
@@ -2938,9 +2876,9 @@ Lines added: 6, lines removed: 6
 -                   majority have suffered alteration in some form, by injected
 -                   humour words which do not look even slightly believable
 -                   injected humour words which
-+                   At Dazzling Tours, we believe every journey should be extraordinary. 
-+                   From mountain adventures to tropical paradises, we craft personalized 
-+                   travel experiences that create lasting memories and inspire wanderlust 
++                   At Dazzling Tours, we believe every journey should be extraordinary.
++                   From mountain adventures to tropical paradises, we craft personalized
++                   travel experiences that create lasting memories and inspire wanderlust
 +                   in every traveler's heart.
                   </p>
                   <div
@@ -2951,7 +2889,6 @@ Lines added: 6, lines removed: 6
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/About/About2.tsx</summary>
 
@@ -2971,7 +2908,7 @@ Lines added: 3, lines removed: 3
                       <p>
 -                       Our hotel also prides itself on <br /> offering
 -                       exceptional services.
-+                       Discover breathtaking destinations <br /> and create 
++                       Discover breathtaking destinations <br /> and create
 +                       unforgettable memories.
                       </p>
                     </div>
@@ -2993,7 +2930,7 @@ Lines added: 3, lines removed: 3
                       <p>
 -                       Our hotel also prides itself on <br /> offering
 -                       exceptional services.
-+                       Our experienced team ensures <br /> every detail of your 
++                       Our experienced team ensures <br /> every detail of your
 +                       journey is perfect.
                       </p>
                     </div>
@@ -3016,18 +2953,15 @@ Lint results
 
 Lint errors for `src/app/Components/About/About2.tsx`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
+| Message                                                          | Range       | Severity                  |
+| ---------------------------------------------------------------- | ----------- | ------------------------- |
 | `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`. | 67:36-67:36 | DIAGNOSTIC_SEVERITY_ERROR |
-
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/About/About2.tsx</summary>
 
@@ -3036,8 +2970,8 @@ Lines added: 1, lines removed: 1
 
 ```diff
 @@ -65,5 +65,5 @@
-                    From mountain adventures to tropical paradises, we craft personalized 
-                    travel experiences that create lasting memories and inspire wanderlust 
+                    From mountain adventures to tropical paradises, we craft personalized
+                    travel experiences that create lasting memories and inspire wanderlust
 -                   in every traveler's heart.
 +                   in every traveler&apos;s heart.
                   </p>
@@ -3059,8 +2993,8 @@ Lint paths:
 
 Lint results
 
-
 **No lint errors found**
+
 </details>
 
 ---
@@ -3070,6 +3004,7 @@ Updated the About2 component to match the travel theme.
 ## About2 component updated with travel theme
 
 ### **Image updates:**
+
 1. **Main image**: `destination/01.jpg` — adventure travel
 2. **Overlay image**: `destination/02.jpg` — city view
 3. **Team image**: `team/01.jpg` — travel team
@@ -3077,6 +3012,7 @@ Updated the About2 component to match the travel theme.
 5. **Plane shape**: `plane-shape.png` — travel route
 
 ### **Content updates:**
+
 1. **Title**: "About Dazzling Tours"
 2. **Headline**: "Creating Unforgettable Travel Experiences Worldwide"
 3. **Description**: Focus on personalized travel experiences
@@ -3085,6 +3021,7 @@ Updated the About2 component to match the travel theme.
    - "Expert Travel Guidance" — experienced team support
 
 ### **Theme alignment:**
+
 - Adventure travel (mountain hiking)
 - City exploration (urban views)
 - Tropical destinations (paradise locations)
@@ -3105,7 +3042,6 @@ _**Assistant (default)**_
 
 Reviewing About2 image classes and layout to improve the design.
 
-
 ---
 
 Tool use: **read_file**
@@ -3121,87 +3057,84 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.about-wrapper .about-image \{` | L264 |
-| `.about-wrapper .about-image \{` | L270 |
-| `.about-wrapper .about-image img \{` | L274 |
-| `.about-wrapper .about-image .border-image \{` | L278 |
-| `.about-wrapper .about-image .border-image \{` | L284 |
-| `.about-wrapper .about-image .border-image img \{` | L288 |
-| `.about-wrapper .about-image .vdeo-item \{` | L293 |
-| `.about-wrapper .about-image .vdeo-item \{` | L299 |
-| `.about-wrapper .about-image .vdeo-item .video-btn \{` | L307 |
-| `.about-wrapper .about-image .vdeo-item .video-btn \{` | L322 |
-| `.about-wrapper .about-image .vdeo-item .video-btn::before \{` | L326 |
-| `.about-wrapper .about-image .vdeo-item .video-btn \{` | L344 |
-| `.about-wrapper .about-image .vdeo-item h5 \{` | L352 |
-| `.about-wrapper .about-image .about-image-2 \{` | L356 |
-| `.about-wrapper .about-image .about-image-2 \{` | L363 |
-| `.about-wrapper .about-image .about-image-2 \{` | L368 |
-| `.about-wrapper .about-image .about-image-2 .plane-shape \{` | L375 |
-| `.about-wrapper .about-image .about-image-2 .plane-shape \{` | L382 |
-| `.about-wrapper .about-image .about-image-2 .about-tour \{` | L386 |
-| `.about-wrapper .about-image .about-image-2 .about-tour \{` | L399 |
-| `.about-wrapper .about-image .about-image-2 .about-tour .content h4 \{` | L405 |
+| Content                                                                   | Line |
+| ------------------------------------------------------------------------- | ---- |
+| `.about-wrapper .about-image \{`                                          | L264 |
+| `.about-wrapper .about-image \{`                                          | L270 |
+| `.about-wrapper .about-image img \{`                                      | L274 |
+| `.about-wrapper .about-image .border-image \{`                            | L278 |
+| `.about-wrapper .about-image .border-image \{`                            | L284 |
+| `.about-wrapper .about-image .border-image img \{`                        | L288 |
+| `.about-wrapper .about-image .video-item \{`                              | L293 |
+| `.about-wrapper .about-image .video-item \{`                              | L299 |
+| `.about-wrapper .about-image .video-item .video-btn \{`                   | L307 |
+| `.about-wrapper .about-image .video-item .video-btn \{`                   | L322 |
+| `.about-wrapper .about-image .video-item .video-btn::before \{`           | L326 |
+| `.about-wrapper .about-image .video-item .video-btn \{`                   | L344 |
+| `.about-wrapper .about-image .video-item h5 \{`                           | L352 |
+| `.about-wrapper .about-image .about-image-2 \{`                           | L356 |
+| `.about-wrapper .about-image .about-image-2 \{`                           | L363 |
+| `.about-wrapper .about-image .about-image-2 \{`                           | L368 |
+| `.about-wrapper .about-image .about-image-2 .plane-shape \{`              | L375 |
+| `.about-wrapper .about-image .about-image-2 .plane-shape \{`              | L382 |
+| `.about-wrapper .about-image .about-image-2 .about-tour \{`               | L386 |
+| `.about-wrapper .about-image .about-image-2 .about-tour \{`               | L399 |
+| `.about-wrapper .about-image .about-image-2 .about-tour .content h4 \{`   | L405 |
 | `.about-wrapper .about-image .about-image-2 .about-tour .content span \{` | L409 |
-| `.about-wrapper-2 \{` | L455 |
-| `.about-wrapper-2 \{` | L459 |
-| `.about-wrapper-2 .about-image \{` | L463 |
-| `.about-wrapper-2 .about-image \{` | L469 |
-| `.about-wrapper-2 .about-image \{` | L475 |
-| `.about-wrapper-2 .about-image img \{` | L479 |
-| `.about-wrapper-2 .about-image .shape-image \{` | L485 |
-| `.about-wrapper-2 .about-image .shape-image img \{` | L490 |
-| `.about-wrapper-2 .about-image .shape-image img \{` | L495 |
-| `.about-wrapper-2 .about-image .shape-image \{` | L501 |
-| `.about-wrapper-2 .about-image .group-image \{` | L506 |
-| `.about-wrapper-2 .about-image .group-image img \{` | L512 |
-| `.about-wrapper-2 .about-image .group-image \{` | L518 |
-| `.about-wrapper-2 .about-image .group-image \{` | L523 |
-| `.about-wrapper-2 .about-image .about-image-2 \{` | L530 |
-| `.about-wrapper-2 .about-image .about-image-2 \{` | L537 |
-| `.about-wrapper-2 .about-image .about-image-2 \{` | L542 |
-| `.about-wrapper-2 .about-image .about-image-2 img \{` | L549 |
-| `.about-wrapper-2 .about-image .about-image-2 .plane-shape \{` | L553 |
-| `.about-wrapper-2 .about-image .about-image-2 .plane-shape img \{` | L559 |
-| `.about-wrapper-2 .about-image .about-image-2 .plane-shape \{` | L564 |
-| `.about-wrapper-2 .about-image .about-image-2 .circle-image \{` | L568 |
-| `.about-wrapper-2 .about-image .about-image-2 .circle-image img \{` | L573 |
-| `.about-wrapper-2 .about-image .about-image-2 .circle-image \{` | L578 |
-| `.about-wrapper-2 .about-content .about-items \{` | L584 |
-| `.about-wrapper-2 .about-content .about-items \{` | L591 |
-| `.about-wrapper-2 .about-content .about-items \{` | L597 |
-| `.about-wrapper-2 .about-content .about-items \{` | L602 |
-| `.about-wrapper-2 .about-content .about-items \{` | L607 |
-| `.about-wrapper-2 .about-content .about-items:not(:last-child) \{` | L611 |
-| `.about-wrapper-2 .about-content .about-items .about-icon-items \{` | L614 |
-| `.about-wrapper-2 .about-content .about-items .text \{` | L619 |
-| `.about-wrapper-2 .about-content .about-items .text::before \{` | L622 |
-| `.about-wrapper-2 .about-content .about-items .text::before \{` | L638 |
-| `.about-wrapper-2 .about-content .theme-btn \{` | L642 |
-| `.about-wrapper-2 .about-content .theme-btn:before \{` | L645 |
-| `.about-wrapper-3 .about-image \{` | L657 |
-| `.about-wrapper-3 .about-image \{` | L663 |
-| `.about-wrapper-3 .about-image \{` | L670 |
-| `.about-wrapper-3 .about-image img \{` | L674 |
-| `.about-wrapper-3 .about-image img \{` | L682 |
-| `.about-wrapper-3 .about-image .about-image-2 \{` | L686 |
-| `.about-wrapper-3 .about-image .about-image-2 \{` | L694 |
-| `.about-wrapper-3 .about-image .about-image-2 \{` | L699 |
-| `.about-wrapper-3 .about-image .about-image-2 img \{` | L705 |
-| `.about-wrapper-3 .about-image .about-image-2 img \{` | L709 |
-| `.about-wrapper-3 .about-image .about-image-2 .plane-shape \{` | L713 |
-| `.about-wrapper-3 .about-image .about-image-2 .plane-shape \{` | L720 |
-
+| `.about-wrapper-2 \{`                                                     | L455 |
+| `.about-wrapper-2 \{`                                                     | L459 |
+| `.about-wrapper-2 .about-image \{`                                        | L463 |
+| `.about-wrapper-2 .about-image \{`                                        | L469 |
+| `.about-wrapper-2 .about-image \{`                                        | L475 |
+| `.about-wrapper-2 .about-image img \{`                                    | L479 |
+| `.about-wrapper-2 .about-image .shape-image \{`                           | L485 |
+| `.about-wrapper-2 .about-image .shape-image img \{`                       | L490 |
+| `.about-wrapper-2 .about-image .shape-image img \{`                       | L495 |
+| `.about-wrapper-2 .about-image .shape-image \{`                           | L501 |
+| `.about-wrapper-2 .about-image .group-image \{`                           | L506 |
+| `.about-wrapper-2 .about-image .group-image img \{`                       | L512 |
+| `.about-wrapper-2 .about-image .group-image \{`                           | L518 |
+| `.about-wrapper-2 .about-image .group-image \{`                           | L523 |
+| `.about-wrapper-2 .about-image .about-image-2 \{`                         | L530 |
+| `.about-wrapper-2 .about-image .about-image-2 \{`                         | L537 |
+| `.about-wrapper-2 .about-image .about-image-2 \{`                         | L542 |
+| `.about-wrapper-2 .about-image .about-image-2 img \{`                     | L549 |
+| `.about-wrapper-2 .about-image .about-image-2 .plane-shape \{`            | L553 |
+| `.about-wrapper-2 .about-image .about-image-2 .plane-shape img \{`        | L559 |
+| `.about-wrapper-2 .about-image .about-image-2 .plane-shape \{`            | L564 |
+| `.about-wrapper-2 .about-image .about-image-2 .circle-image \{`           | L568 |
+| `.about-wrapper-2 .about-image .about-image-2 .circle-image img \{`       | L573 |
+| `.about-wrapper-2 .about-image .about-image-2 .circle-image \{`           | L578 |
+| `.about-wrapper-2 .about-content .about-items \{`                         | L584 |
+| `.about-wrapper-2 .about-content .about-items \{`                         | L591 |
+| `.about-wrapper-2 .about-content .about-items \{`                         | L597 |
+| `.about-wrapper-2 .about-content .about-items \{`                         | L602 |
+| `.about-wrapper-2 .about-content .about-items \{`                         | L607 |
+| `.about-wrapper-2 .about-content .about-items:not(:last-child) \{`        | L611 |
+| `.about-wrapper-2 .about-content .about-items .about-icon-items \{`       | L614 |
+| `.about-wrapper-2 .about-content .about-items .text \{`                   | L619 |
+| `.about-wrapper-2 .about-content .about-items .text::before \{`           | L622 |
+| `.about-wrapper-2 .about-content .about-items .text::before \{`           | L638 |
+| `.about-wrapper-2 .about-content .theme-btn \{`                           | L642 |
+| `.about-wrapper-2 .about-content .theme-btn:before \{`                    | L645 |
+| `.about-wrapper-3 .about-image \{`                                        | L657 |
+| `.about-wrapper-3 .about-image \{`                                        | L663 |
+| `.about-wrapper-3 .about-image \{`                                        | L670 |
+| `.about-wrapper-3 .about-image img \{`                                    | L674 |
+| `.about-wrapper-3 .about-image img \{`                                    | L682 |
+| `.about-wrapper-3 .about-image .about-image-2 \{`                         | L686 |
+| `.about-wrapper-3 .about-image .about-image-2 \{`                         | L694 |
+| `.about-wrapper-3 .about-image .about-image-2 \{`                         | L699 |
+| `.about-wrapper-3 .about-image .about-image-2 img \{`                     | L705 |
+| `.about-wrapper-3 .about-image .about-image-2 img \{`                     | L709 |
+| `.about-wrapper-3 .about-image .about-image-2 .plane-shape \{`            | L713 |
+| `.about-wrapper-3 .about-image .about-image-2 .plane-shape \{`            | L720 |
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/About/About2.tsx</summary>
 
@@ -3246,7 +3179,6 @@ Lines added: 1, lines removed: 1
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -3267,7 +3199,6 @@ Lines added: 1, lines removed: 1
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -3293,7 +3224,6 @@ Lines added: 3, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -3317,7 +3247,6 @@ Lines added: 3, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -3346,7 +3275,6 @@ Lines added: 4, lines removed: 3
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -3370,7 +3298,6 @@ Lines added: 2, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -3392,7 +3319,6 @@ Lines added: 2, lines removed: 1
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -3428,110 +3354,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 869:12-869:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 877:12-877:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 905:20-905:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 913:12-913:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1028:12-1028:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1043:12-1043:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1113:24-1113:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1122:16-1122:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1128:16-1128:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1131:16-1131:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2727:29-2727:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3176:4-3176:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3190:4-3190:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3200:6-3200:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3210:6-3210:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3226:6-3226:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3326:10-3326:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3331:10-3331:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3336:10-3336:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3355:10-3355:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3364:10-3364:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3367:10-3367:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3370:10-3370:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3373:10-3373:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3391:10-3391:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3395:10-3395:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3399:10-3399:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3404:10-3404:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4720:4-4720:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4734:4-4734:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4744:6-4744:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4754:6-4754:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4770:6-4770:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4782:57-4782:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4785:57-4785:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4791:57-4791:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4799:4-4799:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5415:58-5415:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5420:4-5420:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5431:6-5431:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5439:4-5439:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5446:4-5446:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5454:6-5454:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5462:4-5462:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5471:4-5471:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5481:4-5481:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5490:4-5490:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5502:4-5502:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6178:15-6178:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6471:36-6471:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6479:36-6479:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6479:46-6479:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6486:38-6486:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6486:48-6486:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6490:36-6490:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6490:46-6490:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6490:62-6490:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6497:8-6497:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6498:4-6498:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6499:4-6499:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6500:4-6500:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6507:8-6507:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6508:4-6508:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6509:4-6509:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6510:4-6510:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6530:8-6530:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6531:4-6531:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6532:4-6532:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6533:4-6533:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 6998:2-6998:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7671:31-7671:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7676:31-7676:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7680:31-7680:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7684:31-7684:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7687:31-7687:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7691:31-7691:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7927:19-7927:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8091:19-8091:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8388:7-8388:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8394:7-8394:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8397:7-8397:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8401:7-8401:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8412:7-8412:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8425:7-8425:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8428:7-8428:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8438:7-8438:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8441:7-8441:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8445:7-8445:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8454:7-8454:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8457:7-8457:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8460:7-8460:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8465:7-8465:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8471:7-8471:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 869:12-869:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 877:12-877:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 905:20-905:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 913:12-913:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1028:12-1028:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1043:12-1043:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1113:24-1113:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1122:16-1122:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1128:16-1128:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1131:16-1131:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2727:29-2727:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3176:4-3176:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3190:4-3190:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3200:6-3200:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3210:6-3210:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3226:6-3226:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3326:10-3326:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3331:10-3331:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3336:10-3336:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3355:10-3355:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3364:10-3364:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3367:10-3367:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3370:10-3370:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3373:10-3373:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3391:10-3391:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3395:10-3395:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3399:10-3399:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3404:10-3404:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4720:4-4720:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4734:4-4734:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4744:6-4744:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4754:6-4754:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4770:6-4770:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4782:57-4782:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4785:57-4785:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4791:57-4791:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4799:4-4799:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5415:58-5415:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5420:4-5420:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5431:6-5431:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5439:4-5439:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5446:4-5446:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5454:6-5454:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5462:4-5462:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5471:4-5471:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5481:4-5481:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5490:4-5490:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5502:4-5502:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6178:15-6178:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6471:36-6471:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6479:36-6479:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6479:46-6479:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6486:38-6486:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6486:48-6486:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6490:36-6490:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6490:46-6490:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6490:62-6490:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6497:8-6497:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6498:4-6498:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6499:4-6499:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6500:4-6500:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6507:8-6507:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6508:4-6508:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6509:4-6509:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6510:4-6510:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6530:8-6530:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6531:4-6531:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6532:4-6532:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6533:4-6533:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 6998:2-6998:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7671:31-7671:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7676:31-7676:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7680:31-7680:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7684:31-7684:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7687:31-7687:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7691:31-7691:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7927:19-7927:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8091:19-8091:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8388:7-8388:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8394:7-8394:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8397:7-8397:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8401:7-8401:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8412:7-8412:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8425:7-8425:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8428:7-8428:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8438:7-8438:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8441:7-8441:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8445:7-8445:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8454:7-8454:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8457:7-8457:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8460:7-8460:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8465:7-8465:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8471:7-8471:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -3567,6 +3491,7 @@ Updated the About2 component layout and styling.
    - Adjusted for better visual balance
 
 ### **Visual updates:**
+
 - Restored all images (uncommented)
 - Added rounded corners to overlay images
 - Improved shadows
@@ -3574,6 +3499,7 @@ Updated the About2 component layout and styling.
 - Better responsive behavior
 
 ### **Result:**
+
 - Cleaner, more organized layout
 - Clearer hierarchy
 - Improved spacing and positioning
@@ -3597,35 +3523,32 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.about-wrapper-2 .about-image .shape-image \{` | L485 |
-| `.about-wrapper-2 .about-image .shape-image img \{` | L491 |
-| `.about-wrapper-2 .about-image .shape-image img \{` | L497 |
-| `.about-wrapper-2 .about-image .shape-image \{` | L503 |
-| `.about-wrapper-2 .about-image .group-image \{` | L508 |
-| `.about-wrapper-2 .about-image .group-image img \{` | L515 |
-| `.about-wrapper-2 .about-image .group-image \{` | L521 |
-| `.about-wrapper-2 .about-image .group-image \{` | L526 |
-| `.about-wrapper-2 .about-image .about-image-2 \{` | L533 |
-| `.about-wrapper-2 .about-image .about-image-2 \{` | L541 |
-| `.about-wrapper-2 .about-image .about-image-2 \{` | L546 |
-| `.about-wrapper-2 .about-image .about-image-2 img \{` | L553 |
-| `.about-wrapper-2 .about-image .about-image-2 .plane-shape \{` | L558 |
-| `.about-wrapper-2 .about-image .about-image-2 .plane-shape img \{` | L564 |
-| `.about-wrapper-2 .about-image .about-image-2 .plane-shape \{` | L569 |
-| `.about-wrapper-2 .about-image .about-image-2 .circle-image \{` | L573 |
+| Content                                                             | Line |
+| ------------------------------------------------------------------- | ---- |
+| `.about-wrapper-2 .about-image .shape-image \{`                     | L485 |
+| `.about-wrapper-2 .about-image .shape-image img \{`                 | L491 |
+| `.about-wrapper-2 .about-image .shape-image img \{`                 | L497 |
+| `.about-wrapper-2 .about-image .shape-image \{`                     | L503 |
+| `.about-wrapper-2 .about-image .group-image \{`                     | L508 |
+| `.about-wrapper-2 .about-image .group-image img \{`                 | L515 |
+| `.about-wrapper-2 .about-image .group-image \{`                     | L521 |
+| `.about-wrapper-2 .about-image .group-image \{`                     | L526 |
+| `.about-wrapper-2 .about-image .about-image-2 \{`                   | L533 |
+| `.about-wrapper-2 .about-image .about-image-2 \{`                   | L541 |
+| `.about-wrapper-2 .about-image .about-image-2 \{`                   | L546 |
+| `.about-wrapper-2 .about-image .about-image-2 img \{`               | L553 |
+| `.about-wrapper-2 .about-image .about-image-2 .plane-shape \{`      | L558 |
+| `.about-wrapper-2 .about-image .about-image-2 .plane-shape img \{`  | L564 |
+| `.about-wrapper-2 .about-image .about-image-2 .plane-shape \{`      | L569 |
+| `.about-wrapper-2 .about-image .about-image-2 .circle-image \{`     | L573 |
 | `.about-wrapper-2 .about-image .about-image-2 .circle-image img \{` | L578 |
-| `.about-wrapper-2 .about-image .about-image-2 .circle-image \{` | L583 |
-
+| `.about-wrapper-2 .about-image .about-image-2 .circle-image \{`     | L583 |
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -3650,7 +3573,6 @@ Lines added: 2, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -3673,7 +3595,6 @@ Lines added: 2, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -3702,7 +3623,6 @@ Lines added: 4, lines removed: 3
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -3725,7 +3645,6 @@ Lines added: 2, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -3753,7 +3672,6 @@ Lines added: 4, lines removed: 3
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -3780,7 +3698,6 @@ Lines added: 4, lines removed: 3
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -3803,7 +3720,6 @@ Lines added: 2, lines removed: 1
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -3836,110 +3752,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 874:12-874:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 882:12-882:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 910:20-910:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 918:12-918:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1033:12-1033:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1048:12-1048:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1118:24-1118:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1127:16-1127:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1133:16-1133:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1136:16-1136:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2732:29-2732:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3181:4-3181:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3195:4-3195:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3205:6-3205:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3215:6-3215:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3231:6-3231:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3331:10-3331:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3336:10-3336:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3341:10-3341:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3360:10-3360:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3369:10-3369:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3372:10-3372:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3375:10-3375:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3378:10-3378:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3396:10-3396:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3400:10-3400:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3404:10-3404:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3409:10-3409:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4725:4-4725:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4739:4-4739:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4749:6-4749:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4759:6-4759:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4775:6-4775:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4787:57-4787:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4790:57-4790:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4796:57-4796:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4804:4-4804:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5420:58-5420:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5425:4-5425:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5436:6-5436:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5444:4-5444:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5451:4-5451:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5459:6-5459:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5467:4-5467:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5476:4-5476:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5486:4-5486:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5495:4-5495:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5507:4-5507:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6183:15-6183:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6476:36-6476:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6484:36-6484:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6484:46-6484:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6491:38-6491:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6491:48-6491:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6495:36-6495:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6495:46-6495:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6495:62-6495:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6502:8-6502:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6503:4-6503:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6504:4-6504:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6505:4-6505:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6512:8-6512:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6513:4-6513:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6514:4-6514:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6515:4-6515:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6535:8-6535:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6536:4-6536:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6537:4-6537:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6538:4-6538:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7003:2-7003:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7676:31-7676:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7681:31-7681:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7685:31-7685:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7689:31-7689:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7692:31-7692:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7696:31-7696:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7932:19-7932:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8096:19-8096:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8393:7-8393:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8399:7-8399:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8402:7-8402:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8406:7-8406:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8417:7-8417:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8430:7-8430:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8433:7-8433:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8443:7-8443:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8446:7-8446:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8450:7-8450:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8459:7-8459:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8462:7-8462:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8465:7-8465:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8470:7-8470:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8476:7-8476:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 874:12-874:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 882:12-882:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 910:20-910:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 918:12-918:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1033:12-1033:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1048:12-1048:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1118:24-1118:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1127:16-1127:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1133:16-1133:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1136:16-1136:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2732:29-2732:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3181:4-3181:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3195:4-3195:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3205:6-3205:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3215:6-3215:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3231:6-3231:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3331:10-3331:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3336:10-3336:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3341:10-3341:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3360:10-3360:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3369:10-3369:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3372:10-3372:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3375:10-3375:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3378:10-3378:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3396:10-3396:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3400:10-3400:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3404:10-3404:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3409:10-3409:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4725:4-4725:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4739:4-4739:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4749:6-4749:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4759:6-4759:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4775:6-4775:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4787:57-4787:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4790:57-4790:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4796:57-4796:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4804:4-4804:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5420:58-5420:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5425:4-5425:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5436:6-5436:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5444:4-5444:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5451:4-5451:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5459:6-5459:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5467:4-5467:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5476:4-5476:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5486:4-5486:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5495:4-5495:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5507:4-5507:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6183:15-6183:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6476:36-6476:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6484:36-6484:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6484:46-6484:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6491:38-6491:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6491:48-6491:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6495:36-6495:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6495:46-6495:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6495:62-6495:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6502:8-6502:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6503:4-6503:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6504:4-6504:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6505:4-6505:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6512:8-6512:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6513:4-6513:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6514:4-6514:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6515:4-6515:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6535:8-6535:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6536:4-6536:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6537:4-6537:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6538:4-6538:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7003:2-7003:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7676:31-7676:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7681:31-7681:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7685:31-7685:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7689:31-7689:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7692:31-7692:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7696:31-7696:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7932:19-7932:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8096:19-8096:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8393:7-8393:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8399:7-8399:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8402:7-8402:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8406:7-8406:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8417:7-8417:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8430:7-8430:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8433:7-8433:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8443:7-8443:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8446:7-8446:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8450:7-8450:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8459:7-8459:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8462:7-8462:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8465:7-8465:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8470:7-8470:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8476:7-8476:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -3971,6 +3885,7 @@ Lint errors for `src/app/assets/main.css`
    - Container padding 20px
 
 ### **Visual updates:**
+
 - Subtle rotations for depth
 - Stronger shadows
 - Clearer hierarchy
@@ -3978,6 +3893,7 @@ Lint errors for `src/app/assets/main.css`
 - Consistent styling
 
 ### **Result:**
+
 - Cleaner, more organized layout
 - Better visual flow
 - Improved depth and dimension
@@ -3987,7 +3903,7 @@ Lint errors for `src/app/assets/main.css`
 
 _**User (2025-09-28 10:19Z)**_
 
-now its looking like this 
+now its looking like this
 
 ---
 
@@ -3995,11 +3911,9 @@ _**Assistant (default)**_
 
 Refining the About2 image collage: reducing clutter, improving hierarchy, and adding subtle animations.
 
-
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -4026,7 +3940,6 @@ Lines added: 3, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -4051,7 +3964,6 @@ Lines added: 3, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -4081,7 +3993,6 @@ Lines added: 3, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -4109,7 +4020,6 @@ Lines added: 5, lines removed: 4
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -4139,7 +4049,6 @@ Lines added: 5, lines removed: 4
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -4152,7 +4061,7 @@ Lines added: 10, lines removed: 1
 -   padding: 20px;
 +   padding: 15px;
 + }
-+ 
++
 + @keyframes float {
 +   0%, 100% {
 +     transform: translateY(0px);
@@ -4170,7 +4079,6 @@ Lines added: 10, lines removed: 1
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -4184,7 +4092,7 @@ Lines added: 7, lines removed: 1
 +   box-shadow: 0px 8px 35px 0px rgba(0, 0, 0, 0.08);
 +   transition: transform 0.3s ease, box-shadow 0.3s ease;
 + }
-+ 
++
 + .about-wrapper-2 .about-image:hover img {
 +   transform: scale(1.02);
 +   box-shadow: 0px 12px 45px 0px rgba(0, 0, 0, 0.12);
@@ -4209,110 +4117,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 894:12-894:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 902:12-902:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 930:20-930:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 938:12-938:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1053:12-1053:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1068:12-1068:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1138:24-1138:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1147:16-1147:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1153:16-1153:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1156:16-1156:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2752:29-2752:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3201:4-3201:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3215:4-3215:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3225:6-3225:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3235:6-3235:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3251:6-3251:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3351:10-3351:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3356:10-3356:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3361:10-3361:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3380:10-3380:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3389:10-3389:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3392:10-3392:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3395:10-3395:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3416:10-3416:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3420:10-3420:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3424:10-3424:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3429:10-3429:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4745:4-4745:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4759:4-4759:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4769:6-4769:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4779:6-4779:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4795:6-4795:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4807:57-4807:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4810:57-4810:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4816:57-4816:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4824:4-4824:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5440:58-5440:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5445:4-5445:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5456:6-5456:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5464:4-5464:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5471:4-5471:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5479:6-5479:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5487:4-5487:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5496:4-5496:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5506:4-5506:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5515:4-5515:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5527:4-5527:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6203:15-6203:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6496:36-6496:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6504:36-6504:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6504:46-6504:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6511:38-6511:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6511:48-6511:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6515:36-6515:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6515:46-6515:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6515:62-6515:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6522:8-6522:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6523:4-6523:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6524:4-6524:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6525:4-6525:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6532:8-6532:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6533:4-6533:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6534:4-6534:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6535:4-6535:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6555:8-6555:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6556:4-6556:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6557:4-6557:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6558:4-6558:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7023:2-7023:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7696:31-7696:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7701:31-7701:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7705:31-7705:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7709:31-7709:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7712:31-7712:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7716:31-7716:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7952:19-7952:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8116:19-8116:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8413:7-8413:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8419:7-8419:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8422:7-8422:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8426:7-8426:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8437:7-8437:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8450:7-8450:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8453:7-8453:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8463:7-8463:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8466:7-8466:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8470:7-8470:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8479:7-8479:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8482:7-8482:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8485:7-8485:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8490:7-8490:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8496:7-8496:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 894:12-894:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 902:12-902:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 930:20-930:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 938:12-938:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1053:12-1053:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1068:12-1068:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1138:24-1138:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1147:16-1147:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1153:16-1153:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1156:16-1156:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2752:29-2752:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3201:4-3201:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3215:4-3215:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3225:6-3225:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3235:6-3235:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3251:6-3251:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3351:10-3351:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3356:10-3356:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3361:10-3361:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3380:10-3380:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3389:10-3389:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3392:10-3392:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3395:10-3395:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3416:10-3416:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3420:10-3420:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3424:10-3424:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3429:10-3429:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4745:4-4745:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4759:4-4759:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4769:6-4769:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4779:6-4779:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4795:6-4795:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4807:57-4807:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4810:57-4810:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4816:57-4816:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4824:4-4824:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5440:58-5440:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5445:4-5445:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5456:6-5456:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5464:4-5464:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5471:4-5471:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5479:6-5479:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5487:4-5487:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5496:4-5496:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5506:4-5506:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5515:4-5515:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5527:4-5527:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6203:15-6203:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6496:36-6496:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6504:36-6504:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6504:46-6504:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6511:38-6511:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6511:48-6511:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6515:36-6515:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6515:46-6515:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6515:62-6515:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6522:8-6522:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6523:4-6523:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6524:4-6524:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6525:4-6525:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6532:8-6532:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6533:4-6533:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6534:4-6534:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6535:4-6535:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6555:8-6555:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6556:4-6556:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6557:4-6557:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6558:4-6558:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7023:2-7023:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7696:31-7696:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7701:31-7701:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7705:31-7705:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7709:31-7709:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7712:31-7712:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7716:31-7716:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7952:19-7952:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8116:19-8116:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8413:7-8413:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8419:7-8419:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8422:7-8422:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8426:7-8426:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8437:7-8437:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8450:7-8450:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8453:7-8453:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8463:7-8463:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8466:7-8466:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8470:7-8470:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8479:7-8479:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8482:7-8482:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8485:7-8485:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8490:7-8490:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8496:7-8496:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -4345,6 +4251,7 @@ Lint errors for `src/app/assets/main.css`
    - Clearer hierarchy
 
 ### **Result:**
+
 - Subtle motion without distraction
 - Cleaner, more balanced layout
 - Smooth hover feedback
@@ -4356,18 +4263,15 @@ _**User (2025-09-28 10:19Z)**_
 
 its better but still looking like this enhance it more, images must be visible and seperated from Text Section
 
-
 ---
 
 _**Assistant (default)**_
 
 Improving image visibility and separation from the text section.
 
-
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -4385,7 +4289,7 @@ Lines added: 3, lines removed: 2
 +   padding: 20px;
 +   margin-right: 30px;
   }
-  
+
 ```
 
 </details>
@@ -4393,7 +4297,6 @@ Lines added: 3, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -4418,7 +4321,6 @@ Lines added: 2, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -4441,7 +4343,6 @@ Lines added: 2, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -4466,7 +4367,6 @@ Lines added: 2, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -4494,7 +4394,6 @@ Lines added: 3, lines removed: 3
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -4521,7 +4420,6 @@ Lines added: 3, lines removed: 3
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -4545,7 +4443,6 @@ Lines added: 2, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -4567,7 +4464,6 @@ Lines added: 1, lines removed: 1
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -4579,7 +4475,7 @@ Lines added: 12, lines removed: undefined
     margin-bottom: 37px;
 +   position: relative;
 + }
-+ 
++
 + .about-wrapper-2::before {
 +   content: '';
 +   position: absolute;
@@ -4610,110 +4506,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 907:12-907:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 915:12-915:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 943:20-943:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 951:12-951:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1066:12-1066:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1081:12-1081:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1151:24-1151:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1160:16-1160:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1166:16-1166:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1169:16-1169:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2765:29-2765:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3214:4-3214:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3228:4-3228:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3238:6-3238:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3248:6-3248:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3264:6-3264:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3364:10-3364:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3369:10-3369:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3374:10-3374:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3402:10-3402:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3405:10-3405:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3408:10-3408:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3411:10-3411:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3429:10-3429:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3433:10-3433:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3442:10-3442:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4758:4-4758:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4772:4-4772:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4782:6-4782:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4792:6-4792:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4808:6-4808:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4820:57-4820:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4823:57-4823:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4829:57-4829:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4837:4-4837:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5453:58-5453:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5458:4-5458:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5469:6-5469:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5477:4-5477:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5484:4-5484:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5492:6-5492:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5500:4-5500:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5509:4-5509:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5519:4-5519:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5528:4-5528:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5540:4-5540:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6216:15-6216:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6509:36-6509:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6517:36-6517:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6517:46-6517:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6524:38-6524:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6524:48-6524:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6528:36-6528:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6528:46-6528:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6528:62-6528:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6535:8-6535:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6536:4-6536:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6537:4-6537:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6538:4-6538:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6545:8-6545:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6546:4-6546:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6547:4-6547:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6548:4-6548:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6568:8-6568:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6569:4-6569:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6570:4-6570:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6571:4-6571:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7036:2-7036:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7709:31-7709:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7714:31-7714:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7718:31-7718:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7722:31-7722:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7725:31-7725:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7729:31-7729:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7965:19-7965:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8129:19-8129:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8426:7-8426:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8432:7-8432:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8435:7-8435:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8439:7-8439:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8450:7-8450:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8463:7-8463:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8466:7-8466:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8476:7-8476:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8479:7-8479:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8483:7-8483:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8492:7-8492:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8495:7-8495:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8498:7-8498:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8503:7-8503:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8509:7-8509:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 907:12-907:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 915:12-915:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 943:20-943:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 951:12-951:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1066:12-1066:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1081:12-1081:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1151:24-1151:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1160:16-1160:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1166:16-1166:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1169:16-1169:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2765:29-2765:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3214:4-3214:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3228:4-3228:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3238:6-3238:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3248:6-3248:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3264:6-3264:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3364:10-3364:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3369:10-3369:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3374:10-3374:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3402:10-3402:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3405:10-3405:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3408:10-3408:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3411:10-3411:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3429:10-3429:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3433:10-3433:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3442:10-3442:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4758:4-4758:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4772:4-4772:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4782:6-4782:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4792:6-4792:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4808:6-4808:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4820:57-4820:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4823:57-4823:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4829:57-4829:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4837:4-4837:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5453:58-5453:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5458:4-5458:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5469:6-5469:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5477:4-5477:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5484:4-5484:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5492:6-5492:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5500:4-5500:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5509:4-5509:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5519:4-5519:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5528:4-5528:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5540:4-5540:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6216:15-6216:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6509:36-6509:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6517:36-6517:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6517:46-6517:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6524:38-6524:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6524:48-6524:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6528:36-6528:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6528:46-6528:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6528:62-6528:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6535:8-6535:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6536:4-6536:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6537:4-6537:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6538:4-6538:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6545:8-6545:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6546:4-6546:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6547:4-6547:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6548:4-6548:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6568:8-6568:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6569:4-6569:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6570:4-6570:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6571:4-6571:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7036:2-7036:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7709:31-7709:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7714:31-7714:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7718:31-7718:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7722:31-7722:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7725:31-7725:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7729:31-7729:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7965:19-7965:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8129:19-8129:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8426:7-8426:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8432:7-8432:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8435:7-8435:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8439:7-8439:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8450:7-8450:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8463:7-8463:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8466:7-8466:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8476:7-8476:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8479:7-8479:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8483:7-8483:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8492:7-8492:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8495:7-8495:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8498:7-8498:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8503:7-8503:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8509:7-8509:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -4745,6 +4639,7 @@ Lint errors for `src/app/assets/main.css`
    - Clearer boundaries
 
 ### **Result:**
+
 - Images contained within the left section
 - Clear separation from text
 - Better visibility and hierarchy
@@ -4754,15 +4649,13 @@ Lint errors for `src/app/assets/main.css`
 
 _**User (2025-09-28 10:19Z)**_
 
-its looking good but we need to enhance this more, images must be visible from each other, change some placements, check the sizes etc 
-
+its looking good but we need to enhance this more, images must be visible from each other, change some placements, check the sizes etc
 
 ---
 
 _**Assistant (default)**_
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -4781,7 +4674,7 @@ Lines added: 3, lines removed: 3
 +   padding: 25px;
 +   margin-right: 40px;
   }
-  
+
 ```
 
 </details>
@@ -4789,7 +4682,6 @@ Lines added: 3, lines removed: 3
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -4814,7 +4706,6 @@ Lines added: 2, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -4837,7 +4728,6 @@ Lines added: 2, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -4865,7 +4755,6 @@ Lines added: 3, lines removed: 4
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -4897,7 +4786,6 @@ Lines added: 6, lines removed: 4
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -4928,7 +4816,6 @@ Lines added: 6, lines removed: 4
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -4951,7 +4838,6 @@ Lines added: 2, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -4988,110 +4874,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 910:12-910:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 918:12-918:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 946:20-946:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 954:12-954:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1069:12-1069:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1084:12-1084:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1154:24-1154:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1163:16-1163:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1169:16-1169:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1172:16-1172:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2768:29-2768:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3217:4-3217:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3231:4-3231:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3241:6-3241:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3251:6-3251:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3267:6-3267:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3367:10-3367:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3372:10-3372:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3377:10-3377:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3396:10-3396:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3405:10-3405:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3408:10-3408:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3411:10-3411:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3414:10-3414:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3432:10-3432:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3436:10-3436:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3445:10-3445:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4761:4-4761:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4775:4-4775:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4785:6-4785:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4795:6-4795:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4811:6-4811:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4823:57-4823:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4826:57-4826:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4832:57-4832:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4840:4-4840:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5456:58-5456:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5461:4-5461:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5472:6-5472:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5480:4-5480:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5487:4-5487:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5495:6-5495:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5503:4-5503:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5512:4-5512:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5522:4-5522:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5531:4-5531:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5543:4-5543:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6219:15-6219:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6512:36-6512:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6520:36-6520:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6520:46-6520:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6527:38-6527:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6527:48-6527:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6531:36-6531:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6531:46-6531:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6531:62-6531:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6538:8-6538:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6539:4-6539:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6540:4-6540:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6541:4-6541:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6548:8-6548:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6549:4-6549:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6550:4-6550:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6551:4-6551:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6571:8-6571:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6572:4-6572:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6573:4-6573:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6574:4-6574:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7039:2-7039:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7712:31-7712:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7717:31-7717:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7721:31-7721:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7725:31-7725:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7728:31-7728:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7732:31-7732:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7968:19-7968:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8132:19-8132:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8429:7-8429:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8435:7-8435:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8438:7-8438:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8442:7-8442:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8453:7-8453:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8466:7-8466:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8469:7-8469:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8479:7-8479:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8482:7-8482:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8486:7-8486:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8495:7-8495:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8498:7-8498:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8501:7-8501:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8506:7-8506:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8512:7-8512:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 910:12-910:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 918:12-918:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 946:20-946:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 954:12-954:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1069:12-1069:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1084:12-1084:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1154:24-1154:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1163:16-1163:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1169:16-1169:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1172:16-1172:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2768:29-2768:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3217:4-3217:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3231:4-3231:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3241:6-3241:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3251:6-3251:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3267:6-3267:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3367:10-3367:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3372:10-3372:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3377:10-3377:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3396:10-3396:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3405:10-3405:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3408:10-3408:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3411:10-3411:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3414:10-3414:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3432:10-3432:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3436:10-3436:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3445:10-3445:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4761:4-4761:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4775:4-4775:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4785:6-4785:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4795:6-4795:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4811:6-4811:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4823:57-4823:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4826:57-4826:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4832:57-4832:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4840:4-4840:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5456:58-5456:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5461:4-5461:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5472:6-5472:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5480:4-5480:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5487:4-5487:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5495:6-5495:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5503:4-5503:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5512:4-5512:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5522:4-5522:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5531:4-5531:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5543:4-5543:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6219:15-6219:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6512:36-6512:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6520:36-6520:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6520:46-6520:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6527:38-6527:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6527:48-6527:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6531:36-6531:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6531:46-6531:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6531:62-6531:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6538:8-6538:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6539:4-6539:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6540:4-6540:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6541:4-6541:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6548:8-6548:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6549:4-6549:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6550:4-6550:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6551:4-6551:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6571:8-6571:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6572:4-6572:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6573:4-6573:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6574:4-6574:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7039:2-7039:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7712:31-7712:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7717:31-7717:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7721:31-7721:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7725:31-7725:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7728:31-7728:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7732:31-7732:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7968:19-7968:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8132:19-8132:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8429:7-8429:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8435:7-8435:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8438:7-8438:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8442:7-8442:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8453:7-8453:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8466:7-8466:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8469:7-8469:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8479:7-8479:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8482:7-8482:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8486:7-8486:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8495:7-8495:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8498:7-8498:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8501:7-8501:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8506:7-8506:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8512:7-8512:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -5126,6 +5010,7 @@ Lint errors for `src/app/assets/main.css`
    - Positioned at `top: -60px, left: -30px`
 
 ### **Result:**
+
 - Clearer separation between images
 - Better visibility and hierarchy
 - Cleaner layout with defined boundaries
@@ -5135,14 +5020,13 @@ Lint errors for `src/app/assets/main.css`
 
 _**User (2025-09-28 10:19Z)**_
 
-Perfect, now check again focus on images placement now, each image must be visible, 
+Perfect, now check again focus on images placement now, each image must be visible,
 
 ---
 
 _**Assistant (default)**_
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -5167,7 +5051,6 @@ Lines added: 2, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -5191,7 +5074,6 @@ Lines added: 2, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -5214,7 +5096,6 @@ Lines added: 2, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -5242,7 +5123,6 @@ Lines added: 3, lines removed: 3
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -5268,7 +5148,6 @@ Lines added: 3, lines removed: 3
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -5304,110 +5183,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 910:12-910:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 918:12-918:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 946:20-946:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 954:12-954:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1069:12-1069:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1084:12-1084:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1154:24-1154:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1163:16-1163:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1169:16-1169:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1172:16-1172:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2768:29-2768:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3217:4-3217:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3231:4-3231:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3241:6-3241:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3251:6-3251:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3267:6-3267:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3367:10-3367:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3372:10-3372:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3377:10-3377:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3396:10-3396:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3405:10-3405:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3408:10-3408:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3411:10-3411:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3414:10-3414:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3432:10-3432:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3436:10-3436:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3445:10-3445:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4761:4-4761:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4775:4-4775:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4785:6-4785:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4795:6-4795:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4811:6-4811:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4823:57-4823:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4826:57-4826:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4832:57-4832:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4840:4-4840:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5456:58-5456:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5461:4-5461:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5472:6-5472:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5480:4-5480:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5487:4-5487:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5495:6-5495:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5503:4-5503:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5512:4-5512:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5522:4-5522:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5531:4-5531:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5543:4-5543:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6219:15-6219:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6512:36-6512:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6520:36-6520:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6520:46-6520:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6527:38-6527:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6527:48-6527:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6531:36-6531:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6531:46-6531:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6531:62-6531:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6538:8-6538:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6539:4-6539:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6540:4-6540:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6541:4-6541:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6548:8-6548:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6549:4-6549:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6550:4-6550:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6551:4-6551:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6571:8-6571:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6572:4-6572:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6573:4-6573:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6574:4-6574:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7039:2-7039:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7712:31-7712:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7717:31-7717:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7721:31-7721:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7725:31-7725:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7728:31-7728:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7732:31-7732:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7968:19-7968:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8132:19-8132:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8429:7-8429:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8435:7-8435:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8438:7-8438:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8442:7-8442:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8453:7-8453:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8466:7-8466:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8469:7-8469:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8479:7-8479:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8482:7-8482:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8486:7-8486:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8495:7-8495:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8498:7-8498:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8501:7-8501:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8506:7-8506:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8512:7-8512:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 910:12-910:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 918:12-918:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 946:20-946:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 954:12-954:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1069:12-1069:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1084:12-1084:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1154:24-1154:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1163:16-1163:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1169:16-1169:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1172:16-1172:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2768:29-2768:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3217:4-3217:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3231:4-3231:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3241:6-3241:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3251:6-3251:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3267:6-3267:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3367:10-3367:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3372:10-3372:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3377:10-3377:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3396:10-3396:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3405:10-3405:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3408:10-3408:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3411:10-3411:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3414:10-3414:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3432:10-3432:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3436:10-3436:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3445:10-3445:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4761:4-4761:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4775:4-4775:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4785:6-4785:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4795:6-4795:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4811:6-4811:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4823:57-4823:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4826:57-4826:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4832:57-4832:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4840:4-4840:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5456:58-5456:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5461:4-5461:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5472:6-5472:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5480:4-5480:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5487:4-5487:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5495:6-5495:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5503:4-5503:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5512:4-5512:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5522:4-5522:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5531:4-5531:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5543:4-5543:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6219:15-6219:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6512:36-6512:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6520:36-6520:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6520:46-6520:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6527:38-6527:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6527:48-6527:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6531:36-6531:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6531:46-6531:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6531:62-6531:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6538:8-6538:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6539:4-6539:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6540:4-6540:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6541:4-6541:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6548:8-6548:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6549:4-6549:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6550:4-6550:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6551:4-6551:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6571:8-6571:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6572:4-6572:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6573:4-6573:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6574:4-6574:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7039:2-7039:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7712:31-7712:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7717:31-7717:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7721:31-7721:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7725:31-7725:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7728:31-7728:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7732:31-7732:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7968:19-7968:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8132:19-8132:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8429:7-8429:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8435:7-8435:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8438:7-8438:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8442:7-8442:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8453:7-8453:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8466:7-8466:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8469:7-8469:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8479:7-8479:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8482:7-8482:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8486:7-8486:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8495:7-8495:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8498:7-8498:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8501:7-8501:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8506:7-8506:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8512:7-8512:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -5434,6 +5311,7 @@ Lint errors for `src/app/assets/main.css`
    - Positioned at `top: -50px, left: -25px`
 
 ### **Result:**
+
 - Clearer separation between images
 - Better visibility and hierarchy
 - Cleaner layout with defined boundaries
@@ -5443,14 +5321,13 @@ Lint errors for `src/app/assets/main.css`
 
 _**User (2025-09-28 10:19Z)**_
 
-Can we tilt the image about4 to the right, and about2 image position below 
+Can we tilt the image about4 to the right, and about2 image position below
 
 ---
 
 _**Assistant (default)**_
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -5473,7 +5350,6 @@ Lines added: 1, lines removed: 1
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -5494,7 +5370,6 @@ Lines added: 1, lines removed: 1
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -5530,110 +5405,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 910:12-910:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 918:12-918:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 946:20-946:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 954:12-954:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1069:12-1069:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1084:12-1084:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1154:24-1154:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1163:16-1163:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1169:16-1169:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1172:16-1172:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2768:29-2768:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3217:4-3217:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3231:4-3231:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3241:6-3241:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3251:6-3251:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3267:6-3267:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3367:10-3367:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3372:10-3372:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3377:10-3377:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3396:10-3396:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3405:10-3405:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3408:10-3408:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3411:10-3411:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3414:10-3414:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3432:10-3432:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3436:10-3436:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3445:10-3445:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4761:4-4761:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4775:4-4775:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4785:6-4785:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4795:6-4795:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4811:6-4811:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4823:57-4823:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4826:57-4826:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4832:57-4832:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4840:4-4840:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5456:58-5456:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5461:4-5461:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5472:6-5472:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5480:4-5480:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5487:4-5487:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5495:6-5495:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5503:4-5503:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5512:4-5512:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5522:4-5522:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5531:4-5531:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5543:4-5543:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6219:15-6219:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6512:36-6512:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6520:36-6520:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6520:46-6520:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6527:38-6527:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6527:48-6527:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6531:36-6531:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6531:46-6531:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6531:62-6531:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6538:8-6538:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6539:4-6539:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6540:4-6540:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6541:4-6541:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6548:8-6548:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6549:4-6549:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6550:4-6550:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6551:4-6551:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6571:8-6571:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6572:4-6572:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6573:4-6573:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6574:4-6574:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7039:2-7039:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7712:31-7712:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7717:31-7717:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7721:31-7721:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7725:31-7725:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7728:31-7728:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7732:31-7732:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7968:19-7968:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8132:19-8132:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8429:7-8429:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8435:7-8435:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8438:7-8438:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8442:7-8442:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8453:7-8453:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8466:7-8466:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8469:7-8469:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8479:7-8479:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8482:7-8482:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8486:7-8486:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8495:7-8495:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8498:7-8498:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8501:7-8501:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8506:7-8506:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8512:7-8512:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 910:12-910:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 918:12-918:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 946:20-946:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 954:12-954:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1069:12-1069:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1084:12-1084:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1154:24-1154:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1163:16-1163:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1169:16-1169:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1172:16-1172:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2768:29-2768:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3217:4-3217:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3231:4-3231:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3241:6-3241:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3251:6-3251:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3267:6-3267:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3367:10-3367:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3372:10-3372:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3377:10-3377:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3396:10-3396:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3405:10-3405:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3408:10-3408:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3411:10-3411:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3414:10-3414:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3432:10-3432:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3436:10-3436:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3445:10-3445:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4761:4-4761:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4775:4-4775:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4785:6-4785:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4795:6-4795:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4811:6-4811:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4823:57-4823:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4826:57-4826:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4832:57-4832:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4840:4-4840:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5456:58-5456:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5461:4-5461:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5472:6-5472:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5480:4-5480:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5487:4-5487:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5495:6-5495:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5503:4-5503:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5512:4-5512:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5522:4-5522:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5531:4-5531:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5543:4-5543:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6219:15-6219:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6512:36-6512:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6520:36-6520:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6520:46-6520:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6527:38-6527:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6527:48-6527:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6531:36-6531:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6531:46-6531:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6531:62-6531:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6538:8-6538:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6539:4-6539:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6540:4-6540:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6541:4-6541:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6548:8-6548:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6549:4-6549:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6550:4-6550:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6551:4-6551:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6571:8-6571:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6572:4-6572:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6573:4-6573:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6574:4-6574:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7039:2-7039:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7712:31-7712:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7717:31-7717:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7721:31-7721:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7725:31-7725:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7728:31-7728:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7732:31-7732:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7968:19-7968:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8132:19-8132:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8429:7-8429:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8435:7-8435:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8438:7-8438:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8442:7-8442:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8453:7-8453:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8466:7-8466:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8469:7-8469:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8479:7-8479:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8482:7-8482:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8486:7-8486:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8495:7-8495:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8498:7-8498:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8501:7-8501:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8506:7-8506:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8512:7-8512:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -5654,6 +5527,7 @@ Lint errors for `src/app/assets/main.css`
    - Rotation: -3deg
 
 ### **Result:**
+
 - About4 is lower and tilted 4deg
 - About2 is at the top-right
 - Clearer separation and hierarchy
@@ -5663,7 +5537,7 @@ Lint errors for `src/app/assets/main.css`
 
 _**User (2025-09-28 10:19Z)**_
 
-Now check again my About2 component I have changed the images, 
+Now check again my About2 component I have changed the images,
 
 Now check my about-image-2 group, in which we have about2 image, and a plan-shape in which about3 image, I want them seperate, the about3 image will be tilt on the right side and will be on the corner of about2 image. do this
 
@@ -5672,7 +5546,6 @@ Now check my about-image-2 group, in which we have about2 image, and a plan-shap
 _**Assistant (default)**_
 
 Separating the about3 image from the plane-shape and positioning it at the corner of about2 with a right tilt.
-
 
 ---
 
@@ -5683,7 +5556,6 @@ Read file: src/app/Components/About/About2.tsx
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/About/About2.tsx</summary>
 
@@ -5720,7 +5592,6 @@ Lines added: 8, lines removed: 8
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -5739,7 +5610,7 @@ Lines added: 11, lines removed: 2
     z-index: 1;
     animation: float 5s ease-in-out infinite;
   }
-+ 
++
 + .about-wrapper-2 .about-image .about-image-3 {
 +   max-width: 200px;
 +   position: absolute;
@@ -5758,7 +5629,6 @@ Lines added: 11, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -5776,7 +5646,7 @@ Lines added: 13, lines removed: 3
 +   width: 150px !important;
 +   height: 150px !important;
 + }
-+ 
++
 + .about-wrapper-2 .about-image .about-image-3 img {
 +   border: 6px solid var(--white);
 +   box-shadow: 0px 10px 35px 0px rgba(0, 0, 0, 0.18);
@@ -5793,12 +5663,9 @@ Lines added: 13, lines removed: 3
 
 ---
 
-
-
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -5821,7 +5688,6 @@ Lines added: 3, lines removed: undefined
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -5857,110 +5723,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 935:12-935:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 943:12-943:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 971:20-971:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 979:12-979:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1094:12-1094:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1109:12-1109:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1179:24-1179:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1188:16-1188:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1194:16-1194:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1197:16-1197:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2793:29-2793:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3242:4-3242:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3256:4-3256:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3266:6-3266:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3276:6-3276:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3292:6-3292:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3392:10-3392:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3397:10-3397:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3402:10-3402:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3421:10-3421:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3430:10-3430:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3433:10-3433:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3436:10-3436:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3439:10-3439:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3457:10-3457:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3461:10-3461:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3465:10-3465:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3470:10-3470:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4786:4-4786:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4800:4-4800:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4810:6-4810:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4820:6-4820:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4836:6-4836:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4848:57-4848:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4851:57-4851:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4857:57-4857:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4865:4-4865:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5481:58-5481:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5486:4-5486:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5497:6-5497:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5505:4-5505:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5512:4-5512:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5520:6-5520:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5528:4-5528:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5537:4-5537:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5547:4-5547:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5556:4-5556:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5568:4-5568:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6244:15-6244:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6537:36-6537:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6545:36-6545:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6545:46-6545:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6552:38-6552:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6552:48-6552:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6556:36-6556:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6556:46-6556:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6556:62-6556:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6563:8-6563:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6564:4-6564:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6565:4-6565:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6566:4-6566:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6573:8-6573:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6574:4-6574:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6575:4-6575:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6576:4-6576:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6596:8-6596:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6597:4-6597:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6598:4-6598:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6599:4-6599:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7064:2-7064:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7737:31-7737:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7742:31-7742:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7746:31-7746:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7750:31-7750:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7753:31-7753:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7757:31-7757:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7993:19-7993:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8157:19-8157:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8454:7-8454:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8460:7-8460:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8463:7-8463:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8467:7-8467:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8478:7-8478:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8491:7-8491:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8494:7-8494:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8504:7-8504:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8507:7-8507:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8511:7-8511:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8520:7-8520:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8523:7-8523:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8526:7-8526:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8531:7-8531:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8537:7-8537:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 935:12-935:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 943:12-943:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 971:20-971:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 979:12-979:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1094:12-1094:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1109:12-1109:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1179:24-1179:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1188:16-1188:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1194:16-1194:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1197:16-1197:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2793:29-2793:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3242:4-3242:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3256:4-3256:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3266:6-3266:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3276:6-3276:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3292:6-3292:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3392:10-3392:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3397:10-3397:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3402:10-3402:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3421:10-3421:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3430:10-3430:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3433:10-3433:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3436:10-3436:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3439:10-3439:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3457:10-3457:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3461:10-3461:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3465:10-3465:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3470:10-3470:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4786:4-4786:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4800:4-4800:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4810:6-4810:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4820:6-4820:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4836:6-4836:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4848:57-4848:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4851:57-4851:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4857:57-4857:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4865:4-4865:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5481:58-5481:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5486:4-5486:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5497:6-5497:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5505:4-5505:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5512:4-5512:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5520:6-5520:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5528:4-5528:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5537:4-5537:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5547:4-5547:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5556:4-5556:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5568:4-5568:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6244:15-6244:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6537:36-6537:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6545:36-6545:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6545:46-6545:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6552:38-6552:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6552:48-6552:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6556:36-6556:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6556:46-6556:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6556:62-6556:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6563:8-6563:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6564:4-6564:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6565:4-6565:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6566:4-6566:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6573:8-6573:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6574:4-6574:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6575:4-6575:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6576:4-6576:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6596:8-6596:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6597:4-6597:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6598:4-6598:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6599:4-6599:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7064:2-7064:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7737:31-7737:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7742:31-7742:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7746:31-7746:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7750:31-7750:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7753:31-7753:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7757:31-7757:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7993:19-7993:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8157:19-8157:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8454:7-8454:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8460:7-8460:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8463:7-8463:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8467:7-8467:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8478:7-8478:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8491:7-8491:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8494:7-8494:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8504:7-8504:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8507:7-8507:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8511:7-8511:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8520:7-8520:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8523:7-8523:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8526:7-8526:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8531:7-8531:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8537:7-8537:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -5990,6 +5854,7 @@ Lint errors for `src/app/assets/main.css`
    - Adjusted positioning for medium screens
 
 ### **Result:**
+
 - About3 is separate from the plane-shape
 - About3 sits at the corner of about2 with a right tilt
 - Clear separation and hierarchy
@@ -6006,7 +5871,6 @@ Perfect, Now about-image-3 will be on the bottom left corner of the about1 image
 _**Assistant (default)**_
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -6030,7 +5894,6 @@ Lines added: 2, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -6065,110 +5928,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 936:12-936:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 944:12-944:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 972:20-972:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 980:12-980:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3243:4-3243:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3257:4-3257:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3267:6-3267:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3277:6-3277:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3293:6-3293:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4787:4-4787:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4801:4-4801:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4811:6-4811:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4821:6-4821:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4837:6-4837:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4849:57-4849:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4852:57-4852:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4858:57-4858:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4866:4-4866:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5482:58-5482:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5487:4-5487:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5498:6-5498:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5506:4-5506:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5513:4-5513:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5521:6-5521:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5529:4-5529:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5538:4-5538:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5548:4-5548:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5557:4-5557:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5569:4-5569:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6245:15-6245:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6538:36-6538:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6546:36-6546:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6546:46-6546:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6553:38-6553:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6553:48-6553:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6557:36-6557:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6557:46-6557:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6557:62-6557:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6564:8-6564:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6565:4-6565:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6566:4-6566:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6567:4-6567:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6574:8-6574:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6575:4-6575:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6576:4-6576:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6577:4-6577:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6597:8-6597:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6598:4-6598:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6599:4-6599:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6600:4-6600:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7065:2-7065:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7738:31-7738:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7743:31-7743:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7747:31-7747:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7751:31-7751:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7754:31-7754:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7758:31-7758:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7994:19-7994:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8158:19-8158:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8455:7-8455:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8461:7-8461:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8464:7-8464:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8468:7-8468:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8479:7-8479:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8492:7-8492:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8495:7-8495:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8505:7-8505:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8508:7-8508:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8512:7-8512:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8521:7-8521:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8524:7-8524:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8527:7-8527:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8532:7-8532:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8538:7-8538:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 936:12-936:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 944:12-944:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 972:20-972:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 980:12-980:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3243:4-3243:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3257:4-3257:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3267:6-3267:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3277:6-3277:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3293:6-3293:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4787:4-4787:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4801:4-4801:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4811:6-4811:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4821:6-4821:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4837:6-4837:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4849:57-4849:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4852:57-4852:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4858:57-4858:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4866:4-4866:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5482:58-5482:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5487:4-5487:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5498:6-5498:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5506:4-5506:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5513:4-5513:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5521:6-5521:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5529:4-5529:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5538:4-5538:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5548:4-5548:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5557:4-5557:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5569:4-5569:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6245:15-6245:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6538:36-6538:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6546:36-6546:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6546:46-6546:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6553:38-6553:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6553:48-6553:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6557:36-6557:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6557:46-6557:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6557:62-6557:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6564:8-6564:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6565:4-6565:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6566:4-6566:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6567:4-6567:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6574:8-6574:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6575:4-6575:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6576:4-6576:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6577:4-6577:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6597:8-6597:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6598:4-6598:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6599:4-6599:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6600:4-6600:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7065:2-7065:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7738:31-7738:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7743:31-7743:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7747:31-7747:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7751:31-7751:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7754:31-7754:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7758:31-7758:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7994:19-7994:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8158:19-8158:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8455:7-8455:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8461:7-8461:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8464:7-8464:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8468:7-8468:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8479:7-8479:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8492:7-8492:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8495:7-8495:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8505:7-8505:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8508:7-8508:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8512:7-8512:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8521:7-8521:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8524:7-8524:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8527:7-8527:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8532:7-8532:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8538:7-8538:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -6187,6 +6048,7 @@ Lint errors for `src/app/assets/main.css`
    - Small screens: hidden (unchanged)
 
 ### **Result:**
+
 - About3 sits at the bottom-left of about1
 - About2 remains at the bottom-right
 - Clear separation and balanced layout
@@ -6209,44 +6071,41 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.about-wrapper-2 .about-image \{` | L475 |
-| `.about-wrapper-2 .about-image \{` | L492 |
-| `.about-wrapper-2 .about-image \{` | L498 |
-| `.about-wrapper-2 .about-image img \{` | L502 |
-| `.about-wrapper-2 .about-image:hover img \{` | L511 |
-| `.about-wrapper-2 .about-image .shape-image \{` | L515 |
-| `.about-wrapper-2 .about-image .shape-image img \{` | L522 |
-| `.about-wrapper-2 .about-image .shape-image img \{` | L532 |
-| `.about-wrapper-2 .about-image .shape-image \{` | L538 |
-| `.about-wrapper-2 .about-image .group-image \{` | L543 |
-| `.about-wrapper-2 .about-image .group-image img \{` | L551 |
-| `.about-wrapper-2 .about-image .group-image \{` | L557 |
-| `.about-wrapper-2 .about-image .group-image \{` | L562 |
-| `.about-wrapper-2 .about-image .about-image-2 \{` | L569 |
-| `.about-wrapper-2 .about-image .about-image-3 \{` | L578 |
-| `.about-wrapper-2 .about-image .about-image-2 \{` | L587 |
-| `.about-wrapper-2 .about-image .about-image-3 \{` | L590 |
-| `.about-wrapper-2 .about-image .about-image-2 \{` | L596 |
-| `.about-wrapper-2 .about-image .about-image-3 \{` | L602 |
-| `.about-wrapper-2 .about-image .about-image-2 img \{` | L606 |
-| `.about-wrapper-2 .about-image .about-image-3 img \{` | L616 |
-| `.about-wrapper-2 .about-image .about-image-2 .plane-shape \{` | L625 |
-| `.about-wrapper-2 .about-image .about-image-2 .plane-shape img \{` | L631 |
-| `.about-wrapper-2 .about-image .about-image-2 .plane-shape \{` | L636 |
-| `.about-wrapper-2 .about-image .about-image-2 .circle-image \{` | L640 |
+| Content                                                             | Line |
+| ------------------------------------------------------------------- | ---- |
+| `.about-wrapper-2 .about-image \{`                                  | L475 |
+| `.about-wrapper-2 .about-image \{`                                  | L492 |
+| `.about-wrapper-2 .about-image \{`                                  | L498 |
+| `.about-wrapper-2 .about-image img \{`                              | L502 |
+| `.about-wrapper-2 .about-image:hover img \{`                        | L511 |
+| `.about-wrapper-2 .about-image .shape-image \{`                     | L515 |
+| `.about-wrapper-2 .about-image .shape-image img \{`                 | L522 |
+| `.about-wrapper-2 .about-image .shape-image img \{`                 | L532 |
+| `.about-wrapper-2 .about-image .shape-image \{`                     | L538 |
+| `.about-wrapper-2 .about-image .group-image \{`                     | L543 |
+| `.about-wrapper-2 .about-image .group-image img \{`                 | L551 |
+| `.about-wrapper-2 .about-image .group-image \{`                     | L557 |
+| `.about-wrapper-2 .about-image .group-image \{`                     | L562 |
+| `.about-wrapper-2 .about-image .about-image-2 \{`                   | L569 |
+| `.about-wrapper-2 .about-image .about-image-3 \{`                   | L578 |
+| `.about-wrapper-2 .about-image .about-image-2 \{`                   | L587 |
+| `.about-wrapper-2 .about-image .about-image-3 \{`                   | L590 |
+| `.about-wrapper-2 .about-image .about-image-2 \{`                   | L596 |
+| `.about-wrapper-2 .about-image .about-image-3 \{`                   | L602 |
+| `.about-wrapper-2 .about-image .about-image-2 img \{`               | L606 |
+| `.about-wrapper-2 .about-image .about-image-3 img \{`               | L616 |
+| `.about-wrapper-2 .about-image .about-image-2 .plane-shape \{`      | L625 |
+| `.about-wrapper-2 .about-image .about-image-2 .plane-shape img \{`  | L631 |
+| `.about-wrapper-2 .about-image .about-image-2 .plane-shape \{`      | L636 |
+| `.about-wrapper-2 .about-image .about-image-2 .circle-image \{`     | L640 |
 | `.about-wrapper-2 .about-image .about-image-2 .circle-image img \{` | L645 |
-| `.about-wrapper-2 .about-image .about-image-2 .circle-image \{` | L650 |
-
+| `.about-wrapper-2 .about-image .about-image-2 .circle-image \{`     | L650 |
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -6265,7 +6124,7 @@ Lines added: 3, lines removed: 3
 +   padding: 30px;
 +   margin-right: 50px;
   }
-  
+
 ```
 
 </details>
@@ -6283,67 +6142,65 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `@media (max-width: 1399px) \{` | L154 |
-| `@media (max-width: 1399px) \{` | L185 |
-| `@media (max-width: 1399px) \{` | L362 |
-| `@media (max-width: 1399px) \{` | L556 |
-| `@media (max-width: 1399px) \{` | L586 |
-| `@media (max-width: 1399px) \{` | L765 |
-| `@media (max-width: 1399px) \{` | L854 |
-| `@media (max-width: 1399px) \{` | L1924 |
-| `@media (max-width: 1399px) \{` | L2435 |
-| `@media (max-width: 1399px) \{` | L2467 |
-| `@media (max-width: 1399px) \{` | L2476 |
-| `@media (max-width: 1399px) \{` | L2518 |
-| `@media (max-width: 1399px) \{` | L2567 |
-| `@media (max-width: 1399px) \{` | L2733 |
-| `@media (max-width: 1399px) \{` | L3164 |
-| `@media (max-width: 1399px) \{` | L3174 |
-| `@media (max-width: 1399px) \{` | L3315 |
-| `@media (max-width: 1399px) \{` | L3608 |
-| `@media (max-width: 1399px) \{` | L3630 |
-| `@media (max-width: 1399px) \{` | L3801 |
-| `@media (max-width: 1399px) \{` | L3838 |
-| `@media (max-width: 1399px) \{` | L3849 |
-| `@media (max-width: 1399px) \{` | L3923 |
-| `@media (max-width: 1399px) \{` | L3933 |
-| `@media (max-width: 1399px) \{` | L3966 |
-| `@media (max-width: 1399px) \{` | L3990 |
-| `@media (max-width: 1399px) \{` | L4189 |
-| `@media (max-width: 1399px) \{` | L4367 |
-| `@media (max-width: 1399px) \{` | L4377 |
-| `@media (max-width: 1399px) \{` | L5200 |
-| `@media (max-width: 1399px) \{` | L5707 |
-| `@media (max-width: 1399px) \{` | L5722 |
-| `@media (max-width: 1399px) \{` | L6097 |
-| `@media (max-width: 1399px) \{` | L6175 |
-| `@media (max-width: 1399px) \{` | L6185 |
-| `@media (max-width: 1399px) \{` | L6262 |
-| `@media (max-width: 1399px) \{` | L6291 |
-| `@media (max-width: 1399px) \{` | L6388 |
-| `@media (max-width: 1399px) \{` | L6406 |
-| `@media (max-width: 1399px) \{` | L6732 |
-| `@media (max-width: 1399px) \{` | L6781 |
-| `@media (max-width: 1399px) \{` | L7374 |
-| `@media (max-width: 1399px) \{` | L7591 |
-| `@media (max-width: 1399px) \{` | L7863 |
-| `@media (max-width: 1399px) \{` | L8233 |
-| `@media (max-width: 1399px) \{` | L8259 |
-| `@media (max-width: 1399px) \{` | L8281 |
-| `@media (max-width: 1399px) \{` | L8310 |
-| `@media (max-width: 1399px) \{` | L8321 |
-| `@media (max-width: 1399px) \{` | L8381 |
-| `@media (max-width: 1399px) \{` | L8429 |
-| `@media (max-width: 1399px) \{` | L9450 |
-| `@media (max-width: 1399px) \{` | L9455 |
-| `@media (max-width: 1399px) \{` | L9955 |
+| Content                         | Line   |
+| ------------------------------- | ------ |
+| `@media (max-width: 1399px) \{` | L154   |
+| `@media (max-width: 1399px) \{` | L185   |
+| `@media (max-width: 1399px) \{` | L362   |
+| `@media (max-width: 1399px) \{` | L556   |
+| `@media (max-width: 1399px) \{` | L586   |
+| `@media (max-width: 1399px) \{` | L765   |
+| `@media (max-width: 1399px) \{` | L854   |
+| `@media (max-width: 1399px) \{` | L1924  |
+| `@media (max-width: 1399px) \{` | L2435  |
+| `@media (max-width: 1399px) \{` | L2467  |
+| `@media (max-width: 1399px) \{` | L2476  |
+| `@media (max-width: 1399px) \{` | L2518  |
+| `@media (max-width: 1399px) \{` | L2567  |
+| `@media (max-width: 1399px) \{` | L2733  |
+| `@media (max-width: 1399px) \{` | L3164  |
+| `@media (max-width: 1399px) \{` | L3174  |
+| `@media (max-width: 1399px) \{` | L3315  |
+| `@media (max-width: 1399px) \{` | L3608  |
+| `@media (max-width: 1399px) \{` | L3630  |
+| `@media (max-width: 1399px) \{` | L3801  |
+| `@media (max-width: 1399px) \{` | L3838  |
+| `@media (max-width: 1399px) \{` | L3849  |
+| `@media (max-width: 1399px) \{` | L3923  |
+| `@media (max-width: 1399px) \{` | L3933  |
+| `@media (max-width: 1399px) \{` | L3966  |
+| `@media (max-width: 1399px) \{` | L3990  |
+| `@media (max-width: 1399px) \{` | L4189  |
+| `@media (max-width: 1399px) \{` | L4367  |
+| `@media (max-width: 1399px) \{` | L4377  |
+| `@media (max-width: 1399px) \{` | L5200  |
+| `@media (max-width: 1399px) \{` | L5707  |
+| `@media (max-width: 1399px) \{` | L5722  |
+| `@media (max-width: 1399px) \{` | L6097  |
+| `@media (max-width: 1399px) \{` | L6175  |
+| `@media (max-width: 1399px) \{` | L6185  |
+| `@media (max-width: 1399px) \{` | L6262  |
+| `@media (max-width: 1399px) \{` | L6291  |
+| `@media (max-width: 1399px) \{` | L6388  |
+| `@media (max-width: 1399px) \{` | L6406  |
+| `@media (max-width: 1399px) \{` | L6732  |
+| `@media (max-width: 1399px) \{` | L6781  |
+| `@media (max-width: 1399px) \{` | L7374  |
+| `@media (max-width: 1399px) \{` | L7591  |
+| `@media (max-width: 1399px) \{` | L7863  |
+| `@media (max-width: 1399px) \{` | L8233  |
+| `@media (max-width: 1399px) \{` | L8259  |
+| `@media (max-width: 1399px) \{` | L8281  |
+| `@media (max-width: 1399px) \{` | L8310  |
+| `@media (max-width: 1399px) \{` | L8321  |
+| `@media (max-width: 1399px) \{` | L8381  |
+| `@media (max-width: 1399px) \{` | L8429  |
+| `@media (max-width: 1399px) \{` | L9450  |
+| `@media (max-width: 1399px) \{` | L9455  |
+| `@media (max-width: 1399px) \{` | L9955  |
 | `@media (max-width: 1399px) \{` | L10033 |
 | `@media (max-width: 1399px) \{` | L10044 |
 | `@media (max-width: 1399px) \{` | L10219 |
-
 
 </details>
 
@@ -6360,20 +6217,17 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `max-width: 700px;` | L493 |
-| `max-width: 700px;` | L736 |
+| Content             | Line  |
+| ------------------- | ----- |
+| `max-width: 700px;` | L493  |
+| `max-width: 700px;` | L736  |
 | `max-width: 700px;` | L9562 |
-
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -6397,7 +6251,6 @@ Lines added: 2, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -6431,110 +6284,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 936:12-936:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 944:12-944:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 972:20-972:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 980:12-980:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3243:4-3243:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3257:4-3257:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3267:6-3267:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3277:6-3277:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3293:6-3293:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4787:4-4787:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4801:4-4801:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4811:6-4811:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4821:6-4821:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4837:6-4837:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4849:57-4849:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4852:57-4852:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4858:57-4858:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4866:4-4866:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5482:58-5482:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5487:4-5487:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5498:6-5498:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5506:4-5506:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5513:4-5513:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5521:6-5521:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5529:4-5529:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5538:4-5538:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5548:4-5548:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5557:4-5557:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5569:4-5569:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6245:15-6245:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6538:36-6538:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6546:36-6546:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6546:46-6546:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6553:38-6553:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6553:48-6553:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6557:36-6557:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6557:46-6557:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6557:62-6557:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6564:8-6564:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6565:4-6565:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6566:4-6566:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6567:4-6567:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6574:8-6574:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6575:4-6575:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6576:4-6576:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6577:4-6577:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6597:8-6597:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6598:4-6598:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6599:4-6599:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6600:4-6600:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7065:2-7065:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7738:31-7738:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7743:31-7743:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7747:31-7747:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7751:31-7751:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7754:31-7754:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7758:31-7758:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7994:19-7994:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8158:19-8158:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8455:7-8455:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8461:7-8461:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8464:7-8464:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8468:7-8468:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8479:7-8479:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8492:7-8492:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8495:7-8495:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8505:7-8505:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8508:7-8508:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8512:7-8512:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8521:7-8521:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8524:7-8524:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8527:7-8527:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8532:7-8532:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8538:7-8538:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 936:12-936:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 944:12-944:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 972:20-972:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 980:12-980:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3243:4-3243:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3257:4-3257:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3267:6-3267:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3277:6-3277:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3293:6-3293:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4787:4-4787:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4801:4-4801:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4811:6-4811:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4821:6-4821:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4837:6-4837:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4849:57-4849:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4852:57-4852:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4858:57-4858:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4866:4-4866:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5482:58-5482:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5487:4-5487:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5498:6-5498:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5506:4-5506:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5513:4-5513:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5521:6-5521:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5529:4-5529:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5538:4-5538:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5548:4-5548:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5557:4-5557:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5569:4-5569:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6245:15-6245:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6538:36-6538:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6546:36-6546:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6546:46-6546:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6553:38-6553:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6553:48-6553:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6557:36-6557:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6557:46-6557:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6557:62-6557:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6564:8-6564:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6565:4-6565:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6566:4-6566:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6567:4-6567:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6574:8-6574:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6575:4-6575:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6576:4-6576:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6577:4-6577:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6597:8-6597:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6598:4-6598:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6599:4-6599:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6600:4-6600:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7065:2-7065:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7738:31-7738:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7743:31-7743:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7747:31-7747:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7751:31-7751:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7754:31-7754:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7758:31-7758:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7994:19-7994:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8158:19-8158:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8455:7-8455:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8461:7-8461:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8464:7-8464:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8468:7-8468:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8479:7-8479:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8492:7-8492:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8495:7-8495:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8505:7-8505:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8508:7-8508:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8512:7-8512:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8521:7-8521:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8524:7-8524:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8527:7-8527:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8532:7-8532:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8538:7-8538:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -6554,6 +6405,7 @@ Lint errors for `src/app/assets/main.css`
    - **Small screens (≤991px):** `height: 500px` → `550px`
 
 ### **Result:**
+
 - Larger main image container
 - More space for about2 and about3
 - Responsive behavior maintained
@@ -6563,9 +6415,9 @@ Lint errors for `src/app/assets/main.css`
 
 _**User (2025-09-28 10:19Z)**_
 
-Now check the page in my app, 
-I have About2 and FeaturedTour1 component, 
-My About2 Section is ok but check the background is comming from FeatureTour1 section I think fix it. 
+Now check the page in my app,
+I have About2 and FeaturedTour1 component,
+My About2 Section is ok but check the background is comming from FeatureTour1 section I think fix it.
 
 ---
 
@@ -6590,23 +6442,21 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.featured-tour-section \{` | L4346 |
-| `.featured-tour-section::before \{` | L4349 |
-| `.featured-tour-section .left-shape \{` | L4362 |
-| `.featured-tour-section .left-shape \{` | L4368 |
-| `.featured-tour-section .right-shape \{` | L4372 |
-| `.featured-tour-section .right-shape \{` | L4378 |
-| `.featured-tour-section .array-button \{` | L4382 |
-| `.featured-tour-section .array-button .array-prev,` | L4386 |
-| `.featured-tour-section .array-button .array-next \{` | L4387 |
-| `.featured-tour-section .array-button .array-prev \{` | L4396 |
+| Content                                                     | Line  |
+| ----------------------------------------------------------- | ----- |
+| `.featured-tour-section \{`                                 | L4346 |
+| `.featured-tour-section::before \{`                         | L4349 |
+| `.featured-tour-section .left-shape \{`                     | L4362 |
+| `.featured-tour-section .left-shape \{`                     | L4368 |
+| `.featured-tour-section .right-shape \{`                    | L4372 |
+| `.featured-tour-section .right-shape \{`                    | L4378 |
+| `.featured-tour-section .array-button \{`                   | L4382 |
+| `.featured-tour-section .array-button .array-prev,`         | L4386 |
+| `.featured-tour-section .array-button .array-next \{`       | L4387 |
+| `.featured-tour-section .array-button .array-prev \{`       | L4396 |
 | `.featured-tour-section .array-button .array-prev:hover \{` | L4402 |
-| `.featured-tour-section .array-button .array-next \{` | L4405 |
+| `.featured-tour-section .array-button .array-next \{`       | L4405 |
 | `.featured-tour-section .array-button .array-next:hover \{` | L4412 |
-
 
 </details>
 
@@ -6619,15 +6469,13 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.about-section \{` | L836 |
+| Content                          | Line |
+| -------------------------------- | ---- |
+| `.about-section \{`              | L836 |
 | `.about-section .right-shape \{` | L839 |
 | `.about-section .right-shape \{` | L845 |
-| `.about-section .left-shape \{` | L849 |
-| `.about-section .left-shape \{` | L855 |
-
+| `.about-section .left-shape \{`  | L849 |
+| `.about-section .left-shape \{`  | L855 |
 
 </details>
 
@@ -6640,13 +6488,11 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.section-bg \{` | L9407 |
+| Content            | Line  |
+| ------------------ | ----- |
+| `.section-bg \{`   | L9407 |
 | `.section-bg-2 \{` | L9411 |
 | `.section-bg-3 \{` | L9415 |
-
 
 </details>
 
@@ -6659,18 +6505,15 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
+| Content                             | Line  |
+| ----------------------------------- | ----- |
 | `.featured-tour-section::before \{` | L4349 |
-
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -6704,110 +6547,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 936:12-936:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 944:12-944:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 972:20-972:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 980:12-980:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3243:4-3243:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3257:4-3257:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3267:6-3267:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3277:6-3277:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3293:6-3293:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4787:4-4787:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4801:4-4801:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4811:6-4811:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4821:6-4821:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4837:6-4837:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4849:57-4849:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4852:57-4852:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4858:57-4858:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4866:4-4866:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5482:58-5482:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5487:4-5487:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5498:6-5498:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5506:4-5506:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5513:4-5513:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5521:6-5521:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5529:4-5529:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5538:4-5538:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5548:4-5548:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5557:4-5557:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5569:4-5569:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6245:15-6245:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6538:36-6538:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6546:36-6546:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6546:46-6546:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6553:38-6553:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6553:48-6553:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6557:36-6557:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6557:46-6557:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6557:62-6557:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6564:8-6564:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6565:4-6565:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6566:4-6566:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6567:4-6567:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6574:8-6574:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6575:4-6575:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6576:4-6576:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6577:4-6577:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6597:8-6597:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6598:4-6598:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6599:4-6599:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6600:4-6600:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7065:2-7065:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7738:31-7738:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7743:31-7743:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7747:31-7747:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7751:31-7751:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7754:31-7754:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7758:31-7758:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7994:19-7994:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8158:19-8158:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8455:7-8455:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8461:7-8461:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8464:7-8464:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8468:7-8468:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8479:7-8479:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8492:7-8492:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8495:7-8495:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8505:7-8505:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8508:7-8508:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8512:7-8512:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8521:7-8521:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8524:7-8524:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8527:7-8527:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8532:7-8532:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8538:7-8538:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 936:12-936:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 944:12-944:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 972:20-972:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 980:12-980:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3243:4-3243:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3257:4-3257:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3267:6-3267:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3277:6-3277:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3293:6-3293:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4787:4-4787:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4801:4-4801:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4811:6-4811:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4821:6-4821:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4837:6-4837:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4849:57-4849:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4852:57-4852:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4858:57-4858:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4866:4-4866:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5482:58-5482:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5487:4-5487:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5498:6-5498:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5506:4-5506:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5513:4-5513:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5521:6-5521:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5529:4-5529:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5538:4-5538:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5548:4-5548:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5557:4-5557:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5569:4-5569:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6245:15-6245:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6538:36-6538:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6546:36-6546:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6546:46-6546:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6553:38-6553:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6553:48-6553:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6557:36-6557:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6557:46-6557:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6557:62-6557:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6564:8-6564:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6565:4-6565:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6566:4-6566:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6567:4-6567:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6574:8-6574:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6575:4-6575:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6576:4-6576:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6577:4-6577:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6597:8-6597:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6598:4-6598:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6599:4-6599:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6600:4-6600:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7065:2-7065:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7738:31-7738:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7743:31-7743:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7747:31-7747:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7751:31-7751:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7754:31-7754:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7758:31-7758:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7994:19-7994:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8158:19-8158:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8455:7-8455:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8461:7-8461:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8464:7-8464:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8468:7-8468:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8479:7-8479:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8492:7-8492:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8495:7-8495:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8505:7-8505:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8508:7-8508:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8512:7-8512:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8521:7-8521:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8524:7-8524:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8527:7-8527:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8532:7-8532:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8538:7-8538:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -6816,13 +6657,16 @@ Lint errors for `src/app/assets/main.css`
 ## Fixed FeaturedTour1 background overlap
 
 ### **Issue:**
+
 The `FeaturedTour1` section’s `::before` pseudo-element used `top: -35%`, which extended the background into the `About2` section.
 
 ### **Fix:**
+
 - Changed `top: -35%` to `top: 0` in `.featured-tour-section::before`
 - Background now starts at the top of the `FeaturedTour1` section
 
 ### **Result:**
+
 - `About2` no longer shows the `FeaturedTour1` background
 - Each section has its own background
 - No overlap between sections
@@ -6831,11 +6675,11 @@ The `FeaturedTour1` section’s `::before` pseudo-element used `top: -35%`, whic
 
 _**User (2025-09-28 10:19Z)**_
 
-check my choose2 component, we have h3 here with class name number, 
+check my choose2 component, we have h3 here with class name number,
 
-we have background color of this number class, 
+we have background color of this number class,
 
-we need to match this color with the theme color, 
+we need to match this color with the theme color,
 
 ---
 
@@ -6854,18 +6698,15 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
+| Content                                                                             | Line  |
+| ----------------------------------------------------------------------------------- | ----- |
 | `.choose-us-wrapper .choose-us-content .choose-us-area .choose-us-items .number \{` | L4163 |
-
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -6901,110 +6742,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 936:12-936:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 944:12-944:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 972:20-972:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 980:12-980:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3243:4-3243:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3257:4-3257:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3267:6-3267:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3277:6-3277:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3293:6-3293:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4787:4-4787:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4801:4-4801:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4811:6-4811:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4821:6-4821:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4837:6-4837:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4849:57-4849:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4852:57-4852:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4858:57-4858:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4866:4-4866:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5482:58-5482:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5487:4-5487:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5498:6-5498:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5506:4-5506:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5513:4-5513:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5521:6-5521:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5529:4-5529:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5538:4-5538:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5548:4-5548:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5557:4-5557:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5569:4-5569:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6245:15-6245:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6538:36-6538:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6546:36-6546:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6546:46-6546:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6553:38-6553:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6553:48-6553:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6557:36-6557:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6557:46-6557:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6557:62-6557:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6564:8-6564:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6565:4-6565:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6566:4-6566:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6567:4-6567:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6574:8-6574:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6575:4-6575:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6576:4-6576:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6577:4-6577:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6597:8-6597:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6598:4-6598:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6599:4-6599:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6600:4-6600:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7065:2-7065:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7738:31-7738:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7743:31-7743:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7747:31-7747:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7751:31-7751:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7754:31-7754:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7758:31-7758:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 7994:19-7994:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8158:19-8158:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8455:7-8455:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8461:7-8461:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8464:7-8464:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8468:7-8468:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8479:7-8479:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8492:7-8492:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8495:7-8495:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8505:7-8505:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8508:7-8508:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8512:7-8512:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8521:7-8521:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8524:7-8524:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8527:7-8527:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8532:7-8532:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8538:7-8538:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 936:12-936:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 944:12-944:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 972:20-972:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 980:12-980:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3243:4-3243:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3257:4-3257:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3267:6-3267:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3277:6-3277:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3293:6-3293:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4787:4-4787:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4801:4-4801:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4811:6-4811:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4821:6-4821:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4837:6-4837:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4849:57-4849:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4852:57-4852:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4858:57-4858:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4866:4-4866:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5482:58-5482:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5487:4-5487:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5498:6-5498:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5506:4-5506:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5513:4-5513:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5521:6-5521:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5529:4-5529:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5538:4-5538:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5548:4-5548:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5557:4-5557:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5569:4-5569:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6245:15-6245:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6538:36-6538:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6546:36-6546:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6546:46-6546:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6553:38-6553:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6553:48-6553:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6557:36-6557:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6557:46-6557:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6557:62-6557:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6564:8-6564:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6565:4-6565:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6566:4-6566:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6567:4-6567:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6574:8-6574:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6575:4-6575:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6576:4-6576:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6577:4-6577:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6597:8-6597:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6598:4-6598:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6599:4-6599:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6600:4-6600:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7065:2-7065:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7738:31-7738:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7743:31-7743:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7747:31-7747:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7751:31-7751:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7754:31-7754:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7758:31-7758:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 7994:19-7994:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8158:19-8158:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8455:7-8455:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8461:7-8461:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8464:7-8464:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8468:7-8468:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8479:7-8479:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8492:7-8492:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8495:7-8495:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8505:7-8505:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8508:7-8508:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8512:7-8512:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8521:7-8521:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8524:7-8524:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8527:7-8527:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8532:7-8532:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8538:7-8538:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -7021,6 +6860,7 @@ Lint errors for `src/app/assets/main.css`
    - Changed from `var(--theme)` to `var(--white)` for contrast
 
 ### **Result:**
+
 - Number circles use the theme color
 - White text for readability
 - Consistent with the site theme
@@ -7036,7 +6876,6 @@ We are using the choose-us-bg-2.jpg in choose2 component, can we create a bg acc
 _**Assistant (default)**_
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/Choose/Choose2.tsx</summary>
 
@@ -7064,7 +6903,6 @@ Lines added: 5, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/Components/Choose/Choose2.tsx</summary>
 
 **Chunk 1**
@@ -7072,12 +6910,12 @@ Lines added: undefined, lines removed: 3
 
 ```diff
 @@ -5,7 +5,4 @@
-  
+
   const Choose2 = () => {
 -   useEffect(() => {
 -     loadBackgroundImages();
 -   }, []);
-  
+
     return (
 ```
 
@@ -7086,7 +6924,6 @@ Lines added: undefined, lines removed: 3
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/Choose/Choose2.tsx</summary>
 
@@ -7100,7 +6937,7 @@ Lines added: 1, lines removed: 2
 - import loadBackgroundImages from "../Common/loadBackgroundImages";
 + import React from "react";
   import Image from "next/image";
-  
+
 ```
 
 </details>
@@ -7118,8 +6955,8 @@ Lint paths:
 
 Lint results
 
-
 **No lint errors found**
+
 </details>
 
 ---
@@ -7142,6 +6979,7 @@ Lint results
    - Removed `bg-cover` class
 
 ### **Result:**
+
 - Theme-aligned gradient background
 - No external image dependency
 - Light opacity for readability
@@ -7151,14 +6989,13 @@ Lint results
 
 _**User (2025-09-28 10:19Z)**_
 
-Check the Choose2 page, here we have line-shape we are using image, but I want you to create the line with div element and style it according, 
+Check the Choose2 page, here we have line-shape we are using image, but I want you to create the line with div element and style it according,
 
 ---
 
 _**Assistant (default)**_
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/Choose/Choose2.tsx</summary>
 
@@ -7197,21 +7034,18 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.feature-wrapper .feature-content .feature-area .line-shape \{` | L3833 |
-| `.feature-wrapper .feature-content .feature-area .line-shape \{` | L3839 |
+| Content                                                                | Line  |
+| ---------------------------------------------------------------------- | ----- |
+| `.feature-wrapper .feature-content .feature-area .line-shape \{`       | L3833 |
+| `.feature-wrapper .feature-content .feature-area .line-shape \{`       | L3839 |
 | `.choose-us-wrapper .choose-us-content .choose-us-area .line-shape \{` | L4137 |
 | `.choose-us-wrapper .choose-us-content .choose-us-area .line-shape \{` | L4144 |
-
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -7222,14 +7056,14 @@ Lines added: 12, lines removed: undefined
 @@ -4141,4 +4141,16 @@
     z-index: -1;
   }
-+ 
++
 + .choose-us-wrapper .choose-us-content .choose-us-area .line-shape .custom-line {
 +   width: 2px;
 +   height: 279px;
-+   background: linear-gradient(to bottom, 
-+     transparent 0%, 
-+     var(--theme) 20%, 
-+     var(--theme) 80%, 
++   background: linear-gradient(to bottom,
++     transparent 0%,
++     var(--theme) 20%,
++     var(--theme) 80%,
 +     transparent 100%
 +   );
 +   border-radius: 1px;
@@ -7256,110 +7090,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 936:12-936:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 944:12-944:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 972:20-972:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 980:12-980:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3243:4-3243:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3257:4-3257:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3267:6-3267:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3277:6-3277:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3293:6-3293:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4799:4-4799:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4813:4-4813:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4823:6-4823:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4833:6-4833:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4849:6-4849:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4861:57-4861:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4864:57-4864:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4870:57-4870:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4878:4-4878:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5494:58-5494:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5499:4-5499:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5510:6-5510:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5518:4-5518:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5525:4-5525:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5533:6-5533:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5541:4-5541:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5550:4-5550:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5560:4-5560:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5569:4-5569:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5581:4-5581:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6257:15-6257:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6550:36-6550:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6558:36-6558:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6558:46-6558:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6565:38-6565:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6565:48-6565:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6569:36-6569:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6569:46-6569:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6569:62-6569:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6576:8-6576:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6577:4-6577:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6578:4-6578:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6579:4-6579:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6586:8-6586:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6587:4-6587:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6588:4-6588:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6589:4-6589:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6609:8-6609:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6610:4-6610:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6611:4-6611:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6612:4-6612:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7077:2-7077:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7750:31-7750:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7755:31-7755:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7759:31-7759:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7763:31-7763:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7766:31-7766:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7770:31-7770:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8006:19-8006:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8170:19-8170:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8467:7-8467:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8473:7-8473:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8476:7-8476:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8480:7-8480:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8491:7-8491:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8504:7-8504:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8507:7-8507:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8517:7-8517:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8520:7-8520:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8524:7-8524:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8533:7-8533:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8536:7-8536:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8539:7-8539:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8544:7-8544:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8550:7-8550:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 936:12-936:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 944:12-944:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 972:20-972:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 980:12-980:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3243:4-3243:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3257:4-3257:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3267:6-3267:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3277:6-3277:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3293:6-3293:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4799:4-4799:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4813:4-4813:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4823:6-4823:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4833:6-4833:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4849:6-4849:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4861:57-4861:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4864:57-4864:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4870:57-4870:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4878:4-4878:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5494:58-5494:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5499:4-5499:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5510:6-5510:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5518:4-5518:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5525:4-5525:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5533:6-5533:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5541:4-5541:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5550:4-5550:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5560:4-5560:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5569:4-5569:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5581:4-5581:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6257:15-6257:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6550:36-6550:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6558:36-6558:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6558:46-6558:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6565:38-6565:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6565:48-6565:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6569:36-6569:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6569:46-6569:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6569:62-6569:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6576:8-6576:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6577:4-6577:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6578:4-6578:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6579:4-6579:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6586:8-6586:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6587:4-6587:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6588:4-6588:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6589:4-6589:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6609:8-6609:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6610:4-6610:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6611:4-6611:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6612:4-6612:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7077:2-7077:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7750:31-7750:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7755:31-7755:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7759:31-7759:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7763:31-7763:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7766:31-7766:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7770:31-7770:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8006:19-8006:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8170:19-8170:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8467:7-8467:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8473:7-8473:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8476:7-8476:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8480:7-8480:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8491:7-8491:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8504:7-8504:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8507:7-8507:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8517:7-8517:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8520:7-8520:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8524:7-8524:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8533:7-8533:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8536:7-8536:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8539:7-8539:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8544:7-8544:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8550:7-8550:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -7381,6 +7213,7 @@ Lint errors for `src/app/assets/main.css`
    - **Border-radius:** `1px`
 
 ### **Result:**
+
 - No image dependency
 - Theme color applied
 - Gradient fade for a cleaner look
@@ -7398,7 +7231,6 @@ _**Assistant (default)**_
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -7408,10 +7240,10 @@ Lines added: 6, lines removed: 5
 @@ -4145,9 +4145,10 @@
     width: 2px;
     height: 279px;
--   background: linear-gradient(to bottom, 
--     transparent 0%, 
--     var(--theme) 20%, 
--     var(--theme) 80%, 
+-   background: linear-gradient(to bottom,
+-     transparent 0%,
+-     var(--theme) 20%,
+-     var(--theme) 80%,
 -     transparent 100%
 +   background: repeating-linear-gradient(
 +     to bottom,
@@ -7440,110 +7272,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 936:12-936:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 944:12-944:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 972:20-972:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 980:12-980:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3243:4-3243:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3257:4-3257:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3267:6-3267:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3277:6-3277:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3293:6-3293:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4800:4-4800:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4814:4-4814:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4824:6-4824:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4834:6-4834:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4850:6-4850:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4862:57-4862:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4865:57-4865:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4871:57-4871:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4879:4-4879:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5495:58-5495:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5500:4-5500:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5511:6-5511:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5519:4-5519:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5526:4-5526:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5534:6-5534:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5542:4-5542:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5551:4-5551:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5561:4-5561:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5570:4-5570:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5582:4-5582:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6258:15-6258:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6551:36-6551:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6559:36-6559:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6559:46-6559:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6566:38-6566:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6566:48-6566:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6570:36-6570:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6570:46-6570:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6570:62-6570:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6577:8-6577:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6578:4-6578:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6579:4-6579:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6580:4-6580:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6587:8-6587:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6588:4-6588:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6589:4-6589:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6590:4-6590:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6610:8-6610:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6611:4-6611:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6612:4-6612:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6613:4-6613:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7078:2-7078:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7751:31-7751:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7756:31-7756:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7760:31-7760:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7764:31-7764:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7767:31-7767:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7771:31-7771:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8007:19-8007:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8171:19-8171:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8468:7-8468:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8474:7-8474:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8477:7-8477:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8481:7-8481:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8492:7-8492:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8505:7-8505:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8508:7-8508:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8518:7-8518:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8521:7-8521:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8525:7-8525:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8534:7-8534:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8537:7-8537:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8540:7-8540:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8545:7-8545:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8551:7-8551:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 936:12-936:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 944:12-944:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 972:20-972:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 980:12-980:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3243:4-3243:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3257:4-3257:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3267:6-3267:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3277:6-3277:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3293:6-3293:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4800:4-4800:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4814:4-4814:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4824:6-4824:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4834:6-4834:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4850:6-4850:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4862:57-4862:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4865:57-4865:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4871:57-4871:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4879:4-4879:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5495:58-5495:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5500:4-5500:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5511:6-5511:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5519:4-5519:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5526:4-5526:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5534:6-5534:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5542:4-5542:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5551:4-5551:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5561:4-5561:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5570:4-5570:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5582:4-5582:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6258:15-6258:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6551:36-6551:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6559:36-6559:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6559:46-6559:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6566:38-6566:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6566:48-6566:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6570:36-6570:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6570:46-6570:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6570:62-6570:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6577:8-6577:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6578:4-6578:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6579:4-6579:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6580:4-6580:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6587:8-6587:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6588:4-6588:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6589:4-6589:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6590:4-6590:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6610:8-6610:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6611:4-6611:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6612:4-6612:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6613:4-6613:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7078:2-7078:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7751:31-7751:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7756:31-7756:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7760:31-7760:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7764:31-7764:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7767:31-7767:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7771:31-7771:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8007:19-8007:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8171:19-8171:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8468:7-8468:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8474:7-8474:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8477:7-8477:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8481:7-8481:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8492:7-8492:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8505:7-8505:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8508:7-8508:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8518:7-8518:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8521:7-8521:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8525:7-8525:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8534:7-8534:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8537:7-8537:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8540:7-8540:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8545:7-8545:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8551:7-8551:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -7559,6 +7389,7 @@ Lint errors for `src/app/assets/main.css`
    - 16px total repeat
 
 ### **Result:**
+
 - Dashed vertical line using the theme color
 - Consistent 8px dash/8px gap
 - No image dependency
@@ -7587,11 +7418,9 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
+| Content                                      | Line  |
+| -------------------------------------------- | ----- |
 | `.choose-us-wrapper .choose-us-thumb img \{` | L4203 |
-
 
 </details>
 
@@ -7604,11 +7433,9 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
+| Content                                      | Line  |
+| -------------------------------------------- | ----- |
 | `.choose-us-wrapper .choose-us-thumb img \{` | L4203 |
-
 
 </details>
 
@@ -7621,18 +7448,15 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
+| Content                                      | Line  |
+| -------------------------------------------- | ----- |
 | `.choose-us-wrapper .choose-us-thumb img \{` | L4203 |
-
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -7655,20 +7479,20 @@ Lines added: 19, lines removed: 5
 +   overflow: hidden;
 +   border-radius: 15px;
 + }
-+ 
++
 + .choose-us-wrapper .choose-us-thumb img {
 +   width: 100%;
 +   height: 100%;
 +   object-fit: cover;
 +   object-position: center;
 + }
-+ 
++
 + @media (max-width: 1399px) {
 +   .choose-us-wrapper .choose-us-thumb {
 +     min-height: 400px;
 +   }
   }
-  
+
 ```
 
 </details>
@@ -7688,110 +7512,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 936:12-936:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 944:12-944:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 972:20-972:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 980:12-980:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3243:4-3243:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3257:4-3257:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3267:6-3267:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3277:6-3277:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3293:6-3293:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4814:4-4814:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4828:4-4828:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4838:6-4838:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4848:6-4848:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4864:6-4864:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4876:57-4876:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4879:57-4879:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4885:57-4885:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4893:4-4893:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5509:58-5509:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5514:4-5514:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5525:6-5525:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5533:4-5533:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5540:4-5540:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5548:6-5548:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5556:4-5556:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5565:4-5565:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5575:4-5575:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5584:4-5584:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5596:4-5596:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6272:15-6272:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6565:36-6565:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6573:36-6573:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6573:46-6573:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6580:38-6580:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6580:48-6580:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6584:36-6584:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6584:46-6584:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6584:62-6584:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6591:8-6591:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6592:4-6592:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6593:4-6593:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6594:4-6594:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6601:8-6601:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6602:4-6602:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6603:4-6603:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6604:4-6604:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6624:8-6624:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6625:4-6625:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6626:4-6626:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6627:4-6627:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7092:2-7092:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7765:31-7765:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7770:31-7770:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7774:31-7774:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7778:31-7778:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7781:31-7781:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7785:31-7785:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8021:19-8021:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8185:19-8185:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8482:7-8482:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8488:7-8488:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8491:7-8491:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8495:7-8495:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8506:7-8506:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8519:7-8519:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8522:7-8522:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8532:7-8532:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8535:7-8535:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8539:7-8539:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8548:7-8548:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8551:7-8551:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8554:7-8554:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8559:7-8559:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8565:7-8565:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 936:12-936:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 944:12-944:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 972:20-972:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 980:12-980:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3243:4-3243:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3257:4-3257:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3267:6-3267:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3277:6-3277:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3293:6-3293:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4814:4-4814:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4828:4-4828:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4838:6-4838:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4848:6-4848:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4864:6-4864:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4876:57-4876:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4879:57-4879:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4885:57-4885:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4893:4-4893:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5509:58-5509:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5514:4-5514:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5525:6-5525:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5533:4-5533:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5540:4-5540:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5548:6-5548:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5556:4-5556:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5565:4-5565:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5575:4-5575:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5584:4-5584:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5596:4-5596:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6272:15-6272:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6565:36-6565:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6573:36-6573:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6573:46-6573:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6580:38-6580:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6580:48-6580:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6584:36-6584:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6584:46-6584:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6584:62-6584:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6591:8-6591:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6592:4-6592:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6593:4-6593:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6594:4-6594:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6601:8-6601:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6602:4-6602:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6603:4-6603:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6604:4-6604:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6624:8-6624:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6625:4-6625:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6626:4-6626:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6627:4-6627:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7092:2-7092:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7765:31-7765:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7770:31-7770:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7774:31-7774:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7778:31-7778:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7781:31-7781:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7785:31-7785:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8021:19-8021:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8185:19-8185:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8482:7-8482:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8488:7-8488:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8491:7-8491:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8495:7-8495:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8506:7-8506:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8519:7-8519:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8522:7-8522:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8532:7-8532:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8535:7-8535:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8539:7-8539:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8548:7-8548:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8551:7-8551:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8554:7-8554:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8559:7-8559:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8565:7-8565:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -7815,6 +7637,7 @@ Lint errors for `src/app/assets/main.css`
    - **Medium screens:** `min-height: 400px`
 
 ### **Result:**
+
 - Image fills the left column
 - Maintains aspect ratio with `object-fit: cover`
 - Rounded corners
@@ -7837,7 +7660,6 @@ Read file: src/app/Components/Cta/Cta1.tsx
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/Cta/Cta1.tsx</summary>
 
@@ -7869,7 +7691,6 @@ Lines added: 4, lines removed: 4
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/Cta/Cta1.tsx</summary>
 
@@ -7911,8 +7732,8 @@ Lint paths:
 
 Lint results
 
-
 **No lint errors found**
+
 </details>
 
 ---
@@ -7932,6 +7753,7 @@ Lint results
    - **Button:** "BOOK TRIP"
 
 ### **Result:**
+
 - Messaging focused on Northern Pakistan
 - Clear offers for mountain and trekking trips
 - Action-oriented buttons
@@ -7941,14 +7763,13 @@ Lint results
 
 _**User (2025-09-28 10:19Z)**_
 
-More attractive, can we change the images? and left side image is of plan if you can see. 
+More attractive, can we change the images? and left side image is of plan if you can see.
 
 ---
 
 _**Assistant (default)**_
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/Cta/Cta1.tsx</summary>
 
@@ -7972,7 +7793,6 @@ Lines added: 2, lines removed: 2
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/Cta/Cta1.tsx</summary>
 
@@ -8006,8 +7826,8 @@ Lint paths:
 
 Lint results
 
-
 **No lint errors found**
+
 </details>
 
 ---
@@ -8025,6 +7845,7 @@ Lint results
    - **Alt text:** "Trekking in Northern Pakistan"
 
 ### **Result:**
+
 - Real destination photos instead of generic shapes
 - Images aligned with the Northern Pakistan theme
 - Clearer visual context for the offers
@@ -8058,34 +7879,31 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.cs_video_popup \{` | L10309 |
-| `.cs_video_popup.active \{` | L10320 |
-| `.cs_video_popup-overlay \{` | L10327 |
+| Content                                             | Line   |
+| --------------------------------------------------- | ------ |
+| `.cs_video_popup \{`                                | L10309 |
+| `.cs_video_popup.active \{`                         | L10320 |
+| `.cs_video_popup-overlay \{`                        | L10327 |
 | `.cs_video_popup.active .cs_video_popup-overlay \{` | L10337 |
-| `.cs_video_popup-content \{` | L10343 |
+| `.cs_video_popup-content \{`                        | L10343 |
 | `.cs_video_popup.active .cs_video_popup-content \{` | L10362 |
-| `.cs_video_popup-content:after \{` | L10369 |
-| `.cs_video_popup-container \{` | L10376 |
-| `.cs_video_popup-container .embed-responsive \{` | L10386 |
-| `.cs_video_popup-close \{` | L10416 |
-| `.cs_video_popup iframe \{` | L10428 |
-| `.cs_video_popup-close:before \{` | L10434 |
-| `.cs_video_popup-close:after \{` | L10450 |
-| `.cs_video_popup-close:hover:before,` | L10466 |
-| `.cs_video_popup-close:hover:after \{` | L10467 |
-| `.cs_video_popup-layer \{` | L10471 |
-| `.cs_video_popup-align \{` | L10478 |
-
+| `.cs_video_popup-content:after \{`                  | L10369 |
+| `.cs_video_popup-container \{`                      | L10376 |
+| `.cs_video_popup-container .embed-responsive \{`    | L10386 |
+| `.cs_video_popup-close \{`                          | L10416 |
+| `.cs_video_popup iframe \{`                         | L10428 |
+| `.cs_video_popup-close:before \{`                   | L10434 |
+| `.cs_video_popup-close:after \{`                    | L10450 |
+| `.cs_video_popup-close:hover:before,`               | L10466 |
+| `.cs_video_popup-close:hover:after \{`              | L10467 |
+| `.cs_video_popup-layer \{`                          | L10471 |
+| `.cs_video_popup-align \{`                          | L10478 |
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -8121,110 +7939,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 936:12-936:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 944:12-944:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 972:20-972:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 980:12-980:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3243:4-3243:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3257:4-3257:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3267:6-3267:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3277:6-3277:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3293:6-3293:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4814:4-4814:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4828:4-4828:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4838:6-4838:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4848:6-4848:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4864:6-4864:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4876:57-4876:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4879:57-4879:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4885:57-4885:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4893:4-4893:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5509:58-5509:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5514:4-5514:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5525:6-5525:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5533:4-5533:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5540:4-5540:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5548:6-5548:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5556:4-5556:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5565:4-5565:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5575:4-5575:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5584:4-5584:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5596:4-5596:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6272:15-6272:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6565:36-6565:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6573:36-6573:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6573:46-6573:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6580:38-6580:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6580:48-6580:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6584:36-6584:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6584:46-6584:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6584:62-6584:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6591:8-6591:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6592:4-6592:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6593:4-6593:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6594:4-6594:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6601:8-6601:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6602:4-6602:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6603:4-6603:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6604:4-6604:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6624:8-6624:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6625:4-6625:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6626:4-6626:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6627:4-6627:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7092:2-7092:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7765:31-7765:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7770:31-7770:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7774:31-7774:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7778:31-7778:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7781:31-7781:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7785:31-7785:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8021:19-8021:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8185:19-8185:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8482:7-8482:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8488:7-8488:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8491:7-8491:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8495:7-8495:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8506:7-8506:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8519:7-8519:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8522:7-8522:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8532:7-8532:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8535:7-8535:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8539:7-8539:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8548:7-8548:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8551:7-8551:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8554:7-8554:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8559:7-8559:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8565:7-8565:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 936:12-936:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 944:12-944:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 972:20-972:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 980:12-980:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3243:4-3243:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3257:4-3257:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3267:6-3267:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3277:6-3277:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3293:6-3293:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4814:4-4814:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4828:4-4828:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4838:6-4838:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4848:6-4848:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4864:6-4864:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4876:57-4876:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4879:57-4879:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4885:57-4885:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4893:4-4893:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5509:58-5509:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5514:4-5514:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5525:6-5525:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5533:4-5533:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5540:4-5540:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5548:6-5548:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5556:4-5556:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5565:4-5565:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5575:4-5575:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5584:4-5584:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5596:4-5596:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6272:15-6272:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6565:36-6565:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6573:36-6573:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6573:46-6573:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6580:38-6580:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6580:48-6580:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6584:36-6584:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6584:46-6584:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6584:62-6584:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6591:8-6591:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6592:4-6592:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6593:4-6593:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6594:4-6594:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6601:8-6601:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6602:4-6602:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6603:4-6603:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6604:4-6604:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6624:8-6624:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6625:4-6625:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6626:4-6626:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6627:4-6627:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7092:2-7092:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7765:31-7765:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7770:31-7770:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7774:31-7774:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7778:31-7778:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7781:31-7781:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7785:31-7785:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8021:19-8021:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8185:19-8185:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8482:7-8482:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8488:7-8488:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8491:7-8491:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8495:7-8495:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8506:7-8506:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8519:7-8519:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8522:7-8522:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8532:7-8532:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8535:7-8535:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8539:7-8539:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8548:7-8548:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8551:7-8551:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8554:7-8554:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8559:7-8559:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8565:7-8565:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -8239,6 +8055,7 @@ Lint errors for `src/app/assets/main.css`
    - **Width:** `100%` → `80%`
 
 ### **Result:**
+
 - Modal is 80% of its previous size
 - More balanced on screen
 - Responsive behavior preserved
@@ -8267,81 +8084,78 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.theme-btn \{` | L21 |
-| `.theme-btn \{` | L41 |
-| `.theme-btn i \{` | L45 |
-| `.theme-btn:before \{` | L48 |
-| `.theme-btn:hover \{` | L60 |
-| `.theme-btn:hover::before \{` | L64 |
-| `.theme-btn \{` | L68 |
-| `.theme-btn \{` | L73 |
-| `.about-wrapper-2 .about-content .theme-btn \{` | L714 |
-| `.about-wrapper-2 .about-content .theme-btn:before \{` | L717 |
-| `.swiper-3d-section .card3d-content .theme-btn \{` | L1343 |
-| `.swiper-3d-section .card3d-content .theme-btn:hover \{` | L1350 |
-| `.swiper-3d-section .card3d-content .theme-btn:hover::before \{` | L1355 |
-| `.contact-us-wrapper .contact-us-contact .comment-form-wrap .theme-btn \{` | L1738 |
-| `.contact-us-wrapper .contact-us-contact .comment-form-wrap .theme-btn:before \{` | L1742 |
-| `.contact-us-wrapper .contact-us-contact .comment-form-wrap .theme-btn:hover \{` | L1745 |
-| `.theme-btn:hover::before \{` | L1752 |
-| `.cta-items .theme-btn \{` | L1803 |
-| `.cta-box-items .cta-content .theme-btn \{` | L2136 |
-| `.cta-box-items .cta-content .theme-btn:before \{` | L2143 |
-| `.cta-box-items .cta-content .theme-btn:hover \{` | L2146 |
-| `.cta-box-items .cta-content .theme-btn:hover::before \{` | L2150 |
-| `.deals-offer-items .airline-wrap .airline-card .theme-btn \{` | L2319 |
-| `.booking-wrapper2 .tab-content .tour-wrapper .tour-item .theme-btn \{` | L2787 |
-| `.destination-card-items .destination-content .price .theme-btn.style-2 \{` | L2959 |
-| `.destination-card-items .destination-content .price .theme-btn.style-2::before \{` | L2966 |
-| `.destination-card-items .destination-content .price .theme-btn.style-2:hover \{` | L2969 |
-| `.theme-btn.style-2:hover::before \{` | L2976 |
-| `.destination-wrapper .main-box .box .destination-content .theme-btn \{` | L3094 |
-| `.destination-wrapper .main-box .box .destination-content .theme-btn:before \{` | L3099 |
-| `.destination-wrapper .main-box .box .destination-content .theme-btn:hover \{` | L3102 |
-| `.theme-btn:hover::before \{` | L3110 |
-| `.video-wrapper .watch-button .theme-btn.style-2 \{` | L4237 |
-| `.video-wrapper .watch-button .theme-btn.style-2:before \{` | L4240 |
-| `.featured-flight-items .featured-content .featured-rating .theme-btn \{` | L4505 |
-| `.featured-flight-items .featured-content .featured-rating .theme-btn:before \{` | L4511 |
-| `.featured-flight-items .featured-content .featured-rating .theme-btn:hover \{` | L4514 |
-| `.theme-btn:hover::before \{` | L4521 |
-| `.activities-details-wrapper .main-bar .activities-card .theme-btn \{` | L4911 |
-| `.header-1 .theme-btn \{` | L6213 |
-| `.header-1.header-3 .theme-btn \{` | L6271 |
-| `.header-11 .theme-btn \{` | L6434 |
-| `.theme-btn \{` | L6629 |
-| `.theme-btn:hover \{` | L6648 |
-| `.sticky.header-3 .theme-btn \{` | L6809 |
-| `.sticky.header-3 .theme-btn \{` | L6817 |
-| `.theme-btn \{` | L6922 |
-| `.hero-bottom .filter-wrapper .serch-button .theme-btn \{` | L7774 |
-| `.hero-bottom .filter-wrapper .serch-button .theme-btn:before \{` | L7778 |
-| `.hero-bottom .filter-wrapper .serch-button .theme-btn:hover \{` | L7781 |
-| `.hero-bottom .filter-wrapper .serch-button .theme-btn:hover::before \{` | L7785 |
-| `.comment-form-wrap .form-clt .theme-btn \{` | L7860 |
-| `.comment-form-wrap .form-clt .theme-btn::before \{` | L7864 |
-| `.hero-3 .hero-content .about-button .theme-btn.style-2 \{` | L7944 |
-| `.theme-btn \{` | L8097 |
-| `.theme-btn:hover \{` | L8112 |
-| `.main-sideber .single-sidebar-widget .desti-booking-form .theme-btn \{` | L8686 |
-| `.news-standard-wrapper .news-standard-items .news-content .theme-btn \{` | L8766 |
-| `.news-standard-wrapper .news-standard-items .news-content .theme-btn.style-2 \{` | L8769 |
-| `.theme-btn.style-2:before \{` | L8776 |
-| `.theme-btn.style-2:hover \{` | L8782 |
-| `.theme-btn.style-2:hover::before \{` | L8789 |
-| `.cs_main_header_right .main-button.main-btn-area2 .theme-btn,` | L11306 |
-| `.header-btn-1 .theme-btn \{` | L11429 |
-
+| Content                                                                             | Line   |
+| ----------------------------------------------------------------------------------- | ------ |
+| `.theme-btn \{`                                                                     | L21    |
+| `.theme-btn \{`                                                                     | L41    |
+| `.theme-btn i \{`                                                                   | L45    |
+| `.theme-btn:before \{`                                                              | L48    |
+| `.theme-btn:hover \{`                                                               | L60    |
+| `.theme-btn:hover::before \{`                                                       | L64    |
+| `.theme-btn \{`                                                                     | L68    |
+| `.theme-btn \{`                                                                     | L73    |
+| `.about-wrapper-2 .about-content .theme-btn \{`                                     | L714   |
+| `.about-wrapper-2 .about-content .theme-btn:before \{`                              | L717   |
+| `.swiper-3d-section .card3d-content .theme-btn \{`                                  | L1343  |
+| `.swiper-3d-section .card3d-content .theme-btn:hover \{`                            | L1350  |
+| `.swiper-3d-section .card3d-content .theme-btn:hover::before \{`                    | L1355  |
+| `.contact-us-wrapper .contact-us-contact .comment-form-wrap .theme-btn \{`          | L1738  |
+| `.contact-us-wrapper .contact-us-contact .comment-form-wrap .theme-btn:before \{`   | L1742  |
+| `.contact-us-wrapper .contact-us-contact .comment-form-wrap .theme-btn:hover \{`    | L1745  |
+| `.theme-btn:hover::before \{`                                                       | L1752  |
+| `.cta-items .theme-btn \{`                                                          | L1803  |
+| `.cta-box-items .cta-content .theme-btn \{`                                         | L2136  |
+| `.cta-box-items .cta-content .theme-btn:before \{`                                  | L2143  |
+| `.cta-box-items .cta-content .theme-btn:hover \{`                                   | L2146  |
+| `.cta-box-items .cta-content .theme-btn:hover::before \{`                           | L2150  |
+| `.deals-offer-items .airline-wrap .airline-card .theme-btn \{`                      | L2319  |
+| `.booking-wrapper2 .tab-content .tour-wrapper .tour-item .theme-btn \{`             | L2787  |
+| `.destination-card-items .destination-content .price .theme-btn.style-2 \{`         | L2959  |
+| `.destination-card-items .destination-content .price .theme-btn.style-2::before \{` | L2966  |
+| `.destination-card-items .destination-content .price .theme-btn.style-2:hover \{`   | L2969  |
+| `.theme-btn.style-2:hover::before \{`                                               | L2976  |
+| `.destination-wrapper .main-box .box .destination-content .theme-btn \{`            | L3094  |
+| `.destination-wrapper .main-box .box .destination-content .theme-btn:before \{`     | L3099  |
+| `.destination-wrapper .main-box .box .destination-content .theme-btn:hover \{`      | L3102  |
+| `.theme-btn:hover::before \{`                                                       | L3110  |
+| `.video-wrapper .watch-button .theme-btn.style-2 \{`                                | L4237  |
+| `.video-wrapper .watch-button .theme-btn.style-2:before \{`                         | L4240  |
+| `.featured-flight-items .featured-content .featured-rating .theme-btn \{`           | L4505  |
+| `.featured-flight-items .featured-content .featured-rating .theme-btn:before \{`    | L4511  |
+| `.featured-flight-items .featured-content .featured-rating .theme-btn:hover \{`     | L4514  |
+| `.theme-btn:hover::before \{`                                                       | L4521  |
+| `.activities-details-wrapper .main-bar .activities-card .theme-btn \{`              | L4911  |
+| `.header-1 .theme-btn \{`                                                           | L6213  |
+| `.header-1.header-3 .theme-btn \{`                                                  | L6271  |
+| `.header-11 .theme-btn \{`                                                          | L6434  |
+| `.theme-btn \{`                                                                     | L6629  |
+| `.theme-btn:hover \{`                                                               | L6648  |
+| `.sticky.header-3 .theme-btn \{`                                                    | L6809  |
+| `.sticky.header-3 .theme-btn \{`                                                    | L6817  |
+| `.theme-btn \{`                                                                     | L6922  |
+| `.hero-bottom .filter-wrapper .serch-button .theme-btn \{`                          | L7774  |
+| `.hero-bottom .filter-wrapper .serch-button .theme-btn:before \{`                   | L7778  |
+| `.hero-bottom .filter-wrapper .serch-button .theme-btn:hover \{`                    | L7781  |
+| `.hero-bottom .filter-wrapper .serch-button .theme-btn:hover::before \{`            | L7785  |
+| `.comment-form-wrap .form-clt .theme-btn \{`                                        | L7860  |
+| `.comment-form-wrap .form-clt .theme-btn::before \{`                                | L7864  |
+| `.hero-3 .hero-content .about-button .theme-btn.style-2 \{`                         | L7944  |
+| `.theme-btn \{`                                                                     | L8097  |
+| `.theme-btn:hover \{`                                                               | L8112  |
+| `.main-sidebar .single-sidebar-widget .destination-booking-form .theme-btn \{`      | L8686  |
+| `.news-standard-wrapper .news-standard-items .news-content .theme-btn \{`           | L8766  |
+| `.news-standard-wrapper .news-standard-items .news-content .theme-btn.style-2 \{`   | L8769  |
+| `.theme-btn.style-2:before \{`                                                      | L8776  |
+| `.theme-btn.style-2:hover \{`                                                       | L8782  |
+| `.theme-btn.style-2:hover::before \{`                                               | L8789  |
+| `.cs_main_header_right .main-button.main-btn-area2 .theme-btn,`                     | L11306 |
+| `.header-btn-1 .theme-btn \{`                                                       | L11429 |
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -8359,7 +8173,7 @@ Lines added: 2, lines removed: 2
 -   background-color: var(--theme);
 +   background-color: var(--theme-dark);
   }
-  
+
 ```
 
 </details>
@@ -8379,110 +8193,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 936:12-936:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 944:12-944:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 972:20-972:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 980:12-980:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3243:4-3243:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3257:4-3257:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3267:6-3267:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3277:6-3277:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3293:6-3293:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4814:4-4814:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4828:4-4828:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4838:6-4838:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4848:6-4848:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4864:6-4864:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4876:57-4876:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4879:57-4879:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4885:57-4885:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4893:4-4893:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5509:58-5509:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5514:4-5514:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5525:6-5525:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5533:4-5533:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5540:4-5540:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5548:6-5548:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5556:4-5556:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5565:4-5565:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5575:4-5575:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5584:4-5584:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5596:4-5596:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6272:15-6272:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6565:36-6565:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6573:36-6573:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6573:46-6573:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6580:38-6580:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6580:48-6580:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6584:36-6584:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6584:46-6584:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6584:62-6584:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6591:8-6591:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6592:4-6592:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6593:4-6593:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6594:4-6594:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6601:8-6601:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6602:4-6602:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6603:4-6603:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6604:4-6604:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6624:8-6624:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6625:4-6625:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6626:4-6626:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6627:4-6627:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7092:2-7092:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7765:31-7765:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7770:31-7770:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7774:31-7774:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7778:31-7778:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7781:31-7781:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7785:31-7785:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8021:19-8021:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8185:19-8185:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8482:7-8482:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8488:7-8488:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8491:7-8491:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8495:7-8495:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8506:7-8506:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8519:7-8519:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8522:7-8522:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8532:7-8532:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8535:7-8535:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8539:7-8539:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8548:7-8548:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8551:7-8551:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8554:7-8554:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8559:7-8559:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8565:7-8565:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 936:12-936:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 944:12-944:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 972:20-972:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 980:12-980:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3243:4-3243:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3257:4-3257:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3267:6-3267:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3277:6-3277:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3293:6-3293:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4814:4-4814:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4828:4-4828:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4838:6-4838:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4848:6-4848:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4864:6-4864:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4876:57-4876:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4879:57-4879:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4885:57-4885:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4893:4-4893:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5509:58-5509:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5514:4-5514:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5525:6-5525:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5533:4-5533:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5540:4-5540:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5548:6-5548:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5556:4-5556:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5565:4-5565:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5575:4-5575:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5584:4-5584:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5596:4-5596:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6272:15-6272:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6565:36-6565:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6573:36-6573:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6573:46-6573:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6580:38-6580:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6580:48-6580:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6584:36-6584:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6584:46-6584:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6584:62-6584:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6591:8-6591:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6592:4-6592:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6593:4-6593:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6594:4-6594:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6601:8-6601:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6602:4-6602:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6603:4-6603:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6604:4-6604:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6624:8-6624:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6625:4-6625:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6626:4-6626:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6627:4-6627:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7092:2-7092:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7765:31-7765:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7770:31-7770:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7774:31-7774:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7778:31-7778:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7781:31-7781:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7785:31-7785:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8021:19-8021:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8185:19-8185:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8482:7-8482:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8488:7-8488:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8491:7-8491:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8495:7-8495:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8506:7-8506:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8519:7-8519:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8522:7-8522:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8532:7-8532:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8535:7-8535:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8539:7-8539:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8548:7-8548:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8551:7-8551:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8554:7-8554:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8559:7-8559:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8565:7-8565:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -8499,6 +8311,7 @@ Lint errors for `src/app/assets/main.css`
    - Changed from `var(--theme)` to `var(--theme-dark)` (darker orange `#cc5f00`)
 
 ### **Result:**
+
 - Button uses the theme color
 - Hover uses a darker shade
 - Consistent with the site theme
@@ -8526,11 +8339,9 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `src="/assets/img/check.png"` | L95 |
-
+| Content                       | Line |
+| ----------------------------- | ---- |
+| `src="/assets/img/check.png"` | L95  |
 
 </details>
 
@@ -8543,11 +8354,9 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
+| Content                                                                   | Line |
+| ------------------------------------------------------------------------- | ---- |
 | `.about-wrapper-3 .about-content .about-items .about-icon-items .icon \{` | L823 |
-
 
 </details>
 
@@ -8564,21 +8373,18 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
-| `.about-wrapper-2 .about-content .about-items .about-icon-items \{` | L686 |
-| `.about-wrapper-3 .about-content .about-items .about-icon-items \{` | L818 |
-| `.about-wrapper-3 .about-content .about-items .about-icon-items .icon \{` | L823 |
+| Content                                                                         | Line |
+| ------------------------------------------------------------------------------- | ---- |
+| `.about-wrapper-2 .about-content .about-items .about-icon-items \{`             | L686 |
+| `.about-wrapper-3 .about-content .about-items .about-icon-items \{`             | L818 |
+| `.about-wrapper-3 .about-content .about-items .about-icon-items .icon \{`       | L823 |
 | `.about-wrapper-3 .about-content .about-items .about-icon-items .content h4 \{` | L832 |
-
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -8589,7 +8395,7 @@ Lines added: 4, lines removed: undefined
 @@ -689,4 +689,8 @@
     gap: 16px;
   }
-+ 
++
 + .about-wrapper-2 .about-content .about-items .about-icon-items .icon {
 +   filter: hue-rotate(0deg) saturate(1.5) brightness(0.8);
 + }
@@ -8603,7 +8409,6 @@ Lines added: 4, lines removed: undefined
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
 **Chunk 1**
@@ -8611,7 +8416,7 @@ Lines added: 1, lines removed: 1
 
 ```diff
 @@ -691,5 +691,5 @@
-  
+
   .about-wrapper-2 .about-content .about-items .about-icon-items .icon {
 -   filter: hue-rotate(0deg) saturate(1.5) brightness(0.8);
 +   filter: hue-rotate(25deg) saturate(2) brightness(1.2);
@@ -8636,110 +8441,108 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 940:12-940:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 948:12-948:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 976:20-976:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 984:12-984:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1099:12-1099:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1114:12-1114:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1184:24-1184:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1193:16-1193:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1199:16-1199:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1202:16-1202:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2798:29-2798:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3247:4-3247:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3261:4-3261:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3271:6-3271:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3281:6-3281:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3297:6-3297:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3397:10-3397:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3402:10-3402:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3407:10-3407:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3426:10-3426:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3435:10-3435:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3438:10-3438:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3441:10-3441:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3444:10-3444:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3470:10-3470:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3475:10-3475:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4818:4-4818:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4832:4-4832:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4842:6-4842:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4852:6-4852:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4868:6-4868:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4880:57-4880:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4883:57-4883:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4889:57-4889:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4897:4-4897:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5513:58-5513:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5518:4-5518:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5529:6-5529:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5537:4-5537:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5544:4-5544:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5552:6-5552:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5560:4-5560:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5569:4-5569:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5579:4-5579:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5588:4-5588:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5600:4-5600:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6276:15-6276:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6569:36-6569:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6577:36-6577:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6577:46-6577:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6584:38-6584:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6584:48-6584:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6588:36-6588:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6588:46-6588:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6588:62-6588:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6595:8-6595:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6596:4-6596:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6597:4-6597:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6598:4-6598:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6605:8-6605:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6606:4-6606:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6607:4-6607:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6608:4-6608:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6628:8-6628:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6629:4-6629:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6630:4-6630:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6631:4-6631:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7096:2-7096:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7769:31-7769:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7774:31-7774:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7778:31-7778:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7782:31-7782:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7785:31-7785:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7789:31-7789:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8025:19-8025:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8189:19-8189:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8486:7-8486:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8492:7-8492:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8495:7-8495:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8499:7-8499:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8510:7-8510:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8523:7-8523:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8526:7-8526:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8536:7-8536:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8539:7-8539:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8543:7-8543:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8552:7-8552:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8555:7-8555:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8558:7-8558:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8563:7-8563:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8569:7-8569:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 940:12-940:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 948:12-948:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 976:20-976:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 984:12-984:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1099:12-1099:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1114:12-1114:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1184:24-1184:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1193:16-1193:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1199:16-1199:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1202:16-1202:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2798:29-2798:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3247:4-3247:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3261:4-3261:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3271:6-3271:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3281:6-3281:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3297:6-3297:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3397:10-3397:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3402:10-3402:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3407:10-3407:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3426:10-3426:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3435:10-3435:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3438:10-3438:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3441:10-3441:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3444:10-3444:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3470:10-3470:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3475:10-3475:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4818:4-4818:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4832:4-4832:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4842:6-4842:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4852:6-4852:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4868:6-4868:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4880:57-4880:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4883:57-4883:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4889:57-4889:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4897:4-4897:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5513:58-5513:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5518:4-5518:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5529:6-5529:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5537:4-5537:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5544:4-5544:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5552:6-5552:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5560:4-5560:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5569:4-5569:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5579:4-5579:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5588:4-5588:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5600:4-5600:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6276:15-6276:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6569:36-6569:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6577:36-6577:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6577:46-6577:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6584:38-6584:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6584:48-6584:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6588:36-6588:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6588:46-6588:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6588:62-6588:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6595:8-6595:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6596:4-6596:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6597:4-6597:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6598:4-6598:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6605:8-6605:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6606:4-6606:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6607:4-6607:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6608:4-6608:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6628:8-6628:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6629:4-6629:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6630:4-6630:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6631:4-6631:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7096:2-7096:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7769:31-7769:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7774:31-7774:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7778:31-7778:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7782:31-7782:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7785:31-7785:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7789:31-7789:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8025:19-8025:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8189:19-8189:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8486:7-8486:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8492:7-8492:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8495:7-8495:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8499:7-8499:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8510:7-8510:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8523:7-8523:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8526:7-8526:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8536:7-8536:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8539:7-8539:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8543:7-8543:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8552:7-8552:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8555:7-8555:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8558:7-8558:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8563:7-8563:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8569:7-8569:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 </details>
 
@@ -8755,6 +8558,7 @@ Lint errors for `src/app/assets/main.css`
    - **Brightness:** `1.2` (slightly brighter)
 
 ### **Result:**
+
 - Check icons align with the theme
 - Higher contrast and visibility
 - Consistent with the site palette
@@ -8775,7 +8579,6 @@ Tool use: **write**
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/Components/About/About2.tsx</summary>
 
 **Chunk 1**
@@ -8786,7 +8589,7 @@ Lines added: 1, lines removed: undefined
   import Link from "next/link";
   import React from "react";
 + import IconTick from "../Common/IconTick";
-  
+
   const About2 = () => {
 ```
 
@@ -8795,7 +8598,6 @@ Lines added: 1, lines removed: undefined
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/About/About2.tsx</summary>
 
@@ -8811,9 +8613,9 @@ Lines added: 3, lines removed: 5
 -                         alt="img"
 -                         width={34}
 -                         height={30}
-+                       <IconTick 
-+                         color="#fd7d02" 
-+                         size={34} 
++                       <IconTick
++                         color="#fd7d02"
++                         size={34}
                         />
                       </div>
 ```
@@ -8834,7 +8636,6 @@ Read file: src/app/Components/About/About2.tsx
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/Components/About/About2.tsx</summary>
 
 **Chunk 1**
@@ -8849,9 +8650,9 @@ Lines added: 3, lines removed: 5
 -                         alt="img"
 -                         width={34}
 -                         height={30}
-+                       <IconTick 
-+                         color="#fd7d02" 
-+                         size={34} 
++                       <IconTick
++                         color="#fd7d02"
++                         size={34}
                         />
                       </div>
 ```
@@ -8872,8 +8673,8 @@ Lint paths:
 
 Lint results
 
-
 **No lint errors found**
+
 </details>
 
 ---
@@ -8894,6 +8695,7 @@ Lint results
    - **Color:** Set to theme color `#fd7d02`
 
 ### **Result:**
+
 - Reusable SVG component
 - Theme color applied directly
 - Easy to customize across the app
@@ -8903,7 +8705,7 @@ Lint results
 
 _**User (2025-09-28 10:19Z)**_
 
-Check the IconTick component now, We have interface, can we seperate the interface file and common values file, because we have to create many icons like this 
+Check the IconTick component now, We have interface, can we seperate the interface file and common values file, because we have to create many icons like this
 
 ---
 
@@ -8925,7 +8727,6 @@ Tool use: **write**
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/Components/Common/icons/IconTick.tsx</summary>
 
 **Chunk 1**
@@ -8934,7 +8735,7 @@ Lines added: 6, lines removed: 10
 ```diff
 @@ -1,14 +1,10 @@
   import React from "react";
-- 
+-
 - interface IconTickProps {
 -   color?: string;
 -   size?: number;
@@ -8942,7 +8743,7 @@ Lines added: 6, lines removed: 10
 - }
 + import { IconProps } from "./types";
 + import { ICON_DEFAULTS } from "./constants";
-  
+
 - const IconTick: React.FC<IconTickProps> = ({
 -   color = "#fd7d02",
 -   size = 34,
@@ -8965,7 +8766,6 @@ Tool use: **write**
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/Components/About/About2.tsx</summary>
 
 **Chunk 1**
@@ -8977,7 +8777,7 @@ Lines added: 1, lines removed: 1
   import React from "react";
 - import IconTick from "../Common/icons/IconTick";
 + import { IconTick } from "../Common/icons";
-  
+
   const About2 = () => {
 ```
 
@@ -8997,8 +8797,8 @@ Lint paths:
 
 Lint results
 
-
 **No lint errors found**
+
 </details>
 
 ---
@@ -9008,6 +8808,7 @@ Lint results
 ### **Files created:**
 
 1. **`types.ts`** — Shared interface:
+
    ```typescript
    export interface IconProps {
      color?: string;
@@ -9017,6 +8818,7 @@ Lint results
    ```
 
 2. **`constants.ts`** — Default values:
+
    ```typescript
    export const ICON_DEFAULTS = {
      color: "#fd7d02", // Theme color
@@ -9038,6 +8840,7 @@ Lint results
 2. **`About2.tsx`** — Imports from the barrel export
 
 ### **Benefits:**
+
 - Consistent interface across icons
 - Centralized defaults
 - Easier to add new icons
@@ -9068,7 +8871,6 @@ Read file: src/app/Components/Choose/Choose2.tsx
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/Components/Choose/Choose1.tsx</summary>
 
 **Chunk 1**
@@ -9090,7 +8892,6 @@ Lines added: 1, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/Components/Choose/Choose1.tsx</summary>
 
 **Chunk 1**
@@ -9098,12 +8899,12 @@ Lines added: 5, lines removed: 5
 
 ```diff
 @@ -5,12 +5,12 @@
-  
+
   const Choose1 = () => {
 -   useEffect(() => {
 -     loadBackgroundImages();
 -   }, []);
-- 
+-
     return (
       <section
         className="travel-feature-section section-padding fix"
@@ -9122,7 +8923,6 @@ Lines added: 5, lines removed: 5
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/Choose/Choose1.tsx</summary>
 
@@ -9159,7 +8959,6 @@ Lines added: 5, lines removed: 6
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/Components/Choose/Choose1.tsx</summary>
 
 **Chunk 1**
@@ -9185,7 +8984,6 @@ Lines added: 1, lines removed: 6
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/Choose/Choose1.tsx</summary>
 
@@ -9225,7 +9023,6 @@ Lines added: 2, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/Components/Choose/Choose1.tsx</summary>
 
 **Chunk 1**
@@ -9264,7 +9061,6 @@ Lines added: 2, lines removed: 2
 
 Tool use: **search_replace**
 
-
 <details><summary>Edit file: src/app/Components/Choose/Choose1.tsx</summary>
 
 **Chunk 1**
@@ -9285,7 +9081,6 @@ Lines added: 1, lines removed: 1
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/Choose/Choose1.tsx</summary>
 
@@ -9315,18 +9110,15 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
+| Content                                  | Line  |
+| ---------------------------------------- | ----- |
 | `.feature-wrapper .feature-image img \{` | L3910 |
-
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -9344,14 +9136,14 @@ Lines added: 10, lines removed: undefined
 +   overflow: hidden;
 +   border-radius: 15px;
 + }
-+ 
++
   .feature-wrapper .feature-image img {
     width: 100%;
     height: 100%;
 +   object-fit: cover;
 +   object-position: center;
   }
-  
+
 ```
 
 </details>
@@ -9365,19 +9157,16 @@ Tool use: **grep**
 
 Output mode: content
 
-
-| Content | Line |
-|------|------|
+| Content                                                          | Line  |
+| ---------------------------------------------------------------- | ----- |
 | `.feature-wrapper .feature-content .feature-area .line-shape \{` | L3833 |
 | `.feature-wrapper .feature-content .feature-area .line-shape \{` | L3839 |
-
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/assets/main.css</summary>
 
@@ -9388,7 +9177,7 @@ Lines added: 13, lines removed: undefined
 @@ -3836,4 +3836,17 @@
     top: 5px;
   }
-+ 
++
 + .feature-wrapper .feature-content .feature-area .line-shape .custom-line {
 +   width: 2px;
 +   height: 174px;
@@ -9423,125 +9212,120 @@ Lint results
 
 Lint errors for `src/app/assets/main.css`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
-| "vdeo": Unknown word. | 293:30-293:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 299:32-299:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 307:30-307:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 322:32-322:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 326:30-326:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 344:32-344:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "vdeo": Unknown word. | 352:32-352:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 936:12-936:22 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "tpswing": Unknown word. | 944:12-944:19 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderspin": Unknown word. | 972:20-972:30 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "loaderpulse": Unknown word. | 980:12-980:23 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "criss": Unknown word. | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translat": Unknown word. | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "translatey": Unknown word. | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "acive": Misspelled word. | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3243:4-3243:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3257:4-3257:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3267:6-3267:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3277:6-3277:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 3293:6-3293:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "desti": Unknown word. | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4837:4-4837:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4851:4-4851:13 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4861:6-4861:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4871:6-4871:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "checkmark": Unknown word. | 4887:6-4887:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4899:57-4899:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4902:57-4902:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4908:57-4908:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "doller": Misspelled word. | 4916:4-4916:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5532:58-5532:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5537:4-5537:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5548:6-5548:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5556:4-5556:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5563:4-5563:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5571:6-5571:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5579:4-5579:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5588:4-5588:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5598:4-5598:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5607:4-5607:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "cliect": Unknown word. | 5619:4-5619:10 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "solidrgba": Unknown word. | 6295:15-6295:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6588:36-6588:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6596:36-6596:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6596:46-6596:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6603:38-6603:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6603:48-6603:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6607:36-6607:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6607:46-6607:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6607:62-6607:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6614:8-6614:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6615:4-6615:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6616:4-6616:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6617:4-6617:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6624:8-6624:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6625:4-6625:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6626:4-6626:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6627:4-6627:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6647:8-6647:16 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6648:4-6648:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6649:4-6649:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "homemenu": Unknown word. | 6650:4-6650:12 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "ralt": Unknown word. | 7115:2-7115:6 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7788:31-7788:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7793:31-7793:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7797:31-7797:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7801:31-7801:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7804:31-7804:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "serch": Misspelled word. | 7808:31-7808:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8044:19-8044:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "meanmenu": Unknown word. | 8208:19-8208:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8505:7-8505:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8511:7-8511:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8514:7-8514:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8518:7-8518:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8529:7-8529:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8542:7-8542:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8545:7-8545:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8555:7-8555:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8558:7-8558:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8562:7-8562:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8571:7-8571:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8574:7-8574:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8577:7-8577:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8582:7-8582:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-| "sideber": Unknown word. | 8588:7-8588:14 | DIAGNOSTIC_SEVERITY_INFORMATION |
-
+| Message                      | Range           | Severity                        |
+| ---------------------------- | --------------- | ------------------------------- |
+| "vdeo": Unknown word.        | 293:30-293:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 299:32-299:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 307:30-307:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 322:32-322:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 326:30-326:34   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 344:32-344:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "vdeo": Unknown word.        | 352:32-352:36   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 936:12-936:22   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "tpswing": Unknown word.     | 944:12-944:19   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderspin": Unknown word.  | 972:20-972:30   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "loaderpulse": Unknown word. | 980:12-980:23   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1095:12-1095:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "criss": Unknown word.       | 1110:12-1110:17 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translat": Unknown word.    | 1180:24-1180:32 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1189:16-1189:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1195:16-1195:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "translatey": Unknown word.  | 1198:16-1198:26 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "acive": Misspelled word.    | 2794:29-2794:34 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3243:4-3243:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3257:4-3257:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3267:6-3267:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3277:6-3277:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 3293:6-3293:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3393:10-3393:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3398:10-3398:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3403:10-3403:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3422:10-3422:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3431:10-3431:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3434:10-3434:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3437:10-3437:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3440:10-3440:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3458:10-3458:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3462:10-3462:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3466:10-3466:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "desti": Unknown word.       | 3471:10-3471:15 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4837:4-4837:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4851:4-4851:13  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4861:6-4861:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4871:6-4871:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "checkmark": Unknown word.   | 4887:6-4887:15  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4899:57-4899:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4902:57-4902:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4908:57-4908:63 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "doller": Misspelled word.   | 4916:4-4916:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5532:58-5532:64 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5537:4-5537:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5548:6-5548:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5556:4-5556:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5563:4-5563:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5571:6-5571:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5579:4-5579:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5588:4-5588:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5598:4-5598:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5607:4-5607:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "cliect": Unknown word.      | 5619:4-5619:10  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "solidrgba": Unknown word.   | 6295:15-6295:24 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6588:36-6588:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6596:36-6596:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6596:46-6596:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6603:38-6603:46 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6603:48-6603:56 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6607:36-6607:44 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6607:46-6607:54 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6607:62-6607:70 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6614:8-6614:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6615:4-6615:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6616:4-6616:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6617:4-6617:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6624:8-6624:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6625:4-6625:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6626:4-6626:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6627:4-6627:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6647:8-6647:16  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6648:4-6648:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6649:4-6649:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "homemenu": Unknown word.    | 6650:4-6650:12  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "ralt": Unknown word.        | 7115:2-7115:6   | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7788:31-7788:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7793:31-7793:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7797:31-7797:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7801:31-7801:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7804:31-7804:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "serch": Misspelled word.    | 7808:31-7808:36 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8044:19-8044:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "meanmenu": Unknown word.    | 8208:19-8208:27 | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8505:7-8505:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8511:7-8511:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8514:7-8514:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8518:7-8518:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8529:7-8529:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8542:7-8542:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8545:7-8545:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8555:7-8555:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8558:7-8558:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8562:7-8562:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8571:7-8571:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8574:7-8574:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8577:7-8577:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8582:7-8582:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
+| "sideber": Unknown word.     | 8588:7-8588:14  | DIAGNOSTIC_SEVERITY_INFORMATION |
 
 Lint errors for `src/app/Components/Choose/Choose1.tsx`
 
-
-| Message | Range | Severity |
-|-------|-------|----------|
+| Message                                                          | Range       | Severity                  |
+| ---------------------------------------------------------------- | ----------- | ------------------------- |
 | `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`. | 32:64-32:64 | DIAGNOSTIC_SEVERITY_ERROR |
-
 
 </details>
 
 ---
 
 Tool use: **search_replace**
-
 
 <details><summary>Edit file: src/app/Components/Choose/Choose1.tsx</summary>
 
@@ -9573,8 +9357,8 @@ Lint paths:
 
 Lint results
 
-
 **No lint errors found**
+
 </details>
 
 ---
@@ -9604,6 +9388,7 @@ Lint results
    - Theme color with dashed pattern
 
 ### **Result:**
+
 - Theme-aligned background
 - Northern Pakistan–focused content
 - Improved image styling
@@ -9634,6 +9419,7 @@ Read file: src/app/Components/Header/Nav.tsx
 ## Header navigation links
 
 ### **Main navigation (Nav.tsx):**
+
 1. **Home** — `/`
 2. **About Us** — `/about`
 3. **Destination** — `/destination`
@@ -9654,14 +9440,15 @@ Read file: src/app/Components/Header/Nav.tsx
 7. **Contact** — `/contact`
 
 ### **Header actions (Header1.tsx):**
+
 - **Search icon** — opens search overlay
 - **Request A Quote** — `/contact`
 
 ### **Location:**
+
 - **File:** `src/app/Components/Header/Nav.tsx`
 - **Component:** `Nav` (imported in `Header1.tsx`)
 
 Links are defined in `Nav.tsx` and rendered in `Header1.tsx`.
 
 ---
-

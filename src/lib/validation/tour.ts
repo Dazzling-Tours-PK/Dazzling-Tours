@@ -105,7 +105,16 @@ export const tourSchema = z.object({
     .default([]),
 
   highlights: z
-    .array(z.string().min(1, "Highlight cannot be empty").trim())
+    .array(
+      z
+        .string()
+        .min(1, "Highlight cannot be empty")
+        .trim()
+        .refine((val) => val.split(/\s+/).filter(Boolean).length <= 15, {
+          message: "Each highlight must be 15 words or less",
+        })
+        .max(100, "Each highlight must be less than 100 characters"),
+    )
     .max(10, "Maximum 10 highlights allowed")
     .optional()
     .default([]),
@@ -162,13 +171,25 @@ export const tourSchema = z.object({
     .default([]),
 
   includes: z
-    .array(z.string().min(1, "Include item cannot be empty").trim())
+    .array(
+      z
+        .string()
+        .min(1, "Include item cannot be empty")
+        .trim()
+        .max(150, "Each include item must be less than 150 characters"),
+    )
     .max(15, "Maximum 15 include items allowed")
     .optional()
     .default([]),
 
   excludes: z
-    .array(z.string().min(1, "Exclude item cannot be empty").trim())
+    .array(
+      z
+        .string()
+        .min(1, "Exclude item cannot be empty")
+        .trim()
+        .max(150, "Each exclude item must be less than 150 characters"),
+    )
     .optional()
     .default([]),
 

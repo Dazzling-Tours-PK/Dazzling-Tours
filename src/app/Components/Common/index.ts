@@ -29,3 +29,5 @@ export {
   LoadingOverlay,
 } from "./Loading";
 export type { LoadingProps } from "./Loading";
+export { default as Accordion } from "./Accordion";
+export type { AccordionProps, AccordionItem } from "./Accordion";

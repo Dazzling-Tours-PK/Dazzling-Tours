@@ -9,8 +9,16 @@ import {
   useNotification,
 } from "@/lib/hooks";
 import PaginationComponent from "@/app/Components/Common/PaginationComponent";
-import { TextInput, Select } from "@/app/Components/Form";
-import { Group, Stack, Page, Button } from "@/app/Components/Common";
+import { TextInput, Select, Checkbox } from "@/app/Components/Form";
+import {
+  Group,
+  Stack,
+  Page,
+  Button,
+  ActionIcon,
+  Text,
+  ConfirmModal,
+} from "@/app/Components/Common";
 import { ContactStatus, getContactStatuses } from "@/lib/types/enums";
 
 const ContactQueriesList = () => {
@@ -19,6 +27,8 @@ const ContactQueriesList = () => {
   const [selectedQueries, setSelectedQueries] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(10);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [bulkDeleteOpened, setBulkDeleteOpened] = useState(false);
 
   const { data: queriesData, isLoading: loading } = useGetContactInquiries({
     page: currentPage,
@@ -49,14 +59,20 @@ const ContactQueriesList = () => {
     };
   }, [queriesData]);
 
-  const deleteQuery = (id: string) => {
-    if (confirm("Are you sure you want to delete this contact query?")) {
-      deleteContactMutation.mutate(id, {
+  const handleDeleteQuery = (id: string) => {
+    setDeleteId(id);
+  };
+
+  const confirmDelete = () => {
+    if (deleteId) {
+      deleteContactMutation.mutate(deleteId, {
         onSuccess: () => {
           showSuccess("Contact query deleted successfully!");
+          setDeleteId(null);
         },
         onError: (error) => {
           showError(error.message || "Failed to delete contact query");
+          setDeleteId(null);
         },
       });
     }
@@ -110,30 +126,29 @@ const ContactQueriesList = () => {
       showError("Please select queries to delete");
       return;
     }
+    setBulkDeleteOpened(true);
+  };
 
-    if (
-      confirm(
-        `Are you sure you want to delete ${selectedQueries.length} contact query/queries?`,
-      )
-    ) {
-      bulkUpdateContactMutation.mutate(
-        {
-          ids: selectedQueries,
-          action: "delete",
+  const confirmBulkDelete = () => {
+    bulkUpdateContactMutation.mutate(
+      {
+        ids: selectedQueries,
+        action: "delete",
+      },
+      {
+        onSuccess: () => {
+          showSuccess(
+            `${selectedQueries.length} contact query/queries deleted successfully!`,
+          );
+          setSelectedQueries([]);
+          setBulkDeleteOpened(false);
         },
-        {
-          onSuccess: () => {
-            showSuccess(
-              `${selectedQueries.length} contact query/queries deleted successfully!`,
-            );
-            setSelectedQueries([]);
-          },
-          onError: (error) => {
-            showError(error.message || "Failed to delete contact queries");
-          },
+        onError: (error) => {
+          showError(error.message || "Failed to delete contact queries");
+          setBulkDeleteOpened(false);
         },
-      );
-    }
+      },
+    );
   };
 
   const toggleQuerySelection = (id: string) => {
@@ -149,21 +164,6 @@ const ContactQueriesList = () => {
     setSelectedQueries(
       selectedQueries.length === allQueryIds.length ? [] : allQueryIds,
     );
-  };
-
-  const getStatusBadgeClass = (status: string) => {
-    switch (status) {
-      case ContactStatus.NEW:
-        return "status-badge info";
-      case ContactStatus.READ:
-        return "status-badge warning";
-      case ContactStatus.REPLIED:
-        return "status-badge success";
-      case ContactStatus.CLOSED:
-        return "status-badge secondary";
-      default:
-        return "status-badge secondary";
-    }
   };
 
   // Reset to first page when filters change
@@ -308,7 +308,7 @@ const ContactQueriesList = () => {
             value={searchTerm}
             onChange={handleSearchChange}
             leftIcon={<i className="bi bi-search"></i>}
-            style={{ flex: 1, minWidth: "250px" }}
+            style={{ flex: 1, minWidth: "400px" }}
           />
 
           <Select
@@ -328,19 +328,17 @@ const ContactQueriesList = () => {
             <thead>
               <tr>
                 <th style={{ width: "50px" }}>
-                  <input
-                    type="checkbox"
+                  <Checkbox
                     checked={
                       selectedQueries.length === queries.length &&
                       queries.length > 0
                     }
                     onChange={selectAllQueries}
-                    style={{ cursor: "pointer" }}
                   />
                 </th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Subject</th>
+                <th style={{ width: "220px" }}>Subject</th>
                 <th>Status</th>
                 <th>Date</th>
                 <th style={{ width: "150px" }}>Actions</th>
@@ -350,68 +348,66 @@ const ContactQueriesList = () => {
               {queries.map((query) => (
                 <tr key={query._id}>
                   <td>
-                    <input
-                      type="checkbox"
+                    <Checkbox
                       checked={selectedQueries.includes(query._id)}
                       onChange={() => toggleQuerySelection(query._id)}
-                      style={{ cursor: "pointer" }}
                     />
                   </td>
                   <td>
-                    <div className="contact-info">
-                      <strong>{query.name}</strong>
+                    <Text size="sm" weight={500} component="div">
+                      {query.name}
+                    </Text>
+                  </td>
+                  <td>
+                    <Stack spacing={2} align="start">
+                      <Text size="sm" component="span">
+                        {query.email}
+                      </Text>
+
                       {query.phone && (
-                        <div style={{ fontSize: "0.875rem", color: "#6c757d" }}>
-                          <i className="bi bi-telephone"></i> {query.phone}
-                        </div>
+                        <Text size="xs" color="dimmed" component="div">
+                          <i className="bi bi-telephone me-1"></i> {query.phone}
+                        </Text>
                       )}
-                    </div>
+                    </Stack>
                   </td>
-                  <td>
-                    <a
-                      href={`mailto:${query.email}`}
-                      style={{ color: "#1976d2", textDecoration: "none" }}
-                    >
-                      {query.email}
-                    </a>
-                  </td>
-                  <td>
+                  <td style={{ maxWidth: "220px" }}>
                     <div className="subject-info">
-                      <strong>{query.subject}</strong>
-                      {query.message && (
-                        <div
-                          style={{
-                            fontSize: "0.875rem",
-                            color: "#6c757d",
-                            marginTop: "0.25rem",
-                          }}
+                      {query.tourId ? (
+                        <Link
+                          href={`/admin/tours/${query.tourId}`}
+                          style={{ textDecoration: "none" }}
+                          title="View Tour Details"
                         >
+                          <Text
+                            size="sm"
+                            color="primary"
+                            weight={400}
+                            component="span"
+                          >
+                            {query.subject}
+                          </Text>
+                        </Link>
+                      ) : (
+                        <Text size="sm" weight={400} component="span">
+                          {query.subject}
+                        </Text>
+                      )}
+                      {query.message && (
+                        <Text size="sm" color="dimmed" component="div">
                           {query.message.substring(0, 80)}
                           {query.message.length > 80 && "..."}
-                        </div>
+                        </Text>
                       )}
                     </div>
                   </td>
                   <td>
-                    <select
+                    <Select
+                      size="sm"
                       value={query.status}
-                      onChange={(e) => updateStatus(query._id, e.target.value)}
-                      className={`status-select ${getStatusBadgeClass(
-                        query.status,
-                      )}`}
-                      style={{
-                        padding: "0.25rem 0.5rem",
-                        borderRadius: "4px",
-                        border: "1px solid #ddd",
-                        cursor: "pointer",
-                      }}
-                    >
-                      {getContactStatuses().map((status) => (
-                        <option key={status.value} value={status.value}>
-                          {status.label}
-                        </option>
-                      ))}
-                    </select>
+                      onChange={(val) => updateStatus(query._id, val)}
+                      data={getContactStatuses()}
+                    />
                   </td>
                   <td>
                     <div className="date-info">
@@ -423,29 +419,29 @@ const ContactQueriesList = () => {
                     </div>
                   </td>
                   <td>
-                    <div className="action-buttons">
-                      <Link
-                        href={`/admin/contact/${query._id}`}
-                        className="btn btn-sm btn-outline-primary"
-                        title="View Details"
-                      >
-                        <i className="bi bi-eye"></i>
+                    <Group spacing={12}>
+                      <Link href={`/admin/contact/${query._id}`} passHref>
+                        <ActionIcon
+                          variant="light"
+                          color="primary"
+                          title="View Details"
+                        >
+                          <i className="bi bi-eye"></i>
+                        </ActionIcon>
                       </Link>
-                      <a
-                        href={`mailto:${query.email}?subject=Re: ${query.subject}`}
-                        className="btn btn-sm btn-outline-success"
-                        title="Reply via Email"
-                      >
-                        <i className="bi bi-reply"></i>
-                      </a>
-                      <button
-                        onClick={() => deleteQuery(query._id)}
-                        className="btn btn-sm btn-outline-danger"
-                        title="Delete"
+                      <ActionIcon
+                        variant="light"
+                        color="error"
+                        title="Delete Query"
+                        loading={
+                          deleteContactMutation.isPending &&
+                          deleteId === query._id
+                        }
+                        onClick={() => handleDeleteQuery(query._id)}
                       >
                         <i className="bi bi-trash"></i>
-                      </button>
-                    </div>
+                      </ActionIcon>
+                    </Group>
                   </td>
                 </tr>
               ))}
@@ -481,6 +477,32 @@ const ContactQueriesList = () => {
             pageSize={pageSize}
           />
         )}
+        {/* Deletion Confirmation Modals */}
+        <ConfirmModal
+          opened={!!deleteId}
+          onClose={() => setDeleteId(null)}
+          onConfirm={confirmDelete}
+          title="Delete Inquiry"
+          confirmLabel="Delete"
+          color="error"
+          loading={deleteContactMutation.isPending}
+        >
+          Are you sure you want to delete this contact inquiry? This action
+          cannot be undone.
+        </ConfirmModal>
+
+        <ConfirmModal
+          opened={bulkDeleteOpened}
+          onClose={() => setBulkDeleteOpened(false)}
+          onConfirm={confirmBulkDelete}
+          title="Delete Multiple Inquiries"
+          confirmLabel={`Delete ${selectedQueries.length} Items`}
+          color="error"
+          loading={bulkUpdateContactMutation.isPending}
+        >
+          Are you sure you want to delete {selectedQueries.length} selected
+          inquiries? This action cannot be undone.
+        </ConfirmModal>
       </Stack>
     </Page>
   );

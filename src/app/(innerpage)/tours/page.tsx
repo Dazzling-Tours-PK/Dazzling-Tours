@@ -103,11 +103,8 @@ const ToursPage = () => {
           __html: JSON.stringify(breadcrumbSchema),
         }}
       />
-      <BreadCrumb
-        bgImg="/assets/img/tours/tourspage.png"
-        Title="Tours"
-      ></BreadCrumb>
-      <Tour></Tour>
+      <BreadCrumb bgImg="/assets/img/tours/tourspage.png" Title="Tours" />
+      <Tour />
     </>
   );
 };

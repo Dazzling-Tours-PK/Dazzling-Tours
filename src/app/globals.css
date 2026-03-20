@@ -288,3 +288,398 @@ a.btn-outline-primary.active {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+/* --- Premium Tour Gallery & Lightbox Styles --- */
+
+/* Gallery Stability */
+.tour-gallery-container {
+  width: 100%;
+  position: relative;
+  background: #f8fafc;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+.main-slider-wrap {
+  position: relative;
+  height: 500px; /* Fixed height for stability */
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+  .main-slider-wrap {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-slider-wrap {
+    height: 280px;
+  }
+}
+
+.main-slider-item {
+  position: relative;
+  height: 500px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .main-slider-item {
+    height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-slider-item {
+    height: 280px;
+  }
+}
+
+/* Hover Overlay for Gallery */
+.image-overlay-trigger {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+}
+
+.image-overlay-trigger i {
+  font-size: 2rem;
+  transform: scale(0.8);
+  transition: transform 0.4s ease;
+}
+
+.image-overlay-trigger span {
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.main-slider-item:hover .image-overlay-trigger {
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  backdrop-filter: blur(4px);
+}
+
+.main-slider-item:hover .image-overlay-trigger i {
+  transform: scale(1);
+}
+
+/* Thumbnail Slider */
+.thumb-slider-wrap {
+  padding: 0 10px;
+}
+
+.thumb-slider-item {
+  position: relative;
+  height: 90px;
+  cursor: pointer;
+  padding: 5px;
+  transition: transform 0.3s ease;
+}
+
+.thumb-slider-item:hover {
+  transform: translateY(-3px);
+}
+
+.thumb-slider-item img {
+  border-radius: 12px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.slick-current .thumb-slider-item img {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(253, 125, 2, 0.3);
+}
+
+/* Lightbox Modal High-End Styling - Minimalist Art Gallery Feel */
+.tour-lightbox-modal {
+  z-index: 100000 !important;
+}
+
+.modal-backdrop.show {
+  z-index: 99999 !important;
+  background-color: rgba(0, 0, 0, 0.98); /* Deeper darkness */
+  backdrop-filter: blur(15px);
+}
+
+.tour-lightbox-modal .modal-dialog {
+  max-width: 100vw;
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.tour-lightbox-modal .modal-content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: transparent !important;
+  border: none !important;
+  position: relative;
+}
+
+/* Floating Header */
+.tour-lightbox-modal .modal-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  border: none;
+  padding: 2.5rem 3rem;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+  z-index: 100;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none; /* Allow interaction with image behind header */
+}
+
+.tour-lightbox-modal .modal-header * {
+  pointer-events: auto; /* Re-enable for title and close button */
+}
+
+.tour-lightbox-modal .modal-title {
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+.tour-lightbox-modal .modal-header .btn-close {
+  background-color: rgba(255,255,255,0.1);
+  background-image: none;
+  opacity: 1;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  margin: 0;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.tour-lightbox-modal .modal-header .btn-close::before,
+.tour-lightbox-modal .modal-header .btn-close::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 1px;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+}
+
+.tour-lightbox-modal .modal-header .btn-close::before { transform: translate(-50%, -50%) rotate(45deg); }
+.tour-lightbox-modal .modal-header .btn-close::after { transform: translate(-50%, -50%) rotate(-45deg); }
+
+.tour-lightbox-modal .modal-header .btn-close:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  transform: rotate(180deg);
+}
+
+.tour-lightbox-modal .modal-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 !important;
+  position: relative;
+}
+
+.lightbox-image-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px 140px 20px; /* Space for header and nav */
+  position: relative;
+  overflow: hidden;
+}
+
+.lightbox-image-container img {
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+  border-radius: 4px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Elegant Side Navigation */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 101;
+  transition: all 0.4s ease;
+}
+
+.lightbox-nav:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-nav.prev { left: 40px; }
+.lightbox-nav.next { right: 40px; }
+
+.lightbox-nav i {
+  font-size: 2.5rem;
+  font-weight: 200;
+}
+
+/* Floating Thumbnail Rail */
+.lightbox-thumbs-container {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 90px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 25px;
+  z-index: 102;
+  border-radius: 50px;
+  max-width: 90vw;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.lightbox-thumbs-container::-webkit-scrollbar {
+  display: none;
+}
+
+.lightbox-thumb-item {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 50%; /* Round thumbs for a unique look */
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  opacity: 0.5;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.lightbox-thumb-item:hover {
+  opacity: 0.9;
+  transform: translateY(-5px);
+}
+
+.lightbox-thumb-item.active {
+  border-color: var(--primary);
+  opacity: 1;
+  transform: scale(1.15) translateY(-5px);
+  box-shadow: 0 10px 20px rgba(253, 125, 2, 0.4);
+}
+
+/* Image Counter Layered */
+.lightbox-counter {
+  position: absolute;
+  bottom: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 3px;
+  z-index: 101;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .tour-lightbox-modal .modal-header {
+    padding: 1.5rem;
+  }
+  .tour-lightbox-modal .modal-title {
+    font-size: 1rem;
+  }
+  .lightbox-nav {
+    width: 50px;
+    height: 50px;
+  }
+  .lightbox-nav.prev { left: 10px; }
+  .lightbox-nav.next { right: 10px; }
+  .lightbox-nav i { font-size: 1.8rem; }
+  .lightbox-thumbs-container {
+    bottom: 20px;
+    padding: 10px 15px;
+    gap: 10px;
+  }
+  .lightbox-thumb-item {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+
+/* Confirm Modal Custom Styling (Mantine style) */
+.confirm-modal {
+  z-index: 9999 !important;
+}
+
+.confirm-modal .modal-content {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  background-color: #ffffff !important;
+  pointer-events: all;
+}
+
+.confirm-modal .modal-body {
+  padding: 2rem !important;
+}
+
+/* Specific backdrop for better control */
+.modal-backdrop.show {
+  opacity: 0.4 !important; /* Slightly lighter for better clarity */
+  background-color: #000000 !important;
+  backdrop-filter: blur(5px); /* Reduced blur slightly for performance and clarity */
+  z-index: 9998 !important;
+}
+
+/* Fix for unwanted text capitalization in form fields */
+.form-clt input,
+.form-clt textarea {
+  text-transform: none !important;
+}

@@ -5,17 +5,55 @@ import connectDB from "@/lib/mongodb";
 import { Tour } from "@/models";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import TourDetails from "../../../Components/TourDetails/TourDetails";
-import { TourStatus } from "@/lib/enums";
+import { TourStatus, TestimonialStatus } from "@/lib/enums";
 
 // Fetch tour data on the server
 async function getTourBySlug(slug: string) {
   try {
     await connectDB();
 
-    const tour = await Tour.findOne({
-      "seo.slug": slug,
-      status: TourStatus.ACTIVE,
-    });
+    const tours = await Tour.aggregate([
+      {
+        $match: {
+          "seo.slug": slug,
+          status: TourStatus.ACTIVE,
+        },
+      },
+      {
+        $lookup: {
+          from: "testimonials",
+          let: { tourId: "$_id" },
+          pipeline: [
+            {
+              $match: {
+                $expr: { $eq: ["$tourId", "$$tourId"] },
+                status: TestimonialStatus.ACTIVE,
+              },
+            },
+          ],
+          as: "activeTestimonials",
+        },
+      },
+      {
+        $addFields: {
+          reviews: { $size: "$activeTestimonials" },
+          rating: {
+            $cond: {
+              if: { $gt: [{ $size: "$activeTestimonials" }, 0] },
+              then: { $min: [{ $avg: "$activeTestimonials.rating" }, 5] },
+              else: 0,
+            },
+          },
+        },
+      },
+      {
+        $project: {
+          activeTestimonials: 0,
+        },
+      },
+    ]);
+
+    const tour = tours[0];
 
     if (!tour) {
       return null;
@@ -73,7 +111,7 @@ export async function generateMetadata({
   return {
     title: metaTitle,
     description: metaDescription,
-    keywords: tour.seo?.focusKeyword || tour.location || "",
+    keywords: tour.seo?.focusKeyword,
     openGraph: {
       title: metaTitle,
       description: metaDescription,

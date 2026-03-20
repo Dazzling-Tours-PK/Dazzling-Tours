@@ -179,30 +179,49 @@ const TestimonialsList = () => {
           <tbody>
             {testimonials.map((testimonial) => (
               <tr key={testimonial._id}>
-                <td>
-                  <Group spacing="xs">
-                    <Avatar src={testimonial.image} size="sm" shape="circle" />
-                    <Stack spacing="none">
-                      <strong>{testimonial.name}</strong>
-                      <small
+                <td style={{ verticalAlign: "middle" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      minWidth: "200px",
+                    }}
+                  >
+                    <Avatar src={testimonial.image} size="md" shape="circle" />
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        lineHeight: "1.2",
+                      }}
+                    >
+                      <strong
+                        style={{ fontSize: "14px", color: "var(--header)" }}
+                      >
+                        {testimonial.name}
+                      </strong>
+                      <span
                         className="text-muted"
-                        style={{ display: "block" }}
+                        style={{ fontSize: "12px", marginTop: "2px" }}
                       >
                         {testimonial.email}
-                      </small>
+                      </span>
                       {testimonial.phone && (
-                        <small
+                        <span
                           className="text-muted"
-                          style={{ display: "block" }}
+                          style={{ fontSize: "12px", marginTop: "1px" }}
                         >
                           {testimonial.phone}
-                        </small>
+                        </span>
                       )}
-                    </Stack>
-                  </Group>
+                    </div>
+                  </div>
                 </td>
-                <td>{testimonial.location || "N/A"}</td>
-                <td>
+                <td style={{ verticalAlign: "middle" }}>
+                  {testimonial.location || "N/A"}
+                </td>
+                <td style={{ verticalAlign: "middle" }}>
                   <Badge
                     variant="light"
                     color={
@@ -214,7 +233,7 @@ const TestimonialsList = () => {
                     {testimonial.source}
                   </Badge>
                 </td>
-                <td>
+                <td style={{ verticalAlign: "middle" }}>
                   <StarRating
                     rating={testimonial.rating}
                     maxStars={5}
@@ -222,26 +241,37 @@ const TestimonialsList = () => {
                     readonly={true}
                   />
                 </td>
-                <td>
-                  <div className="testimonial-content-preview">
-                    {testimonial.content.length > 100
-                      ? `${testimonial.content.substring(0, 100)}...`
+                <td style={{ verticalAlign: "middle" }}>
+                  <div
+                    className="testimonial-content-preview text-muted"
+                    style={{ fontSize: "13px", maxWidth: "250px" }}
+                  >
+                    {testimonial.content.length > 80
+                      ? `${testimonial.content.substring(0, 80)}...`
                       : testimonial.content}
                   </div>
                 </td>
-                <td>
+                <td style={{ verticalAlign: "middle" }}>
                   {testimonial.tourId ? (
-                    <span className="tour-link">
-                      <i className="bi bi-map"></i>{" "}
+                    <Link
+                      href={`/admin/tours/${
+                        typeof testimonial.tourId === "object"
+                          ? testimonial.tourId._id
+                          : testimonial.tourId
+                      }`}
+                      style={{
+                        color: "var(--primary)",
+                      }}
+                    >
                       {typeof testimonial.tourId === "object"
                         ? testimonial.tourId.title
-                        : "Tour"}
-                    </span>
+                        : "View Tour"}
+                    </Link>
                   ) : (
-                    "N/A"
+                    <span className="text-muted">N/A</span>
                   )}
                 </td>
-                <td>
+                <td style={{ verticalAlign: "middle" }}>
                   <Badge
                     variant={
                       testimonial.status === TestimonialStatus.PENDING
@@ -265,7 +295,7 @@ const TestimonialsList = () => {
                       : testimonial.status}
                   </Badge>
                 </td>
-                <td>
+                <td style={{ verticalAlign: "middle" }}>
                   <button
                     onClick={() =>
                       toggleFeatured(testimonial._id, testimonial.featured)
@@ -279,31 +309,56 @@ const TestimonialsList = () => {
                     )}
                   </button>
                 </td>
-                <td>
-                  <div className="action-buttons">
+                <td style={{ verticalAlign: "middle" }}>
+                  <div
+                    className="action-buttons"
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "8px",
+                    }}
+                  >
+                    <div style={{ display: "flex", gap: "8px" }}>
+                      <Link
+                        href={`/admin/testimonials/edit/${testimonial._id}`}
+                        className="btn btn-sm btn-outline-warning"
+                        title="Edit"
+                        style={{
+                          width: "32px",
+                          height: "32px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <i className="bi bi-pencil"></i>
+                      </Link>
+                      <button
+                        onClick={() => deleteTestimonial(testimonial._id)}
+                        className="btn btn-sm btn-outline-danger"
+                        title="Delete"
+                        style={{
+                          width: "32px",
+                          height: "32px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <i className="bi bi-trash"></i>
+                      </button>
+                    </div>
                     {testimonial.status === TestimonialStatus.PENDING && (
                       <button
                         onClick={() =>
                           toggleStatus(testimonial._id, testimonial.status)
                         }
                         className="btn btn-sm btn-success text-white"
-                        title="Approve"
+                        style={{ fontSize: "11px", padding: "4px 8px" }}
                       >
-                        <i className="bi bi-check-lg"></i> Approve
+                        Approve
                       </button>
                     )}
-                    <Link
-                      href={`/admin/testimonials/edit/${testimonial._id}`}
-                      className="btn btn-sm btn-outline-primary"
-                    >
-                      <i className="bi bi-pencil"></i>
-                    </Link>
-                    <button
-                      onClick={() => deleteTestimonial(testimonial._id)}
-                      className="btn btn-sm btn-outline-danger"
-                    >
-                      <i className="bi bi-trash"></i>
-                    </button>
                   </div>
                 </td>
               </tr>

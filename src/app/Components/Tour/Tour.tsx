@@ -182,6 +182,8 @@ const Tour = () => {
     );
   }
 
+  console.log(tours);
+
   return (
     <section className="tour-section section-padding fix">
       <div className="container custom-container">
@@ -327,7 +329,7 @@ const Tour = () => {
                             </li>
                             <li>
                               <i className="bi bi-person"></i>
-                              {tour.reviews || 0} reviews
+                              {tour.reviews} reviews
                             </li>
                           </ul>
                           <div className="price">

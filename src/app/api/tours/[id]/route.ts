@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import { Tour } from "@/models";
+import mongoose from "mongoose";
 import { deleteMultipleImages } from "@/lib/services/cloudinaryService";
 import { extractPublicId } from "@/lib/utils/imageUtils";
+import { TestimonialStatus } from "@/lib/enums";
 
 // GET /api/tours/[id] - Get a single tour
 export async function GET(
@@ -13,19 +15,56 @@ export async function GET(
     await connectDB();
 
     const resolvedParams = await params;
-    const tour = await Tour.findById(resolvedParams.id);
 
-    if (!tour) {
+    // Use aggregation to calculate dynamic rating from active testimonials
+    const tours = await Tour.aggregate([
+      {
+        $match: {
+          _id: new mongoose.Types.ObjectId(resolvedParams.id),
+        },
+      },
+      {
+        $lookup: {
+          from: "testimonials",
+          let: { tourId: "$_id" },
+          pipeline: [
+            {
+              $match: {
+                $expr: { $eq: ["$tourId", "$$tourId"] },
+                status: TestimonialStatus.ACTIVE,
+              },
+            },
+          ],
+          as: "activeTestimonials",
+        },
+      },
+      {
+        $addFields: {
+          reviews: { $size: "$activeTestimonials" },
+          rating: {
+            $cond: {
+              if: { $gt: [{ $size: "$activeTestimonials" }, 0] },
+              then: { $min: [{ $avg: "$activeTestimonials.rating" }, 5] },
+              else: 0,
+            },
+          },
+        },
+      },
+      {
+        $project: {
+          activeTestimonials: 0,
+        },
+      },
+    ]);
+
+    const tourData = tours[0];
+
+    if (!tourData) {
       return NextResponse.json(
         { success: false, error: "Tour not found" },
         { status: 404 },
       );
     }
-
-    // Convert Mongoose document to plain object to ensure all fields are included
-    const tourData = tour.toObject
-      ? tour.toObject({ flattenMaps: true })
-      : tour;
 
     // Filter out data URLs from images - only return Cloudinary URLs
     if (tourData.images && Array.isArray(tourData.images)) {

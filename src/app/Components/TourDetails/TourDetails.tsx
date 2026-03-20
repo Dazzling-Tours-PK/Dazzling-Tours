@@ -84,6 +84,7 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
       email: "",
       message: "",
       designation: "",
+      location: "",
       rating: 5,
     },
     onSubmit: async (values) => {
@@ -146,8 +147,8 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
           name: values.name,
           email: values.email,
           phone: values.phone,
-          subject: `Tour Enquiry: ${tour.title}`,
-          message: values.comment || "New tour enquiry from website",
+          subject: tour.title,
+          message: values.comment,
           tourId: tour._id,
           startDate: values.travelDate,
           participants: Number(values.participants),
@@ -420,6 +421,15 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                             />
                           </div>
                         )}
+                        {tour.rating > 0 && (
+                          <div className="col-12 col-md-4">
+                            <TourInfoBox
+                              icon="bi-star"
+                              label="Rating"
+                              value={`${tour.rating.toFixed(1)} (${tour.reviews} reviews)`}
+                            />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -453,7 +463,7 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                     </div>
                   )}
 
-                  {typeof tour.rating === "number" && tour.rating > 0 && (
+                  {tour.rating > 0 && (
                     <>
                       <h3>Customer Reviews</h3>
                       <div className="courses-reviews-box-items mb-4 d-flex justify-content-center">
@@ -465,16 +475,22 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                               </span>
                             </h2>
                             <div className="star">
-                              {Array.from({ length: 5 }, (_, i) => (
-                                <i
-                                  key={i}
-                                  className={`bi bi-star${
-                                    i < Math.floor(tour.rating) ? "-fill" : ""
-                                  }`}
-                                ></i>
-                              ))}
+                              {Array.from({ length: 5 }, (_, i) => {
+                                const ratingValue = i + 1;
+                                if (tour.rating >= ratingValue) {
+                                  return (
+                                    <i key={i} className="bi bi-star-fill"></i>
+                                  );
+                                } else if (tour.rating >= ratingValue - 0.5) {
+                                  return (
+                                    <i key={i} className="bi bi-star-half"></i>
+                                  );
+                                } else {
+                                  return <i key={i} className="bi bi-star"></i>;
+                                }
+                              })}
                             </div>
-                            <p>{tour.reviews || 0}+ Reviews</p>
+                            <p>{tour.reviews} Reviews</p>
                           </div>
                         </div>
                       </div>
@@ -565,7 +581,7 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                             </div>
                           </div>
                         </div>
-                        <div className="col-lg-6">
+                        <div className="col-lg-6 col-md-6">
                           <div className="form-clt">
                             <input
                               type="text"
@@ -574,12 +590,26 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                               onChange={(e) =>
                                 form.setFieldValue("name", e.target.value)
                               }
-                              placeholder="Your name"
+                              placeholder="Your Name"
                               required
                             />
                           </div>
                         </div>
-                        <div className="col-lg-6">
+                        <div className="col-lg-6 col-md-6">
+                          <div className="form-clt">
+                            <input
+                              type="email"
+                              name="email"
+                              value={form.values.email || ""}
+                              onChange={(e) =>
+                                form.setFieldValue("email", e.target.value)
+                              }
+                              placeholder="Your Email"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6">
                           <div className="form-clt">
                             <input
                               type="text"
@@ -591,11 +621,24 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                                   e.target.value,
                                 )
                               }
-                              placeholder="Traveler Type (e.g., Family Trip)"
+                              placeholder="Traveler Type (e.g. Family Trip)"
                             />
                           </div>
                         </div>
-                        <div className="col-lg-6">
+                        <div className="col-lg-6 col-md-6">
+                          <div className="form-clt">
+                            <input
+                              type="text"
+                              name="location"
+                              value={form.values.location || ""}
+                              onChange={(e) =>
+                                form.setFieldValue("location", e.target.value)
+                              }
+                              placeholder="Your Location (e.g. London)"
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-6 col-md-12">
                           <div className="form-clt">
                             <input
                               type="tel"
@@ -604,21 +647,7 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                               onChange={(e) =>
                                 form.setFieldValue("phone", e.target.value)
                               }
-                              placeholder="Your phone"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-lg-6">
-                          <div className="form-clt">
-                            <input
-                              type="email"
-                              name="email"
-                              value={form.values.email || ""}
-                              onChange={(e) =>
-                                form.setFieldValue("email", e.target.value)
-                              }
-                              placeholder="Your email"
-                              required
+                              placeholder="Your Phone Number"
                             />
                           </div>
                         </div>
@@ -982,19 +1011,106 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                     </div>
                   </div>
                   <div
-                    className="booking-bg bg-cover"
+                    className="booking-cta-banner rounded-4 overflow-hidden position-relative p-4 p-md-5 text-center mt-5 shadow-lg"
                     style={{
-                      backgroundImage:
-                        "url('/assets/img/testimonial/testimonial-bg.jpg')",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
+                      minHeight: "320px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
                     }}
-                    suppressHydrationWarning
                   >
-                    <h3 className="text-title">
-                      Book Now And Enjoy Amazing Savings!
-                    </h3>
+                    {/* Background with overlay */}
+                    <div
+                      className="position-absolute top-0 start-0 w-100 h-100"
+                      style={{
+                        backgroundImage:
+                          "url('/assets/img/tours/scenic_footer.png')",
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        zIndex: 0,
+                      }}
+                    />
+                    <div
+                      className="position-absolute top-0 start-0 w-100 h-100"
+                      style={{
+                        background:
+                          "linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))",
+                        zIndex: 1,
+                      }}
+                    />
+
+                    {/* Content */}
+                    <div className="position-relative" style={{ zIndex: 2 }}>
+                      <span
+                        className="badge mb-3 px-3 py-2 rounded-pill text-uppercase fw-bold"
+                        style={{
+                          backgroundColor: "var(--theme)",
+                          color: "white",
+                          fontSize: "0.75rem",
+                          letterSpacing: "1px",
+                        }}
+                      >
+                        Limited Time Offer
+                      </span>
+                      <h2
+                        className="text-white fw-bold mb-3"
+                        style={{
+                          fontSize: "clamp(1.75rem, 6vw, 2.75rem)",
+                          textShadow: "0 4px 15px rgba(0,0,0,0.6)",
+                        }}
+                      >
+                        Book Now And Enjoy <br />
+                        <span
+                          style={{
+                            color: "var(--theme)",
+                            textShadow: "0 0 25px rgba(253, 125, 2, 0.4)",
+                          }}
+                        >
+                          Amazing Savings!
+                        </span>
+                      </h2>
+                      <p
+                        className="text-white mb-4 mx-auto"
+                        style={{
+                          maxWidth: "550px",
+                          fontSize: "1.2rem",
+                          fontWeight: 500,
+                          lineHeight: "1.6",
+                          textShadow: "0 2px 10px rgba(0,0,0,0.5)",
+                        }}
+                      >
+                        Unforgettable experiences await. Secure your journey
+                        today and get exclusive early bird discounts.
+                      </p>
+                      <a
+                        href="#booking-form"
+                        className="theme-btn border-0 shadow-lg text-decoration-none d-inline-flex align-items-center justify-content-center"
+                        style={{
+                          padding: "18px 48px",
+                          borderRadius: "50px",
+                          fontSize: "1.15rem",
+                          fontWeight: 600,
+                          backgroundColor: "#fd7d02",
+                          color: "white",
+                          transition:
+                            "all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                          boxShadow: "0 15px 35px rgba(253, 125, 2, 0.3)",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform =
+                            "translateY(-8px) scale(1.02)";
+                          e.currentTarget.style.backgroundColor = "#e66e00";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform =
+                            "translateY(0) scale(1)";
+                          e.currentTarget.style.backgroundColor = "#fd7d02";
+                        }}
+                      >
+                        Reserve Your Spot{" "}
+                        <i className="bi bi-arrow-right ms-2"></i>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1032,10 +1148,10 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
             <Image
               src={tour.images?.[photoIndex] || ""}
               alt={tour.title}
-              width={1200}
-              height={800}
-              className="img-fluid rounded-2 shadow-lg"
-              style={{ maxHeight: "80vh", objectFit: "contain" }}
+              width={1600}
+              height={1000}
+              className="img-fluid"
+              priority
             />
           </div>
 
@@ -1048,9 +1164,29 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
             <i className="bi bi-chevron-right"></i>
           </button>
 
-          <div className="text-white mt-3 fs-6">
-            Image {photoIndex + 1} of {tour.images?.length}
+          <div className="lightbox-counter">
+            {photoIndex + 1} / {tour.images?.length}
           </div>
+
+          {tour.images && tour.images.length > 0 && (
+            <div className="lightbox-thumbs-container">
+              {tour.images.map((img, idx) => (
+                <div
+                  key={idx}
+                  className={`lightbox-thumb-item ${photoIndex === idx ? "active" : ""}`}
+                  onClick={() => setPhotoIndex(idx)}
+                >
+                  <Image
+                    src={img}
+                    alt={`${tour.title} thumb ${idx + 1}`}
+                    fill
+                    sizes="80px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </Modal.Body>
       </Modal>
     </>

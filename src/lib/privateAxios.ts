@@ -8,7 +8,7 @@ import axios, {
 // Create axios instance with default configuration
 const privateAxios: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || "", // Use environment variable if available
-  timeout: 10000, // 10 seconds timeout
+  timeout: 30000, // 30 seconds timeout
   headers: {
     "Content-Type": "application/json",
   },

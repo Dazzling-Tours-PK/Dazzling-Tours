@@ -40,8 +40,8 @@ async function connectDB() {
   if (!cached?.promise) {
     const opts = {
       bufferCommands: false,
-      serverSelectionTimeoutMS: 10000, // 10 second timeout (Atlas may need more time)
-      connectTimeoutMS: 10000,
+      serverSelectionTimeoutMS: 20000, // 20 second timeout (Atlas may need more time)
+      connectTimeoutMS: 20000,
       // Atlas-specific options
       ...(isAtlas && {
         retryWrites: true,

@@ -68,11 +68,51 @@ export async function GET(request: NextRequest) {
 
     const skip = (page - 1) * limit;
 
-    const tours = await Tour.find(query)
-      .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit)
-      .lean();
+    // Use aggregation to calculate dynamic ratings from active testimonials
+    const tours = await Tour.aggregate([
+      { $match: query },
+      { $sort: { createdAt: -1 } },
+      { $skip: skip },
+      { $limit: limit },
+      {
+        $lookup: {
+          from: "testimonials",
+          let: { tourId: "$_id" },
+          pipeline: [
+            {
+              $match: {
+                $expr: { $eq: ["$tourId", "$$tourId"] },
+                status: "Active",
+              },
+            },
+          ],
+          as: "activeTestimonials",
+        },
+      },
+      {
+        $addFields: {
+          realReviewsCount: { $size: "$activeTestimonials" },
+          totalTestimonialRating: { $sum: "$activeTestimonials.rating" },
+        },
+      },
+      {
+        $addFields: {
+          reviews: { $size: "$activeTestimonials" },
+          rating: {
+            $cond: {
+              if: { $gt: [{ $size: "$activeTestimonials" }, 0] },
+              then: { $min: [{ $avg: "$activeTestimonials.rating" }, 5] },
+              else: 0,
+            },
+          },
+        },
+      },
+      {
+        $project: {
+          activeTestimonials: 0,
+        },
+      },
+    ]);
 
     // Filter out data URLs from images - only return Cloudinary URLs
     const cleanedTours = tours.map((tour: Record<string, unknown>) => {

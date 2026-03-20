@@ -1,10 +1,7 @@
 import mongoose, { Document, Schema } from "mongoose";
 import { UserRole } from "@/lib/enums/roles";
 import { TourStatus, TourDifficulty, TourPriceType } from "@/lib/enums/tour";
-import {
-  TestimonialStatus,
-  TestimonialSource,
-} from "@/lib/enums/testimonial";
+import { TestimonialStatus, TestimonialSource } from "@/lib/enums/testimonial";
 import { ContactStatus, ContactGroupType } from "@/lib/types/enums";
 import { BlogStatus } from "@/lib/enums/blog";
 import { SEOFields } from "@/lib/types/seo";
@@ -91,7 +88,6 @@ const TourSchema = new Schema<ITour>(
     strict: true,
   },
 );
-
 
 // Customer User Model (for frontend users)
 export interface ICustomerUser extends Document {

@@ -55,9 +55,7 @@ export const useGetContactInquiry = (id: string) => {
   return useQuery<ContactResponse>({
     queryKey: contactKeys.detail(id),
     queryFn: async () => {
-      const response = await api.get<ContactResponse>(
-        `/api/contact/${id}`,
-      );
+      const response = await api.get<ContactResponse>(`/api/contact/${id}`);
       return response.data;
     },
     enabled: !!id,
@@ -80,15 +78,18 @@ export const useCreateContactInquiry = () => {
 
   return useMutation<ContactResponse, Error, CreateContactData>({
     mutationFn: async (data) => {
-      const response = await api.post<ContactResponse>(
-        "/api/contact",
-        data,
-      );
+      const response = await api.post<ContactResponse>("/api/contact", data);
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: contactKeys.lists() });
-      queryClient.invalidateQueries({ queryKey: contactKeys.stats() });
+      queryClient.invalidateQueries({
+        queryKey: contactKeys.lists(),
+        type: "all",
+      });
+      queryClient.invalidateQueries({
+        queryKey: contactKeys.stats(),
+        type: "all",
+      });
     },
   });
 };
@@ -106,11 +107,18 @@ export const useUpdateContactInquiry = () => {
       return response.data;
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: contactKeys.lists() });
+      queryClient.invalidateQueries({
+        queryKey: contactKeys.lists(),
+        type: "all",
+      });
       queryClient.invalidateQueries({
         queryKey: contactKeys.detail(data.data._id),
+        type: "all",
       });
-      queryClient.invalidateQueries({ queryKey: contactKeys.stats() });
+      queryClient.invalidateQueries({
+        queryKey: contactKeys.stats(),
+        type: "all",
+      });
     },
   });
 };
@@ -126,8 +134,14 @@ export const useDeleteContactInquiry = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: contactKeys.lists() });
-      queryClient.invalidateQueries({ queryKey: contactKeys.stats() });
+      queryClient.invalidateQueries({
+        queryKey: contactKeys.lists(),
+        type: "all",
+      });
+      queryClient.invalidateQueries({
+        queryKey: contactKeys.stats(),
+        type: "all",
+      });
     },
   });
 };
@@ -149,8 +163,14 @@ export const useBulkUpdateContactInquiries = () => {
       return response.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: contactKeys.lists() });
-      queryClient.invalidateQueries({ queryKey: contactKeys.stats() });
+      queryClient.invalidateQueries({
+        queryKey: contactKeys.lists(),
+        type: "all",
+      });
+      queryClient.invalidateQueries({
+        queryKey: contactKeys.stats(),
+        type: "all",
+      });
     },
   });
 };

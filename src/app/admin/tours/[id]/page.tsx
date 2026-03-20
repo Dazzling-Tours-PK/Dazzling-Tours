@@ -12,7 +12,6 @@ import {
 } from "@/lib/hooks";
 import { TourStatus, TourDifficulty, TourPriceType } from "@/lib/enums";
 import {
-  NumberInput,
   Checkbox,
   ItineraryManager,
   ImageUpload,
@@ -56,14 +55,14 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
   const form = useForm<UpdateTourData>({
     initialValues: {
       _id: resolvedParams.id,
-      title: "New Tour Draft",
-      description: "Draft Description",
-      shortDescription: "Draft Short Description",
+      title: "",
+      description: "",
+      shortDescription: "",
       price: 0,
       priceType: TourPriceType.PER_PERSON,
-      duration: "Draft Duration",
-      location: "Draft Location",
-      category: "Draft Category",
+      duration: "",
+      location: "",
+      category: "",
       images: [],
       highlights: [],
       itinerary: [],
@@ -71,8 +70,6 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
       excludes: [],
       difficulty: TourDifficulty.EASY,
       groupSize: 10,
-      rating: 0,
-      reviews: 0,
       featured: false,
       status: TourStatus.DRAFT,
       seo: {
@@ -131,8 +128,6 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
           excludes: tour.excludes || [],
           difficulty: tour.difficulty,
           groupSize: tour.groupSize || 10,
-          rating: tour.rating || 0,
-          reviews: tour.reviews || 0,
           featured: tour.featured || false,
           status: tour.status,
           seo: {
@@ -150,7 +145,7 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
   }, [tour, resolvedParams.id]);
 
   // Debounced Auto-Save
-  const debouncedValues = useDebounceValue(form.values, 3000);
+  const debouncedValues = useDebounceValue(form.values, 5000);
 
   useEffect(() => {
     if (isLoading) return;
@@ -342,21 +337,6 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
               </Text>
             </div>
             <div className="form-grid">
-              <NumberInput
-                label="Rating"
-                {...form.getFieldProps("rating")}
-                min={0}
-                max={5}
-                step={0.1}
-                precision={1}
-              />
-
-              <NumberInput
-                label="Reviews Count"
-                {...form.getFieldProps("reviews")}
-                min={0}
-              />
-
               <Checkbox
                 label="Featured Tour"
                 description="Display this tour prominently on the homepage"

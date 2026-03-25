@@ -124,7 +124,7 @@
 
 .admin-content {
   flex: 1;
-  padding: 1rem;
+  padding: 0.25rem 1rem 1rem 1rem;
 }
 
 /* Dashboard Styles */
@@ -152,15 +152,15 @@
 
 /* Page Component Styles - Matching Dashboard */
 .admin-page {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 0.5rem 1rem 1rem 1rem;
 }
 
 .admin-page .page-header {
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 2px solid #e9ecef;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e9ecef;
 }
 
 .admin-page .header-content {
@@ -314,8 +314,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
-  padding-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid #e9ecef;
 }
 
@@ -330,7 +330,7 @@
 .filters {
   display: flex;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
   align-items: center;
 }
 
@@ -381,7 +381,7 @@ table {
 
 th,
 td {
-  padding: 0.75rem;
+  padding: 0.5rem 0.75rem;
   text-align: left;
   border-bottom: 1px solid #e9ecef;
 }
@@ -3779,4 +3779,13 @@ select.form-input-base {
   .rating-text {
     color: #9ca3af;
   }
+}
+
+/* Custom Spinner Border Widths */
+.spinner-border.w-3.h-3 {
+  border-width: 0.125em;
+}
+
+.spinner-border.w-4.h-4 {
+  border-width: 0.15em;
 }

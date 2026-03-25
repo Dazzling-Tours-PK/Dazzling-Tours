@@ -10,9 +10,8 @@ import Blog3 from "./Components/Blogs/Blog3";
 
 // SEO Metadata for Homepage
 export const metadata: Metadata = {
-  title: "Dazzling Tours - Explore the World One Journey at a Time",
-  description:
-    "Discover handpicked adventures and unforgettable travel experiences with Dazzling Tours. Curated tours, expert guidance, and memories that last a lifetime. Your trusted partner in creating extraordinary journeys.",
+  title: "Dazzling Tours - Explore the nature",
+  description: "Explore the nature",
   keywords: [
     "travel agency",
     "tour packages",
@@ -26,14 +25,13 @@ export const metadata: Metadata = {
     "customized tours",
   ],
   openGraph: {
-    title: "Dazzling Tours - Explore the World One Journey at a Time",
-    description:
-      "Discover handpicked adventures and unforgettable travel experiences with Dazzling Tours. Curated tours, expert guidance, and memories that last a lifetime.",
+    title: "Dazzling Tours - Explore the nature",
+    description: "Explore the nature",
     type: "website",
     images: [
       {
         url: "/assets/img/hero/hero2.webp",
-        alt: "Dazzling Tours - Explore the World",
+        alt: "Dazzling Tours - Explore the nature",
         width: 1200,
         height: 630,
       },
@@ -41,9 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dazzling Tours - Explore the World One Journey at a Time",
-    description:
-      "Discover handpicked adventures and unforgettable travel experiences with Dazzling Tours.",
+    title: "Dazzling Tours - Explore the nature",
+    description: "Explore the nature",
     images: ["/assets/img/hero/hero2.webp"],
   },
   alternates: {
@@ -70,8 +67,7 @@ const HomePage = () => {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Dazzling Tours",
-    description:
-      "Your trusted partner in creating unforgettable journeys. Explore the world with curated tours and expert guidance.",
+    description: "Explore the nature",
     url: baseUrl,
     potentialAction: {
       "@type": "SearchAction",
@@ -87,8 +83,7 @@ const HomePage = () => {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
     name: "Dazzling Tours",
-    description:
-      "Your trusted partner in creating unforgettable journeys. We specialize in curating personalized tours to the world's most beautiful destinations.",
+    description: "Explore the nature",
     url: baseUrl,
     logo: `${baseUrl}/assets/img/dazzling-logo/Dazzling Tours Png.png`,
     image: `${baseUrl}/assets/img/hero/hero2.webp`,

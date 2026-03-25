@@ -1,9 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/privateAxios";
-import { Pagination } from "@/lib/types/common";
-
 import {
-  Contact,
   CreateContactData,
   UpdateContactData,
   ContactsResponse,

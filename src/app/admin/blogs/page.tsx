@@ -1,27 +1,49 @@
 "use client";
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   useGetBlogs,
+  useCreateBlog,
   useUpdateBlog,
   useDeleteBlog,
-  useBulkUpdateBlogs,
   useNotification,
   useGetCategories,
+  useAuth,
 } from "@/lib/hooks";
+import { useRouter } from "next/navigation";
 import PaginationComponent from "@/app/Components/Common/PaginationComponent";
 import { TextInput, Select } from "@/app/Components/Form";
-import { Group, Stack, Page, Button } from "@/app/Components/Common";
+import {
+  Group,
+  Stack,
+  Page,
+  Button,
+  Badge,
+  ConfirmModal,
+  Table,
+  Title,
+  Text,
+  Icon,
+} from "@/app/Components/Common";
 import { UNCATEGORIZED_CATEGORY_NAME } from "@/lib/constants/categories";
+import { BlogStatus } from "@/lib/enums/blog";
+import {
+  getCategoryBadgeColor,
+  getStatusBadgeClass,
+  getStatusColor,
+} from "@/lib/utils/blogUtils";
 
 const BlogsList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [filterCategory, setFilterCategory] = useState("all");
   const [filterFeatured, setFilterFeatured] = useState("all");
-  const [selectedBlogs, setSelectedBlogs] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(10);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
+  const router = useRouter();
+  const { user } = useAuth();
 
   const { data: blogsData, isLoading: loading } = useGetBlogs({
     page: currentPage,
@@ -39,7 +61,7 @@ const BlogsList = () => {
 
   const updateBlogMutation = useUpdateBlog();
   const deleteBlogMutation = useDeleteBlog();
-  const bulkUpdateBlogsMutation = useBulkUpdateBlogs();
+  const createBlogMutation = useCreateBlog();
   const { showSuccess, showError } = useNotification();
 
   const blogs = useMemo(() => blogsData?.data || [], [blogsData?.data]);
@@ -63,20 +85,27 @@ const BlogsList = () => {
     const allBlogs = blogsData?.data || [];
     return {
       total: blogsData?.pagination?.total || 0,
-      published: allBlogs.filter((b) => b.status === "Published").length,
-      drafts: allBlogs.filter((b) => b.status === "Draft").length,
+      published: allBlogs.filter((b) => b.status === BlogStatus.PUBLISHED)
+        .length,
+      drafts: allBlogs.filter((b) => b.status === BlogStatus.DRAFT).length,
       featured: allBlogs.filter((b) => b.featured).length,
     };
   }, [blogsData]);
 
   const deleteBlog = (id: string) => {
-    if (confirm("Are you sure you want to delete this blog?")) {
-      deleteBlogMutation.mutate(id, {
+    setDeleteId(id);
+  };
+
+  const confirmDelete = () => {
+    if (deleteId) {
+      deleteBlogMutation.mutate(deleteId, {
         onSuccess: () => {
           showSuccess("Blog deleted successfully!");
+          setDeleteId(null);
         },
         onError: (error) => {
           showError(error.message || "Failed to delete blog");
+          setDeleteId(null);
         },
       });
     }
@@ -106,13 +135,18 @@ const BlogsList = () => {
     updateBlogMutation.mutate(
       {
         _id: id,
-        status: currentStatus === "Published" ? "Draft" : "Published",
+        status:
+          currentStatus === BlogStatus.PUBLISHED
+            ? BlogStatus.DRAFT
+            : BlogStatus.PUBLISHED,
       },
       {
         onSuccess: () => {
           showSuccess(
             `Blog status updated to ${
-              currentStatus === "Published" ? "Draft" : "Published"
+              currentStatus === BlogStatus.PUBLISHED
+                ? BlogStatus.DRAFT
+                : BlogStatus.PUBLISHED
             }!`,
           );
         },
@@ -123,104 +157,37 @@ const BlogsList = () => {
     );
   };
 
-  const bulkUpdateStatus = (status: string) => {
-    if (selectedBlogs.length === 0) {
-      showError("Please select blogs to update");
-      return;
-    }
+  const handleCreateBlog = async () => {
+    try {
+      const result = await createBlogMutation.mutateAsync({
+        title: "New Blog Draft",
+        excerpt: "Draft excerpt. Write a brief overview here.",
+        content: "<p>Start writing your blog content here...</p>",
+        category: UNCATEGORIZED_CATEGORY_NAME,
+        author: user ? `${user.firstName} ${user.lastName}` : "Admin", // Provide default author from logged in user
+        status: BlogStatus.DRAFT,
+        featured: false,
+        tags: [],
+        seo: {
+          metaTitle: "",
+          metaDescription: "",
+          slug: "",
+          focusKeyword: "",
+          ogImage: "",
+        },
+      });
 
-    bulkUpdateBlogsMutation.mutate(
-      {
-        ids: selectedBlogs,
-        action: "updateStatus",
-        data: { status },
-      },
-      {
-        onSuccess: () => {
-          showSuccess(`${selectedBlogs.length} blog(s) updated successfully!`);
-          setSelectedBlogs([]);
-        },
-        onError: (error) => {
-          showError(error.message || "Failed to update blogs");
-        },
-      },
-    );
-  };
-
-  const bulkDelete = () => {
-    if (selectedBlogs.length === 0) {
-      showError("Please select blogs to delete");
-      return;
-    }
-
-    if (
-      confirm(
-        `Are you sure you want to delete ${selectedBlogs.length} blog(s)?`,
-      )
-    ) {
-      bulkUpdateBlogsMutation.mutate(
-        {
-          ids: selectedBlogs,
-          action: "delete",
-        },
-        {
-          onSuccess: () => {
-            showSuccess(
-              `${selectedBlogs.length} blog(s) deleted successfully!`,
-            );
-            setSelectedBlogs([]);
-          },
-          onError: (error) => {
-            showError(error.message || "Failed to delete blogs");
-          },
-        },
-      );
+      if (result.success && result.data._id) {
+        showSuccess("Draft created! Redirecting to editor...");
+        router.push(`/admin/blogs/edit/${result.data._id}`);
+      }
+    } catch (err) {
+      console.error("[BlogsList] Failed to create draft:", err);
+      showError("Failed to create blog draft");
     }
   };
 
-  const toggleBlogSelection = (id: string) => {
-    setSelectedBlogs((prev) =>
-      prev.includes(id)
-        ? prev.filter((blogId) => blogId !== id)
-        : [...prev, id],
-    );
-  };
-
-  const selectAllBlogs = () => {
-    const allBlogIds = blogs.map((blog) => blog._id);
-    setSelectedBlogs(
-      selectedBlogs.length === allBlogIds.length ? [] : allBlogIds,
-    );
-  };
-
-  const getStatusBadgeClass = (status: string) => {
-    switch (status) {
-      case "Published":
-        return "status-badge success";
-      case "Draft":
-        return "status-badge warning";
-      case "Archived":
-        return "status-badge secondary";
-      default:
-        return "status-badge secondary";
-    }
-  };
-
-  const getCategoryBadgeClass = (category: string) => {
-    const colors = [
-      "badge-primary",
-      "badge-secondary",
-      "badge-success",
-      "badge-danger",
-      "badge-warning",
-      "badge-info",
-    ];
-    const hash = category.split("").reduce((a, b) => {
-      a = (a << 5) - a + b.charCodeAt(0);
-      return a & a;
-    }, 0);
-    return colors[Math.abs(hash) % colors.length];
-  };
+  // Blog display utilities are now imported from @/lib/utils/blogUtils
 
   // Reset to first page when filters change
   const handleSearchChange = (value: string) => {
@@ -253,9 +220,12 @@ const BlogsList = () => {
       description="Manage your blog posts, view statistics, and update blog information"
       loading={loading}
       headerActions={
-        <Link href="/admin/blogs/add" className="btn btn-primary">
-          <i className="bi bi-plus-circle"></i> Add New Blog
-        </Link>
+        <Button
+          onClick={handleCreateBlog}
+          loading={createBlogMutation.isPending}
+        >
+          <Icon name="plus-circle" /> Add New Blog
+        </Button>
       }
     >
       <Stack>
@@ -263,117 +233,66 @@ const BlogsList = () => {
         <div className="stats-grid" style={{ marginBottom: "1.5rem" }}>
           <div className="stat-card">
             <div className="stat-icon" style={{ background: "#e3f2fd" }}>
-              <i className="bi bi-file-text" style={{ color: "#1976d2" }}></i>
+              <Icon name="file-text" color="#1976d2" />
             </div>
             <div className="stat-content">
-              <h4>Total Blogs</h4>
-              <p>{stats.total}</p>
+              <Title order={4} size="h5">
+                Total Blogs
+              </Title>
+              <Text weight={700} size="lg">
+                {stats.total}
+              </Text>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon" style={{ background: "#e8f5e9" }}>
-              <i
-                className="bi bi-check-circle"
-                style={{ color: "#388e3c" }}
-              ></i>
+              <Icon name="check-circle" color="#388e3c" />
             </div>
             <div className="stat-content">
-              <h4>Published</h4>
-              <p>{stats.published}</p>
+              <Title order={4} size="h5">
+                Published
+              </Title>
+              <Text weight={700} size="lg">
+                {stats.published}
+              </Text>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon" style={{ background: "#fff3e0" }}>
-              <i
-                className="bi bi-file-earmark"
-                style={{ color: "#f57c00" }}
-              ></i>
+              <Icon name="file-earmark" color="#f57c00" />
             </div>
             <div className="stat-content">
-              <h4>Drafts</h4>
-              <p>{stats.drafts}</p>
+              <Title order={4} size="h5">
+                Drafts
+              </Title>
+              <Text weight={700} size="lg">
+                {stats.drafts}
+              </Text>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon" style={{ background: "#fce4ec" }}>
-              <i className="bi bi-star-fill" style={{ color: "#c2185b" }}></i>
+              <Icon name="star-fill" color="#c2185b" />
             </div>
             <div className="stat-content">
-              <h4>Featured</h4>
-              <p>{stats.featured}</p>
+              <Title order={4} size="h5">
+                Featured
+              </Title>
+              <Text weight={700} size="lg">
+                {stats.featured}
+              </Text>
             </div>
           </div>
         </div>
 
-        {/* Bulk Actions */}
-        {selectedBlogs.length > 0 && (
-          <div
-            className="bulk-actions"
-            style={{
-              background: "#fff3cd",
-              border: "1px solid #ffc107",
-              borderRadius: "8px",
-              padding: "1rem",
-              marginBottom: "1.5rem",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              flexWrap: "wrap",
-              gap: "1rem",
-            }}
-          >
-            <div className="bulk-info" style={{ fontWeight: 600 }}>
-              <i className="bi bi-check-circle me-2"></i>
-              {selectedBlogs.length} blog(s) selected
-            </div>
-            <div
-              className="bulk-buttons"
-              style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}
-            >
-              <Button
-                size="sm"
-                color="success"
-                onClick={() => bulkUpdateStatus("Published")}
-              >
-                <i className="bi bi-check-circle"></i> Publish Selected
-              </Button>
-              <Button
-                size="sm"
-                color="warning"
-                onClick={() => bulkUpdateStatus("Draft")}
-              >
-                <i className="bi bi-file-text"></i> Set as Draft
-              </Button>
-              <Button
-                size="sm"
-                color="secondary"
-                onClick={() => bulkUpdateStatus("Archived")}
-              >
-                <i className="bi bi-archive"></i> Archive Selected
-              </Button>
-              <Button size="sm" color="error" onClick={bulkDelete}>
-                <i className="bi bi-trash"></i> Delete Selected
-              </Button>
-              <Button
-                size="sm"
-                color="secondary"
-                variant="outline"
-                onClick={() => setSelectedBlogs([])}
-              >
-                <i className="bi bi-x-circle"></i> Clear Selection
-              </Button>
-            </div>
-          </div>
-        )}
-
         {/* Filters */}
         <Group>
           <TextInput
-            placeholder="Search blogs by title, content, author, or category..."
+            placeholder="Search by title, author, or category..."
             value={searchTerm}
             onChange={handleSearchChange}
-            leftIcon={<i className="bi bi-search"></i>}
-            style={{ flex: 1, minWidth: "250px" }}
+            leftIcon={<Icon name="search" />}
+            style={{ flex: 1, minWidth: "450px" }}
           />
 
           <Select
@@ -381,9 +300,8 @@ const BlogsList = () => {
             onChange={handleStatusChange}
             data={[
               { value: "all", label: "All Status" },
-              { value: "Published", label: "Published" },
-              { value: "Draft", label: "Draft" },
-              { value: "Archived", label: "Archived" },
+              { value: BlogStatus.PUBLISHED, label: "Published" },
+              { value: BlogStatus.DRAFT, label: "Draft" },
             ]}
             style={{ minWidth: "150px" }}
           />
@@ -409,57 +327,95 @@ const BlogsList = () => {
         </Group>
 
         {/* Blogs Table */}
-        <div className="blogs-table">
-          <table>
-            <thead>
-              <tr>
-                <th style={{ width: "50px", textAlign: "center" }}>
-                  <input
-                    type="checkbox"
-                    checked={
-                      selectedBlogs.length === blogs.length && blogs.length > 0
-                    }
-                    onChange={selectAllBlogs}
-                    style={{ cursor: "pointer" }}
-                  />
-                </th>
-                <th>Title</th>
-                <th style={{ textAlign: "center" }}>Author</th>
-                <th style={{ textAlign: "center" }}>Category</th>
-                <th style={{ textAlign: "center" }}>Status</th>
-                <th style={{ textAlign: "center" }}>Featured</th>
-                <th style={{ textAlign: "center" }}>Published</th>
-                <th style={{ width: "120px", textAlign: "center" }}>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {blogs.map((blog) => (
-                <tr key={blog._id}>
-                  <td style={{ textAlign: "center" }}>
-                    <input
-                      type="checkbox"
-                      checked={selectedBlogs.includes(blog._id)}
-                      onChange={() => toggleBlogSelection(blog._id)}
-                      style={{ cursor: "pointer" }}
-                    />
-                  </td>
-                  <td>
-                    <div className="blog-title">
-                      <h6 style={{ margin: 0, marginBottom: "0.15rem" }}>
-                        {blog.title}
-                      </h6>
-                      <p
-                        className="excerpt"
+        <Table verticalSpacing="sm" horizontalSpacing="md">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th style={{ textAlign: "center" }}>Author</th>
+              <th style={{ textAlign: "center" }}>Category</th>
+              <th style={{ textAlign: "center" }}>Status</th>
+              <th style={{ textAlign: "center" }}>Featured</th>
+              <th style={{ textAlign: "center" }}>Published</th>
+              <th style={{ width: "120px", textAlign: "center" }}>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {blogs.map((blog) => (
+              <tr key={blog._id}>
+                <td>
+                  <div
+                    className="blog-title"
+                    style={{
+                      display: "flex",
+                      gap: "1rem",
+                      alignItems: "center",
+                    }}
+                  >
+                    {blog.featuredImage ? (
+                      <div
                         style={{
-                          margin: 0,
-                          fontSize: "0.875rem",
-                          color: "#6c757d",
-                          marginBottom: "0.5rem",
+                          width: "64px",
+                          height: "48px",
+                          borderRadius: "6px",
+                          overflow: "hidden",
+                          flexShrink: 0,
+                          border: "1px solid #eee",
+                          position: "relative",
                         }}
                       >
-                        {blog.excerpt?.substring(0, 100)}
-                        {blog.excerpt && blog.excerpt.length > 100 && "..."}
-                      </p>
+                        <Image
+                          src={blog.featuredImage}
+                          alt={blog.title}
+                          width={64}
+                          height={48}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        style={{
+                          width: "64px",
+                          height: "48px",
+                          borderRadius: "6px",
+                          backgroundColor: "#f8f9fa",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          border: "1px solid #eee",
+                          flexShrink: 0,
+                        }}
+                      >
+                        <Icon
+                          name="image"
+                          color="#dee2e6"
+                          size="1rem"
+                        />
+                      </div>
+                    )}
+                    <div
+                      style={{
+                        flex: 1,
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "2px",
+                      }}
+                    >
+                      <Title order={6} size="h6" weight={700}>
+                        {blog.title}
+                      </Title>
+                      <Text
+                        className="excerpt"
+                        size="xs"
+                        color="dimmed"
+                        style={{ lineHeight: 1.4 }}
+                      >
+                        {blog.excerpt?.substring(0, 80)}
+                        {blog.excerpt && blog.excerpt.length > 80 && "..."}
+                      </Text>
                       {blog.tags && blog.tags.length > 0 && (
                         <div
                           className="tags"
@@ -467,153 +423,162 @@ const BlogsList = () => {
                             display: "flex",
                             gap: "0.25rem",
                             flexWrap: "wrap",
+                            marginTop: "2px",
                           }}
                         >
                           {blog.tags.slice(0, 3).map((tag, index) => (
-                            <span
+                            <Badge
                               key={index}
-                              className="badge badge-secondary"
-                              style={{
-                                fontSize: "0.75rem",
-                                padding: "0.25rem 0.5rem",
-                              }}
+                              variant="light"
+                              color="secondary"
+                              size="xs"
                             >
                               {tag}
-                            </span>
+                            </Badge>
                           ))}
                           {blog.tags.length > 3 && (
-                            <span
-                              className="badge badge-secondary"
-                              style={{
-                                fontSize: "0.75rem",
-                                padding: "0.25rem 0.5rem",
-                              }}
-                            >
+                            <Badge variant="light" color="secondary" size="xs">
                               +{blog.tags.length - 3} more
-                            </span>
+                            </Badge>
                           )}
                         </div>
                       )}
                     </div>
-                  </td>
-                  <td style={{ textAlign: "center" }}>
-                    <div className="author-info">
-                      <strong>{blog.author || "N/A"}</strong>
-                    </div>
-                  </td>
-                  <td style={{ textAlign: "center" }}>
-                    <span
-                      className={`badge ${getCategoryBadgeClass(
-                        blog.category || UNCATEGORIZED_CATEGORY_NAME,
-                      )}`}
-                    >
-                      {blog.category || UNCATEGORIZED_CATEGORY_NAME}
-                    </span>
-                  </td>
-                  <td style={{ textAlign: "center" }}>
-                    <button
-                      onClick={() => toggleStatus(blog._id, blog.status)}
-                      className={`status-badge ${getStatusBadgeClass(
-                        blog.status,
-                      )} clickable`}
-                      style={{ cursor: "pointer", border: "none" }}
-                    >
-                      {blog.status}
-                    </button>
-                  </td>
-                  <td style={{ textAlign: "center" }}>
-                    <button
-                      onClick={() =>
-                        toggleFeatured(blog._id, blog.featured || false)
-                      }
-                      className="btn btn-sm btn-link p-0"
-                      style={{
-                        border: "none",
-                        background: "none",
-                        cursor: "pointer",
-                      }}
-                      title={
-                        blog.featured
-                          ? "Unfeature this blog"
-                          : "Feature this blog"
-                      }
-                    >
-                      {blog.featured ? (
-                        <i
-                          className="bi bi-star-fill"
-                          style={{ color: "#ffc107", fontSize: "1.2rem" }}
-                        ></i>
-                      ) : (
-                        <i
-                          className="bi bi-star"
-                          style={{ color: "#6c757d", fontSize: "1.2rem" }}
-                        ></i>
-                      )}
-                    </button>
-                  </td>
-                  <td style={{ textAlign: "center" }}>
-                    <div className="date-info">
+                  </div>
+                </td>
+                <td style={{ textAlign: "center" }}>
+                  <div className="author-info">
+                    <Text weight={700} size="sm">
+                      {blog.author || "N/A"}
+                    </Text>
+                  </div>
+                </td>
+                <td style={{ textAlign: "center" }}>
+                  <Badge
+                    variant="filled"
+                    color={getCategoryBadgeColor(
+                      blog.category || UNCATEGORIZED_CATEGORY_NAME,
+                    )}
+                    size="sm"
+                    style={{ textTransform: "uppercase" }}
+                  >
+                    {blog.category || UNCATEGORIZED_CATEGORY_NAME}
+                  </Badge>
+                </td>
+                <td style={{ textAlign: "center" }}>
+                  <Button
+                    onClick={() => toggleStatus(blog._id, blog.status)}
+                    variant="outline"
+                    size="sm"
+                    style={{
+                      padding: "4px 12px",
+                      fontSize: "0.75rem",
+                      fontWeight: "600",
+                      textTransform: "uppercase",
+                      color: getStatusColor(blog.status as BlogStatus),
+                      borderColor: getStatusColor(blog.status as BlogStatus),
+                    }}
+                  >
+                    {blog.status}
+                  </Button>
+                </td>
+                <td style={{ textAlign: "center" }}>
+                  <Button
+                    onClick={() =>
+                      toggleFeatured(blog._id, blog.featured || false)
+                    }
+                    variant="subtle"
+                    size="sm"
+                    title={
+                      blog.featured
+                        ? "Unfeature this blog"
+                        : "Feature this blog"
+                    }
+                    style={{ padding: 0, minWidth: "auto", height: "auto" }}
+                  >
+                    {blog.featured ? (
+                      <Icon
+                        name="star-fill"
+                        color="#ffc107"
+                        size="1.2rem"
+                      />
+                    ) : (
+                      <Icon
+                        name="star"
+                        color="#cbd5e0"
+                        size="1.2rem"
+                        className="text-muted"
+                      />
+                    )}
+                  </Button>
+                </td>
+                <td style={{ textAlign: "center" }}>
+                  <div className="date-info">
+                    {blog.publishedAt
+                      ? new Date(blog.publishedAt).toLocaleDateString()
+                      : "Not published"}
+                    <br />
+                    <small style={{ color: "#6c757d" }}>
                       {blog.publishedAt
-                        ? new Date(blog.publishedAt).toLocaleDateString()
-                        : "Not published"}
-                      <br />
-                      <small style={{ color: "#6c757d" }}>
-                        {blog.publishedAt
-                          ? new Date(blog.publishedAt).toLocaleTimeString()
-                          : "Draft"}
-                      </small>
-                    </div>
-                  </td>
-                  <td style={{ textAlign: "center" }}>
-                    <div
-                      className="action-buttons"
-                      style={{
-                        display: "flex",
-                        gap: "0.5rem",
-                        justifyContent: "center",
-                      }}
+                        ? new Date(blog.publishedAt).toLocaleTimeString()
+                        : "Draft"}
+                    </small>
+                  </div>
+                </td>
+                <td style={{ textAlign: "center" }}>
+                  <div
+                    className="action-buttons"
+                    style={{
+                      display: "flex",
+                      gap: "0.5rem",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Link
+                      href={`/admin/blogs/edit/${blog._id}`}
+                      passHref
                     >
-                      <Link
-                        href={`/admin/blogs/edit/${blog._id}`}
-                        className="btn btn-sm btn-outline-primary"
-                        title="Edit"
-                      >
-                        <i className="bi bi-pencil"></i>
-                      </Link>
-                      <button
-                        onClick={() => deleteBlog(blog._id)}
-                        className="btn btn-sm btn-outline-danger"
-                        title="Delete"
-                      >
-                        <i className="bi bi-trash"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                      <Button variant="outline" size="sm" title="Edit">
+                        <Icon name="pencil" />
+                      </Button>
+                    </Link>
+                    <Button
+                      onClick={() => deleteBlog(blog._id)}
+                      variant="outline"
+                      color="error"
+                      size="sm"
+                      title="Delete"
+                    >
+                      <Icon name="trash" />
+                    </Button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
 
         {blogs.length === 0 && !loading && (
           <div
             className="no-data"
             style={{ textAlign: "center", padding: "3rem" }}
           >
-            <i
-              className="bi bi-inbox"
-              style={{
-                fontSize: "3rem",
-                color: "#6c757d",
-                marginBottom: "1rem",
-              }}
-            ></i>
-            <p style={{ fontSize: "1.1rem", color: "#6c757d" }}>
+            <Icon
+              name="inbox"
+              size={48}
+              color="dimmed"
+              style={{ marginBottom: "1rem" }}
+            />
+            <Text color="dimmed" weight={500} size="lg">
               No blogs found
-            </p>
-            <Link href="/admin/blogs/add" className="btn btn-primary mt-3">
-              <i className="bi bi-plus-circle"></i> Create Your First Blog
-            </Link>
+            </Text>
+            <Button
+              onClick={handleCreateBlog}
+              loading={createBlogMutation.isPending}
+              className="mt-3"
+            >
+              <Icon name="plus-circle" /> Create Your First Blog
+            </Button>
           </div>
         )}
 
@@ -626,6 +591,20 @@ const BlogsList = () => {
             pageSize={pageSize}
           />
         )}
+
+        {/* Deletion Confirmation Modals */}
+        <ConfirmModal
+          opened={!!deleteId}
+          onClose={() => setDeleteId(null)}
+          onConfirm={confirmDelete}
+          title="Delete Blog"
+          confirmLabel="Delete"
+          color="error"
+          loading={deleteBlogMutation.isPending}
+        >
+          Are you sure you want to delete this blog? This action cannot be
+          undone.
+        </ConfirmModal>
       </Stack>
     </Page>
   );

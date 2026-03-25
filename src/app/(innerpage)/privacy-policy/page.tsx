@@ -3,9 +3,8 @@ import type { Metadata } from "next";
 import BreadCrumb from "@/app/Components/Common/BreadCrumb";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Dazzling Tours",
-  description:
-    "Read our privacy policy to understand how Dazzling Tours collects, uses, and protects your information.",
+  title: "Privacy Policy | Dazzling Tours - Explore the nature",
+  description: "Explore the nature",
   alternates: {
     canonical: "/privacy-policy",
   },

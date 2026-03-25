@@ -35,19 +35,35 @@ const Page: React.FC<PageProps> = ({
     <div className={`admin-page ${className}`}>
       <div className="page-header">
         <div className="header-content">
-          <div className="header-text">
-            <h1 className="page-title d-flex align-items-center gap-2">
+          <div className="header-text" style={{ minHeight: "36px" }}>
+            <h1
+              className="page-title d-flex align-items-center m-0"
+              style={{ position: "relative", display: "inline-flex" }}
+            >
               {title}
               {loading && (
-                <Loading
-                  variant={loadingVariant}
-                  size={loadingSize}
-                  color={loadingColor}
-                  className="ms-2"
-                />
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "100%",
+                    marginLeft: "8px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <Loading
+                    variant={loadingVariant}
+                    size={loadingSize}
+                    color={loadingColor}
+                  />
+                </div>
               )}
             </h1>
-            {description && <p className="page-description">{description}</p>}
+            {description && (
+              <p className="page-description m-0">{description}</p>
+            )}
           </div>
           {headerActions && (
             <div className="header-actions">{headerActions}</div>

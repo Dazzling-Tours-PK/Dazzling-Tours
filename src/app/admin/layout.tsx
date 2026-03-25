@@ -7,6 +7,8 @@ import "./styles/admin-theme.css";
 import "./admin.css";
 import Image from "next/image";
 
+import { Title, Text, Icon, Button } from "@/app/Components/Common";
+
 // Protected route component
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -107,7 +109,9 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             style={{ cursor: "pointer" }}
             onClick={() => router.push("/")}
           />
-          <h3 style={{ color: "white" }}>Dazzling Tours</h3>
+          <Title order={3} style={{ margin: 0, color: "white" }}>
+            Dazzling Tours
+          </Title>
         </div>
         <nav className="sidebar-nav">
           <ul>
@@ -117,7 +121,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   href={item.href}
                   className={`nav-link ${isActive(item.href) ? "active" : ""}`}
                 >
-                  <i className={item.icon} />
+                  <Icon name={item.icon.replace("bi bi-", "") as any} />
                   {item.label}
                 </Link>
               </li>
@@ -149,25 +153,26 @@ const HeaderBar: React.FC = () => {
   return (
     <header className="admin-header" style={{ position: "relative" }}>
       <div>
-        <h1 className="admin-title">Admin Management Panel</h1>
-        {/* <p className="admin-subtitle">Management Portal</p> */}
+        <Title order={1} className="admin-title">
+          Admin Management Panel
+        </Title>
       </div>
 
       <div style={{ marginLeft: "auto", position: "relative" }}>
-        <button
+        <Button
           onClick={() => setOpen((v) => !v)}
-          className="admin-btn admin-btn-secondary"
+          variant="outline"
+          color="secondary"
           style={{ width: "auto", padding: "0.4rem 0.75rem" }}
           aria-haspopup="menu"
           aria-expanded={open}
+          leftIcon={<Icon name="person" />}
+          rightIcon={<Icon name="caret-down-fill" style={{ fontSize: 10 }} />}
         >
-          <i className="bi bi-person" style={{ marginRight: 8 }}></i>
-          <span style={{ fontWeight: 600 }}>{user?.email || "User"}</span>
-          <i
-            className="bi bi-caret-down-fill"
-            style={{ marginLeft: 8, fontSize: 10 }}
-          ></i>
-        </button>
+          <Text weight={600} component="span">
+            {user?.email || "User"}
+          </Text>
+        </Button>
 
         {open && (
           <div
@@ -201,23 +206,32 @@ const HeaderBar: React.FC = () => {
               className="admin-nav-item"
               onClick={() => setOpen(false)}
               role="menuitem"
-              style={{ display: "block" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                padding: "8px 10px",
+                textDecoration: "none",
+                color: "inherit",
+              }}
             >
-              <i className="bi bi-gear" style={{ marginRight: 8 }}></i>
+              <Icon name="gear" style={{ marginRight: 8 }} />
               User Settings
             </Link>
-            <button
+            <Button
               onClick={handleLogout}
-              className="admin-btn admin-btn-link"
+              variant="subtle"
+              color="error"
               role="menuitem"
-              style={{ display: "block", width: "100%", textAlign: "left" }}
+              style={{
+                display: "flex",
+                width: "100%",
+                justifyContent: "flex-start",
+                padding: "8px 10px",
+              }}
+              leftIcon={<Icon name="box-arrow-right" />}
             >
-              <i
-                className="bi bi-box-arrow-right"
-                style={{ marginRight: 8 }}
-              ></i>
               Logout
-            </button>
+            </Button>
           </div>
         )}
       </div>

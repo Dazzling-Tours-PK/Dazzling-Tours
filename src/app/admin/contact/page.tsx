@@ -18,6 +18,9 @@ import {
   ActionIcon,
   Text,
   ConfirmModal,
+  Table,
+  Title,
+  Icon,
 } from "@/app/Components/Common";
 import { ContactStatus, getContactStatuses } from "@/lib/types/enums";
 
@@ -26,9 +29,20 @@ const ContactQueriesList = () => {
   const [filterStatus, setFilterStatus] = useState("all");
   const [selectedQueries, setSelectedQueries] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize] = useState(10);
-  const [deleteId, setDeleteId] = useState<string | null>(null);
-  const [bulkDeleteOpened, setBulkDeleteOpened] = useState(false);
+  const [pageSize, setPageSize] = useState(10);
+  const [confirmModalConfig, setConfirmModalConfig] = useState<{
+    opened: boolean;
+    title: string;
+    message: string;
+    onConfirm: () => void;
+    confirmLabel?: string;
+    loading?: boolean;
+  }>({
+    opened: false,
+    title: "",
+    message: "",
+    onConfirm: () => {},
+  });
 
   const { data: queriesData, isLoading: loading } = useGetContactInquiries({
     page: currentPage,
@@ -60,22 +74,25 @@ const ContactQueriesList = () => {
   }, [queriesData]);
 
   const handleDeleteQuery = (id: string) => {
-    setDeleteId(id);
-  };
-
-  const confirmDelete = () => {
-    if (deleteId) {
-      deleteContactMutation.mutate(deleteId, {
-        onSuccess: () => {
-          showSuccess("Contact query deleted successfully!");
-          setDeleteId(null);
-        },
-        onError: (error) => {
-          showError(error.message || "Failed to delete contact query");
-          setDeleteId(null);
-        },
-      });
-    }
+    setConfirmModalConfig({
+      opened: true,
+      title: "Delete Inquiry",
+      message: "Are you sure you want to delete this contact inquiry? This action cannot be undone.",
+      confirmLabel: "Delete",
+      onConfirm: () => {
+        deleteContactMutation.mutate(id, {
+          onSuccess: () => {
+            showSuccess("Contact query deleted successfully!");
+            setConfirmModalConfig((prev) => ({ ...prev, opened: false }));
+          },
+          onError: (error) => {
+            showError(error.message || "Failed to delete contact query");
+            setConfirmModalConfig((prev) => ({ ...prev, opened: false }));
+          },
+        });
+      },
+      loading: deleteContactMutation.isPending,
+    });
   };
 
   const updateStatus = (id: string, newStatus: string) => {
@@ -126,29 +143,35 @@ const ContactQueriesList = () => {
       showError("Please select queries to delete");
       return;
     }
-    setBulkDeleteOpened(true);
-  };
 
-  const confirmBulkDelete = () => {
-    bulkUpdateContactMutation.mutate(
-      {
-        ids: selectedQueries,
-        action: "delete",
+    setConfirmModalConfig({
+      opened: true,
+      title: "Delete Multiple Inquiries",
+      message: `Are you sure you want to delete ${selectedQueries.length} selected inquiries? This action cannot be undone.`,
+      confirmLabel: `Delete ${selectedQueries.length} Items`,
+      onConfirm: () => {
+        bulkUpdateContactMutation.mutate(
+          {
+            ids: selectedQueries,
+            action: "delete",
+          },
+          {
+            onSuccess: () => {
+              showSuccess(
+                `${selectedQueries.length} contact query/queries deleted successfully!`,
+              );
+              setSelectedQueries([]);
+              setConfirmModalConfig((prev) => ({ ...prev, opened: false }));
+            },
+            onError: (error) => {
+              showError(error.message || "Failed to delete contact queries");
+              setConfirmModalConfig((prev) => ({ ...prev, opened: false }));
+            },
+          },
+        );
       },
-      {
-        onSuccess: () => {
-          showSuccess(
-            `${selectedQueries.length} contact query/queries deleted successfully!`,
-          );
-          setSelectedQueries([]);
-          setBulkDeleteOpened(false);
-        },
-        onError: (error) => {
-          showError(error.message || "Failed to delete contact queries");
-          setBulkDeleteOpened(false);
-        },
-      },
-    );
+      loading: bulkUpdateContactMutation.isPending,
+    });
   };
 
   const toggleQuerySelection = (id: string) => {
@@ -192,50 +215,67 @@ const ContactQueriesList = () => {
         <div className="stats-grid" style={{ marginBottom: "1.5rem" }}>
           <div className="stat-card">
             <div className="stat-icon" style={{ background: "#e3f2fd" }}>
-              <i className="bi bi-envelope" style={{ color: "#1976d2" }}></i>
+              <Icon name="envelope" color="#1976d2" />
             </div>
             <div className="stat-content">
-              <h4>Total Queries</h4>
-              <p>{stats.total}</p>
+              <Title order={4} size="h5">
+                Total Queries
+              </Title>
+              <Text weight={700} size="lg">
+                {stats.total}
+              </Text>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon" style={{ background: "#e1f5fe" }}>
-              <i className="bi bi-circle-fill" style={{ color: "#0288d1" }}></i>
+              <Icon name="circle-fill" color="#0288d1" />
             </div>
             <div className="stat-content">
-              <h4>New</h4>
-              <p>{stats.new}</p>
+              <Title order={4} size="h5">
+                New
+              </Title>
+              <Text weight={700} size="lg">
+                {stats.new}
+              </Text>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon" style={{ background: "#fff3e0" }}>
-              <i className="bi bi-eye" style={{ color: "#f57c00" }}></i>
+              <Icon name="eye" color="#f57c00" />
             </div>
             <div className="stat-content">
-              <h4>Read</h4>
-              <p>{stats.read}</p>
+              <Title order={4} size="h5">
+                Read
+              </Title>
+              <Text weight={700} size="lg">
+                {stats.read}
+              </Text>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon" style={{ background: "#e8f5e9" }}>
-              <i className="bi bi-reply" style={{ color: "#388e3c" }}></i>
+              <Icon name="reply" color="#388e3c" />
             </div>
             <div className="stat-content">
-              <h4>Replied</h4>
-              <p>{stats.replied}</p>
+              <Title order={4} size="h5">
+                Replied
+              </Title>
+              <Text weight={700} size="lg">
+                {stats.replied}
+              </Text>
             </div>
           </div>
           <div className="stat-card">
             <div className="stat-icon" style={{ background: "#f3e5f5" }}>
-              <i
-                className="bi bi-check-circle"
-                style={{ color: "#7b1fa2" }}
-              ></i>
+              <Icon name="check-circle" color="#7b1fa2" />
             </div>
             <div className="stat-content">
-              <h4>Closed</h4>
-              <p>{stats.closed}</p>
+              <Title order={4} size="h5">
+                Closed
+              </Title>
+              <Text weight={700} size="lg">
+                {stats.closed}
+              </Text>
             </div>
           </div>
         </div>
@@ -257,9 +297,11 @@ const ContactQueriesList = () => {
               gap: "1rem",
             }}
           >
-            <div className="bulk-info" style={{ fontWeight: 600 }}>
-              <i className="bi bi-check-circle me-2"></i>
-              {selectedQueries.length} query/queries selected
+            <div className="bulk-info">
+              <Icon name="check-circle" className="me-2" />
+              <Text weight={600} component="span">
+                {selectedQueries.length} query/queries selected
+              </Text>
             </div>
             <div
               className="bulk-buttons"
@@ -270,24 +312,24 @@ const ContactQueriesList = () => {
                 color="primary"
                 onClick={() => bulkUpdateStatus(ContactStatus.READ)}
               >
-                <i className="bi bi-eye"></i> Mark as Read
+                <Icon name="eye" /> Mark as Read
               </Button>
               <Button
                 size="sm"
                 color="success"
                 onClick={() => bulkUpdateStatus(ContactStatus.REPLIED)}
               >
-                <i className="bi bi-reply"></i> Mark as Replied
+                <Icon name="reply" /> Mark as Replied
               </Button>
               <Button
                 size="sm"
                 color="warning"
                 onClick={() => bulkUpdateStatus(ContactStatus.CLOSED)}
               >
-                <i className="bi bi-check-circle"></i> Mark as Closed
+                <Icon name="check-circle" /> Mark as Closed
               </Button>
               <Button size="sm" color="error" onClick={bulkDelete}>
-                <i className="bi bi-trash"></i> Delete Selected
+                <Icon name="trash" /> Delete Selected
               </Button>
               <Button
                 size="sm"
@@ -295,7 +337,7 @@ const ContactQueriesList = () => {
                 variant="outline"
                 onClick={() => setSelectedQueries([])}
               >
-                <i className="bi bi-x-circle"></i> Clear Selection
+                <Icon name="x-circle" /> Clear Selection
               </Button>
             </div>
           </div>
@@ -307,7 +349,7 @@ const ContactQueriesList = () => {
             placeholder="Search queries by name, email, or subject..."
             value={searchTerm}
             onChange={handleSearchChange}
-            leftIcon={<i className="bi bi-search"></i>}
+            leftIcon={<Icon name="search" />}
             style={{ flex: 1, minWidth: "400px" }}
           />
 
@@ -322,9 +364,7 @@ const ContactQueriesList = () => {
           />
         </Group>
 
-        {/* Queries Table */}
-        <div className="blogs-table">
-          <table>
+        <Table verticalSpacing="sm" horizontalSpacing="md">
             <thead>
               <tr>
                 <th style={{ width: "50px" }}>
@@ -366,7 +406,8 @@ const ContactQueriesList = () => {
 
                       {query.phone && (
                         <Text size="xs" color="dimmed" component="div">
-                          <i className="bi bi-telephone me-1"></i> {query.phone}
+                          <Icon name="telephone" className="me-1" />{" "}
+                          {query.phone}
                         </Text>
                       )}
                     </Stack>
@@ -426,7 +467,7 @@ const ContactQueriesList = () => {
                           color="primary"
                           title="View Details"
                         >
-                          <i className="bi bi-eye"></i>
+                          <Icon name="eye" />
                         </ActionIcon>
                       </Link>
                       <ActionIcon
@@ -435,36 +476,33 @@ const ContactQueriesList = () => {
                         title="Delete Query"
                         loading={
                           deleteContactMutation.isPending &&
-                          deleteId === query._id
+                          confirmModalConfig.opened
                         }
                         onClick={() => handleDeleteQuery(query._id)}
                       >
-                        <i className="bi bi-trash"></i>
+                        <Icon name="trash" />
                       </ActionIcon>
                     </Group>
                   </td>
                 </tr>
               ))}
             </tbody>
-          </table>
-        </div>
+          </Table>
 
         {queries.length === 0 && !loading && (
           <div
             className="no-data"
             style={{ textAlign: "center", padding: "3rem" }}
           >
-            <i
-              className="bi bi-inbox"
-              style={{
-                fontSize: "3rem",
-                color: "#6c757d",
-                marginBottom: "1rem",
-              }}
-            ></i>
-            <p style={{ fontSize: "1.1rem", color: "#6c757d" }}>
+            <Icon
+              name="inbox"
+              size={48}
+              color="dimmed"
+              style={{ marginBottom: "1rem" }}
+            />
+            <Text color="dimmed" weight={500} size="lg">
               No contact queries found
-            </p>
+            </Text>
           </div>
         )}
 
@@ -477,32 +515,22 @@ const ContactQueriesList = () => {
             pageSize={pageSize}
           />
         )}
-        {/* Deletion Confirmation Modals */}
+        {/* Deletion Confirmation Modal */}
         <ConfirmModal
-          opened={!!deleteId}
-          onClose={() => setDeleteId(null)}
-          onConfirm={confirmDelete}
-          title="Delete Inquiry"
-          confirmLabel="Delete"
+          opened={confirmModalConfig.opened}
+          onClose={() =>
+            setConfirmModalConfig((prev) => ({ ...prev, opened: false }))
+          }
+          onConfirm={confirmModalConfig.onConfirm}
+          title={confirmModalConfig.title}
+          confirmLabel={confirmModalConfig.confirmLabel}
           color="error"
-          loading={deleteContactMutation.isPending}
+          loading={confirmModalConfig.loading}
         >
-          Are you sure you want to delete this contact inquiry? This action
-          cannot be undone.
+          {confirmModalConfig.message}
         </ConfirmModal>
 
-        <ConfirmModal
-          opened={bulkDeleteOpened}
-          onClose={() => setBulkDeleteOpened(false)}
-          onConfirm={confirmBulkDelete}
-          title="Delete Multiple Inquiries"
-          confirmLabel={`Delete ${selectedQueries.length} Items`}
-          color="error"
-          loading={bulkUpdateContactMutation.isPending}
-        >
-          Are you sure you want to delete {selectedQueries.length} selected
-          inquiries? This action cannot be undone.
-        </ConfirmModal>
+
       </Stack>
     </Page>
   );

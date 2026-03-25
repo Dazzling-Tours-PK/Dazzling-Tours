@@ -18,12 +18,12 @@ const Loading: React.FC<LoadingProps> = ({
   fullScreen = false,
   className = "",
 }) => {
-  const sizeClasses = {
-    xs: "w-4 h-4",
-    sm: "w-6 h-6",
-    md: "w-8 h-8",
-    lg: "w-12 h-12",
-    xl: "w-16 h-16",
+  const sizeValues = {
+    xs: 16,
+    sm: 20,
+    md: 24,
+    lg: 32,
+    xl: 48,
   };
 
   const colorClasses = {
@@ -45,16 +45,24 @@ const Loading: React.FC<LoadingProps> = ({
 
   const renderSpinner = () => (
     <div
-      className={`spinner-border ${colorClasses[color]} ${sizeClasses[size]}`}
+      className={`spinner-border ${colorClasses[color]}`}
       role="status"
       aria-hidden="true"
+      style={{
+        width: sizeValues[size],
+        height: sizeValues[size],
+        borderWidth: size === "xs" || size === "sm" ? "1.5px" : "2.5px",
+      }}
     >
       <span className="visually-hidden">Loading...</span>
     </div>
   );
 
   const renderDots = () => (
-    <div className={`loading-dots ${sizeClasses[size]}`}>
+    <div
+      className={`loading-dots`}
+      style={{ width: sizeValues[size], height: sizeValues[size] }}
+    >
       <div className={`dot ${colorClasses[color]}`}></div>
       <div className={`dot ${colorClasses[color]}`}></div>
       <div className={`dot ${colorClasses[color]}`}></div>
@@ -62,13 +70,19 @@ const Loading: React.FC<LoadingProps> = ({
   );
 
   const renderSkeleton = () => (
-    <div className={`skeleton ${sizeClasses[size]} ${colorClasses[color]}`}>
+    <div
+      className={`skeleton ${colorClasses[color]}`}
+      style={{ width: sizeValues[size], height: sizeValues[size] }}
+    >
       <div className="skeleton-content"></div>
     </div>
   );
 
   const renderPulse = () => (
-    <div className={`pulse ${sizeClasses[size]} ${colorClasses[color]}`}>
+    <div
+      className={`pulse ${colorClasses[color]}`}
+      style={{ width: sizeValues[size], height: sizeValues[size] }}
+    >
       <div className="pulse-content"></div>
     </div>
   );
@@ -99,8 +113,21 @@ const Loading: React.FC<LoadingProps> = ({
     .join(" ");
 
   return (
-    <div className={containerClasses}>
-      {renderLoading()}
+    <div
+      className={containerClasses}
+      style={{
+        display: !text ? "inline-flex" : "flex",
+        verticalAlign: "middle",
+        height: text ? "auto" : "1em",
+        lineHeight: 1,
+      }}
+    >
+      <div
+        className="d-flex align-items-center justify-content-center"
+        style={{ height: "100%", width: "100%" }}
+      >
+        {renderLoading()}
+      </div>
       {text && (
         <div
           className={`loading-text ${textSizeClasses[size]} ${colorClasses[color]} mt-2`}

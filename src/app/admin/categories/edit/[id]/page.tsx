@@ -9,7 +9,7 @@ import {
   useForm,
 } from "@/lib/hooks";
 import { TextInput, Textarea } from "@/app/Components/Form";
-import { Button, Page } from "@/app/Components/Common";
+import { Button, Page, Title, Text, Icon } from "@/app/Components/Common";
 import { generateSlug } from "@/lib/utils/dataCleaning";
 import { UNCATEGORIZED_CATEGORY_NAME } from "@/lib/constants/categories";
 import { getErrorMessage } from "@/lib/utils/errorHandling";
@@ -123,19 +123,19 @@ const EditCategory = ({ params }: { params: Promise<{ id: string }> }) => {
             margin: "0 auto",
           }}
         >
-          <i
-            className="bi bi-shield-lock"
+          <Icon
+            name="shield-lock"
             style={{ fontSize: "3rem", color: "#f57c00", marginBottom: "1rem" }}
-          ></i>
-          <h3 style={{ marginBottom: "0.5rem" }}>
+          />
+          <Title order={3} style={{ marginBottom: "0.5rem" }}>
             Cannot Edit System Category
-          </h3>
-          <p style={{ color: "#6c757d", marginBottom: "1.5rem" }}>
+          </Title>
+          <Text color="dimmed" style={{ marginBottom: "1.5rem" }}>
             The &ldquo;{UNCATEGORIZED_CATEGORY_NAME}&rdquo; category is a system
             category and cannot be edited or deleted.
-          </p>
-          <Button onClick={() => router.push("/admin/categories")}>
-            <i className="bi bi-arrow-left"></i> Back to Categories
+          </Text>
+          <Button onClick={() => router.push("/admin/categories")} leftIcon={<Icon name="arrow-left" />}>
+            Back to Categories
           </Button>
         </div>
       </Page>
@@ -147,8 +147,8 @@ const EditCategory = ({ params }: { params: Promise<{ id: string }> }) => {
       title="Edit Category"
       description="Update category details"
       headerActions={
-        <Button variant="outline" onClick={() => router.back()}>
-          <i className="bi bi-arrow-left"></i> Back
+        <Button variant="outline" onClick={() => router.back()} leftIcon={<Icon name="arrow-left" />}>
+          Back
         </Button>
       }
     >
@@ -156,13 +156,13 @@ const EditCategory = ({ params }: { params: Promise<{ id: string }> }) => {
         <form onSubmit={handleSubmit} className="tour-form">
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-folder"></i> Category Information
-              </h3>
-              <p className="section-description">
+              <Title order={3}>
+                <Icon name="folder" /> Category Information
+              </Title>
+              <Text className="section-description" color="dimmed">
                 Update the basic details for this category. Categories help
                 organize tours and blogs.
-              </p>
+              </Text>
             </div>
             <div className="form-grid">
               <div className="form-group">
@@ -213,7 +213,7 @@ const EditCategory = ({ params }: { params: Promise<{ id: string }> }) => {
             <div className="actions-container">
               <Button
                 color="secondary"
-                leftIcon={<i className="bi bi-arrow-left"></i>}
+                leftIcon={<Icon name="arrow-left" />}
                 onClick={() => router.back()}
                 type="button"
               >
@@ -224,7 +224,7 @@ const EditCategory = ({ params }: { params: Promise<{ id: string }> }) => {
                 loading={updateCategoryMutation.isPending}
                 leftIcon={
                   !updateCategoryMutation.isPending ? (
-                    <i className="bi bi-check-lg"></i>
+                    <Icon name="check-lg" />
                   ) : undefined
                 }
                 disabled={

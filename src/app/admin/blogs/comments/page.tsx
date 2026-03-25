@@ -6,11 +6,37 @@ import {
   useDeleteComment,
   useBulkUpdateComments,
 } from "@/lib/hooks";
+import {
+  Page,
+  Stack,
+  Group,
+  Table,
+  Button,
+  Badge,
+  ConfirmModal,
+  Title,
+  Text,
+  Icon,
+} from "@/app/Components/Common";
+import { TextInput, Select } from "@/app/Components/Form";
 
 const CommentsList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [selectedComments, setSelectedComments] = useState<string[]>([]);
+  const [confirmModalConfig, setConfirmModalConfig] = useState<{
+    opened: boolean;
+    title: string;
+    message: string;
+    onConfirm: () => void;
+    confirmLabel?: string;
+    loading?: boolean;
+  }>({
+    opened: false,
+    title: "",
+    message: "",
+    onConfirm: () => {},
+  });
 
   const { data: commentsData, isLoading: loading } = useGetComments();
   const updateCommentMutation = useUpdateComment();
@@ -27,13 +53,21 @@ const CommentsList = () => {
   };
 
   const deleteComment = (id: string) => {
-    if (
-      confirm(
-        "Are you sure you want to delete this comment and all its replies?",
-      )
-    ) {
-      deleteCommentMutation.mutate(id);
-    }
+    setConfirmModalConfig({
+      opened: true,
+      title: "Delete Comment",
+      message: "Are you sure you want to delete this comment and all its replies? This action cannot be undone.",
+      confirmLabel: "Delete",
+      onConfirm: () => {
+        deleteCommentMutation.mutate(id, {
+          onSuccess: () => {
+            setConfirmModalConfig((prev) => ({ ...prev, opened: false }));
+          },
+          onError: () => setConfirmModalConfig((prev) => ({ ...prev, opened: false }))
+        });
+      },
+      loading: deleteCommentMutation.isPending,
+    });
   };
 
   const bulkUpdateStatus = (status: string) => {
@@ -62,23 +96,28 @@ const CommentsList = () => {
       return;
     }
 
-    if (
-      confirm(
-        `Are you sure you want to delete ${selectedComments.length} comments?`,
-      )
-    ) {
-      bulkUpdateCommentsMutation.mutate(
-        {
-          ids: selectedComments,
-          action: "delete",
-        },
-        {
-          onSuccess: () => {
-            setSelectedComments([]);
+    setConfirmModalConfig({
+      opened: true,
+      title: "Delete Multiple Comments",
+      message: `Are you sure you want to delete ${selectedComments.length} selected comments and their replies? This action cannot be undone.`,
+      confirmLabel: `Delete ${selectedComments.length} Items`,
+      onConfirm: () => {
+        bulkUpdateCommentsMutation.mutate(
+          {
+            ids: selectedComments,
+            action: "delete",
           },
-        },
-      );
-    }
+          {
+            onSuccess: () => {
+              setSelectedComments([]);
+              setConfirmModalConfig((prev) => ({ ...prev, opened: false }));
+            },
+            onError: () => setConfirmModalConfig((prev) => ({ ...prev, opened: false }))
+          },
+        );
+      },
+      loading: bulkUpdateCommentsMutation.isPending,
+    });
   };
 
   const toggleCommentSelection = (id: string) => {
@@ -122,64 +161,120 @@ const CommentsList = () => {
     }
   };
 
-  if (loading) {
-    return <div className="loading">Loading comments...</div>;
-  }
-
   return (
-    <div className="comments-list">
-      <div className="page-header">
-        <h1>Comments Management</h1>
-        <div className="header-actions">
-          <button
+    <Page
+      title="Comments Management"
+      description="Moderate and manage blog comments across your site"
+      loading={loading}
+      headerActions={
+        <Group>
+          <Button
             onClick={() => bulkUpdateStatus("Approved")}
-            className="btn btn-success"
+            color="success"
             disabled={selectedComments.length === 0}
+            size="sm"
           >
-            <i className="bi bi-check-circle"></i> Approve Selected
-          </button>
-          <button
+            <Icon name="check-circle" /> Approve Selected
+          </Button>
+          <Button
             onClick={() => bulkUpdateStatus("Rejected")}
-            className="btn btn-warning"
+            color="warning"
             disabled={selectedComments.length === 0}
+            size="sm"
           >
-            <i className="bi bi-x-circle"></i> Reject Selected
-          </button>
-          <button
+            <Icon name="x-circle" /> Reject Selected
+          </Button>
+          <Button
             onClick={bulkDelete}
-            className="btn btn-danger"
+            color="error"
             disabled={selectedComments.length === 0}
+            size="sm"
           >
-            <i className="bi bi-trash"></i> Delete Selected
-          </button>
+            <Icon name="trash" /> Delete Selected
+          </Button>
+        </Group>
+      }
+    >
+      <Stack>
+        {/* Statistics Cards */}
+        <div className="stats-grid" style={{ marginBottom: "1.5rem" }}>
+          <div className="stat-card">
+            <div className="stat-icon" style={{ background: "#e3f2fd" }}>
+              <Icon name="chat-left-text" color="#1976d2" />
+            </div>
+            <div className="stat-content">
+              <Title order={4} size="h5">
+                Total Comments
+              </Title>
+              <Text weight={700} size="lg">
+                {comments.length}
+              </Text>
+            </div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon" style={{ background: "#fff3e0" }}>
+              <Icon name="clock" color="#f57c00" />
+            </div>
+            <div className="stat-content">
+              <Title order={4} size="h5">
+                Pending
+              </Title>
+              <Text weight={700} size="lg">
+                {comments.filter((c) => c.status === "Pending").length}
+              </Text>
+            </div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon" style={{ background: "#e8f5e9" }}>
+              <Icon name="check-circle" color="#388e3c" />
+            </div>
+            <div className="stat-content">
+              <Title order={4} size="h5">
+                Approved
+              </Title>
+              <Text weight={700} size="lg">
+                {comments.filter((c) => c.status === "Approved").length}
+              </Text>
+            </div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon" style={{ background: "#ffebee" }}>
+              <Icon name="x-circle" color="#d32f2f" />
+            </div>
+            <div className="stat-content">
+              <Title order={4} size="h5">
+                Rejected
+              </Title>
+              <Text weight={700} size="lg">
+                {comments.filter((c) => c.status === "Rejected").length}
+              </Text>
+            </div>
+          </div>
         </div>
-      </div>
 
-      {/* Filters */}
-      <div className="filters">
-        <div className="search-box">
-          <input
-            type="text"
+        {/* Filters */}
+        <Group>
+          <TextInput
             placeholder="Search comments..."
             value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onChange={(val) => setSearchTerm(val)}
+            leftIcon={<Icon name="search" />}
+            style={{ flex: 1 }}
           />
-          <i className="bi bi-search"></i>
-        </div>
-        <select
-          value={filterStatus}
-          onChange={(e) => setFilterStatus(e.target.value)}
-        >
-          <option value="all">All Status</option>
-          <option value="Pending">Pending</option>
-          <option value="Approved">Approved</option>
-          <option value="Rejected">Rejected</option>
-        </select>
-      </div>
+          <Select
+            value={filterStatus}
+            onChange={(val) => setFilterStatus(val)}
+            data={[
+              { value: "all", label: "All Status" },
+              { value: "Pending", label: "Pending" },
+              { value: "Approved", label: "Approved" },
+              { value: "Rejected", label: "Rejected" },
+            ]}
+            style={{ minWidth: "200px" }}
+          />
+        </Group>
 
-      {/* Comments Table */}
-      <div className="comments-table">
-        <table>
+        <Table verticalSpacing="sm" horizontalSpacing="md">
           <thead>
             <tr>
               <th>
@@ -212,45 +307,55 @@ const CommentsList = () => {
                 </td>
                 <td>
                   <div className="comment-content">
-                    <p className="comment-text">{comment.content}</p>
+                    <Text className="comment-text">{comment.content}</Text>
                     {comment.parentId && (
                       <div className="reply-indicator">
-                        <i className="bi bi-reply"></i> Reply to:{" "}
-                        {comment.parentId}
+                        <Icon name="reply" /> Reply to: {comment.parentId}
                       </div>
                     )}
                   </div>
                 </td>
                 <td>
                   <div className="blog-info">
-                    <strong>{comment.blogId}</strong>
+                    <Text weight={700} size="sm">
+                      {comment.blogId}
+                    </Text>
                   </div>
                 </td>
                 <td>
                   <div className="author-info">
-                    <strong>{comment.name}</strong>
-                    <br />
-                    <small>{comment.email}</small>
+                    <Text weight={700} size="sm">
+                      {comment.name}
+                    </Text>
+                    <Text size="xs" color="dimmed">
+                      {comment.email}
+                    </Text>
                     {comment.website && (
-                      <>
-                        <br />
-                        <small>
-                          <a
-                            href={comment.website}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {comment.website}
-                          </a>
-                        </small>
-                      </>
+                      <Text size="xs" color="dimmed">
+                        <a
+                          href={comment.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {comment.website}
+                        </a>
+                      </Text>
                     )}
                   </div>
                 </td>
                 <td>
-                  <span className={getStatusBadgeClass(comment.status)}>
+                  <Badge
+                    variant="filled"
+                    color={
+                      comment.status === "Approved"
+                        ? "success"
+                        : comment.status === "Pending"
+                          ? "warning"
+                          : "error"
+                    }
+                  >
                     {comment.status}
-                  </span>
+                  </Badge>
                 </td>
                 <td>
                   <div className="date-info">
@@ -262,83 +367,90 @@ const CommentsList = () => {
                   </div>
                 </td>
                 <td>
-                  <div className="action-buttons">
+                  <Group spacing={8} style={{ justifyContent: "flex-end" }}>
                     {comment.status !== "Approved" && (
-                      <button
+                      <Button
                         onClick={() =>
                           updateCommentStatus(comment._id, "Approved")
                         }
-                        className="btn btn-sm btn-outline-success"
+                        variant="outline"
+                        color="success"
+                        size="xs"
                         title="Approve"
                       >
-                        <i className="bi bi-check"></i>
-                      </button>
+                        <Icon name="check-lg" />
+                      </Button>
                     )}
                     {comment.status !== "Rejected" && (
-                      <button
+                      <Button
                         onClick={() =>
                           updateCommentStatus(comment._id, "Rejected")
                         }
-                        className="btn btn-sm btn-outline-warning"
+                        variant="outline"
+                        color="warning"
+                        size="xs"
                         title="Reject"
                       >
-                        <i className="bi bi-x"></i>
-                      </button>
+                        <Icon name="x-lg" />
+                      </Button>
                     )}
                     {comment.status !== "Pending" && (
-                      <button
+                      <Button
                         onClick={() =>
                           updateCommentStatus(comment._id, "Pending")
                         }
-                        className="btn btn-sm btn-outline-info"
+                        variant="outline"
+                        color="secondary"
+                        size="xs"
                         title="Set Pending"
                       >
-                        <i className="bi bi-clock"></i>
-                      </button>
+                        <Icon name="clock" />
+                      </Button>
                     )}
-                    <button
-                      onClick={() => deleteComment(comment._id)}
-                      className="btn btn-sm btn-outline-danger"
-                      title="Delete"
-                    >
-                      <i className="bi bi-trash"></i>
-                    </button>
-                  </div>
+                      <Button
+                        onClick={() => deleteComment(comment._id)}
+                        variant="outline"
+                        color="error"
+                        size="xs"
+                        title="Delete"
+                      >
+                        <Icon name="trash" />
+                      </Button>
+                  </Group>
                 </td>
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
+        </Table>
 
-      {filteredComments.length === 0 && (
-        <div className="no-data">
-          <p>No comments found</p>
-        </div>
-      )}
+        {filteredComments.length === 0 && (
+          <div
+            className="no-data"
+            style={{ textAlign: "center", padding: "3rem" }}
+          >
+            <Icon
+              name="chat-left-text"
+              size={48}
+              color="dimmed"
+              style={{ marginBottom: "1rem" }}
+            />
+            <Text>No comments found</Text>
+          </div>
+        )}
+      </Stack>
 
-      {/* Statistics */}
-      <div className="comments-stats">
-        <div className="stats-grid">
-          <div className="stat-card">
-            <h4>Total Comments</h4>
-            <p>{comments.length}</p>
-          </div>
-          <div className="stat-card">
-            <h4>Pending</h4>
-            <p>{comments.filter((c) => c.status === "Pending").length}</p>
-          </div>
-          <div className="stat-card">
-            <h4>Approved</h4>
-            <p>{comments.filter((c) => c.status === "Approved").length}</p>
-          </div>
-          <div className="stat-card">
-            <h4>Rejected</h4>
-            <p>{comments.filter((c) => c.status === "Rejected").length}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+      <ConfirmModal
+        opened={confirmModalConfig.opened}
+        onClose={() => setConfirmModalConfig((prev) => ({ ...prev, opened: false }))}
+        onConfirm={confirmModalConfig.onConfirm}
+        title={confirmModalConfig.title}
+        confirmLabel={confirmModalConfig.confirmLabel}
+        color="error"
+        loading={confirmModalConfig.loading}
+      >
+        {confirmModalConfig.message}
+      </ConfirmModal>
+    </Page>
   );
 };
 

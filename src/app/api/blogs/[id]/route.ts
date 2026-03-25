@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import { Blog } from "@/models";
-import { deleteImage } from "@/lib/services/cloudinaryService";
-import { extractPublicId } from "@/lib/utils/imageUtils";
+import { imageService } from "@/lib/services/imageService";
 import { BlogStatus } from "@/lib/enums/blog";
 
 // GET /api/blogs/[id] - Get a single blog
@@ -82,21 +81,42 @@ export async function PATCH(
       };
     }
 
-    // Handle image deletion if featuredImage was changed
+    // Handle image deletions if images were changed
     const existingBlog = await Blog.findById(resolvedParams.id);
-    if (
-      existingBlog &&
-      body.featuredImage !== undefined &&
-      existingBlog.featuredImage !== body.featuredImage
-    ) {
-      const publicId = extractPublicId(existingBlog.featuredImage || "");
-      if (publicId) {
-        await deleteImage(publicId).catch((err) =>
+    if (existingBlog) {
+      // 1. Featured Image changed
+      if (
+        body.featuredImage !== undefined &&
+        existingBlog.featuredImage &&
+        existingBlog.featuredImage !== body.featuredImage
+      ) {
+        await imageService.delete(existingBlog.featuredImage).catch((err) =>
           console.error(
-            "Failed to delete old featured image from Cloudinary:",
+            "Failed to delete old featured image:",
             err,
           ),
         );
+      }
+
+      // 2. SEO OG Image changed
+      if (
+        seo?.ogImage !== undefined &&
+        existingBlog.seo?.ogImage &&
+        existingBlog.seo.ogImage !== seo.ogImage
+      ) {
+        // Only delete if it's not the same as the featured image (being deleted above)
+        // or if both are different from their new versions
+        const isSameAsFeatured =
+          existingBlog.seo.ogImage === existingBlog.featuredImage;
+
+        if (!isSameAsFeatured) {
+          await imageService.delete(existingBlog.seo.ogImage).catch((err) =>
+            console.error(
+              "Failed to delete old SEO OG image:",
+              err,
+            ),
+          );
+        }
       }
     }
 
@@ -183,27 +203,21 @@ export async function DELETE(
       );
     }
 
-    // Delete featured image from Cloudinary
+    // Delete featured image
     if (blog.featuredImage) {
-      const publicId = extractPublicId(blog.featuredImage);
-      if (publicId) {
-        await deleteImage(publicId).catch((err) =>
-          console.error(
-            "Failed to delete blog featured image from Cloudinary:",
-            err,
-          ),
-        );
-      }
+      await imageService.delete(blog.featuredImage).catch((err) =>
+        console.error(
+          "Failed to delete blog featured image:",
+          err,
+        ),
+      );
     }
 
     // Delete OG image if it's different
     if (blog.seo?.ogImage && blog.seo.ogImage !== blog.featuredImage) {
-      const publicId = extractPublicId(blog.seo.ogImage);
-      if (publicId) {
-        await deleteImage(publicId).catch((err) =>
-          console.error("Failed to delete blog OG image from Cloudinary:", err),
-        );
-      }
+      await imageService.delete(blog.seo.ogImage).catch((err) =>
+        console.error("Failed to delete blog OG image:", err),
+      );
     }
 
     await Blog.findByIdAndDelete(resolvedParams.id);

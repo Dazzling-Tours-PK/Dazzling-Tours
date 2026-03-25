@@ -17,7 +17,7 @@ import {
   ImageUpload,
   SEOFields,
 } from "@/app/Components/Form";
-import { Button, Page, Title, Text } from "@/app/Components/Common";
+import { Button, Page, Title, Text, Icon } from "@/app/Components/Common";
 import { updateTourSchema } from "@/lib/validation/tour";
 import {
   filterValidImageUrls,
@@ -178,8 +178,6 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (form.isDirty) {
         e.preventDefault();
-        e.returnValue = "";
-        return "";
       }
     };
 
@@ -224,7 +222,7 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
       headerActions={
         <Button
           color="secondary"
-          leftIcon={<i className="bi bi-arrow-left"></i>}
+          leftIcon={<Icon name="arrow-left" />}
           onClick={() => router.back()}
         >
           Back
@@ -250,10 +248,10 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
                   gap: "0.75rem",
                 }}
               >
-                <i
-                  className="bi bi-images"
+                <Icon
+                  name="images"
                   style={{ color: "#fd7d02", fontSize: "1.2rem" }}
-                ></i>{" "}
+                />{" "}
                 Tour Images
               </Title>
               <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
@@ -286,10 +284,10 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
                   gap: "0.75rem",
                 }}
               >
-                <i
-                  className="bi bi-calendar-check"
+                <Icon
+                  name="calendar-check"
                   style={{ color: "#fd7d02", fontSize: "1.2rem" }}
-                ></i>{" "}
+                />{" "}
                 Itinerary
               </Title>
               <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
@@ -326,10 +324,10 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
                   gap: "0.75rem",
                 }}
               >
-                <i
-                  className="bi bi-gear"
+                <Icon
+                  name="gear"
                   style={{ color: "#fd7d02", fontSize: "1.2rem" }}
-                ></i>{" "}
+                />{" "}
                 Additional Options
               </Title>
               <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
@@ -357,10 +355,10 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
                   gap: "0.75rem",
                 }}
               >
-                <i
-                  className="bi bi-search"
+                <Icon
+                  name="search"
                   style={{ color: "#fd7d02", fontSize: "1.2rem" }}
-                ></i>{" "}
+                />{" "}
                 SEO Settings
               </Title>
               <Text size="md" color="dimmed" style={{ marginTop: "0.5rem" }}>
@@ -402,7 +400,7 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
             <div className="actions-container">
               <Button
                 color="secondary"
-                leftIcon={<i className="bi bi-arrow-left"></i>}
+                leftIcon={<Icon name="arrow-left" />}
                 onClick={() => router.back()}
               >
                 Cancel
@@ -412,7 +410,7 @@ const ManageTour = ({ params }: { params: Promise<{ id: string }> }) => {
                 loading={updateTourMutation.isPending}
                 leftIcon={
                   !updateTourMutation.isPending ? (
-                    <i className="bi bi-check-lg"></i>
+                    <Icon name="check-lg" />
                   ) : undefined
                 }
                 disabled={updateTourMutation.isPending}

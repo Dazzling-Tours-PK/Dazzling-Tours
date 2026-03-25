@@ -166,24 +166,4 @@ export const useDeleteBlog = () => {
   });
 };
 
-export const useBulkUpdateBlogs = () => {
-  const queryClient = useQueryClient();
 
-  return useMutation<
-    { success: boolean },
-    Error,
-    { ids: string[]; action: string; data?: Record<string, unknown> }
-  >({
-    mutationFn: async ({ ids, action, data }) => {
-      const response = await api.put<{ success: boolean }>("/api/blogs", {
-        ids,
-        action,
-        ...data,
-      });
-      return response.data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: blogKeys.lists() });
-    },
-  });
-};

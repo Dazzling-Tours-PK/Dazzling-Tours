@@ -7,8 +7,11 @@ import {
   useUpdateBlog,
   useNotification,
   useForm,
+  useAuth,
   useGetCategories,
+  useDebounceValue,
 } from "@/lib/hooks";
+import { BlogStatus } from "@/lib/enums/blog";
 import {
   TextInput,
   Textarea,
@@ -18,7 +21,7 @@ import {
   ImageUpload,
   SEOFields,
 } from "@/app/Components/Form";
-import { Button, Page } from "@/app/Components/Common";
+import { Button, Page, Title, Text, Icon } from "@/app/Components/Common";
 
 const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
   const router = useRouter();
@@ -26,6 +29,7 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
   const { data, isLoading } = useGetBlog(resolvedParams.id);
   const updateBlogMutation = useUpdateBlog();
   const { showSuccess, showError } = useNotification();
+  const { user } = useAuth();
 
   const blog = data?.data;
   const initializedRef = useRef(false);
@@ -40,7 +44,7 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
       category: "",
       tags: [],
       featuredImage: "",
-      status: "Draft",
+      status: BlogStatus.DRAFT,
       featured: false,
       seo: {
         metaTitle: "",
@@ -71,28 +75,80 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
   useEffect(() => {
     if (blog && !initializedRef.current) {
       initializedRef.current = true;
-      form.setValues({
-        _id: resolvedParams.id,
-        title: blog.title || "",
-        content: blog.content || "",
-        excerpt: blog.excerpt || "",
-        author: blog.author || "",
-        category: blog.category || "",
-        tags: blog.tags || [],
-        featuredImage: blog.featuredImage || "",
-        status: blog.status || "Draft",
-        featured: blog.featured || false,
-        seo: blog.seo || {
-          metaTitle: "",
-          metaDescription: "",
-          slug: "",
-          focusKeyword: "",
-          ogImage: blog.featuredImage || "",
+      form.setValues(
+        {
+          _id: resolvedParams.id,
+          title: blog.title || "",
+          content: blog.content || "",
+          excerpt: blog.excerpt || "",
+          author: blog.author || "",
+          category: blog.category || "",
+          tags: blog.tags || [],
+          featuredImage: blog.featuredImage || "",
+          status: blog.status,
+          featured: blog.featured || false,
+          seo: blog.seo || {
+            metaTitle: "",
+            metaDescription: "",
+            slug: "",
+            focusKeyword: "",
+            ogImage: blog.featuredImage || "",
+          },
         },
-      });
+        { shouldReinitialize: true },
+      );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blog, resolvedParams.id]);
+
+  // Set author to logged-in user's name if not already set (e.g., for new drafts)
+  useEffect(() => {
+    if (user && !form.values.author && initializedRef.current) {
+      const fullName = `${user.firstName || ""} ${user.lastName || ""}`.trim();
+      if (fullName) {
+        form.setFieldValue("author", fullName);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, initializedRef.current]);
+
+  // Debounced Auto-Save
+  const debouncedValues = useDebounceValue(form.values, 5000);
+
+  useEffect(() => {
+    if (isLoading) return;
+
+    // Only auto-save if the form is dirty
+    if (!form.isDirty) return;
+
+    const autoSave = async () => {
+      try {
+        await updateBlogMutation.mutateAsync({
+          ...debouncedValues,
+          _id: resolvedParams.id,
+        });
+        // Sync original values baseline with the saved state to clear dirty flags
+        form.setValues(debouncedValues, { baselineSyncOnly: true });
+      } catch (err) {
+        console.error("[EditBlog] Auto-save failed:", err);
+      }
+    };
+
+    autoSave();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedValues, resolvedParams.id, isLoading]);
+
+  // Navigation Guard: Warn user before leaving page with unsaved changes
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (form.isDirty) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [form.isDirty]);
 
   // Ensure SEO object exists
   useEffect(() => {
@@ -158,34 +214,15 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
     form.setFieldValue("featuredImage", images.length > 0 ? images[0] : "");
   };
 
-  if (isLoading) {
-    return (
-      <Page
-        title="Edit Blog"
-        description="Loading blog details..."
-        loading={true}
-      >
-        <div></div>
-      </Page>
-    );
-  }
-
-  if (!blog) {
-    return (
-      <Page title="Edit Blog" description="Blog not found">
-        <div className="error">Blog not found</div>
-      </Page>
-    );
-  }
-
   return (
     <Page
       title="Edit Blog"
       description="Update your blog post details"
+      loading={isLoading}
       headerActions={
         <Button
           color="secondary"
-          leftIcon={<i className="bi bi-arrow-left"></i>}
+          leftIcon={<Icon name="arrow-left" />}
           onClick={() => router.back()}
         >
           Back
@@ -196,12 +233,12 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
         <form id="blog-form" onSubmit={handleSubmit} className="tour-form">
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-info-circle"></i> Basic Information
-              </h3>
-              <p className="section-description">
+              <Title order={3}>
+                <Icon name="info-circle" /> Basic Information
+              </Title>
+              <Text color="dimmed" size="sm" className="section-description">
                 Essential details about your blog post
-              </p>
+              </Text>
             </div>
             <div className="form-grid">
               <TextInput
@@ -231,12 +268,12 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-file-text"></i> Content
-              </h3>
-              <p className="section-description">
+              <Title order={3}>
+                <Icon name="file-earmark-text" /> Content
+              </Title>
+              <Text color="dimmed" size="sm" className="section-description">
                 Write your blog post content and excerpt
-              </p>
+              </Text>
             </div>
             <div className="form-group">
               <Textarea
@@ -266,12 +303,12 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-tags"></i> Tags
-              </h3>
-              <p className="section-description">
+              <Title order={3}>
+                <Icon name="tag" /> Tags
+              </Title>
+              <Text color="dimmed" size="sm" className="section-description">
                 Add relevant tags to help readers find your blog post
-              </p>
+              </Text>
             </div>
             <div className="form-group">
               <TextInput
@@ -290,7 +327,7 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
                   size="sm"
                   onClick={() => addTag(tagInput)}
                 >
-                  <i className="bi bi-plus-circle"></i> Add Tag
+                  <Icon name="plus-circle" /> Add Tag
                 </Button>
               </div>
             </div>
@@ -308,13 +345,21 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
                       }}
                     >
                       {tag}
-                      <button
+                      <Button
                         type="button"
-                        className="btn-close btn-close-white"
-                        style={{ fontSize: "0.75rem" }}
+                        variant="subtle"
+                        size="xs"
                         onClick={() => removeTag(index)}
                         aria-label="Remove tag"
-                      ></button>
+                        style={{
+                          padding: 0,
+                          minWidth: "auto",
+                          height: "auto",
+                          color: "white",
+                        }}
+                      >
+                        <Icon name="x" />
+                      </Button>
                     </span>
                   ))}
                 </div>
@@ -324,12 +369,12 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-image"></i> Featured Image
-              </h3>
-              <p className="section-description">
+              <Title order={3}>
+                <Icon name="image" /> Featured Image
+              </Title>
+              <Text color="dimmed" size="sm" className="section-description">
                 Upload a featured image for your blog post
-              </p>
+              </Text>
             </div>
             <ImageUpload
               label="Featured Image"
@@ -347,24 +392,21 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-gear"></i> Settings
-              </h3>
-              <p className="section-description">
+              <Title order={3}>
+                <Icon name="gear" /> Settings
+              </Title>
+              <Text color="dimmed" size="sm" className="section-description">
                 Configure blog post settings and visibility
-              </p>
+              </Text>
             </div>
             <div className="form-grid">
               <Select
                 label="Status"
                 value={form.values.status}
-                onChange={(value) =>
-                  form.setFieldValue("status", value || "Draft")
-                }
+                onChange={(value) => form.setFieldValue("status", value)}
                 data={[
-                  { value: "Draft", label: "Draft" },
-                  { value: "Published", label: "Published" },
-                  { value: "Archived", label: "Archived" },
+                  { value: BlogStatus.DRAFT, label: "Draft" },
+                  { value: BlogStatus.PUBLISHED, label: "Published" },
                 ]}
               />
               <div className="form-group">
@@ -382,13 +424,13 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
 
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-search"></i> SEO Settings
-              </h3>
-              <p className="section-description">
+              <Title order={3}>
+                <Icon name="search" /> SEO Settings
+              </Title>
+              <Text color="dimmed" size="sm" className="section-description">
                 Optimize your blog post for search engines and social media
                 sharing
-              </p>
+              </Text>
             </div>
             <SEOFields
               values={
@@ -429,7 +471,7 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
             <div className="actions-container">
               <Button
                 color="secondary"
-                leftIcon={<i className="bi bi-arrow-left"></i>}
+                leftIcon={<Icon name="arrow-left" />}
                 onClick={() => router.back()}
                 type="button"
               >
@@ -440,7 +482,7 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
                 loading={updateBlogMutation.isPending}
                 leftIcon={
                   !updateBlogMutation.isPending ? (
-                    <i className="bi bi-check-lg"></i>
+                    <Icon name="check-lg" />
                   ) : undefined
                 }
                 disabled={updateBlogMutation.isPending}

@@ -7,7 +7,18 @@ import {
   useDeleteTestimonial,
   useNotification,
 } from "@/lib/hooks";
-import { Page, Group, Stack, Avatar, Badge } from "@/app/Components/Common";
+import {
+  Page,
+  Group,
+  Stack,
+  Avatar,
+  Badge,
+  Table,
+  Button,
+  ConfirmModal,
+  Text,
+  Icon,
+} from "@/app/Components/Common";
 import { TextInput, Select } from "@/app/Components/Form";
 import StarRating from "@/app/Components/Form/StarRating";
 import PaginationComponent from "@/app/Components/Common/PaginationComponent";
@@ -23,6 +34,7 @@ const TestimonialsList = () => {
   const [filterFeatured, setFilterFeatured] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(10);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const { data: testimonialsData, isLoading: loading } = useGetTestimonials({
     page: currentPage,
@@ -65,13 +77,19 @@ const TestimonialsList = () => {
   };
 
   const deleteTestimonial = (id: string) => {
-    if (confirm("Are you sure you want to delete this testimonial?")) {
-      deleteTestimonialMutation.mutate(id, {
+    setDeleteId(id);
+  };
+
+  const confirmDelete = () => {
+    if (deleteId) {
+      deleteTestimonialMutation.mutate(deleteId, {
         onSuccess: () => {
           showSuccess("Testimonial deleted successfully!");
+          setDeleteId(null);
         },
         onError: (error) => {
           showError(error.message || "Failed to delete testimonial");
+          setDeleteId(null);
         },
       });
     }
@@ -124,8 +142,10 @@ const TestimonialsList = () => {
       description="Manage customer testimonials, reviews, and feedback"
       loading={loading}
       headerActions={
-        <Link href="/admin/testimonials/add" className="btn btn-primary">
-          <i className="bi bi-plus-circle"></i> Add New Testimonial
+        <Link href="/admin/testimonials/add">
+          <Button>
+            <Icon name="plus-circle" /> Add New Testimonial
+          </Button>
         </Link>
       }
     >
@@ -136,7 +156,7 @@ const TestimonialsList = () => {
             placeholder="Search testimonials..."
             value={searchTerm}
             onChange={handleSearchChange}
-            leftIcon={<i className="bi bi-search"></i>}
+            leftIcon={<Icon name="search" />}
           />
 
           <Select
@@ -162,7 +182,7 @@ const TestimonialsList = () => {
         </Group>
 
         {/* Testimonials Table */}
-        <table>
+        <Table verticalSpacing="sm" horizontalSpacing="md">
           <thead>
             <tr>
               <th>Name</th>
@@ -179,7 +199,7 @@ const TestimonialsList = () => {
           <tbody>
             {testimonials.map((testimonial) => (
               <tr key={testimonial._id}>
-                <td style={{ verticalAlign: "middle" }}>
+                <td>
                   <div
                     style={{
                       display: "flex",
@@ -196,32 +216,22 @@ const TestimonialsList = () => {
                         lineHeight: "1.2",
                       }}
                     >
-                      <strong
-                        style={{ fontSize: "14px", color: "var(--header)" }}
-                      >
+                      <Text size="sm" weight={700}>
                         {testimonial.name}
-                      </strong>
-                      <span
-                        className="text-muted"
-                        style={{ fontSize: "12px", marginTop: "2px" }}
-                      >
+                      </Text>
+                      <Text size="xs" color="dimmed">
                         {testimonial.email}
-                      </span>
+                      </Text>
                       {testimonial.phone && (
-                        <span
-                          className="text-muted"
-                          style={{ fontSize: "12px", marginTop: "1px" }}
-                        >
+                        <Text size="xs" color="dimmed">
                           {testimonial.phone}
-                        </span>
+                        </Text>
                       )}
                     </div>
                   </div>
                 </td>
-                <td style={{ verticalAlign: "middle" }}>
-                  {testimonial.location || "N/A"}
-                </td>
-                <td style={{ verticalAlign: "middle" }}>
+                <td>{testimonial.location || "N/A"}</td>
+                <td>
                   <Badge
                     variant="light"
                     color={
@@ -233,7 +243,7 @@ const TestimonialsList = () => {
                     {testimonial.source}
                   </Badge>
                 </td>
-                <td style={{ verticalAlign: "middle" }}>
+                <td>
                   <StarRating
                     rating={testimonial.rating}
                     maxStars={5}
@@ -241,17 +251,19 @@ const TestimonialsList = () => {
                     readonly={true}
                   />
                 </td>
-                <td style={{ verticalAlign: "middle" }}>
-                  <div
-                    className="testimonial-content-preview text-muted"
-                    style={{ fontSize: "13px", maxWidth: "250px" }}
+                <td>
+                  <Text
+                    className="testimonial-content-preview"
+                    color="dimmed"
+                    size="xs"
+                    style={{ maxWidth: "250px" }}
                   >
                     {testimonial.content.length > 80
                       ? `${testimonial.content.substring(0, 80)}...`
                       : testimonial.content}
-                  </div>
+                  </Text>
                 </td>
-                <td style={{ verticalAlign: "middle" }}>
+                <td>
                   {testimonial.tourId ? (
                     <Link
                       href={`/admin/tours/${
@@ -268,10 +280,12 @@ const TestimonialsList = () => {
                         : "View Tour"}
                     </Link>
                   ) : (
-                    <span className="text-muted">N/A</span>
+                    <Text color="dimmed" component="span">
+                      N/A
+                    </Text>
                   )}
                 </td>
-                <td style={{ verticalAlign: "middle" }}>
+                <td>
                   <Badge
                     variant={
                       testimonial.status === TestimonialStatus.PENDING
@@ -295,21 +309,27 @@ const TestimonialsList = () => {
                       : testimonial.status}
                   </Badge>
                 </td>
-                <td style={{ verticalAlign: "middle" }}>
-                  <button
+                <td>
+                  <Button
                     onClick={() =>
                       toggleFeatured(testimonial._id, testimonial.featured)
                     }
-                    className="btn btn-sm btn-link p-0"
+                    variant="subtle"
+                    size="sm"
+                    style={{ padding: 0, minWidth: "auto", height: "auto" }}
                   >
                     {testimonial.featured ? (
-                      <i className="bi bi-star-fill text-warning"></i>
+                      <Icon
+                        name="star-fill"
+                        color="warning"
+                        className="text-warning"
+                      />
                     ) : (
-                      <i className="bi bi-star text-muted"></i>
+                      <Icon name="star" color="dimmed" className="text-muted" />
                     )}
-                  </button>
+                  </Button>
                 </td>
-                <td style={{ verticalAlign: "middle" }}>
+                <td>
                   <div
                     className="action-buttons"
                     style={{
@@ -321,54 +341,59 @@ const TestimonialsList = () => {
                     <div style={{ display: "flex", gap: "8px" }}>
                       <Link
                         href={`/admin/testimonials/edit/${testimonial._id}`}
-                        className="btn btn-sm btn-outline-warning"
-                        title="Edit"
-                        style={{
-                          width: "32px",
-                          height: "32px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                        }}
+                        passHref
                       >
-                        <i className="bi bi-pencil"></i>
+                        <Button
+                          variant="outline"
+                          color="warning"
+                          size="sm"
+                          title="Edit"
+                          style={{
+                            width: "32px",
+                            height: "32px",
+                            padding: 0,
+                          }}
+                        >
+                          <Icon name="pencil" />
+                        </Button>
                       </Link>
-                      <button
+                      <Button
                         onClick={() => deleteTestimonial(testimonial._id)}
-                        className="btn btn-sm btn-outline-danger"
+                        variant="outline"
+                        color="error"
+                        size="sm"
                         title="Delete"
                         style={{
                           width: "32px",
                           height: "32px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
+                          padding: 0,
                         }}
                       >
-                        <i className="bi bi-trash"></i>
-                      </button>
+                        <Icon name="trash" />
+                      </Button>
                     </div>
                     {testimonial.status === TestimonialStatus.PENDING && (
-                      <button
+                      <Button
                         onClick={() =>
                           toggleStatus(testimonial._id, testimonial.status)
                         }
-                        className="btn btn-sm btn-success text-white"
+                        color="success"
+                        size="sm"
                         style={{ fontSize: "11px", padding: "4px 8px" }}
                       >
                         Approve
-                      </button>
+                      </Button>
                     )}
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
-        </table>
+        </Table>
 
         {testimonials.length === 0 && !loading && (
           <div className="no-data">
-            <p>No testimonials found</p>
+            <Text>No testimonials found</Text>
           </div>
         )}
 
@@ -382,6 +407,19 @@ const TestimonialsList = () => {
           />
         )}
       </Stack>
+
+      <ConfirmModal
+        opened={!!deleteId}
+        onClose={() => setDeleteId(null)}
+        onConfirm={confirmDelete}
+        title="Delete Testimonial"
+        confirmLabel="Delete"
+        color="error"
+        loading={deleteTestimonialMutation.isPending}
+      >
+        Are you sure you want to delete this testimonial? This action cannot be
+        undone.
+      </ConfirmModal>
     </Page>
   );
 };

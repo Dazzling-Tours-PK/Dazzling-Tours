@@ -5,9 +5,8 @@ import Tour from "../../Components/Tour/Tour";
 
 // SEO Metadata for Tours Page
 export const metadata: Metadata = {
-  title: "Tours - Discover Handpicked Adventures | Dazzling Tours",
-  description:
-    "Explore our curated collection of handpicked tours and travel packages. From breathtaking landscapes to cultural treasures, find your perfect adventure with Dazzling Tours.",
+  title: "Tours | Dazzling Tours - Explore the nature",
+  description: "Explore the nature",
   keywords: [
     "tours",
     "travel packages",
@@ -21,14 +20,13 @@ export const metadata: Metadata = {
     "customized tours",
   ],
   openGraph: {
-    title: "Tours - Discover Handpicked Adventures | Dazzling Tours",
-    description:
-      "Explore our curated collection of handpicked tours and travel packages. From breathtaking landscapes to cultural treasures, find your perfect adventure.",
+    title: "Tours | Dazzling Tours - Explore the nature",
+    description: "Explore the nature",
     type: "website",
     images: [
       {
         url: "/assets/img/tours/tourspage.png",
-        alt: "Dazzling Tours - Tours",
+        alt: "Dazzling Tours - Explore the nature",
         width: 1200,
         height: 630,
       },
@@ -36,9 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tours - Discover Handpicked Adventures | Dazzling Tours",
-    description:
-      "Explore our curated collection of handpicked tours and travel packages. Find your perfect adventure.",
+    title: "Tours | Dazzling Tours - Explore the nature",
+    description: "Explore the nature",
     images: ["/assets/img/tours/tourspage.png"],
   },
   alternates: {

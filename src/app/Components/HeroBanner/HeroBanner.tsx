@@ -23,13 +23,12 @@ const HeroBanner2 = () => {
                   Your Adventure Starts Here
                 </div>
                 <h1 className="wow fadeInUp" data-wow-delay=".3s">
-                  Explore the World <br />
-                  One Journey at a Time
+                  Explore the nature
                 </h1>
                 <p className="wow fadeInUp" data-wow-delay=".5s">
-                  Curated tours, unforgettable experiences, and memories that
-                  last a lifetime. <br />
-                  Let us take you on your next extraordinary adventure.
+                  Discover breathtaking landscapes and unforgettable experiences
+                  with Dazzling Tours. Let us take you on your next
+                  extraordinary adventure.
                 </p>
               </div>
             </div>

@@ -4,8 +4,6 @@ import { Blog } from "@/models";
 import { MongoQuery } from "@/lib/types";
 import { cleanBlogData } from "@/lib/utils/dataCleaning";
 import { UNCATEGORIZED_CATEGORY_NAME } from "@/lib/constants/categories";
-import { deleteMultipleImages } from "@/lib/services/cloudinaryService";
-import { extractPublicId } from "@/lib/utils/imageUtils";
 import { BlogStatus } from "@/lib/enums/blog";
 
 // GET /api/blogs - Get all blogs
@@ -149,88 +147,6 @@ export async function POST(request: NextRequest) {
   } catch {
     return NextResponse.json(
       { success: false, error: "Failed to create blog" },
-      { status: 500 },
-    );
-  }
-}
-
-// PUT /api/blogs - Update multiple blogs (bulk operations)
-export async function PUT(request: NextRequest) {
-  try {
-    await connectDB();
-
-    const body = await request.json();
-    const { action, blogIds, data } = body;
-
-    if (!action || !blogIds || !Array.isArray(blogIds)) {
-      return NextResponse.json(
-        { success: false, error: "Action and blogIds are required" },
-        { status: 400 },
-      );
-    }
-
-    let result;
-    switch (action) {
-      case "updateStatus":
-        const updateData: { status: string; publishedAt?: Date } = {
-          status: data.status as string,
-        };
-        if (data.status === BlogStatus.PUBLISHED) {
-          updateData.publishedAt = new Date();
-        }
-        result = await Blog.updateMany({ _id: { $in: blogIds } }, updateData);
-        break;
-      case "updateCategory":
-        result = await Blog.updateMany(
-          { _id: { $in: blogIds } },
-          { category: data.category },
-        );
-        break;
-      case "delete": {
-        // Fetch blogs to get their image URLs before deletion
-        const blogsToDelete = await Blog.find({ _id: { $in: blogIds } });
-        const allImages: string[] = [];
-
-        blogsToDelete.forEach((blog) => {
-          if (blog.featuredImage) {
-            allImages.push(blog.featuredImage);
-          }
-          if (blog.seo?.ogImage) {
-            allImages.push(blog.seo.ogImage);
-          }
-        });
-
-        const publicIds = Array.from(new Set(allImages))
-          .map((url: string) => extractPublicId(url))
-          .filter((id: string | null): id is string => id !== null);
-
-        if (publicIds.length > 0) {
-          await deleteMultipleImages(publicIds).catch((err) =>
-            console.error(
-              "Failed to delete bulk blog images from Cloudinary:",
-              err,
-            ),
-          );
-        }
-
-        result = await Blog.deleteMany({ _id: { $in: blogIds } });
-        break;
-      }
-      default:
-        return NextResponse.json(
-          { success: false, error: "Invalid action" },
-          { status: 400 },
-        );
-    }
-
-    return NextResponse.json({
-      success: true,
-      data: result,
-      message: `Blogs ${action} completed successfully`,
-    });
-  } catch {
-    return NextResponse.json(
-      { success: false, error: "Failed to update blogs" },
       { status: 500 },
     );
   }

@@ -33,3 +33,7 @@ export { default as Accordion } from "./Accordion";
 export type { AccordionProps, AccordionItem } from "./Accordion";
 export { default as ConfirmModal } from "./ConfirmModal";
 export type { ConfirmModalProps } from "./ConfirmModal";
+export { default as Table } from "./Table";
+export type { TableProps } from "./Table";
+export { default as Icon } from "./Icon";
+export type { IconProps, IconName } from "./Icon";

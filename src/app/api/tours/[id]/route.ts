@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import { Tour } from "@/models";
 import mongoose from "mongoose";
-import { deleteMultipleImages } from "@/lib/services/cloudinaryService";
-import { extractPublicId } from "@/lib/utils/imageUtils";
+import { imageService } from "@/lib/services/imageService";
 import { TestimonialStatus } from "@/lib/enums";
 
 // GET /api/tours/[id] - Get a single tour
@@ -178,22 +177,46 @@ export async function PATCH(
       };
     }
 
-    // Handle image deletions if images were removed
+    // Handle image deletions if images were changed
     const existingTour = await Tour.findById(resolvedParams.id);
-    if (existingTour && body.images && Array.isArray(body.images)) {
-      const removedImages = existingTour.images.filter(
-        (img: string) => !body.images.includes(img),
-      );
+    if (existingTour) {
+      // 1. Array of images changed
+      if (body.images && Array.isArray(body.images)) {
+        const removedImages = existingTour.images.filter(
+          (img: string) => !body.images.includes(img),
+        );
 
-      if (removedImages.length > 0) {
-        const publicIds = removedImages
-          .map((url: string) => extractPublicId(url))
-          .filter((id: string | null): id is string => id !== null);
+        if (removedImages.length > 0) {
+          await Promise.all(
+            removedImages.map((img: string) =>
+              imageService.delete(img).catch((err) =>
+                console.error(
+                  "Failed to delete removed tour image:",
+                  err,
+                ),
+              ),
+            ),
+          );
+        }
+      }
 
-        if (publicIds.length > 0) {
-          await deleteMultipleImages(publicIds).catch((err) =>
+      // 2. SEO OG Image changed
+      if (
+        seo?.ogImage !== undefined &&
+        existingTour.seo?.ogImage &&
+        existingTour.seo.ogImage !== seo.ogImage
+      ) {
+        // Only delete if it's not being deleted (part of removedImages above)
+        const isAlreadyBeingDeleted =
+          body.images &&
+          Array.isArray(body.images) &&
+          existingTour.images.includes(existingTour.seo.ogImage) &&
+          !body.images.includes(existingTour.seo.ogImage);
+
+        if (!isAlreadyBeingDeleted) {
+          await imageService.delete(existingTour.seo.ogImage).catch((err) =>
             console.error(
-              "Failed to delete removed images from Cloudinary:",
+              "Failed to delete old tour SEO OG image:",
               err,
             ),
           );
@@ -260,19 +283,20 @@ export async function DELETE(
       );
     }
 
-    // Delete images from Cloudinary
-    const allImages = [...(tour.images || [])];
-    if (tour.seo?.ogImage) {
-      allImages.push(tour.seo.ogImage);
-    }
+    const allImages = Array.from(
+      new Set([...(tour.images || []), tour.seo?.ogImage]),
+    ).filter((img): img is string => !!img);
 
-    const publicIds = Array.from(new Set(allImages))
-      .map((url: string) => extractPublicId(url))
-      .filter((id: string | null): id is string => id !== null);
-
-    if (publicIds.length > 0) {
-      await deleteMultipleImages(publicIds).catch((err) =>
-        console.error("Failed to delete tour images from Cloudinary:", err),
+    if (allImages.length > 0) {
+      await Promise.all(
+        allImages.map((img) =>
+          imageService.delete(img).catch((err) =>
+            console.error(
+              "Failed to delete tour image during tour deletion:",
+              err,
+            ),
+          ),
+        ),
       );
     }
 

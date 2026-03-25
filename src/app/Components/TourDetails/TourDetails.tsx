@@ -514,6 +514,7 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                                 width={110}
                                 height={110}
                                 className="rounded-circle"
+                                style={{ objectFit: "cover" }}
                                 onError={(e) => {
                                   (e.target as HTMLImageElement).src =
                                     "/assets/img/testimonial/default-avatar.png";

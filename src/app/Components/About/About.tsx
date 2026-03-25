@@ -55,7 +55,7 @@ const About = () => {
                 <div className="section-title">
                   <span className="sub-title wow fadeInUp">About Us</span>
                   <h2 className="wow fadeInUp wow" data-wow-delay=".3s">
-                    Your Trusted Partner in Creating Unforgettable Journeys
+                    Explore the nature with Dazzling Tours
                   </h2>
                 </div>
                 <p className="wow fadeInUp wow" data-wow-delay=".5s">

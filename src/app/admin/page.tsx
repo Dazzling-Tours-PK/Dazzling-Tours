@@ -2,7 +2,14 @@
 import React from "react";
 import Link from "next/link";
 import { useGetDashboardStats } from "@/lib/hooks";
-import { Page, Stack } from "@/app/Components/Common";
+import {
+  Page,
+  Stack,
+  Title,
+  Text,
+  Icon,
+  Button,
+} from "@/app/Components/Common";
 
 const AdminDashboard = () => {
   const { data: statsData, isLoading: loading } = useGetDashboardStats();
@@ -14,7 +21,7 @@ const AdminDashboard = () => {
           title: "Total Tours",
           value: stats.tours.total,
           subtitle: `${stats.tours.published} Published`,
-          icon: "bi bi-map",
+          icon: "map",
           color: "primary",
           link: "/admin/tours",
         },
@@ -22,7 +29,7 @@ const AdminDashboard = () => {
           title: "Total Blogs",
           value: stats.blogs.total,
           subtitle: `${stats.blogs.published} Published`,
-          icon: "bi bi-journal-text",
+          icon: "journal-text",
           color: "info",
           link: "/admin/blogs",
         },
@@ -30,7 +37,7 @@ const AdminDashboard = () => {
           title: "Contact Queries",
           value: stats.contacts.total,
           subtitle: `${stats.contacts.new} New`,
-          icon: "bi bi-envelope",
+          icon: "envelope",
           color: "warning",
           link: "/admin/contact",
         },
@@ -39,7 +46,7 @@ const AdminDashboard = () => {
           title: "Testimonials",
           value: stats.testimonials.total,
           subtitle: `${stats.testimonials.published} Published`,
-          icon: "bi bi-chat-quote",
+          icon: "chat-quote",
           color: "purple",
           link: "/admin/testimonials",
         },
@@ -79,41 +86,41 @@ const AdminDashboard = () => {
                                 : "#fce4ec",
                   }}
                 >
-                  <i
-                    className={stat.icon}
-                    style={{
-                      color:
-                        stat.color === "primary"
-                          ? "#1976d2"
-                          : stat.color === "info"
-                            ? "#0288d1"
-                            : stat.color === "warning"
-                              ? "#f57c00"
-                              : stat.color === "success"
-                                ? "#388e3c"
-                                : stat.color === "secondary"
-                                  ? "#7b1fa2"
-                                  : "#c2185b",
-                    }}
-                  ></i>
+                  <Icon
+                    name={stat.icon as any}
+                    color={
+                      stat.color === "primary"
+                        ? "#1976d2"
+                        : stat.color === "info"
+                          ? "#0288d1"
+                          : stat.color === "warning"
+                            ? "#f57c00"
+                            : stat.color === "success"
+                              ? "#388e3c"
+                              : stat.color === "secondary"
+                                ? "#7b1fa2"
+                                : "#c2185b"
+                    }
+                  />
                 </div>
                 <div className="stat-content">
-                  <h4>{stat.title}</h4>
-                  <p
-                    style={{ fontSize: "2rem", fontWeight: "bold", margin: 0 }}
+                  <Title order={4} size="h6">
+                    {stat.title}
+                  </Title>
+                  <Text
+                    weight={700}
+                    style={{ fontSize: "2rem", lineHeight: 1 }}
                   >
                     {stat.value}
-                  </p>
+                  </Text>
                   {stat.subtitle && (
-                    <p
-                      style={{
-                        fontSize: "0.875rem",
-                        color: "#6c757d",
-                        margin: "0.25rem 0 0 0",
-                      }}
+                    <Text
+                      size="sm"
+                      color="dimmed"
+                      style={{ marginTop: "0.25rem" }}
                     >
                       {stat.subtitle}
-                    </p>
+                    </Text>
                   )}
                 </div>
               </div>
@@ -130,16 +137,9 @@ const AdminDashboard = () => {
             border: "1px solid #e5e7eb",
           }}
         >
-          <h3
-            style={{
-              margin: 0,
-              marginBottom: "1rem",
-              fontSize: "1.25rem",
-              fontWeight: 600,
-            }}
-          >
+          <Title order={3} size="h5" style={{ marginBottom: "1rem" }}>
             Quick Actions
-          </h3>
+          </Title>
           <div
             style={{
               display: "flex",
@@ -148,39 +148,30 @@ const AdminDashboard = () => {
               flexWrap: "wrap",
             }}
           >
-            <Link
-              href="/admin/tours"
-              className="btn btn-primary"
-              style={{
-                flex: "1 1 auto",
-                minWidth: "200px",
-                justifyContent: "center",
-              }}
-            >
-              <i className="bi bi-plus-circle"></i> Add New Tour
+            <Link href="/admin/tours">
+              <Button
+                color="primary"
+                style={{ flex: "1 1 auto", minWidth: "200px" }}
+              >
+                <Icon name="plus-circle" /> Add New Tour
+              </Button>
             </Link>
-            <Link
-              href="/admin/blogs/add"
-              className="btn btn-success"
-              style={{
-                flex: "1 1 auto",
-                minWidth: "200px",
-                justifyContent: "center",
-              }}
-            >
-              <i className="bi bi-plus-circle"></i> Add New Blog
+            <Link href="/admin/blogs/add">
+              <Button
+                color="success"
+                style={{ flex: "1 1 auto", minWidth: "200px" }}
+              >
+                <Icon name="plus-circle" /> Add New Blog
+              </Button>
             </Link>
 
-            <Link
-              href="/admin/contact"
-              className="btn btn-warning"
-              style={{
-                flex: "1 1 auto",
-                minWidth: "200px",
-                justifyContent: "center",
-              }}
-            >
-              <i className="bi bi-envelope"></i> Contact Queries
+            <Link href="/admin/contact">
+              <Button
+                color="warning"
+                style={{ flex: "1 1 auto", minWidth: "200px" }}
+              >
+                <Icon name="envelope" /> Contact Queries
+              </Button>
             </Link>
           </div>
         </div>

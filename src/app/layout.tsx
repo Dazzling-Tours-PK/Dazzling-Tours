@@ -33,15 +33,18 @@ export const metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   ),
-  title: {
-    absolute: "",
-    default: "Dazzling Tours - Travel & Tour Agency",
-    template: "%s | Dazzling Tours - Travel & Tour Agency",
-  },
-  description: "Dazzling Tours - Travel & Tour Agency",
+  title: "Dazzling Tours - Explore the nature",
+  description: "Dazzling Tours - Explore the nature",
   openGraph: {
-    title: "Dazzling Tours - Travel & Tour Agency",
-    description: "Dazzling Tours - Travel & Tour Agency",
+    title: "Dazzling Tours - Explore the nature",
+    description: "Dazzling Tours - Explore the nature",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon-192.png?v=2", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-512.png?v=2", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/favicon-192.png?v=2" }],
   },
 };
 
@@ -54,7 +57,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="author" content="Dazzling Tours" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <meta name="apple-mobile-web-app-title" content="Dazzling Tours" />
       </head>
       <body
         className={`${manrope.variable} ${work_sans.variable} ${kalam.variable}`}

@@ -139,13 +139,13 @@ export const useBulkUpdateTours = () => {
   return useMutation<
     { success: boolean },
     Error,
-    { ids: string[]; action: string; data?: Record<string, unknown> }
+    { tourIds: string[]; action: string; data?: Record<string, unknown> }
   >({
-    mutationFn: async ({ ids, action, data }) => {
+    mutationFn: async ({ tourIds, action, data }) => {
       const response = await api.put<{ success: boolean }>("/api/tours", {
-        ids,
+        tourIds,
         action,
-        ...data,
+        data,
       });
       return response.data;
     },

@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth, useNotification, useForm } from "@/lib/hooks";
-import { Page, Stack, Group, Button, Card } from "@/app/Components/Common";
+import { Page, Stack, Group, Button, Card, Icon } from "@/app/Components/Common";
 import { TextInput } from "@/app/Components/Form";
 
 const ChangePasswordPage = () => {
@@ -112,8 +112,8 @@ const ChangePasswordPage = () => {
       title="Change Password"
       description={`Update your password for ${user?.email || "your account"}`}
       headerActions={
-        <Button variant="outline" onClick={() => router.back()}>
-          <i className="bi bi-arrow-left"></i> Back
+        <Button variant="outline" onClick={() => router.back()} leftIcon={<Icon name="arrow-left" />}>
+          Back
         </Button>
       }
     >
@@ -164,8 +164,9 @@ const ChangePasswordPage = () => {
                   !form.values.confirmPassword ||
                   !form.isValid
                 }
+                leftIcon={<Icon name="key" />}
               >
-                <i className="bi bi-key"></i> Change Password
+                Change Password
               </Button>
             </Group>
           </Card>

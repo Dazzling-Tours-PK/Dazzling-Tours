@@ -7,9 +7,8 @@ import Choose from "@/app/Components/Choose/Choose";
 
 // SEO Metadata
 export const metadata: Metadata = {
-  title: "About Us - Your Trusted Travel Partner | Dazzling Tours",
-  description:
-    "Learn about Dazzling Tours - your trusted partner in creating unforgettable journeys. With years of experience, we specialize in curating personalized tours to the world's most beautiful destinations.",
+  title: "About Us | Dazzling Tours - Explore the nature",
+  description: "Explore the nature",
   keywords: [
     "about us",
     "travel agency",
@@ -20,14 +19,13 @@ export const metadata: Metadata = {
     "Dazzling Tours",
   ],
   openGraph: {
-    title: "About Us - Your Trusted Travel Partner | Dazzling Tours",
-    description:
-      "Learn about Dazzling Tours - your trusted partner in creating unforgettable journeys. With years of experience, we specialize in curating personalized tours to the world's most beautiful destinations.",
+    title: "About Us | Dazzling Tours - Explore the nature",
+    description: "Explore the nature",
     type: "website",
     images: [
       {
         url: "/assets/img/about/about1.webp",
-        alt: "Dazzling Tours - About Us",
+        alt: "Dazzling Tours - Explore the nature",
         width: 1200,
         height: 630,
       },
@@ -35,9 +33,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Us - Your Trusted Travel Partner | Dazzling Tours",
-    description:
-      "Learn about Dazzling Tours - your trusted partner in creating unforgettable journeys.",
+    title: "About Us | Dazzling Tours - Explore the nature",
+    description: "Explore the nature",
     images: ["/assets/img/about/about1.webp"],
   },
   alternates: {
@@ -64,8 +61,7 @@ const AboutPage = () => {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
     name: "Dazzling Tours",
-    description:
-      "Your trusted partner in creating unforgettable journeys. We specialize in curating personalized tours to the world's most beautiful destinations.",
+    description: "Explore the nature",
     url: baseUrl,
     logo: `${baseUrl}/assets/img/logo.png`,
     image: `${baseUrl}/assets/img/about/about1.webp`,

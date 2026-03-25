@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { CreateCategoryData } from "@/lib/types/category";
 import { useCreateCategory, useNotification, useForm } from "@/lib/hooks";
 import { TextInput, Textarea } from "@/app/Components/Form";
-import { Button, Page } from "@/app/Components/Common";
+import { Button, Page, Title, Text, Icon } from "@/app/Components/Common";
 import { generateSlug } from "@/lib/utils/dataCleaning";
 import { getErrorMessage } from "@/lib/utils/errorHandling";
 
@@ -64,8 +64,8 @@ const AddCategory = () => {
       title="Add Category"
       description="Create a new category for tours and blogs"
       headerActions={
-        <Button variant="outline" onClick={() => router.back()}>
-          <i className="bi bi-arrow-left"></i> Back
+        <Button variant="outline" onClick={() => router.back()} leftIcon={<Icon name="arrow-left" />}>
+          Back
         </Button>
       }
     >
@@ -73,13 +73,13 @@ const AddCategory = () => {
         <form onSubmit={handleSubmit} className="tour-form">
           <div className="form-section">
             <div className="section-header">
-              <h3>
-                <i className="bi bi-folder"></i> Category Information
-              </h3>
-              <p className="section-description">
+              <Title order={3}>
+                <Icon name="folder" /> Category Information
+              </Title>
+              <Text className="section-description" color="dimmed">
                 Provide the basic details for this category. Categories help
                 organize tours and blogs.
-              </p>
+              </Text>
             </div>
             <div className="form-grid">
               <div className="form-group">
@@ -138,7 +138,7 @@ const AddCategory = () => {
             <div className="actions-container">
               <Button
                 color="secondary"
-                leftIcon={<i className="bi bi-arrow-left"></i>}
+                leftIcon={<Icon name="arrow-left" />}
                 onClick={() => router.back()}
                 type="button"
               >
@@ -149,7 +149,7 @@ const AddCategory = () => {
                 loading={createCategoryMutation.isPending}
                 leftIcon={
                   !createCategoryMutation.isPending ? (
-                    <i className="bi bi-check-lg"></i>
+                    <Icon name="check-lg" />
                   ) : undefined
                 }
                 disabled={

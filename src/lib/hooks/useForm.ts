@@ -112,7 +112,11 @@ export function useForm<T extends object>({
         console.error("Failed to load form draft:", e);
       }
     }
-    isInitialized.current = true;
+    // Mark as initialized in the next tick to ensure we don't save initialValues over the loaded data
+    const timer = setTimeout(() => {
+      isInitialized.current = true;
+    }, 0);
+    return () => clearTimeout(timer);
   }, [persistKey]);
 
   // Save to localStorage on change
@@ -273,21 +277,24 @@ export function useForm<T extends object>({
   );
 
   // Set dirty state manually
-  const setDirty = useCallback((isDirty: boolean) => {
-    if (!isDirty) {
-      setDirtyState({});
-    } else {
-      // Mark all as dirty if needed, but usually we just want to clear it
-      const allDirty = Object.keys(values).reduce(
-        (acc, key) => {
-          acc[key as keyof T] = true;
-          return acc;
-        },
-        {} as Partial<Record<keyof T, boolean>>,
-      );
-      setDirtyState(allDirty);
-    }
-  }, [values]);
+  const setDirty = useCallback(
+    (isDirty: boolean) => {
+      if (!isDirty) {
+        setDirtyState({});
+      } else {
+        // Mark all as dirty if needed, but usually we just want to clear it
+        const allDirty = Object.keys(values).reduce(
+          (acc, key) => {
+            acc[key as keyof T] = true;
+            return acc;
+          },
+          {} as Partial<Record<keyof T, boolean>>,
+        );
+        setDirtyState(allDirty);
+      }
+    },
+    [values],
+  );
 
   // Reset form
   const reset = useCallback(() => {

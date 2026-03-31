@@ -26,7 +26,6 @@ export async function GET(
     }
 
     const comments = await Comment.find(query)
-      .populate("parentId", "name content")
       .sort({ createdAt: -1 });
 
     // If including replies, organize them hierarchically

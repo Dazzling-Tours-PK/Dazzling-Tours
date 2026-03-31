@@ -1,80 +1,10 @@
 "use client";
 import { useState, useCallback, useRef, useEffect } from "react";
 import { z } from "zod";
-
-export interface FormField<T = unknown> {
-  value: T;
-  error?: string;
-  touched: boolean;
-  dirty: boolean;
-}
-
-export interface FormState<T extends object> {
-  values: T;
-  errors: Partial<Record<keyof T, string>>;
-  touched: Partial<Record<keyof T, boolean>>;
-  dirty: Partial<Record<keyof T, boolean>>;
-  isValid: boolean;
-  isSubmitting: boolean;
-  isDirty: boolean;
-}
-
-export interface UseFormOptions<T extends object> {
-  initialValues: T;
-  validate?: (values: T) => Partial<Record<keyof T, string>>;
-  validateOnChange?: boolean;
-  validateOnBlur?: boolean;
-  onSubmit?: (values: T) => void | Promise<void>;
-  onValidationError?: (errors: Partial<Record<keyof T, string>>) => void;
-  persistKey?: string;
-}
-
-export interface UseFormReturn<T extends object> {
-  values: T;
-  errors: Partial<Record<keyof T, string>>;
-  touched: Partial<Record<keyof T, boolean>>;
-  dirty: Partial<Record<keyof T, boolean>>;
-  isValid: boolean;
-  isSubmitting: boolean;
-  isDirty: boolean;
-  setFieldValue: <K extends keyof T>(
-    field: K,
-    value: T[K],
-    options?: { shouldMarkDirty?: boolean },
-  ) => void;
-  setFieldError: <K extends keyof T>(
-    field: K,
-    error: string | undefined,
-  ) => void;
-  setFieldTouched: <K extends keyof T>(field: K, touched: boolean) => void;
-  setValues: (
-    values: Partial<T>,
-    options?: {
-      shouldMarkDirty?: boolean;
-      shouldReinitialize?: boolean;
-      baselineSyncOnly?: boolean;
-    },
-  ) => void;
-  setErrors: (errors: Partial<Record<keyof T, string>>) => void;
-  setTouched: (touched: Partial<Record<keyof T, boolean>>) => void;
-  setDirty: (isDirty: boolean) => void;
-  reset: () => void;
-  clearDraft: () => void;
-  validate: () => boolean;
-  validateField: <K extends keyof T>(field: K) => boolean;
-  handleSubmit: (
-    onSubmit?: (values: T) => void | Promise<void>,
-  ) => (e: React.FormEvent) => Promise<void>;
-  getFieldProps: <K extends keyof T>(
-    field: K,
-  ) => {
-    value: T[K];
-    error: string | undefined;
-    onChange: (value: T[K]) => void;
-    onBlur: () => void;
-    onFocus: () => void;
-  };
-}
+import {
+  UseFormOptions,
+  UseFormReturn,
+} from "@/lib/types/form";
 
 export function useForm<T extends object>({
   initialValues,
@@ -98,6 +28,22 @@ export function useForm<T extends object>({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const initialValuesRef = useRef(initialValues);
   const isInitialized = useRef(false);
+  const valuesRef = useRef(values);
+  const errorsRef = useRef(errors);
+  const validateRef = useRef(validate);
+  const onSubmitRef = useRef(onSubmit);
+  const onValidationErrorRef = useRef(onValidationError);
+  const validateOnChangeRef = useRef(validateOnChange);
+  const validateOnBlurRef = useRef(validateOnBlur);
+
+  // Keep refs updated on every render
+  valuesRef.current = values;
+  errorsRef.current = errors;
+  validateRef.current = validate;
+  onSubmitRef.current = onSubmit;
+  onValidationErrorRef.current = onValidationError;
+  validateOnChangeRef.current = validateOnChange;
+  validateOnBlurRef.current = validateOnBlur;
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -131,37 +77,39 @@ export function useForm<T extends object>({
   const isDirty = Object.keys(dirty).some((key) => dirty[key as keyof T]);
 
   // Validation function
-  const validateForm = useCallback(() => {
-    if (!validate) return true;
+  const validateForm = useCallback((currentValues: T = valuesRef.current) => {
+    if (!validateRef.current) return true;
 
-    const newErrors = validate(values);
+    const newErrors = validateRef.current(currentValues);
     setErrorsState(newErrors);
     return Object.keys(newErrors).length === 0;
-  }, [values, validate]);
+  }, []);
 
   // Field validation function
   const validateField = useCallback(
-    <K extends keyof T>(field: K): boolean => {
-      if (!validate) return true;
+    <K extends keyof T>(
+      field: K,
+      currentValues: T = valuesRef.current,
+    ): boolean => {
+      if (!validateRef.current) return true;
 
-      const fieldErrors = validate(values);
+      const fieldErrors = validateRef.current(currentValues);
       const fieldError = fieldErrors[field];
 
-      if (fieldError !== errors[field]) {
-        setErrorsState((prev) => {
-          const newErrors = { ...prev };
-          if (fieldError) {
-            newErrors[field] = fieldError;
-          } else {
-            delete newErrors[field];
-          }
-          return newErrors;
-        });
-      }
+      setErrorsState((prev) => {
+        if (prev[field] === fieldError) return prev;
+        const newErrors = { ...prev };
+        if (fieldError) {
+          newErrors[field] = fieldError;
+        } else {
+          delete newErrors[field];
+        }
+        return newErrors;
+      });
 
       return !fieldError;
     },
-    [values, validate, errors],
+    [],
   );
 
   // Set field value
@@ -171,7 +119,16 @@ export function useForm<T extends object>({
       value: T[K],
       options?: { shouldMarkDirty?: boolean },
     ) => {
-      setValuesState((prev) => ({ ...prev, [field]: value }));
+      setValuesState((prev) => {
+        const next = { ...prev, [field]: value };
+
+        if (validateOnChangeRef.current) {
+          // Trigger validation with NEXT values
+          validateField(field, next);
+        }
+
+        return next;
+      });
 
       if (options?.shouldMarkDirty !== false) {
         setDirtyState((prev) => ({
@@ -179,12 +136,8 @@ export function useForm<T extends object>({
           [field]: value !== initialValuesRef.current[field],
         }));
       }
-
-      if (validateOnChange) {
-        validateField(field);
-      }
     },
-    [validateOnChange, validateField],
+    [validateField],
   );
 
   // Set field error
@@ -208,11 +161,11 @@ export function useForm<T extends object>({
     <K extends keyof T>(field: K, touched: boolean) => {
       setTouchedState((prev) => ({ ...prev, [field]: touched }));
 
-      if (touched && validateOnBlur) {
+      if (touched && validateOnBlurRef.current) {
         validateField(field);
       }
     },
-    [validateOnBlur, validateField],
+    [validateField],
   );
 
   // Set multiple values
@@ -233,7 +186,7 @@ export function useForm<T extends object>({
         initialValuesRef.current = {
           ...initialValuesRef.current,
           ...newValues,
-        };
+        } as T;
         // Reset dirty state for fields that were just synced
         setDirtyState((prev) => {
           const newDirty = { ...prev };
@@ -318,8 +271,10 @@ export function useForm<T extends object>({
       return async (e: React.FormEvent) => {
         e.preventDefault();
 
+        const currentValues = valuesRef.current;
+
         // Mark all fields as touched
-        const allTouched = Object.keys(values).reduce(
+        const allTouched = Object.keys(currentValues).reduce(
           (acc, key) => {
             acc[key as keyof T] = true;
             return acc;
@@ -329,15 +284,17 @@ export function useForm<T extends object>({
         setTouchedState(allTouched);
 
         // Validate form
-        const isValid = validateForm();
+        const isValid = validateForm(currentValues);
 
         // Get the latest errors after validation
-        const latestErrors = validate ? validate(values) : {};
+        const latestErrors = validateRef.current
+          ? validateRef.current(currentValues)
+          : {};
 
         if (!isValid) {
           // Call onValidationError callback if provided
-          if (onValidationError) {
-            onValidationError(latestErrors);
+          if (onValidationErrorRef.current) {
+            onValidationErrorRef.current(latestErrors);
           }
 
           // Scroll to first error field if possible
@@ -361,9 +318,9 @@ export function useForm<T extends object>({
         setIsSubmitting(true);
 
         try {
-          const submitHandler = customOnSubmit || onSubmit;
+          const submitHandler = customOnSubmit || onSubmitRef.current;
           if (submitHandler) {
-            await submitHandler(values);
+            await submitHandler(currentValues);
           }
         } catch {
         } finally {
@@ -371,7 +328,7 @@ export function useForm<T extends object>({
         }
       };
     },
-    [values, validateForm, onSubmit, onValidationError, validate],
+    [validateForm],
   );
 
   // Get field props for form components

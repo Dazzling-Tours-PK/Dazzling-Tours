@@ -159,6 +159,7 @@
   align-items: center;
   justify-content: center;
   padding: 0.5rem 0.875rem;
+  gap: 0.5rem;
   border: none;
   border-radius: var(--admin-radius-lg);
   font-weight: 600;
@@ -167,7 +168,7 @@
   cursor: pointer;
   transition: all var(--admin-transition-normal);
   min-height: 40px;
-  background-color: initial; /* Ensure global button resets don't hide styles */
+  line-height: 1 !important;
 }
 
 /* Admin Button Sizes - Matching Form Inputs */
@@ -254,6 +255,21 @@
 
 .admin-btn-primary:hover:not(:disabled) {
   background-color: var(--admin-primary-hover, #cc5f00) !important;
+}
+
+.admin-btn-success {
+  background-color: var(--admin-success, #10b981) !important;
+  color: #ffffff !important;
+}
+
+.admin-btn-error, .btn-danger.admin-btn {
+  background-color: var(--admin-error, #ef4444) !important;
+  color: #ffffff !important;
+}
+
+.admin-btn-warning {
+  background-color: var(--admin-warning, #ffc107) !important;
+  color: #171717 !important;
 }
 
 .admin-btn-secondary {

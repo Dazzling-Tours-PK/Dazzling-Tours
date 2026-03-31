@@ -132,9 +132,9 @@ export const tourSchema = z.object({
           .refine(
             (val) => {
               const trimmed = val.trim();
-              return trimmed.length >= 3;
+              return trimmed.length >= 1;
             },
-            { message: "Itinerary title must be at least 3 characters" },
+            { message: "Itinerary title must be at least 1 character" },
           )
           .refine(
             (val) => {
@@ -150,9 +150,9 @@ export const tourSchema = z.object({
           .refine(
             (val) => {
               const trimmed = val.trim();
-              return trimmed.length >= 10;
+              return trimmed.length >= 5;
             },
-            { message: "Itinerary description must be at least 10 characters" },
+            { message: "Itinerary description must be at least 5 characters" },
           )
           .refine(
             (val) => {

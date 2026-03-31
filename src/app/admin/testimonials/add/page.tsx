@@ -2,8 +2,12 @@
 import React, { useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { CreateTestimonialData } from "@/lib/types/testimonial";
-import { useCreateTestimonial, useNotification, useForm } from "@/lib/hooks";
-import { useGetTours } from "@/lib/hooks/useTours";
+import {
+  useCreateTestimonial,
+  useNotification,
+  useForm,
+  useGetTours,
+} from "@/lib/hooks";
 import { Page, Button, Card } from "@/app/Components/Common";
 import {
   TestimonialStatus,

@@ -19,6 +19,7 @@ import {
   Icon,
 } from "@/app/Components/Common";
 import { TextInput, Select } from "@/app/Components/Form";
+import { CommentStatus } from "@/lib/types/enums";
 
 const CommentsList = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -56,14 +57,16 @@ const CommentsList = () => {
     setConfirmModalConfig({
       opened: true,
       title: "Delete Comment",
-      message: "Are you sure you want to delete this comment and all its replies? This action cannot be undone.",
+      message:
+        "Are you sure you want to delete this comment and all its replies? This action cannot be undone.",
       confirmLabel: "Delete",
       onConfirm: () => {
         deleteCommentMutation.mutate(id, {
           onSuccess: () => {
             setConfirmModalConfig((prev) => ({ ...prev, opened: false }));
           },
-          onError: () => setConfirmModalConfig((prev) => ({ ...prev, opened: false }))
+          onError: () =>
+            setConfirmModalConfig((prev) => ({ ...prev, opened: false })),
         });
       },
       loading: deleteCommentMutation.isPending,
@@ -112,7 +115,8 @@ const CommentsList = () => {
               setSelectedComments([]);
               setConfirmModalConfig((prev) => ({ ...prev, opened: false }));
             },
-            onError: () => setConfirmModalConfig((prev) => ({ ...prev, opened: false }))
+            onError: () =>
+              setConfirmModalConfig((prev) => ({ ...prev, opened: false })),
           },
         );
       },
@@ -142,24 +146,13 @@ const CommentsList = () => {
       comment.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       comment.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
       comment.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      comment.blogId.toLowerCase().includes(searchTerm.toLowerCase());
+      (comment.blogId?.title || String(comment.blogId))
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
     const matchesStatus =
       filterStatus === "all" || comment.status === filterStatus;
     return matchesSearch && matchesStatus;
   });
-
-  const getStatusBadgeClass = (status: string) => {
-    switch (status) {
-      case "Approved":
-        return "status-badge success";
-      case "Pending":
-        return "status-badge warning";
-      case "Rejected":
-        return "status-badge danger";
-      default:
-        return "status-badge secondary";
-    }
-  };
 
   return (
     <Page
@@ -266,9 +259,10 @@ const CommentsList = () => {
             onChange={(val) => setFilterStatus(val)}
             data={[
               { value: "all", label: "All Status" },
-              { value: "Pending", label: "Pending" },
-              { value: "Approved", label: "Approved" },
-              { value: "Rejected", label: "Rejected" },
+              ...Object.entries(CommentStatus).map(([key, value]) => ({
+                value,
+                label: key,
+              })),
             ]}
             style={{ minWidth: "200px" }}
           />
@@ -310,7 +304,11 @@ const CommentsList = () => {
                     <Text className="comment-text">{comment.content}</Text>
                     {comment.parentId && (
                       <div className="reply-indicator">
-                        <Icon name="reply" /> Reply to: {comment.parentId}
+                        <Icon name="reply" /> Reply to:{" "}
+                        {comment.parentId?.name ||
+                          (typeof comment.parentId === "string"
+                            ? comment.parentId
+                            : "Unknown")}
                       </div>
                     )}
                   </div>
@@ -318,7 +316,7 @@ const CommentsList = () => {
                 <td>
                   <div className="blog-info">
                     <Text weight={700} size="sm">
-                      {comment.blogId}
+                      {comment.blogId?.title || "Unknown"}
                     </Text>
                   </div>
                 </td>
@@ -330,17 +328,6 @@ const CommentsList = () => {
                     <Text size="xs" color="dimmed">
                       {comment.email}
                     </Text>
-                    {comment.website && (
-                      <Text size="xs" color="dimmed">
-                        <a
-                          href={comment.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {comment.website}
-                        </a>
-                      </Text>
-                    )}
                   </div>
                 </td>
                 <td>
@@ -407,15 +394,15 @@ const CommentsList = () => {
                         <Icon name="clock" />
                       </Button>
                     )}
-                      <Button
-                        onClick={() => deleteComment(comment._id)}
-                        variant="outline"
-                        color="error"
-                        size="xs"
-                        title="Delete"
-                      >
-                        <Icon name="trash" />
-                      </Button>
+                    <Button
+                      onClick={() => deleteComment(comment._id)}
+                      variant="outline"
+                      color="error"
+                      size="xs"
+                      title="Delete"
+                    >
+                      <Icon name="trash" />
+                    </Button>
                   </Group>
                 </td>
               </tr>
@@ -441,7 +428,9 @@ const CommentsList = () => {
 
       <ConfirmModal
         opened={confirmModalConfig.opened}
-        onClose={() => setConfirmModalConfig((prev) => ({ ...prev, opened: false }))}
+        onClose={() =>
+          setConfirmModalConfig((prev) => ({ ...prev, opened: false }))
+        }
         onConfirm={confirmModalConfig.onConfirm}
         title={confirmModalConfig.title}
         confirmLabel={confirmModalConfig.confirmLabel}

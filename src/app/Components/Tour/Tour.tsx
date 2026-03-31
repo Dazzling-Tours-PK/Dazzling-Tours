@@ -7,6 +7,7 @@ import {
   useGetTourLocations,
   useGetTourDifficulties,
   useGetTourActivities,
+  useGetTourCategories,
 } from "@/lib/hooks";
 import { TourStatus } from "@/lib/enums";
 import { TourDifficulty } from "@/lib/enums/tour";
@@ -22,6 +23,8 @@ const Tour = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [selectedLocations, setSelectedLocations] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
   const [selectedDifficulties, setSelectedDifficulties] = useState<
     TourDifficulty[]
   >([]);
@@ -29,6 +32,10 @@ const Tour = () => {
   // Fetch tour locations
   const { data: locationsData } = useGetTourLocations(TourStatus.ACTIVE);
   const locations = locationsData?.data || [];
+
+  // Fetch tour categories with counts
+  const { data: categoriesData } = useGetTourCategories(TourStatus.ACTIVE);
+  const categories = categoriesData?.data || [];
 
   // Fetch tour difficulties with counts
   const { data: difficultiesData } = useGetTourDifficulties(TourStatus.ACTIVE);
@@ -61,6 +68,10 @@ const Tour = () => {
     search: searchTerm || undefined,
     location:
       selectedLocations.length > 0 ? selectedLocations.join(",") : undefined,
+    category:
+      selectedCategories.length > 0 ? selectedCategories.join(",") : undefined,
+    highlights:
+      selectedActivities.length > 0 ? selectedActivities.join(",") : undefined,
     difficulty:
       selectedDifficulties.length > 0
         ? selectedDifficulties.join(",")
@@ -104,6 +115,30 @@ const Tour = () => {
         return [...prev, locationName];
       } else {
         return prev.filter((loc) => loc !== locationName);
+      }
+    });
+    setCurrentPage(1); // Reset to first page when filter changes
+  };
+
+  // Handle category filter change
+  const handleCategoryChange = (categoryName: string, checked: boolean) => {
+    setSelectedCategories((prev) => {
+      if (checked) {
+        return [...prev, categoryName];
+      } else {
+        return prev.filter((cat) => cat !== categoryName);
+      }
+    });
+    setCurrentPage(1); // Reset to first page when filter changes
+  };
+
+  // Handle activity filter change
+  const handleActivityChange = (activityName: string, checked: boolean) => {
+    setSelectedActivities((prev) => {
+      if (checked) {
+        return [...prev, activityName];
+      } else {
+        return prev.filter((act) => act !== activityName);
       }
     });
     setCurrentPage(1); // Reset to first page when filter changes
@@ -182,7 +217,6 @@ const Tour = () => {
     );
   }
 
-  console.log(tours);
 
   return (
     <section className="tour-section section-padding fix">
@@ -370,18 +404,34 @@ const Tour = () => {
                       onSubmit={handleSearch}
                       className="search-form-enhanced"
                     >
-                      <div className="search-input-wrapper">
-                        <i className="bi bi-search search-icon"></i>
+                      <div
+                        className="search-input-wrapper"
+                        style={{ position: "relative" }}
+                      >
+                        <i
+                          className="bi bi-search search-icon"
+                          style={{
+                            position: "absolute",
+                            left: "20px",
+                            top: "50%",
+                            transform: "translateY(-50%)",
+                            pointerEvents: "none",
+                            transition: "none",
+                            zIndex: 2,
+                          }}
+                        ></i>
                         <input
                           type="text"
                           placeholder="Search tours, destinations..."
                           className="search-input-enhanced"
+                          style={{ paddingLeft: "50px" }}
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
                         />
                         <button
-                          type="submit"
+                          type={searchTerm ? "button" : "submit"}
                           className="search-btn-enhanced"
+                          onClick={searchTerm ? handleClearSearch : undefined}
                           disabled={!searchQuery.trim() && !searchTerm}
                         >
                           <i
@@ -392,6 +442,43 @@ const Tour = () => {
                         </button>
                       </div>
                     </form>
+                  </div>
+                </div>
+                <div className="single-sidebar-widget">
+                  <div className="wid-title">
+                    <h3>Categories</h3>
+                  </div>
+                  <div className="categories-list">
+                    {categories.length > 0 ? (
+                      categories.map((category) => (
+                        <label
+                          key={category.name}
+                          className="checkbox-single d-flex justify-content-between align-items-center"
+                        >
+                          <span className="d-flex gap-xl-3 gap-2 align-items-center">
+                            <span className="checkbox-area d-center">
+                              <input
+                                type="checkbox"
+                                checked={selectedCategories.includes(
+                                  category.name,
+                                )}
+                                onChange={(e) =>
+                                  handleCategoryChange(
+                                    category.name,
+                                    e.target.checked,
+                                  )
+                                }
+                              />
+                              <span className="checkmark d-center"></span>
+                            </span>
+                            <span className="text-color">{category.name}</span>
+                          </span>
+                          <span className="text-color">{category.count}</span>
+                        </label>
+                      ))
+                    ) : (
+                      <p className="text-muted p-3">No categories available</p>
+                    )}
                   </div>
                 </div>
                 <div className="single-sidebar-widget">
@@ -447,7 +534,18 @@ const Tour = () => {
                         >
                           <span className="d-flex gap-xl-3 gap-2 align-items-center">
                             <span className="checkbox-area d-center">
-                              <input type="checkbox" readOnly />
+                              <input
+                                type="checkbox"
+                                checked={selectedActivities.includes(
+                                  activity.name,
+                                )}
+                                onChange={(e) =>
+                                  handleActivityChange(
+                                    activity.name,
+                                    e.target.checked,
+                                  )
+                                }
+                              />
                               <span className="checkmark d-center"></span>
                             </span>
                             <span className="text-color">{activity.name}</span>

@@ -5,6 +5,10 @@ import {
   UpdateTourData,
   ToursResponse,
   TourResponse,
+  TourLocationsResponse,
+  TourDifficultiesResponse,
+  TourActivitiesResponse,
+  TourCategoriesResponse,
 } from "@/lib/types/tour";
 
 // Query Keys
@@ -24,6 +28,7 @@ export const useGetTours = (params?: {
   category?: string;
   location?: string;
   difficulty?: string;
+  highlights?: string;
   search?: string;
   page?: number;
   limit?: number;
@@ -43,7 +48,7 @@ export const useGetTours = (params?: {
       }
 
       const response = await api.get<ToursResponse>(
-        `/api/tours?${searchParams.toString()}`,
+        `/tours?${searchParams.toString()}`,
       );
       return response.data;
     },
@@ -54,7 +59,7 @@ export const useGetTour = (id: string) => {
   return useQuery<TourResponse>({
     queryKey: tourKeys.detail(id),
     queryFn: async () => {
-      const response = await api.get<TourResponse>(`/api/tours/${id}`);
+      const response = await api.get<TourResponse>(`/tours/${id}`);
       return response.data;
     },
     enabled: !!id,
@@ -65,7 +70,7 @@ export const useGetTourBySlug = (slug: string) => {
   return useQuery<TourResponse>({
     queryKey: [...tourKeys.details(), "slug", slug],
     queryFn: async () => {
-      const response = await api.get<TourResponse>(`/api/tours/slug/${slug}`);
+      const response = await api.get<TourResponse>(`/tours/slug/${slug}`);
       return response.data;
     },
     enabled: !!slug,
@@ -77,7 +82,7 @@ export const useCreateTour = () => {
 
   return useMutation<TourResponse, Error, CreateTourData>({
     mutationFn: async (data) => {
-      const response = await api.post<TourResponse>("/api/tours", data);
+      const response = await api.post<TourResponse>("/tours", data);
       return response.data;
     },
     onSuccess: () => {
@@ -96,7 +101,7 @@ export const useUpdateTour = () => {
     mutationFn: async (data) => {
       const { _id, ...updateData } = data;
       const response = await api.patch<TourResponse>(
-        `/api/tours/${_id}`,
+        `/tours/${_id}`,
         updateData,
       );
       return response.data;
@@ -119,9 +124,7 @@ export const useDeleteTour = () => {
 
   return useMutation<{ success: boolean }, Error, string>({
     mutationFn: async (id) => {
-      const response = await api.delete<{ success: boolean }>(
-        `/api/tours/${id}`,
-      );
+      const response = await api.delete<{ success: boolean }>(`/tours/${id}`);
       return response.data;
     },
     onSuccess: () => {
@@ -142,7 +145,7 @@ export const useBulkUpdateTours = () => {
     { tourIds: string[]; action: string; data?: Record<string, unknown> }
   >({
     mutationFn: async ({ tourIds, action, data }) => {
-      const response = await api.put<{ success: boolean }>("/api/tours", {
+      const response = await api.put<{ success: boolean }>("/tours", {
         tourIds,
         action,
         data,
@@ -158,18 +161,6 @@ export const useBulkUpdateTours = () => {
   });
 };
 
-// Hook to get unique tour locations
-export interface TourLocation {
-  name: string;
-  count: number;
-}
-
-export interface TourLocationsResponse {
-  success: boolean;
-  data: TourLocation[];
-  total: number;
-}
-
 export const useGetTourLocations = (status?: string) => {
   return useQuery<TourLocationsResponse>({
     queryKey: [...tourKeys.all, "locations", status || "all"],
@@ -180,24 +171,12 @@ export const useGetTourLocations = (status?: string) => {
       }
 
       const response = await api.get<TourLocationsResponse>(
-        `/api/tours/locations?${params.toString()}`,
+        `/tours/locations?${params.toString()}`,
       );
       return response.data;
     },
   });
 };
-
-export interface TourDifficultyData {
-  value: string;
-  label: string;
-  count: number;
-}
-
-export interface TourDifficultiesResponse {
-  success: boolean;
-  data: TourDifficultyData[];
-  total: number;
-}
 
 export const useGetTourDifficulties = (status?: string) => {
   return useQuery<TourDifficultiesResponse>({
@@ -209,23 +188,12 @@ export const useGetTourDifficulties = (status?: string) => {
       }
 
       const response = await api.get<TourDifficultiesResponse>(
-        `/api/tours/difficulties?${params.toString()}`,
+        `/tours/difficulties?${params.toString()}`,
       );
       return response.data;
     },
   });
 };
-
-export interface TourActivity {
-  name: string;
-  count: number;
-}
-
-export interface TourActivitiesResponse {
-  success: boolean;
-  data: TourActivity[];
-  total: number;
-}
 
 export const useGetTourActivities = (status?: string) => {
   return useQuery<TourActivitiesResponse>({
@@ -237,7 +205,24 @@ export const useGetTourActivities = (status?: string) => {
       }
 
       const response = await api.get<TourActivitiesResponse>(
-        `/api/tours/activities?${params.toString()}`,
+        `/tours/activities?${params.toString()}`,
+      );
+      return response.data;
+    },
+  });
+};
+
+export const useGetTourCategories = (status?: string) => {
+  return useQuery<TourCategoriesResponse>({
+    queryKey: [...tourKeys.all, "categories", status || "all"],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (status) {
+        params.append("status", status);
+      }
+
+      const response = await api.get<TourCategoriesResponse>(
+        `/tours/categories?${params.toString()}`,
       );
       return response.data;
     },

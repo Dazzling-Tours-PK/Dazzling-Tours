@@ -1,12 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
+import { api } from "@/lib/privateAxios";
 import { ApiResponse } from "@/lib/types";
-
-export interface SeedData {
-  email: string;
-  role: string;
-  emailSent: boolean;
-}
+import { SeedData } from "@/lib/types/admin";
 
 export const useAdminSeed = () => {
   return useMutation({
@@ -22,8 +17,8 @@ export const useAdminSeed = () => {
         } as ApiResponse<SeedData>;
       }
 
-      const response = await axios.post<ApiResponse<SeedData>>(
-        "/api/auth/seed",
+      const response = await api.post<ApiResponse<SeedData>>(
+        "/auth/seed",
         {},
         {
           headers: {

@@ -13,6 +13,9 @@ const nextConfig = {
     ],
     unoptimized: false,
   },
+  compiler: {
+    removeConsole: true,
+  },
 };
 
 export default nextConfig;

@@ -40,7 +40,7 @@ export const useGetTestimonials = (params?: {
       }
 
       const response = await api.get<TestimonialsResponse>(
-        `/api/testimonials?${searchParams.toString()}`,
+        `/testimonials?${searchParams.toString()}`,
       );
       return response.data;
     },
@@ -52,7 +52,7 @@ export const useGetTestimonial = (id: string) => {
     queryKey: testimonialKeys.detail(id),
     queryFn: async () => {
       const response = await api.get<TestimonialResponse>(
-        `/api/testimonials/${id}`,
+        `/testimonials/${id}`,
       );
       return response.data;
     },
@@ -66,7 +66,7 @@ export const useCreateTestimonial = () => {
   return useMutation<TestimonialResponse, Error, CreateTestimonialData>({
     mutationFn: async (data) => {
       const response = await api.post<TestimonialResponse>(
-        "/api/testimonials",
+        "/testimonials",
         data,
       );
       return response.data;
@@ -84,7 +84,7 @@ export const useUpdateTestimonial = () => {
     mutationFn: async (data) => {
       const { _id, ...updateData } = data;
       const response = await api.put<TestimonialResponse>(
-        `/api/testimonials/${_id}`,
+        `/testimonials/${_id}`,
         updateData,
       );
       return response.data;
@@ -104,7 +104,7 @@ export const useDeleteTestimonial = () => {
   return useMutation<{ success: boolean }, Error, string>({
     mutationFn: async (id) => {
       const response = await api.delete<{ success: boolean }>(
-        `/api/testimonials/${id}`,
+        `/testimonials/${id}`,
       );
       return response.data;
     },
@@ -123,10 +123,11 @@ export const useBulkUpdateTestimonials = () => {
     { ids: string[]; action: string; data?: Record<string, unknown> }
   >({
     mutationFn: async ({ ids, action, data }) => {
-      const response = await api.put<{ success: boolean }>(
-        "/api/testimonials",
-        { ids, action, ...data },
-      );
+      const response = await api.put<{ success: boolean }>("/testimonials", {
+        ids,
+        action,
+        ...data,
+      });
       return response.data;
     },
     onSuccess: () => {

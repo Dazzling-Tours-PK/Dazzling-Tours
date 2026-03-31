@@ -87,7 +87,7 @@ const AdminDashboard = () => {
                   }}
                 >
                   <Icon
-                    name={stat.icon as any}
+                    name={stat.icon as never}
                     color={
                       stat.color === "primary"
                         ? "#1976d2"

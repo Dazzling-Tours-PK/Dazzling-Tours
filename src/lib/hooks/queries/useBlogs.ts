@@ -5,6 +5,8 @@ import {
   UpdateBlogData,
   BlogsResponse,
   BlogResponse,
+  BlogCategoriesResponse,
+  BlogTagsResponse,
 } from "@/lib/types/blog";
 
 // Query Keys
@@ -22,6 +24,7 @@ export const useGetBlogs = (params?: {
   status?: string;
   featured?: boolean;
   category?: string;
+  tags?: string;
   author?: string;
   search?: string;
   page?: number;
@@ -40,7 +43,7 @@ export const useGetBlogs = (params?: {
       }
 
       const response = await api.get<BlogsResponse>(
-        `/api/blogs?${searchParams.toString()}`,
+        `/blogs?${searchParams.toString()}`,
       );
       return response.data;
     },
@@ -51,7 +54,7 @@ export const useGetBlog = (id: string) => {
   return useQuery<BlogResponse>({
     queryKey: blogKeys.detail(id),
     queryFn: async () => {
-      const response = await api.get<BlogResponse>(`/api/blogs/${id}`);
+      const response = await api.get<BlogResponse>(`/blogs/${id}`);
       return response.data;
     },
     enabled: !!id,
@@ -63,7 +66,7 @@ export const useCreateBlog = () => {
 
   return useMutation<BlogResponse, Error, CreateBlogData>({
     mutationFn: async (data) => {
-      const response = await api.post<BlogResponse>("/api/blogs", data);
+      const response = await api.post<BlogResponse>("/blogs", data);
       return response.data;
     },
     onSuccess: () => {
@@ -79,7 +82,7 @@ export const useUpdateBlog = () => {
     mutationFn: async (data) => {
       const { _id, ...updateData } = data;
       const response = await api.patch<BlogResponse>(
-        `/api/blogs/${_id}`,
+        `/blogs/${_id}`,
         updateData,
       );
       return response.data;
@@ -156,7 +159,7 @@ export const useDeleteBlog = () => {
   return useMutation<{ success: boolean }, Error, string>({
     mutationFn: async (id) => {
       const response = await api.delete<{ success: boolean }>(
-        `/api/blogs/${id}`,
+        `/blogs/${id}`,
       );
       return response.data;
     },
@@ -166,4 +169,47 @@ export const useDeleteBlog = () => {
   });
 };
 
+export const useGetBlogBySlug = (slug: string) => {
+  return useQuery<BlogResponse>({
+    queryKey: [...blogKeys.details(), "slug", slug],
+    queryFn: async () => {
+      const response = await api.get<BlogResponse>(`/blogs/slug/${slug}`);
+      return response.data;
+    },
+    enabled: !!slug,
+  });
+};
 
+export const useGetBlogCategories = (status?: string) => {
+  return useQuery<BlogCategoriesResponse>({
+    queryKey: [...blogKeys.all, "categories", status || "all"],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (status) {
+        params.append("status", status);
+      }
+
+      const response = await api.get<BlogCategoriesResponse>(
+        `/blogs/categories?${params.toString()}`,
+      );
+      return response.data;
+    },
+  });
+};
+
+export const useGetBlogTags = (status?: string) => {
+  return useQuery<BlogTagsResponse>({
+    queryKey: [...blogKeys.all, "tags", status || "all"],
+    queryFn: async () => {
+      const params = new URLSearchParams();
+      if (status) {
+        params.append("status", status);
+      }
+
+      const response = await api.get<BlogTagsResponse>(
+        `/blogs/tags?${params.toString()}`,
+      );
+      return response.data;
+    },
+  });
+};

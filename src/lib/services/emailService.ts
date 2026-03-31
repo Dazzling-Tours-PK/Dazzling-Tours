@@ -1,4 +1,10 @@
 import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+// Initialize Resend if API key is provided
+const resend = process.env.RESEND_API_KEY
+  ? new Resend(process.env.RESEND_API_KEY)
+  : null;
 
 // Email configuration interface
 interface EmailConfig {
@@ -33,7 +39,7 @@ const createTransporter = () => {
     return nodemailer.createTransport(config);
   }
 
-  // Fallback to SMTP configuration (for production)
+  // Fallback to SMTP configuration
   const config: EmailConfig = {
     host: process.env.SMTP_HOST || "smtp.gmail.com",
     port: parseInt(process.env.SMTP_PORT || "587"),
@@ -66,7 +72,45 @@ export interface EmailOptions {
 // Send email function
 export async function sendEmail(options: EmailOptions): Promise<boolean> {
   try {
-    // Check if email service is configured (Mailtrap or SMTP)
+    const fromName = process.env.SMTP_FROM_NAME || "Dazzling Tours";
+    const defaultFromEmail =
+      process.env.RESEND_FROM_EMAIL || process.env.SMTP_USER;
+    const fromEmail = options.from || defaultFromEmail;
+    const formattedFrom = `${fromName} <${fromEmail}>`;
+
+    // 1. Try Resend first (Production Preferred)
+    if (resend && process.env.NODE_ENV === "production") {
+      try {
+        const { error } = await resend.emails.send({
+          from: formattedFrom,
+          to: options.to,
+          subject: options.subject,
+          html: options.html,
+          text: options.text || options.html.replace(/<[^>]*>/g, ""),
+          replyTo: options.replyTo,
+          attachments: options.attachments?.map((att) => ({
+            filename: att.filename,
+            content: att.content,
+            path: att.path,
+          })),
+        });
+
+        if (error) {
+          console.error("Resend error:", error);
+          throw error;
+        }
+
+        return true;
+      } catch (resendError) {
+        console.warn(
+          "Resend failed, falling back to SMTP/Mailtrap:",
+          resendError,
+        );
+        // Fall through to Nodemailer...
+      }
+    }
+
+    // 2. Fallback to Nodemailer (Mailtrap/SMTP)
     const hasMailtrap =
       !!process.env.MAILTRAP_HOST &&
       !!process.env.MAILTRAP_USER &&
@@ -75,57 +119,27 @@ export async function sendEmail(options: EmailOptions): Promise<boolean> {
 
     if (!hasMailtrap && !hasSMTP) {
       throw new Error(
-        "Email configuration is missing. Please set either Mailtrap (MAILTRAP_HOST, MAILTRAP_USER, MAILTRAP_PASS) or SMTP (SMTP_USER, SMTP_PASS) environment variables.",
+        "No mail service configured. Please set RESEND_API_KEY, Mailtrap, or SMTP credentials.",
       );
     }
 
     const transporter = createTransporter();
 
-    // Verify transporter configuration
-    try {
-      await transporter.verify();
-    } catch (verifyError) {
-      console.error("SMTP verification failed:", verifyError);
-      throw new Error(
-        `SMTP connection failed: ${
-          verifyError instanceof Error ? verifyError.message : "Unknown error"
-        }`,
-      );
-    }
-
-    const useMailtrap =
-      process.env.MAILTRAP_HOST &&
-      process.env.MAILTRAP_USER &&
-      process.env.MAILTRAP_PASS;
-    const defaultFromEmail = useMailtrap
-      ? "noreply@dazzlingtours.com"
-      : process.env.SMTP_USER || "noreply@dazzlingtours.com";
-    const fromEmail = options.from || defaultFromEmail;
-    const fromName = process.env.SMTP_FROM_NAME || "Dazzling Tours";
-
     const mailOptions = {
-      from: `"${fromName}" <${fromEmail}>`,
+      from: formattedFrom,
       to: Array.isArray(options.to) ? options.to.join(", ") : options.to,
       subject: options.subject,
       html: options.html,
-      text: options.text || options.html.replace(/<[^>]*>/g, ""), // Strip HTML for text version
+      text: options.text || options.html.replace(/<[^>]*>/g, ""),
       replyTo: options.replyTo,
       attachments: options.attachments,
     };
 
-    const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent successfully:", {
-      messageId: info.messageId,
-      to: mailOptions.to,
-      subject: mailOptions.subject,
-    });
+    await transporter.sendMail(mailOptions);
+
     return true;
   } catch (error) {
-    console.error("Email sending error:", {
-      error: error instanceof Error ? error.message : "Unknown error",
-      to: options.to,
-      subject: options.subject,
-    });
+    console.error("Email sending fatal error:", error);
     throw error;
   }
 }
@@ -147,7 +161,6 @@ export async function sendBulkEmails(
     errors: [] as Array<{ email: string; error: string }>,
   };
 
-  // Process in batches to avoid overwhelming the email server
   for (let i = 0; i < recipients.length; i += batchSize) {
     const batch = recipients.slice(i, i + batchSize);
 
@@ -169,7 +182,6 @@ export async function sendBulkEmails(
       }),
     );
 
-    // Delay between batches to avoid rate limiting
     if (i + batchSize < recipients.length) {
       await new Promise((resolve) => setTimeout(resolve, delayMs));
     }
@@ -181,25 +193,13 @@ export async function sendBulkEmails(
 // Verify email configuration
 export async function verifyEmailConfig(): Promise<boolean> {
   try {
-    // Check if Mailtrap or SMTP is configured
-    const useMailtrap =
-      process.env.MAILTRAP_HOST &&
-      process.env.MAILTRAP_USER &&
-      process.env.MAILTRAP_PASS;
-    const useSMTP = process.env.SMTP_USER && process.env.SMTP_PASS;
-
-    if (!useMailtrap && !useSMTP) {
-      console.error(
-        "Email configuration missing: Please set either Mailtrap (MAILTRAP_HOST, MAILTRAP_USER, MAILTRAP_PASS) or SMTP (SMTP_USER, SMTP_PASS) environment variables.",
-      );
-      return false;
-    }
+    if (resend) return true;
 
     const transporter = createTransporter();
     await transporter.verify();
     return true;
   } catch (error) {
-    console.error("SMTP verification failed:", error);
+    console.error("Email config verification failed:", error);
     return false;
   }
 }

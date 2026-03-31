@@ -41,7 +41,7 @@ export const useGetContactInquiries = (params?: {
       }
 
       const response = await api.get<ContactsResponse>(
-        `/api/contact?${searchParams.toString()}`,
+        `/contact?${searchParams.toString()}`,
       );
       return response.data;
     },
@@ -52,7 +52,7 @@ export const useGetContactInquiry = (id: string) => {
   return useQuery<ContactResponse>({
     queryKey: contactKeys.detail(id),
     queryFn: async () => {
-      const response = await api.get<ContactResponse>(`/api/contact/${id}`);
+      const response = await api.get<ContactResponse>(`/contact/${id}`);
       return response.data;
     },
     enabled: !!id,
@@ -64,7 +64,7 @@ export const useGetContactStats = () => {
     queryKey: contactKeys.stats(),
     queryFn: async () => {
       const response =
-        await api.get<ContactStatsResponse>("/api/contact/stats");
+        await api.get<ContactStatsResponse>("/contact/stats");
       return response.data;
     },
   });
@@ -75,7 +75,7 @@ export const useCreateContactInquiry = () => {
 
   return useMutation<ContactResponse, Error, CreateContactData>({
     mutationFn: async (data) => {
-      const response = await api.post<ContactResponse>("/api/contact", data);
+      const response = await api.post<ContactResponse>("/contact", data);
       return response.data;
     },
     onSuccess: () => {
@@ -98,7 +98,7 @@ export const useUpdateContactInquiry = () => {
     mutationFn: async (data) => {
       const { _id, ...updateData } = data;
       const response = await api.put<ContactResponse>(
-        `/api/contact/${_id}`,
+        `/contact/${_id}`,
         updateData,
       );
       return response.data;
@@ -126,7 +126,7 @@ export const useDeleteContactInquiry = () => {
   return useMutation<{ success: boolean }, Error, string>({
     mutationFn: async (id) => {
       const response = await api.delete<{ success: boolean }>(
-        `/api/contact/${id}`,
+        `/contact/${id}`,
       );
       return response.data;
     },
@@ -152,7 +152,7 @@ export const useBulkUpdateContactInquiries = () => {
     { ids: string[]; action: string; data?: Record<string, unknown> }
   >({
     mutationFn: async ({ ids, action, data }) => {
-      const response = await api.put<{ success: boolean }>("/api/contact", {
+      const response = await api.put<{ success: boolean }>("/contact", {
         ids,
         action,
         ...data,

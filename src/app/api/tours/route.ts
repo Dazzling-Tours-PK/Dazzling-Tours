@@ -21,6 +21,7 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get("status");
     const location = searchParams.get("location");
     const difficulty = searchParams.get("difficulty");
+    const highlights = searchParams.get("highlights");
 
     const query: MongoQuery = {};
 
@@ -32,7 +33,15 @@ export async function GET(request: NextRequest) {
       query.status = { $ne: TourStatus.DRAFT };
     }
 
-    if (category) query.category = category;
+    // Handle category filter (can be comma-separated for multiple categories)
+    if (category) {
+      const categoryArray = category.split(",").map((cat) => cat.trim());
+      if (categoryArray.length === 1) {
+        query.category = categoryArray[0];
+      } else {
+        (query as Record<string, unknown>).category = { $in: categoryArray };
+      }
+    }
     if (featured === "true") query.featured = true;
     if (featured === "false") query.featured = false;
 
@@ -54,6 +63,18 @@ export async function GET(request: NextRequest) {
       } else {
         (query as Record<string, unknown>).difficulty = {
           $in: difficultyArray,
+        };
+      }
+    }
+
+    // Handle highlights filter (can be comma-separated for multiple highlights/activities)
+    if (highlights) {
+      const highlightsArray = highlights.split(",").map((h) => h.trim());
+      if (highlightsArray.length === 1) {
+        query.highlights = highlightsArray[0];
+      } else {
+        (query as Record<string, unknown>).highlights = {
+          $in: highlightsArray,
         };
       }
     }

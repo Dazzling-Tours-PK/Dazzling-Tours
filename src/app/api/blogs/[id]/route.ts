@@ -90,12 +90,11 @@ export async function PATCH(
         existingBlog.featuredImage &&
         existingBlog.featuredImage !== body.featuredImage
       ) {
-        await imageService.delete(existingBlog.featuredImage).catch((err) =>
-          console.error(
-            "Failed to delete old featured image:",
-            err,
-          ),
-        );
+        await imageService
+          .delete(existingBlog.featuredImage)
+          .catch((err) =>
+            console.error("Failed to delete old featured image:", err),
+          );
       }
 
       // 2. SEO OG Image changed
@@ -110,12 +109,11 @@ export async function PATCH(
           existingBlog.seo.ogImage === existingBlog.featuredImage;
 
         if (!isSameAsFeatured) {
-          await imageService.delete(existingBlog.seo.ogImage).catch((err) =>
-            console.error(
-              "Failed to delete old SEO OG image:",
-              err,
-            ),
-          );
+          await imageService
+            .delete(existingBlog.seo.ogImage)
+            .catch((err) =>
+              console.error("Failed to delete old SEO OG image:", err),
+            );
         }
       }
     }
@@ -205,19 +203,18 @@ export async function DELETE(
 
     // Delete featured image
     if (blog.featuredImage) {
-      await imageService.delete(blog.featuredImage).catch((err) =>
-        console.error(
-          "Failed to delete blog featured image:",
-          err,
-        ),
-      );
+      await imageService
+        .delete(blog.featuredImage)
+        .catch((err) =>
+          console.error("Failed to delete blog featured image:", err),
+        );
     }
 
     // Delete OG image if it's different
     if (blog.seo?.ogImage && blog.seo.ogImage !== blog.featuredImage) {
-      await imageService.delete(blog.seo.ogImage).catch((err) =>
-        console.error("Failed to delete blog OG image:", err),
-      );
+      await imageService
+        .delete(blog.seo.ogImage)
+        .catch((err) => console.error("Failed to delete blog OG image:", err));
     }
 
     await Blog.findByIdAndDelete(resolvedParams.id);

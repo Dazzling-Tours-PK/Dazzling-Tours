@@ -21,9 +21,7 @@ export async function seedDatabase() {
         description:
           "Default category for tours and blogs without a specific category",
       });
-      console.log(
-        `✅ '${UNCATEGORIZED_CATEGORY_NAME}' category seeded successfully`,
-      );
+
     }
 
     return {};

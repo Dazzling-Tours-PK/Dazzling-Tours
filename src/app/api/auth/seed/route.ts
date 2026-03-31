@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     await connectDB();
 
     const adminEmail = process.env.ADMIN_EMAIL;
-    let adminPassword = process.env.ADMIN_PASSWORD;
+    const adminPassword = process.env.ADMIN_PASSWORD;
 
     if (!adminEmail) {
       return NextResponse.json(
@@ -31,71 +31,73 @@ export async function POST(req: NextRequest) {
     }
 
     // Generate random password if not provided
-    const isRandomPassword = !adminPassword;
-    if (isRandomPassword) {
-      adminPassword = crypto.randomBytes(12).toString("hex");
+    // const isRandomPassword = !adminPassword;
+    const finalAdminPassword =
+      adminPassword || crypto.randomBytes(12).toString("hex");
+
+    // 2. Find or create/update the admin user
+    let adminUser = await User.findOne({ email: adminEmail });
+    const isNew = !adminUser;
+
+    if (!adminUser) {
+      adminUser = new User({
+        email: adminEmail,
+        password: finalAdminPassword, // Will be hashed by pre-save hook
+        firstName: "Super",
+        lastName: "Admin",
+        role: UserRole.SUPER_ADMIN,
+        isActive: true,
+        isEmailVerified: true,
+      });
+    } else {
+      // If user exists, update password and role to fix any previous incorrect setup (like plaintext password)
+      adminUser.password = finalAdminPassword; // Will be hashed by pre-save hook
+      adminUser.role = UserRole.SUPER_ADMIN;
+      adminUser.isActive = true;
     }
 
-    // 2. Use findOneAndUpdate with upsert for a more atomic operation
-    // This handles both cases: creation if not exists, or update if exists
-    const adminUser = await User.findOneAndUpdate(
-      { email: adminEmail },
-      {
-        $setOnInsert: {
-          password: adminPassword, // Hashed by pre-save middleware if newly created
-          firstName: "Super",
-          lastName: "Admin",
-          role: UserRole.SUPER_ADMIN,
-          isActive: true,
-          isEmailVerified: true,
-        },
-      },
-      {
-        upsert: true,
-        new: true,
-        runValidators: true,
-      },
-    );
+    if (!adminUser) {
+      throw new Error("Failed to initialize admin user object");
+    }
 
-    const isNew =
-      adminUser.createdAt.getTime() === adminUser.updatedAt.getTime();
+    await adminUser.save();
 
     let emailSent = false;
-    if (isNew) {
-      // Send email with credentials
-      try {
-        const html = genericHtmlTemplate(
-          "Admin Account Created",
-          `
-          <p>Hello Super Admin,</p>
-          <p>Your administrative account has been successfully created for Dazzling Tours.</p>
-          <p><strong>Credentials:</strong></p>
-          <ul>
-            <li><strong>Email:</strong> ${adminEmail}</li>
-            <li><strong>Password:</strong> ${adminPassword}</li>
-          </ul>
-          <p>Please login and change your password immediately for security reasons.</p>
-          <a href="${process.env.NEXT_PUBLIC_BASE_URL}/login" class="button">Login Now</a>
-          `,
-          { companyName: "Dazzling Tours" },
-        );
+    // Always send/resend credentials during seeding to ensure user has the latest working ones
+    try {
+      const html = genericHtmlTemplate(
+        isNew ? "Admin Account Created" : "Admin Account Credentials Reset",
+        `
+        <p>Hello Super Admin,</p>
+        <p>Your administrative account credentials for Dazzling Tours have been ${isNew ? "created" : "recently updated"}.</p>
+        <p><strong>Credentials:</strong></p>
+        <ul>
+          <li><strong>Email:</strong> ${adminEmail}</li>
+          <li><strong>Password:</strong> ${finalAdminPassword}</li>
+        </ul>
+        <p>Please login and change your password immediately for security reasons.</p>
+        <a href="${process.env.NEXT_PUBLIC_BASE_URL || ""}/admin/login" class="button">Login Now</a>
+        `,
+        { companyName: "Dazzling Tours" },
+      );
 
-        await sendEmail({
-          to: adminEmail,
-          subject: "Your Admin Account Credentials - Dazzling Tours",
-          html: html,
-        });
-        emailSent = true;
-      } catch (emailError) {
-        console.error("Failed to send admin credentials email:", emailError);
-      }
+      await sendEmail({
+        to: adminEmail,
+        subject: isNew
+          ? "Your Admin Account Credentials - Dazzling Tours"
+          : "Your Admin Account Credentials Reset - Dazzling Tours",
+        html: html,
+      });
+      emailSent = true;
+    } catch (emailError) {
+      console.error("Failed to send admin credentials email:", emailError);
     }
 
     return NextResponse.json({
       success: true,
       message: isNew
         ? `Admin user created successfully. ${emailSent ? "Credentials sent to email." : "Failed to send email."}`
-        : "Admin user already exists.",
+        : `Admin user updated successfully. ${emailSent ? "New credentials sent to email." : "Failed to send email."}`,
       data: {
         email: adminUser.email,
         role: adminUser.role,

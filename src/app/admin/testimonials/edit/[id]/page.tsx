@@ -7,8 +7,8 @@ import {
   useNotification,
   useForm,
   useGetTestimonial,
+  useGetTours,
 } from "@/lib/hooks";
-import { useGetTours } from "@/lib/hooks/useTours";
 import { Page, Button } from "@/app/Components/Common";
 import {
   TestimonialStatus,

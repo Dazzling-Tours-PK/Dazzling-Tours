@@ -106,7 +106,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         success: boolean;
         data: { user: User };
         message?: string;
-      }>("/api/auth/me");
+      }>("/auth/me");
       const data = response.data;
 
       if (data.success) {
@@ -119,26 +119,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       throw error;
     }
   };
-
   const login = async (email: string, password: string) => {
     try {
-      const response = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (!response.ok) {
-        const err = await response.json().catch(() => ({}));
-        return {
-          success: false,
-          message: err.message || "Invalid credentials",
-        };
-      }
-
-      const data = await response.json();
+      const response = await api.post<{ token?: string; user?: User }>(
+        "/auth/login",
+        { email, password }
+      );
+      const data = response.data;
       if (data?.token && data?.user) {
         setToken(data.token);
         setUser(data.user);
@@ -147,32 +134,42 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
 
       return { success: false, message: "Unexpected response from server" };
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Login error:", error);
-      return { success: false, message: "Login failed. Please try again." };
+      const err = error as { response?: { data?: { message?: string } } };
+      return {
+        success: false,
+        message: err.response?.data?.message || "Login failed",
+      };
     }
   };
 
   const verifyOTP = async (email: string, otp: string, type: string) => {
     try {
-      const response = await fetch("/api/auth/verify-otp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, otp, type }),
+      const response = await api.post<{
+        success: boolean;
+        message?: string;
+        data?: { token?: string; user?: User };
+      }>("/auth/verify-otp", {
+        email,
+        otp,
+        type,
       });
-
-      const data = await response.json();
+      const data = response.data;
 
       if (data.success && data.data?.token) {
         const { token: authToken, user: userData } = data.data;
         setToken(authToken);
-        setUser(userData);
+        setUser(userData || null);
         localStorage.setItem("admin_token", authToken);
       }
 
-      return data;
+      return {
+        success: data.success,
+        message: data.message || "Operation successful",
+        token: data.data?.token,
+        user: data.data?.user,
+      };
     } catch (error) {
       console.error("OTP verification error:", error);
       return {
@@ -184,15 +181,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const forgotPassword = async (email: string) => {
     try {
-      const response = await fetch("/api/auth/forgot-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await response.json();
+      const response = await api.post<{ success: boolean; message: string }>(
+        "/auth/forgot-password",
+        { email }
+      );
+      const data = response.data;
       return data;
     } catch (error) {
       console.error("Forgot password error:", error);
@@ -209,15 +202,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     newPassword: string,
   ) => {
     try {
-      const response = await fetch("/api/auth/reset-password", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, otp, newPassword }),
-      });
-
-      const data = await response.json();
+      const response = await api.post<{ success: boolean; message: string }>(
+        "/auth/reset-password",
+        {
+          email,
+          otp,
+          newPassword,
+        }
+      );
+      const data = response.data;
       return data;
     } catch (error) {
       console.error("Reset password error:", error);
@@ -234,7 +227,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   ) => {
     try {
       const response = await api.post<{ success: boolean; message: string }>(
-        "/api/auth/change-password",
+        "/auth/change-password",
         {
           currentPassword,
           newPassword,

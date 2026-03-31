@@ -18,10 +18,27 @@ export async function GET(request: NextRequest) {
     const status = searchParams.get("status");
     const featured = searchParams.get("featured");
     const search = searchParams.get("search");
+    const tags = searchParams.get("tags");
 
     const query: MongoQuery = {};
 
-    if (category) query.category = category;
+    if (category) {
+      const categoryArray = category.split(",").map((cat) => cat.trim());
+      if (categoryArray.length === 1) {
+        query.category = categoryArray[0];
+      } else {
+        (query as Record<string, unknown>).category = { $in: categoryArray };
+      }
+    }
+
+    if (tags) {
+      const tagsArray = tags.split(",").map((tag) => tag.trim());
+      if (tagsArray.length === 1) {
+        query.tags = tagsArray[0];
+      } else {
+        (query as Record<string, unknown>).tags = { $in: tagsArray };
+      }
+    }
     if (status) query.status = status;
     if (featured !== null && featured !== undefined) {
       query.featured = featured === "true";
@@ -32,6 +49,7 @@ export async function GET(request: NextRequest) {
         { excerpt: { $regex: search, $options: "i" } },
         { content: { $regex: search, $options: "i" } },
         { author: { $regex: search, $options: "i" } },
+        { tags: { $regex: search, $options: "i" } },
       ];
     }
 

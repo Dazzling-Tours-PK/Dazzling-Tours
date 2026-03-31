@@ -28,11 +28,7 @@ import {
 } from "@/app/Components/Common";
 import { UNCATEGORIZED_CATEGORY_NAME } from "@/lib/constants/categories";
 import { BlogStatus } from "@/lib/enums/blog";
-import {
-  getCategoryBadgeColor,
-  getStatusBadgeClass,
-  getStatusColor,
-} from "@/lib/utils/blogUtils";
+import { getCategoryBadgeColor, getStatusColor } from "@/lib/utils/blogUtils";
 
 const BlogsList = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -389,11 +385,7 @@ const BlogsList = () => {
                           flexShrink: 0,
                         }}
                       >
-                        <Icon
-                          name="image"
-                          color="#dee2e6"
-                          size="1rem"
-                        />
+                        <Icon name="image" color="#dee2e6" size="1rem" />
                       </div>
                     )}
                     <div
@@ -497,11 +489,7 @@ const BlogsList = () => {
                     style={{ padding: 0, minWidth: "auto", height: "auto" }}
                   >
                     {blog.featured ? (
-                      <Icon
-                        name="star-fill"
-                        color="#ffc107"
-                        size="1.2rem"
-                      />
+                      <Icon name="star-fill" color="#ffc107" size="1.2rem" />
                     ) : (
                       <Icon
                         name="star"
@@ -534,10 +522,7 @@ const BlogsList = () => {
                       justifyContent: "center",
                     }}
                   >
-                    <Link
-                      href={`/admin/blogs/edit/${blog._id}`}
-                      passHref
-                    >
+                    <Link href={`/admin/blogs/edit/${blog._id}`} passHref>
                       <Button variant="outline" size="sm" title="Edit">
                         <Icon name="pencil" />
                       </Button>

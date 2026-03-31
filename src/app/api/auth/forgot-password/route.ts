@@ -4,7 +4,7 @@ import { User, OTP } from "@/models";
 import { z } from "zod";
 
 const forgotPasswordSchema = z.object({
-  email: z.string().email("Invalid email format"),
+  email: z.email("Invalid email format"),
 });
 
 export async function POST(request: NextRequest) {
@@ -17,11 +17,10 @@ export async function POST(request: NextRequest) {
     // Find user by email
     const user = await User.findOne({
       email: email.toLowerCase(),
-      role: "super_admin",
     });
 
     if (!user) {
-      // Don't reveal if user exists or not for security
+      // Don't reveal if user exists or not for security on the frontend
       return NextResponse.json({
         success: true,
         message: "If the email exists, a password reset OTP has been sent",
@@ -34,6 +33,14 @@ export async function POST(request: NextRequest) {
         { success: false, message: "Account is deactivated" },
         { status: 401 },
       );
+    }
+
+    // Role check - ensure it's super_admin
+    if (user.role !== "super_admin") {
+      return NextResponse.json({
+        success: true,
+        message: "If the email exists, a password reset OTP has been sent",
+      });
     }
 
     // Generate OTP for password reset
@@ -52,8 +59,6 @@ export async function POST(request: NextRequest) {
       type: "password_reset",
       expiresAt: new Date(Date.now() + 15 * 60 * 1000), // 15 minutes
     });
-
-    // TODO: Send OTP via email
 
     // Import email service and template
     const { sendEmail } = await import("@/lib/services/emailService");
@@ -85,7 +90,7 @@ export async function POST(request: NextRequest) {
         html: html,
       });
     } catch (emailError) {
-      console.error("Failed to send forgot password email:", emailError);
+      console.error("[AUTH] Failed to send forgot password email:", emailError);
       // We don't return error here to avoid revealing user existence,
       // but the log will help us debug.
     }

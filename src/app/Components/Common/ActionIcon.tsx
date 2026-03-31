@@ -71,9 +71,6 @@ const ActionIcon: React.FC<ActionIconProps> = React.memo(
       .filter(Boolean)
       .join(" ");
 
-    // Debug log
-    console.log("ActionIcon props:", { variant, color, size, radius });
-    console.log("ActionIcon classes:", classes);
 
     return (
       <button className={classes} disabled={disabled || loading} {...rest}>

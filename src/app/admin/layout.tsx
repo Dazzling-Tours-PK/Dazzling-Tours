@@ -88,7 +88,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       icon: "bi bi-chat-quote",
     },
     { href: "/admin/blogs", label: "Blogs", icon: "bi bi-journal-text" },
-
+    { href: "/admin/comments", label: "Comments", icon: "bi bi-chat-dots" },
     { href: "/admin/contact", label: "Contact", icon: "bi bi-telephone" },
   ];
 
@@ -121,7 +121,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                   href={item.href}
                   className={`nav-link ${isActive(item.href) ? "active" : ""}`}
                 >
-                  <Icon name={item.icon.replace("bi bi-", "") as any} />
+                  <Icon name={item.icon.replace("bi bi-", "") as never} />
                   {item.label}
                 </Link>
               </li>

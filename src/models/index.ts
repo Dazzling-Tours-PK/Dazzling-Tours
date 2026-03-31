@@ -291,7 +291,6 @@ export interface IComment extends Document {
   blogId: mongoose.Types.ObjectId;
   name: string;
   email: string;
-  website?: string;
   content: string;
   status: "Pending" | "Approved" | "Rejected";
   parentId?: mongoose.Types.ObjectId; // For nested replies
@@ -306,7 +305,6 @@ const CommentSchema = new Schema<IComment>(
     blogId: { type: Schema.Types.ObjectId, ref: "Blog", required: true },
     name: { type: String, required: true },
     email: { type: String, required: true },
-    website: { type: String },
     content: { type: String, required: true },
     status: {
       type: String,

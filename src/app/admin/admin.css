@@ -977,9 +977,12 @@ textarea.form-input-base {
 }
 
 select.form-input-base {
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 1rem !important;
+  padding-right: 2.5rem !important;
   line-height: 1.5;
+  vertical-align: middle;
 }
 
 .form-input-base:focus {
@@ -1224,6 +1227,8 @@ select.form-input-base {
   border: 2px solid #d1d5db;
   color: var(--primary, #fd7d02);
   background-color: white;
+  accent-color: var(--primary, #fd7d02) !important;
+  cursor: pointer;
 }
 
 .form-checkbox-base:focus {
@@ -3487,7 +3492,7 @@ select.form-input-base {
   align-items: center;
   justify-content: space-between;
   position: relative;
-  padding: 0 12px;
+  padding: 0 1rem;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   background-color: #ffffff;
@@ -3559,7 +3564,7 @@ select.form-input-base {
 }
 
 .searchable-select-option {
-  padding: 8px 12px;
+  padding: 8px 1rem;
   cursor: pointer;
   display: flex;
   align-items: center;

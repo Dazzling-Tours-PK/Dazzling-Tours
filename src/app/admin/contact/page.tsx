@@ -29,7 +29,7 @@ const ContactQueriesList = () => {
   const [filterStatus, setFilterStatus] = useState("all");
   const [selectedQueries, setSelectedQueries] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize] = useState(10);
   const [confirmModalConfig, setConfirmModalConfig] = useState<{
     opened: boolean;
     title: string;

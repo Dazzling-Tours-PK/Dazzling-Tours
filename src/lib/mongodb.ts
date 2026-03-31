@@ -9,11 +9,10 @@ declare global {
     | undefined;
 }
 
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/dazzling-tours";
+const MONGODB_URI = process.env.MONGODB_URI;
 
 // Log connection type without exposing credentials
-const isAtlas = MONGODB_URI.includes("mongodb+srv://");
+const isAtlas = MONGODB_URI?.includes("mongodb+srv://");
 
 if (!MONGODB_URI) {
   throw new Error(
@@ -42,6 +41,7 @@ async function connectDB() {
       bufferCommands: false,
       serverSelectionTimeoutMS: 20000, // 20 second timeout (Atlas may need more time)
       connectTimeoutMS: 20000,
+      family: 4, // Force IPv4 to resolve SSL handshake issues in some networks
       // Atlas-specific options
       ...(isAtlas && {
         retryWrites: true,
@@ -50,7 +50,7 @@ async function connectDB() {
     };
 
     cached!.promise = mongoose
-      .connect(MONGODB_URI, opts)
+      .connect(MONGODB_URI!, opts)
       .then((mongooseInstance) => {
         return mongooseInstance;
       })

@@ -33,6 +33,7 @@ async function clearDatabase() {
 
     for (const collection of collections) {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const result = await (collection.model as any).deleteMany({});
         console.log(
           `✅ Cleared ${collection.name}: ${result.deletedCount} documents`,

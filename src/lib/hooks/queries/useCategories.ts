@@ -32,7 +32,7 @@ export const useGetCategories = (filters?: {
       if (filters?.search) params.append("search", filters.search);
 
       const response = await api.get<CategoriesResponse>(
-        `/api/categories?${params.toString()}`,
+        `/categories?${params.toString()}`,
       );
       return response.data;
     },
@@ -44,7 +44,7 @@ export const useGetCategory = (id: string) => {
   return useQuery<CategoryResponse>({
     queryKey: categoryKeys.detail(id),
     queryFn: async () => {
-      const response = await api.get<CategoryResponse>(`/api/categories/${id}`);
+      const response = await api.get<CategoryResponse>(`/categories/${id}`);
       return response.data;
     },
     enabled: !!id,
@@ -57,10 +57,7 @@ export const useCreateCategory = () => {
 
   return useMutation({
     mutationFn: async (data: CreateCategoryData) => {
-      const response = await api.post<CategoryResponse>(
-        "/api/categories",
-        data,
-      );
+      const response = await api.post<CategoryResponse>("/categories", data);
       return response.data;
     },
     onSuccess: () => {
@@ -77,7 +74,7 @@ export const useUpdateCategory = () => {
     mutationFn: async (data: UpdateCategoryData) => {
       const { _id, ...updateData } = data;
       const response = await api.put<CategoryResponse>(
-        `/api/categories/${_id}`,
+        `/categories/${_id}`,
         updateData,
       );
       return response.data;
@@ -100,7 +97,7 @@ export const useDeleteCategory = () => {
 
   return useMutation({
     mutationFn: async (id: string) => {
-      const response = await api.delete(`/api/categories/${id}`);
+      const response = await api.delete(`/categories/${id}`);
       return response.data;
     },
     onSuccess: () => {

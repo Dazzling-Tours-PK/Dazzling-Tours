@@ -39,8 +39,8 @@ const ItineraryManager: React.FC<ItineraryManagerProps> = ({
     if (
       newDay !== undefined &&
       newDay > 0 &&
-      trimmedTitle.length >= 3 &&
-      trimmedDescription.length >= 10 &&
+      trimmedTitle.length >= 1 &&
+      trimmedDescription.length >= 5 &&
       (!maxItems || items.length < maxItems)
     ) {
       onAdd({
@@ -57,8 +57,8 @@ const ItineraryManager: React.FC<ItineraryManagerProps> = ({
   const canAdd =
     newDay !== undefined &&
     newDay > 0 &&
-    newTitle.trim().length >= 3 &&
-    newDescription.trim().length >= 10 &&
+    newTitle.trim().length >= 1 &&
+    newDescription.trim().length >= 5 &&
     (!maxItems || items.length < maxItems);
 
   return (
@@ -87,7 +87,7 @@ const ItineraryManager: React.FC<ItineraryManagerProps> = ({
               </div>
               <div style={{ flex: 2, minWidth: 220 }}>
                 <TextInput
-                  label="Location"
+                  label="Day Title / Location"
                   value={newTitle}
                   onChange={(value) => setNewTitle(value)}
                   placeholder="e.g., Skardu, Arrival & City Tour"

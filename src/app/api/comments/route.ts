@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
       { status: 201 },
     );
   } catch (error) {
-    console.error("Error creating comment:", error);
+    console.error("Error creating comment detail:", error);
     return NextResponse.json(
       { success: false, error: "Failed to submit comment" },
       { status: 500 },
@@ -129,11 +129,10 @@ export async function PUT(request: NextRequest) {
     await connectDB();
 
     const body = await request.json();
-    const { action, commentIds, data } = body;
-
-    if (!action || !commentIds || !Array.isArray(commentIds)) {
+    const { action, ids, data } = body;
+    if (!action || !ids || !Array.isArray(ids)) {
       return NextResponse.json(
-        { success: false, error: "Action and commentIds are required" },
+        { success: false, error: "Action and ids are required" },
         { status: 400 },
       );
     }
@@ -142,24 +141,24 @@ export async function PUT(request: NextRequest) {
     switch (action) {
       case "updateStatus":
         result = await Comment.updateMany(
-          { _id: { $in: commentIds } },
+          { _id: { $in: ids } },
           { status: data.status },
         );
         break;
       case "approve":
         result = await Comment.updateMany(
-          { _id: { $in: commentIds } },
+          { _id: { $in: ids } },
           { status: "Approved" },
         );
         break;
       case "reject":
         result = await Comment.updateMany(
-          { _id: { $in: commentIds } },
+          { _id: { $in: ids } },
           { status: "Rejected" },
         );
         break;
       case "delete":
-        result = await Comment.deleteMany({ _id: { $in: commentIds } });
+        result = await Comment.deleteMany({ _id: { $in: ids } });
         break;
       default:
         return NextResponse.json(

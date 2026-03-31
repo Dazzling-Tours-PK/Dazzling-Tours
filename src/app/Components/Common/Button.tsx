@@ -28,7 +28,7 @@ const Button: React.FC<ButtonProps> = React.memo(
     children,
     ...rest
   }) => {
-    const baseClasses = "btn";
+    const baseClasses = "btn admin-btn";
 
     const variantClasses = {
       filled: "", // Bootstrap's default filled style
@@ -66,8 +66,8 @@ const Button: React.FC<ButtonProps> = React.memo(
 
     const classes = [
       baseClasses,
-      variantClasses[variant],
-      colorClasses[color],
+      variant === "outline" ? `btn-outline-${color === "error" ? "danger" : color}` : colorClasses[color],
+      variant !== "outline" && variantClasses[variant],
       sizeClasses[size],
       radiusClasses[radius],
       loading && "disabled",
@@ -93,7 +93,7 @@ const Button: React.FC<ButtonProps> = React.memo(
         ) : (
           <>
             {leftIcon && <span className="me-2">{leftIcon}</span>}
-            <span>{children}</span>
+            {children}
             {rightIcon && <span className="ms-2">{rightIcon}</span>}
           </>
         )}

@@ -333,15 +333,20 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
             </div>
             {form.values.tags && form.values.tags.length > 0 && (
               <div className="form-group">
-                <label className="form-label">Current Tags</label>
+                <label className="form-label" style={{ fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.5rem', display: 'block' }}>Current Tags</label>
                 <div className="d-flex flex-wrap gap-2 mt-2">
                   {form.values.tags.map((tag, index) => (
                     <span
                       key={index}
                       className="badge bg-primary d-flex align-items-center gap-2"
                       style={{
-                        fontSize: "0.875rem",
-                        padding: "0.5rem 0.75rem",
+                        fontSize: "0.85rem",
+                        padding: "6px 12px",
+                        borderRadius: "50px",
+                        textTransform: "none",
+                        fontWeight: 500,
+                        backgroundColor: "var(--theme-color-1, #f57c00)", // Use theme color explicitly if possible
+                        color: "white"
                       }}
                     >
                       {tag}
@@ -352,13 +357,17 @@ const EditBlog = ({ params }: { params: Promise<{ id: string }> }) => {
                         onClick={() => removeTag(index)}
                         aria-label="Remove tag"
                         style={{
-                          padding: 0,
+                          padding: "2px",
                           minWidth: "auto",
                           height: "auto",
-                          color: "white",
+                          color: "rgba(255, 255, 255, 0.8)",
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          marginTop: '1px'
                         }}
                       >
-                        <Icon name="x" />
+                        <Icon name="x" size="0.75rem" />
                       </Button>
                     </span>
                   ))}

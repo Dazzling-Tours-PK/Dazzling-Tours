@@ -66,3 +66,49 @@ export interface UpdateTourData extends Partial<CreateTourData> {
 export type ToursResponse = PaginatedResponse<Tour>;
 
 export type TourResponse = SingleResponse<Tour>;
+
+export interface TourLocation {
+  name: string;
+  count: number;
+}
+
+export interface TourLocationsResponse {
+  success: boolean;
+  data: TourLocation[];
+  total: number;
+}
+
+export interface TourDifficultyData {
+  value: string;
+  label: string;
+  count: number;
+}
+
+export interface TourDifficultiesResponse {
+  success: boolean;
+  data: TourDifficultyData[];
+  total: number;
+}
+
+export interface TourActivity {
+  name: string;
+  count: number;
+}
+
+export interface TourActivitiesResponse {
+  success: boolean;
+  data: TourActivity[];
+  total: number;
+}
+
+export interface TourCategory {
+  name: string;
+  count: number;
+}
+
+export interface TourCategoriesResponse {
+  success: boolean;
+  data: TourCategory[];
+  total: number;
+}
+

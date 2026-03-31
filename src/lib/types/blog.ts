@@ -12,8 +12,6 @@ export interface Blog {
   featuredImage?: string;
   status: string;
   featured: boolean;
-  views: number;
-  likes: number;
   publishedAt?: string;
   // SEO fields
   seo?: SEOFields;
@@ -42,3 +40,20 @@ export interface UpdateBlogData extends Partial<CreateBlogData> {
 export type BlogsResponse = PaginatedResponse<Blog>;
 
 export type BlogResponse = SingleResponse<Blog>;
+
+export interface BlogCategory {
+  name: string;
+  count: number;
+}
+
+export interface BlogCategoriesResponse {
+  success: boolean;
+  data: BlogCategory[];
+  total: number;
+}
+
+export interface BlogTagsResponse {
+  success: boolean;
+  data: string[];
+  total: number;
+}

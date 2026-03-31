@@ -98,3 +98,20 @@ export const getContactGroupTypes = (): Array<{
     { value: ContactGroupType.OTHER, label: "Other" },
   ];
 };
+// Comment Status Types
+export enum CommentStatus {
+  PENDING = "Pending",
+  APPROVED = "Approved",
+  REJECTED = "Rejected",
+}
+
+export const getCommentStatuses = (): Array<{
+  value: CommentStatus;
+  label: string;
+}> => {
+  return [
+    { value: CommentStatus.PENDING, label: "Pending" },
+    { value: CommentStatus.APPROVED, label: "Approved" },
+    { value: CommentStatus.REJECTED, label: "Rejected" },
+  ];
+};

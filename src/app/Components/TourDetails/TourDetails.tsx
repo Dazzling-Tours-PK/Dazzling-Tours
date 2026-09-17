@@ -14,7 +14,7 @@ import {
 } from "@/lib/hooks";
 import { TestimonialStatus } from "@/lib/enums";
 import { ContactGroupType, getContactGroupTypes } from "@/lib/types/enums";
-import { Accordion } from "@/app/Components/Common";
+import { Accordion, ShareButtons } from "@/app/Components/Common";
 import Icon from "@/app/Components/Common/Icon";
 import { TextInput, Textarea, Select } from "@/app/Components/Form";
 import { ErrorResponse } from "@/lib/types";
@@ -497,6 +497,12 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                   </form>
                 </div>
               </div>
+
+              {/* Share Tour Widget */}
+              <ShareButtons
+                title={tour.title}
+                heading="Share This Tour"
+              />
             </div>
           </div>
         </div>

@@ -4,7 +4,6 @@ import { AppImage } from "@/app/Components/Common";
 import { ImageVariant } from "@/lib/constants/imageDimensions";
 import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import {
   useGetCommentsByBlog,
   useCreateComment,
@@ -12,7 +11,7 @@ import {
   useGetBlogs,
   useNotification,
 } from "@/lib/hooks";
-import { Icon } from "@/app/Components/Common";
+import { Icon, ShareButtons } from "@/app/Components/Common";
 import { TextInput, Textarea } from "@/app/Components/Form";
 import { BlogStatus } from "@/lib/enums/blog";
 import { Comment } from "@/lib/types/comment";
@@ -47,19 +46,6 @@ const BlogDetails = ({ slug }: { slug: string }) => {
 
   const createCommentMutation = useCreateComment();
   const { showSuccess, showError } = useNotification();
-
-  // Built from the canonical site URL and the current path rather than read
-  // from window in an effect. That version rendered empty share links on the
-  // first pass and only filled them in afterwards; this resolves identically on
-  // the server and the client, so the links are correct immediately.
-  // Using the canonical origin also means a share never leaks a preview or
-  // staging hostname.
-  const pathname = usePathname();
-  const shareUrl = encodeURIComponent(
-    `${(process.env.NEXT_PUBLIC_SITE_URL || "").replace(/\/$/, "")}${pathname}`,
-  );
-
-  const encodedTitle = encodeURIComponent(blog?.title || "Dazzling Tours");
 
   const handleCommentSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -396,47 +382,11 @@ const BlogDetails = ({ slug }: { slug: string }) => {
             </div>
 
             {/* Share Widget */}
-            <div className="bg-white p-6 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 transition-all hover:shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
-              <div className="mb-5 pb-4 border-b border-gray-100">
-                <h4 className="text-lg font-bold text-gray-900 flex items-center gap-2.5">
-                  <span className="w-1.5 h-6 bg-[#EF7C00] rounded-full inline-block"></span> Share This Post
-                </h4>
-              </div>
-              <div className="flex gap-3">
-                <a
-                  href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 flex items-center justify-center rounded-xl bg-gray-50 text-gray-600 hover:bg-[#1877F2] hover:text-white transition-colors border border-gray-200 hover:border-transparent"
-                >
-                  <Icon name="facebook" size={20} />
-                </a>
-                <a
-                  href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${encodedTitle}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 flex items-center justify-center rounded-xl bg-gray-50 text-gray-600 hover:bg-[#1DA1F2] hover:text-white transition-colors border border-gray-200 hover:border-transparent"
-                >
-                  <Icon name="twitter" size={20} />
-                </a>
-                <a
-                  href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}&title=${encodedTitle}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 flex items-center justify-center rounded-xl bg-gray-50 text-gray-600 hover:bg-[#0A66C2] hover:text-white transition-colors border border-gray-200 hover:border-transparent"
-                >
-                  <Icon name="linkedin" size={20} />
-                </a>
-                <a
-                  href={`https://wa.me/?text=${encodedTitle} ${shareUrl}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-12 h-12 flex items-center justify-center rounded-xl bg-gray-50 text-gray-600 hover:bg-[#25D366] hover:text-white transition-colors border border-gray-200 hover:border-transparent"
-                >
-                  <Icon name="whatsapp" size={20} />
-                </a>
-              </div>
-            </div>
+            <ShareButtons
+              title={blog?.title || "Dazzling Tours"}
+              heading="Share This Post"
+            />
+
 
           </div>
         </div>

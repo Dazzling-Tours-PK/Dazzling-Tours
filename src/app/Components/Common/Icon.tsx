@@ -8,7 +8,7 @@ import {
   Tag, Bookmark, Heart, Settings, Bell, ShieldCheck, FileText, Inbox, Circle, MinusCircle,
   Check, X, HelpCircle, LayoutDashboard, Folder, Map, MessageSquareQuote, BookOpen, MessageCircle, Loader2,
   Activity, Users, Minus, Plus, Shield, Maximize, CornerUpLeft, CornerDownRight, Send,
-  RefreshCw, AlertOctagon, ShieldAlert, PlayCircle,
+  RefreshCw, AlertOctagon, ShieldAlert, PlayCircle, Link as LinkIcon, Copy,
   type LucideIcon
 } from "lucide-react";
 
@@ -34,7 +34,9 @@ const customIcons: Record<string, React.FC<any>> = {
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M4 4l11.733 16h4.267l-11.733-16z" /><path d="M4 20l6.768-6.768m2.46-2.46L20 4" /></svg>
   ),
   whatsapp: (props) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M12.003 2C6.48 2 2 6.48 2 12c0 1.774.476 3.5 1.38 5.008L2 22l5.136-1.348A9.967 9.967 0 0 0 12.003 22c5.523 0 10-4.48 10-10S17.526 2 12.003 2zm0 18.25c-1.588 0-3.148-.427-4.51-1.238l-.323-.191-3.047.8 0.813-2.966-.21-.34A8.216 8.216 0 0 1 3.75 12c0-4.558 3.708-8.25 8.253-8.25 4.545 0 8.247 3.692 8.247 8.25s-3.702 8.25-8.247 8.25zm4.524-6.184c-.247-.124-1.464-.723-1.69-.805-.227-.083-.392-.124-.557.124-.165.247-.64.805-.784.97-.144.165-.288.185-.536.062-.247-.124-1.042-.385-1.986-1.226-.734-.656-1.23-1.465-1.374-1.713-.144-.247-.015-.38.108-.503.112-.111.247-.288.371-.432.123-.144.164-.247.247-.412.082-.165.041-.309-.021-.432-.062-.124-.556-1.34-.762-1.836-.2-.482-.404-.417-.556-.425-.144-.006-.309-.008-.474-.008-.165 0-.433.062-.659.309-.226.247-.864.846-.864 2.063s.885 2.394 1.009 2.559c.123.165 1.741 2.66 4.221 3.73.59.255 1.05.407 1.409.52.592.188 1.131.162 1.557.098.474-.071 1.463-.599 1.669-1.177.206-.579.206-1.074.144-1.177-.062-.103-.226-.165-.474-.288z" />
+    </svg>
   ),
   tiktok: (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" /></svg>
@@ -122,6 +124,9 @@ const iconMap: Record<string, LucideIcon> = {
   "shield-lock": ShieldAlert,
   "play-circle": PlayCircle,
   "refresh-cw": RefreshCw,
+  "link": LinkIcon,
+  "copy": Copy,
+  "check": Check,
   // Bootstrap-fill to Lucide mappings
   "envelope-fill": Mail,
   "telephone-fill": Phone,

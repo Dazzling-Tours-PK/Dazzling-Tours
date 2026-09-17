@@ -6,7 +6,7 @@ import { Image as IKImage } from "@imagekit/next";
 import { useGetTours } from "@/lib/hooks";
 import { TourStatus } from "@/lib/enums";
 import { formatCurrency } from "@/lib/utils/currencyConverter";
-import { Section, Container, Loading } from "@/app/Components/Common";
+import { Section, Container } from "@/app/Components/Common";
 import { ArrowLeft, ArrowRight, MapPin } from "lucide-react";
 
 import {
@@ -21,6 +21,7 @@ const FeaturedTour = () => {
   const {
     data: toursData,
     isLoading: loading,
+    error,
   } = useGetTours({
     status: TourStatus.ACTIVE,
     featured: true,
@@ -73,32 +74,8 @@ const FeaturedTour = () => {
     </div>
   );
 
-  if (loading) {
-    return (
-      <Section padding="lg" bg="muted" className="featured-tour-section fix">
-        <Container>
-          {renderHeader()}
-          <div className="flex justify-center items-center py-12">
-            <Loading variant="spinner" size="lg" text="Loading tours..." />
-          </div>
-        </Container>
-      </Section>
-    );
-  }
-
-  if (tours.length === 0) {
-    return (
-      <Section padding="lg" bg="muted" className="featured-tour-section fix">
-        <Container>
-          {renderHeader()}
-          <div className="text-center py-12">
-            <p className="text-gray-500">
-              No featured tours available at the moment.
-            </p>
-          </div>
-        </Container>
-      </Section>
-    );
+  if (loading || error || tours.length === 0) {
+    return null;
   }
 
   return (

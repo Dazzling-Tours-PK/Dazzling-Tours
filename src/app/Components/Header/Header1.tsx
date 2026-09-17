@@ -29,11 +29,10 @@ export default function Header1() {
   return (
     <>
       <header
-        className={`w-full transition-all duration-300 z-40 ${
-          isSticky
-            ? "fixed top-0 left-0 right-0 bg-[#EF7C00] shadow-lg py-3 animate-in fade-in slide-in-from-top-4 duration-300"
-            : "absolute top-0 left-0 right-0 bg-transparent py-5"
-        }`}
+        className={`w-full transition-all duration-300 z-40 ${isSticky
+          ? "fixed top-0 left-0 right-0 bg-[#EF7C00] shadow-lg py-3 animate-in fade-in slide-in-from-top-4 duration-300"
+          : "absolute top-0 left-0 right-0 bg-transparent py-5"
+          }`}
       >
         <Container fluid>
           <div className="flex items-center justify-between px-4 lg:px-8">
@@ -43,13 +42,24 @@ export default function Header1() {
                 ratio, so a mismatched pair reserves the wrong space and
                 shifts the layout as the logo loads. */}
             <div className="flex-shrink-0">
-              <Link href="/">
+              <Link
+                href="/"
+                className={`inline-flex items-center justify-center transition-all duration-300 ${isSticky
+                  ? "bg-white/95 backdrop-blur-sm px-3.5 py-1.5 rounded-2xl shadow-sm hover:bg-white"
+                  : "bg-transparent p-0"
+                  }`}
+              >
                 <Image
-                  src={`${IMAGEKIT_URL_ENDPOINT}/assets/img/logo-dazzling/Logo_Black.png`}
+                  src={
+                    isSticky
+                      ? `${IMAGEKIT_URL_ENDPOINT}/assets/img/logo-dazzling/Logo_White.png`
+                      : `${IMAGEKIT_URL_ENDPOINT}/assets/img/logo-dazzling/Logo_Black.png`
+                  }
                   alt="Dazzling Tours"
                   width={50}
                   height={40}
-                  className="h-10 w-auto object-contain brightness-0 invert"
+                  className={`${isSticky ? "h-14" : "h-18"
+                    } w-auto object-contain transition-all duration-300`}
                   priority
                 />
               </Link>
@@ -64,11 +74,10 @@ export default function Header1() {
             <div className="hidden lg:block">
               <Link
                 href="/contact"
-                className={`inline-flex items-center gap-2 py-2.5 px-6 font-bold text-white rounded-full border transition-all hover:scale-[1.02] active:scale-95 ${
-                  isSticky
-                    ? "border-white bg-white/10 hover:bg-white hover:text-[#EF7C00]"
-                    : "border-white/30 bg-white/5 hover:bg-white hover:text-gray-900"
-                }`}
+                className={`inline-flex items-center gap-2 py-2.5 px-6 font-bold text-white rounded-full border transition-all hover:scale-[1.02] active:scale-95 ${isSticky
+                  ? "border-white bg-white/10 hover:bg-white hover:text-[#EF7C00]"
+                  : "border-white/30 bg-white/5 hover:bg-white hover:text-gray-900"
+                  }`}
               >
                 Request A Quote <ArrowRight className="h-4 w-4" />
               </Link>
@@ -80,7 +89,11 @@ export default function Header1() {
               className="lg:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors cursor-pointer"
               aria-label="Toggle Menu"
             >
-              {mobileToggle ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {mobileToggle ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
         </Container>
@@ -88,9 +101,10 @@ export default function Header1() {
 
       {/* Mobile Navigation Drawer */}
       <div
-        className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${
-          mobileToggle ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 z-50 lg:hidden transition-opacity duration-300 ${mobileToggle
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
+          }`}
       >
         {/* Backdrop overlay */}
         <div
@@ -100,9 +114,8 @@ export default function Header1() {
 
         {/* Drawer content */}
         <div
-          className={`absolute inset-y-0 right-0 w-80 max-w-full bg-white shadow-2xl p-6 flex flex-col gap-6 transform transition-transform duration-300 ease-out ${
-            mobileToggle ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`absolute inset-y-0 right-0 w-80 max-w-full bg-white shadow-2xl p-6 flex flex-col gap-6 transform transition-transform duration-300 ease-out ${mobileToggle ? "translate-x-0" : "translate-x-full"
+            }`}
         >
           {/* Header of Mobile Menu */}
           <div className="flex items-center justify-between pb-4 border-b border-gray-100">

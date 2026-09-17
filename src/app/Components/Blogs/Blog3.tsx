@@ -38,43 +38,8 @@ const Blog3 = () => {
     </div>
   );
 
-  if (loading) {
-    return (
-      <Section padding="lg" className="news-section-3 fix">
-        <Container>
-          {renderHeader()}
-          <div className="flex justify-center items-center py-12">
-            <Loading variant="spinner" size="lg" text="Loading featured blogs..." />
-          </div>
-        </Container>
-      </Section>
-    );
-  }
-
-  if (error) {
-    return (
-      <Section padding="lg" className="news-section-3 fix">
-        <Container>
-          {renderHeader()}
-          <div className="text-center py-12">
-            <p className="text-red-500">Unable to load featured blogs. Please try again later.</p>
-          </div>
-        </Container>
-      </Section>
-    );
-  }
-
-  if (blogs.length === 0) {
-    return (
-      <Section padding="lg" className="news-section-3 fix">
-        <Container>
-          {renderHeader()}
-          <div className="text-center py-12">
-            <p className="text-gray-500">No featured blogs available at the moment.</p>
-          </div>
-        </Container>
-      </Section>
-    );
+  if (loading || error || blogs.length === 0) {
+    return null;
   }
 
   return (

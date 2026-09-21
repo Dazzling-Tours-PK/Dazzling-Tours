@@ -70,20 +70,20 @@ export async function DELETE(request: NextRequest) {
     const url = searchParams.get("url");
     const id = searchParams.get("publicId") || searchParams.get("id") || searchParams.get("fileId");
 
-    let targetId = id;
+    let target = id;
 
-    if (!targetId && url) {
-      targetId = imageService.extractId(url);
+    if (!target && url) {
+      target = url;
     }
 
-    if (!targetId) {
+    if (!target) {
       return NextResponse.json(
         { success: false, error: "No ID or url provided" },
         { status: 400 },
       );
     }
 
-    await imageService.delete(targetId);
+    await imageService.delete(target);
 
     return NextResponse.json({
       success: true,

@@ -119,9 +119,71 @@ export async function deleteMultipleImages(fileIds: string[]): Promise<void> {
 }
 
 /**
- * Extract file ID from ImageKit URL
+ * Extract filename from ImageKit URL
+ * Example: https://ik.imagekit.io/ojifgauic/dazzling-tours/upload-1789992044475_ThGjXdimr
+ * returns upload-1789992044475_ThGjXdimr
  */
-export function extractFileIdFromUrl(url: string): string | null {
+export function extractFileNameFromUrl(url: string): string | null {
+  if (!url) return null;
+  try {
+    const parsed = new URL(url);
+    const pathname = parsed.pathname;
+    const parts = pathname.split("/").filter(Boolean);
+    if (parts.length === 0) return null;
+    return parts[parts.length - 1];
+  } catch {
+    const parts = url.split("/").filter(Boolean);
+    return parts.length > 0 ? parts[parts.length - 1] : null;
+  }
+}
+
+/**
+ * Find fileId by ImageKit URL or name
+ */
+export async function getFileIdFromUrl(url: string): Promise<string | null> {
   if (!url || !url.includes("ik.imagekit.io")) return null;
-  return null;
+
+  try {
+    const ik = getImageKit();
+    const fileName = extractFileNameFromUrl(url);
+    if (!fileName) return null;
+
+    // Search ImageKit by filename
+    const files = await ik.listFiles({
+      name: fileName,
+      limit: 5,
+    });
+
+    if (Array.isArray(files) && files.length > 0) {
+      // Find the file whose name or url matches
+      const matched = files.find(
+        (f) => "fileId" in f && (f.name === fileName || (f.url && f.url.includes(fileName))),
+      );
+      if (matched && "fileId" in matched) {
+        return matched.fileId;
+      }
+      if ("fileId" in files[0]) {
+        return files[0].fileId;
+      }
+    }
+
+    return null;
+  } catch (error) {
+    console.error("Error looking up file in ImageKit by url:", error);
+    return null;
+  }
+}
+
+/**
+ * Delete an image from ImageKit by URL
+ */
+export async function deleteImageByUrl(url: string): Promise<void> {
+  const fileId = await getFileIdFromUrl(url);
+  if (fileId) {
+    await deleteImage(fileId);
+  } else {
+    console.warn(
+      `Could not locate ImageKit fileId for URL: ${url}. Proceeding cleanly.`,
+    );
+  }
 }

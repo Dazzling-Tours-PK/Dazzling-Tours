@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth, useNotification, useForm } from "@/lib/hooks";
 import { LoginCard, CardHeader } from "./components/LoginComponents";
-import { IconLock } from "@/app/Components/Common/icons";
+import { IconLock, IconArrowLeft } from "@/app/Components/Common/icons";
 import { TextInput } from "@/app/Components/Form";
 import { Button } from "@/app/Components/Common";
 import { validationRules } from "./config/theme";
@@ -105,6 +105,19 @@ const LoginPage = () => {
         >
           Sign in
         </Button>
+
+        <div className="text-center pt-2">
+          <Link
+            href="/"
+            className="text-xs font-semibold text-gray-400 hover:text-gray-700 transition-colors inline-flex items-center group"
+          >
+            <IconArrowLeft
+              className="mr-1.5 transition-transform group-hover:-translate-x-1"
+              size={15}
+            />
+            Back to Homepage
+          </Link>
+        </div>
       </form>
     </LoginCard>
   );

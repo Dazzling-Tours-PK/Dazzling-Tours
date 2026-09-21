@@ -1,5 +1,8 @@
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { Card, Text, Title } from "@/app/Components/Common";
+import { IMAGEKIT_URL_ENDPOINT } from "@/lib/utils/imageUtils";
 
 // Layout Components
 export interface LoginCardProps {
@@ -50,16 +53,21 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
 }) => {
   return (
     <div className={`text-center mb-8 ${className}`}>
-      <div className="mb-4">
-        <Text
-          size="xs"
-          weight={900}
-          italic
-          transform="uppercase"
-          className="tracking-tighter opacity-80"
+      <div className="mb-5 flex justify-center">
+        <Link
+          href="/"
+          className="inline-flex items-center justify-center transition-transform hover:scale-105"
+          title="Back to Homepage"
         >
-          DAZZLING<span className="text-[#fd7d02]">TOURS</span>
-        </Text>
+          <Image
+            src={`${IMAGEKIT_URL_ENDPOINT}/assets/img/logo-dazzling/Logo_Black.png`}
+            alt="Dazzling Tours"
+            width={160}
+            height={55}
+            priority
+            className="h-12 w-auto object-contain"
+          />
+        </Link>
       </div>
       {icon && (
         <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-2xl bg-[#fff5eb] mb-6 text-[#fd7d02] shadow-inner shadow-orange-100/50">

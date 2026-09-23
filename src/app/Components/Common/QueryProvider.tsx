@@ -29,13 +29,12 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
           },
         },
         mutationCache: new MutationCache({
-          onError: (error, variables, context) => {
-            console.error("Mutation error:", error);
+          onError: (error, _variables, context) => {
             // Only show global error if no custom error handling is provided
             if (!(context as MutationContext)?.skipGlobalError) {
               showError(
                 error.message ||
-                  "An error occurred while processing your request",
+                "An error occurred while processing your request",
               );
             }
           },

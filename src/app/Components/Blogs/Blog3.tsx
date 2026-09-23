@@ -2,9 +2,8 @@
 import { IMAGEKIT_URL_ENDPOINT } from "@/lib/utils/imageUtils";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { useGetBlogs } from "@/lib/hooks";
-import { Section, Container, Grid, Loading } from "@/app/Components/Common";
+import { Section, Container, Grid } from "@/app/Components/Common";
 import { ArrowRight, Tag, User } from "lucide-react";
 
 const Blog3 = () => {
@@ -85,16 +84,16 @@ const Blog3 = () => {
                         {typeof blog.category === 'string' ? blog.category : (blog.category?.name || "Travel")}
                       </li>
                     </ul>
-                    
+
                     <h4 className="text-lg font-bold text-gray-900 mb-3 line-clamp-2 flex-1">
                       <Link href={blogUrl} className="hover:text-[var(--theme)] transition-colors">
                         {blog.title}
                       </Link>
                     </h4>
-                    
+
                     <div className="pt-3 border-t border-gray-100 mt-auto">
-                      <Link 
-                        href={blogUrl} 
+                      <Link
+                        href={blogUrl}
                         className="text-sm font-bold text-[var(--header)] hover:text-[var(--theme)] transition-colors inline-flex items-center gap-2"
                       >
                         Read More <ArrowRight className="h-4 w-4" />

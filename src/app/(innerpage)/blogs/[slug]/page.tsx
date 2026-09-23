@@ -1,5 +1,4 @@
 import { IMAGEKIT_URL_ENDPOINT } from "@/lib/utils/imageUtils";
-import React from "react";
 import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import BlogDetails from "../../../Components/BlogDetails/BlogDetails";
 import Cta from "../../../Components/Cta/Cta";
@@ -154,10 +153,14 @@ const page = async ({ params }: Props) => {
         id="blog-post-schema"
       />
       <BreadCrumb
+        Title={blog.title}
         bgImg={blog.featuredImage || `${IMAGEKIT_URL_ENDPOINT}/assets/img/blogs/BlogsPage.webp`}
-        Title="Blog Details"
-      ></BreadCrumb>
-      <BlogDetails slug={slug}></BlogDetails>
+        items={[
+          { label: "Blogs", href: "/blogs" },
+          { label: blog.title },
+        ]}
+      />
+      <BlogDetails slug={slug} />
       <Cta />
     </div>
   );

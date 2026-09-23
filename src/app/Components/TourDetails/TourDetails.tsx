@@ -1,9 +1,8 @@
 "use client";
 import { IMAGEKIT_URL_ENDPOINT } from "@/lib/utils/imageUtils";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { AppImage } from "@/app/Components/Common";
 import { ImageVariant } from "@/lib/constants/imageDimensions";
-import { Carousel, CarouselContent, CarouselItem, type CarouselApi } from "@/components/ui/carousel";
 import { Tour, ItineraryItem } from "@/lib/types/tour";
 import {
   useGetTestimonials,
@@ -11,6 +10,7 @@ import {
   useCreateContactInquiry,
   useNotification,
   useForm,
+  useTourFavorites,
 } from "@/lib/hooks";
 import { TestimonialStatus } from "@/lib/enums";
 import { ContactGroupType, getContactGroupTypes } from "@/lib/types/enums";
@@ -48,25 +48,7 @@ const TourInfoBox = ({
 );
 
 const TourDetails = ({ tour }: TourDetailsProps) => {
-  const [mainApi, setMainApi] = useState<CarouselApi>();
-  const [thumbApi, setThumbApi] = useState<CarouselApi>();
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [isCustomizing, setIsCustomizing] = useState(false);
-
-  useEffect(() => {
-    if (!mainApi || !thumbApi) return;
-
-    const onSelect = () => {
-      const index = mainApi.selectedScrollSnap();
-      setCurrentSlide(index);
-      thumbApi.scrollTo(index);
-    };
-
-    mainApi.on('select', onSelect);
-    return () => {
-      mainApi.off('select', onSelect);
-    };
-  }, [mainApi, thumbApi]);
 
   const [showLightbox, setShowLightbox] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
@@ -74,6 +56,8 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
   const { showSuccess, showError } = useNotification();
   const createContact = useCreateContactInquiry();
   const createTestimonial = useCreateTestimonial();
+  const { toggleFavorite, isFavorite } = useTourFavorites();
+
 
   // Review Form State
   const form = useForm({
@@ -176,86 +160,282 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
     setShowLightbox(true);
   };
 
+  const handleShare = async () => {
+    if (typeof window === "undefined") return;
+    const url = window.location.href;
+    const title = tour.title;
+    const text = `Check out this tour: ${tour.title}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, text, url });
+        return;
+      } catch (err) {
+        if ((err as Error).name === "AbortError") return;
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(url);
+      showSuccess("Link copied to clipboard!");
+    } catch {
+      showError("Failed to copy link");
+    }
+  };
+
   return (
     <>
-      <section className="py-16 lg:py-24 bg-gray-50 min-h-screen">
+      {/* Top dark gradient overlay so the transparent navbar is crisp and visible at scrollY=0 */}
+      <div className="absolute top-0 left-0 right-0 h-28 md:h-32 bg-gradient-to-b from-black/80 via-black/40 to-transparent pointer-events-none z-20" />
+
+      <section className="relative pt-24 md:pt-28 pb-16 lg:pb-24 bg-white min-h-screen">
         <div className="container max-w-6xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            <div className="lg:col-span-8 flex flex-col gap-8">
-              <div className="mb-2">
-                <div className="relative rounded-3xl overflow-hidden shadow-sm">
-                  <Carousel setApi={setMainApi} className="w-full" opts={{ loop: true }}>
-                    <CarouselContent>
-                      {tour.images?.map((img, idx) => (
-                        <CarouselItem key={idx}>
-                          <div className="relative">
-                            <div
-                              className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 transition p-3 rounded-full cursor-pointer backdrop-blur-sm"
-                              onClick={() => handleOpenLightbox(idx)}
-                            >
-                              <Icon name="expand" className="text-white" />
-                            </div>
-                            <AppImage
-                              variant={ImageVariant.HERO}
-                              src={img || `${IMAGEKIT_URL_ENDPOINT}/assets/img/hero/hero1.webp`}
-                              alt={`${tour.title} - ${idx + 1}`}
-                              priority={idx === 0}
-                            />
-                          </div>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                  </Carousel>
+
+          {/* Bento Photo Gallery */}
+          <div className="relative w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-sm mb-6 bg-gray-100">
+            {tour.images && tour.images.length >= 5 ? (
+              // 5+ Photos: 1 Large Left (50%), 4 Small Right (2x2)
+              <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-2 h-[340px] sm:h-[420px] lg:h-[480px]">
+                {/* Main Large Photo */}
+                <div
+                  className="md:col-span-2 md:row-span-2 relative h-full w-full overflow-hidden cursor-pointer group"
+                  onClick={() => handleOpenLightbox(0)}
+                >
+                  <AppImage
+                    variant={ImageVariant.HERO}
+                    src={tour.images[0]}
+                    alt={tour.title}
+                    imageClassName="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
                 </div>
 
-                {tour.images && tour.images.length > 1 && (
-                  <div className="mt-4">
-                    <Carousel
-                      setApi={setThumbApi}
-                      className="w-full"
-                      opts={{
-                        containScroll: "keepSnaps",
-                        dragFree: true,
-                      }}
-                    >
-                      <CarouselContent className="-ml-3">
-                        {tour.images.map((img, idx) => (
-                          <CarouselItem key={idx} className="pl-3 basis-1/4 sm:basis-1/5" onClick={() => mainApi?.scrollTo(idx)}>
-                            <div className={`relative cursor-pointer rounded-xl overflow-hidden transition-all duration-300 ${currentSlide === idx ? 'ring-4 ring-[#EF7C00] shadow-md scale-95' : 'opacity-70 hover:opacity-100'}`}>
-                              <AppImage
-                                variant={ImageVariant.THUMBNAIL}
-                                src={img}
-                                alt={`${tour.title} thumb - ${idx + 1}`}
-                              />
-                            </div>
-                          </CarouselItem>
-                        ))}
-                      </CarouselContent>
-                    </Carousel>
+                {/* Photo 1 */}
+                <div
+                  className="hidden md:block relative h-full w-full overflow-hidden cursor-pointer group"
+                  onClick={() => handleOpenLightbox(1)}
+                >
+                  <AppImage
+                    variant={ImageVariant.CARD}
+                    src={tour.images[1]}
+                    alt={`${tour.title} 2`}
+                    imageClassName="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                </div>
+
+                {/* Photo 2 (Top Right) */}
+                <div
+                  className="hidden md:block relative h-full w-full overflow-hidden cursor-pointer group"
+                  onClick={() => handleOpenLightbox(2)}
+                >
+                  <AppImage
+                    variant={ImageVariant.CARD}
+                    src={tour.images[2]}
+                    alt={`${tour.title} 3`}
+                    imageClassName="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                </div>
+
+                {/* Photo 3 */}
+                <div
+                  className="hidden md:block relative h-full w-full overflow-hidden cursor-pointer group"
+                  onClick={() => handleOpenLightbox(3)}
+                >
+                  <AppImage
+                    variant={ImageVariant.CARD}
+                    src={tour.images[3]}
+                    alt={`${tour.title} 4`}
+                    imageClassName="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                </div>
+
+                {/* Photo 4 (Bottom Right with "Show all photos" button) */}
+                <div
+                  className="hidden md:block relative h-full w-full overflow-hidden cursor-pointer group"
+                  onClick={() => handleOpenLightbox(4)}
+                >
+                  <AppImage
+                    variant={ImageVariant.CARD}
+                    src={tour.images[4]}
+                    alt={`${tour.title} 5`}
+                    imageClassName="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleOpenLightbox(0);
+                    }}
+                    className="absolute bottom-4 right-4 bg-white/95 hover:bg-white text-gray-900 font-semibold text-xs md:text-sm px-4 py-2 rounded-xl shadow-md border border-gray-200/80 flex items-center gap-2 transition-all hover:scale-105 active:scale-95 z-10 cursor-pointer"
+                  >
+                    <Icon name="grid" size={16} />
+                    Show all {tour.images.length} photos
+                  </button>
+                </div>
+              </div>
+            ) : tour.images && tour.images.length > 1 ? (
+              // 2 to 4 Photos
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 h-[340px] sm:h-[420px] lg:h-[480px]">
+                <div
+                  className="relative h-full w-full overflow-hidden cursor-pointer group"
+                  onClick={() => handleOpenLightbox(0)}
+                >
+                  <AppImage
+                    variant={ImageVariant.HERO}
+                    src={tour.images[0]}
+                    alt={tour.title}
+                    imageClassName="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                </div>
+                <div
+                  className="hidden md:block relative h-full w-full overflow-hidden cursor-pointer group"
+                  onClick={() => handleOpenLightbox(1)}
+                >
+                  <AppImage
+                    variant={ImageVariant.HERO}
+                    src={tour.images[1]}
+                    alt={`${tour.title} 2`}
+                    imageClassName="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleOpenLightbox(0);
+                    }}
+                    className="absolute bottom-4 right-4 bg-white/95 hover:bg-white text-gray-900 font-semibold text-xs md:text-sm px-4 py-2 rounded-xl shadow-md border border-gray-200/80 flex items-center gap-2 transition-all hover:scale-105 active:scale-95 z-10 cursor-pointer"
+                  >
+                    <Icon name="grid" size={16} />
+                    Show all {tour.images.length} photos
+                  </button>
+                </div>
+              </div>
+            ) : (
+              // 1 Photo (Single Hero)
+              <div
+                className="relative h-[320px] sm:h-[400px] lg:h-[460px] w-full overflow-hidden cursor-pointer group"
+                onClick={() => handleOpenLightbox(0)}
+              >
+                <AppImage
+                  variant={ImageVariant.HERO}
+                  src={tour.images?.[0] || `${IMAGEKIT_URL_ENDPOINT}/assets/img/hero/hero1.webp`}
+                  alt={tour.title}
+                  imageClassName="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                  priority
+                />
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleOpenLightbox(0);
+                  }}
+                  className="absolute bottom-4 right-4 bg-white/95 hover:bg-white text-gray-900 font-semibold text-xs md:text-sm px-4 py-2 rounded-xl shadow-md border border-gray-200/80 flex items-center gap-2 transition-all hover:scale-105 active:scale-95 z-10 cursor-pointer"
+                >
+                  <Icon name="expand" size={16} />
+                  View photo
+                </button>
+              </div>
+            )}
+          </div>
+
+          {/* Title & Actions Section */}
+          <div className="pb-6 border-b border-gray-200 mb-8">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex-1 min-w-0">
+                {tour.category && tour.category.toLowerCase() !== "uncategorized" && (
+                  <div className="mb-2">
+                    <span className="inline-flex items-center px-3 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-[#EF7C00]/10 text-[#EF7C00] border border-[#EF7C00]/20">
+                      {tour.category}
+                    </span>
                   </div>
                 )}
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 tracking-tight m-0">
+                  {tour.title}
+                </h1>
               </div>
 
-              <div className="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-gray-100">
-                <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">{tour.title}</h1>
-                {tour.shortDescription && <p className="text-xl text-[#EF7C00] font-medium mb-6">{tour.shortDescription}</p>}
-                {tour.description && tour.description.trim() && (
-                  <div
-                    className="prose prose-lg max-w-none text-gray-600 mb-8"
-                    dangerouslySetInnerHTML={{ __html: tour.description }}
-                    suppressHydrationWarning
-                  />
+              {/* Price & Actions on Right */}
+              <div className="flex flex-col items-start md:items-end justify-between gap-3 shrink-0">
+                {tour.price && (
+                  <div className="text-left md:text-right">
+                    <span className="text-xs text-gray-500 uppercase tracking-wider block font-semibold">Starting from</span>
+                    <span className="text-2xl font-extrabold text-[#EF7C00]">
+                      PKR {tour.price.toLocaleString()}
+                    </span>
+                    <span className="text-xs text-gray-500 ml-1">/ {tour.priceType || "person"}</span>
+                  </div>
                 )}
 
+                <div className="flex items-center gap-2.5">
+                  {/* Share Button */}
+                  <button
+                    type="button"
+                    onClick={handleShare}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-[#EF7C00] px-3.5 py-2 rounded-xl bg-white hover:bg-gray-50 border border-gray-200 hover:border-[#EF7C00]/30 transition-all cursor-pointer group shadow-sm active:scale-95"
+                  >
+                    <Icon name="share" size={16} className="text-gray-500 group-hover:text-[#EF7C00] transition-colors" />
+                    <span>Share</span>
+                  </button>
+
+                  {/* Save Button */}
+                  <button
+                    type="button"
+                    onClick={() => toggleFavorite(tour._id)}
+                    className={`inline-flex items-center gap-2 text-sm font-semibold px-3.5 py-2 rounded-xl transition-all cursor-pointer group shadow-sm active:scale-95 ${isFavorite(tour._id)
+                        ? "bg-rose-50 border border-rose-200 text-rose-600 hover:bg-rose-100"
+                        : "bg-white border border-gray-200 text-gray-700 hover:text-[#EF7C00] hover:bg-gray-50 hover:border-[#EF7C00]/30"
+                      }`}
+                  >
+                    <Icon
+                      name={isFavorite(tour._id) ? "heart-fill" : "heart"}
+                      size={16}
+                      className={
+                        isFavorite(tour._id)
+                          ? "text-rose-500 fill-current"
+                          : "text-gray-500 group-hover:text-[#EF7C00] transition-colors"
+                      }
+                    />
+                    <span>{isFavorite(tour._id) ? "Saved" : "Save"}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="lg:col-span-8 flex flex-col gap-8">
+              <div className="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-gray-100">
+                {/* Key Facts Grid */}
                 <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100 mb-8">
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     <TourInfoBox icon="map-pin" label="Location" value={tour.location || "N/A"} />
                     {tour.duration && <TourInfoBox icon="clock" label="Duration" value={tour.duration} />}
                     {typeof tour.groupSize === "number" && <TourInfoBox icon="users" label="Group Size" value={`${tour.groupSize} People`} />}
-                    {typeof tour.price === "number" && <TourInfoBox icon="tag" label="Price" value={`PKR ${tour.price} / ${tour.priceType}`} />}
+                    {typeof tour.price === "number" && <TourInfoBox icon="tag" label="Price" value={`PKR ${tour.price.toLocaleString()} / ${tour.priceType}`} />}
                     {tour.rating > 0 && <TourInfoBox icon="star" label="Rating" value={`${tour.rating.toFixed(1)} (${tour.reviews} reviews)`} />}
                   </div>
                 </div>
+
+                {tour.description && tour.description.trim() && (
+                  <div className="mb-10">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">About This Tour</h3>
+                    <div
+                      className="prose prose-lg max-w-none text-gray-600"
+                      dangerouslySetInnerHTML={{ __html: tour.description }}
+                      suppressHydrationWarning
+                    />
+                  </div>
+                )}
 
                 {tour.highlights && tour.highlights.length > 0 && (
                   <div className="mb-10">
@@ -273,28 +453,42 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                   </div>
                 )}
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
                   {tour.includes && tour.includes.length > 0 && (
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">What&apos;s Included</h3>
-                      <ul className="flex flex-col gap-3">
+                    <div className="bg-emerald-50/40 border border-emerald-100/80 rounded-3xl p-6 sm:p-7 shadow-sm">
+                      <div className="flex items-center gap-2.5 mb-5 pb-3 border-b border-emerald-100/60">
+                        <span className="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm shadow-sm">
+                          ✓
+                        </span>
+                        <h3 className="text-xl font-bold text-gray-900 m-0">What&apos;s Included</h3>
+                      </div>
+                      <ul className="flex flex-col gap-3.5">
                         {tour.includes.map((incl, index) => (
-                          <li key={index} className="flex items-center text-gray-700 bg-gray-50 px-4 py-3 rounded-xl border border-gray-100">
-                            <Icon name="check-circle" className="text-green-500 mr-3 flex-shrink-0" size={20} />
-                            {incl}
+                          <li key={index} className="flex items-start gap-3 text-gray-700 text-sm md:text-base leading-relaxed">
+                            <span className="mt-1 w-5 h-5 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 text-xs font-bold">
+                              ✓
+                            </span>
+                            <span className="font-medium">{incl}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
                   )}
                   {tour.excludes && tour.excludes.length > 0 && (
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-4">What&apos;s Excluded</h3>
-                      <ul className="flex flex-col gap-3">
+                    <div className="bg-rose-50/40 border border-rose-100/80 rounded-3xl p-6 sm:p-7 shadow-sm">
+                      <div className="flex items-center gap-2.5 mb-5 pb-3 border-b border-rose-100/60">
+                        <span className="w-8 h-8 rounded-full bg-rose-500 text-white flex items-center justify-center font-bold text-sm shadow-sm">
+                          ✕
+                        </span>
+                        <h3 className="text-xl font-bold text-gray-900 m-0">What&apos;s Excluded</h3>
+                      </div>
+                      <ul className="flex flex-col gap-3.5">
                         {tour.excludes.map((excl, index) => (
-                          <li key={index} className="flex items-center text-gray-700 bg-gray-50 px-4 py-3 rounded-xl border border-gray-100">
-                            <Icon name="x-circle" className="text-red-500 mr-3 flex-shrink-0" size={20} />
-                            {excl}
+                          <li key={index} className="flex items-start gap-3 text-gray-700 text-sm md:text-base leading-relaxed">
+                            <span className="mt-1 w-5 h-5 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center shrink-0 text-xs font-bold">
+                              ✕
+                            </span>
+                            <span className="font-medium">{excl}</span>
                           </li>
                         ))}
                       </ul>
@@ -323,46 +517,58 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
                   </div>
                 )}
 
-                <div className="mt-12 pt-10 border-t border-gray-100">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-8">Reviews ({testimonials.length})</h3>
-                  {isLoadingTestimonials ? (
-                    <div className="text-center p-8 text-gray-500">Loading reviews...</div>
-                  ) : testimonials.length > 0 ? (
-                    <div className="flex flex-col gap-6">
-                      {testimonials.map((testimonial, index) => (
-                        <div key={testimonial._id || index} className="flex flex-col sm:flex-row gap-6 p-6 rounded-2xl bg-gray-50 border border-gray-100">
-                          <div className="flex-shrink-0 w-16 md:w-20">
-                            <AppImage
-                              variant={ImageVariant.AVATAR}
-                              src={testimonial.image || `${IMAGEKIT_URL_ENDPOINT}/assets/img/testimonial/default-avatar.png`}
-                              alt={testimonial.name}
-                            />
-                          </div>
-                          <div className="flex-grow">
-                            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                              <h5 className="font-bold text-lg text-gray-900 m-0">{testimonial.name}</h5>
-                              <div className="flex gap-1">
-                                {Array.from({ length: 5 }, (_, i) => (
-                                  <Icon key={i} name={`star${i < (testimonial.rating || 5) ? "-fill" : ""}`} className="text-yellow-400" size={16} />
-                                ))}
-                              </div>
-                            </div>
-                            <div className="flex flex-wrap gap-3 mb-4">
-                              {testimonial.designation && <span className="px-3 py-1 bg-white border border-gray-200 text-xs font-bold rounded-full text-gray-600">{testimonial.designation}</span>}
-                              {testimonial.location && <span className="px-3 py-1 bg-white border border-gray-200 text-xs font-bold rounded-full text-gray-600 flex items-center gap-1"><Icon name="map-pin" size={12} />{testimonial.location}</span>}
-                              {testimonial.status === TestimonialStatus.ACTIVE && <span className="px-3 py-1 bg-green-50 border border-green-200 text-xs font-bold rounded-full text-green-700 flex items-center gap-1"><Icon name="shield-check" size={12} />Verified</span>}
-                            </div>
-                            <p className="text-gray-700 italic leading-relaxed">&quot;{testimonial.content}&quot;</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="text-center p-8 bg-gray-50 rounded-2xl border border-gray-100 text-gray-500">
-                      No reviews yet for this tour. Be the first to share your experience!
+              </div>
+
+              {/* Reviews Card (Separated) */}
+              <div className="bg-white p-6 md:p-10 rounded-3xl shadow-sm border border-gray-100">
+                <div className="flex items-center justify-between mb-8 pb-4 border-b border-gray-100">
+                  <h3 className="text-2xl font-bold text-gray-900 m-0">Reviews ({testimonials.length})</h3>
+                  {tour.rating > 0 && (
+                    <div className="flex items-center gap-1.5 text-sm font-semibold text-gray-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
+                      <Icon name="star-fill" size={14} className="text-yellow-400" />
+                      <span>{tour.rating.toFixed(1)}</span>
+                      <span className="text-gray-400">·</span>
+                      <span className="text-gray-500 font-normal">{testimonials.length} reviews</span>
                     </div>
                   )}
                 </div>
+                {isLoadingTestimonials ? (
+                  <div className="text-center p-8 text-gray-500">Loading reviews...</div>
+                ) : testimonials.length > 0 ? (
+                  <div className="flex flex-col gap-6">
+                    {testimonials.map((testimonial, index) => (
+                      <div key={testimonial._id || index} className="flex flex-col sm:flex-row gap-6 p-6 rounded-2xl bg-gray-50 border border-gray-100">
+                        <div className="flex-shrink-0 w-16 md:w-20">
+                          <AppImage
+                            variant={ImageVariant.AVATAR}
+                            src={testimonial.image || `${IMAGEKIT_URL_ENDPOINT}/assets/img/testimonial/default-avatar.png`}
+                            alt={testimonial.name}
+                          />
+                        </div>
+                        <div className="flex-grow">
+                          <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h5 className="font-bold text-lg text-gray-900 m-0">{testimonial.name}</h5>
+                            <div className="flex gap-1">
+                              {Array.from({ length: 5 }, (_, i) => (
+                                <Icon key={i} name={`star${i < (testimonial.rating || 5) ? "-fill" : ""}`} className="text-yellow-400" size={16} />
+                              ))}
+                            </div>
+                          </div>
+                          <div className="flex flex-wrap gap-3 mb-4">
+                            {testimonial.designation && <span className="px-3 py-1 bg-white border border-gray-200 text-xs font-bold rounded-full text-gray-600">{testimonial.designation}</span>}
+                            {testimonial.location && <span className="px-3 py-1 bg-white border border-gray-200 text-xs font-bold rounded-full text-gray-600 flex items-center gap-1"><Icon name="map-pin" size={12} />{testimonial.location}</span>}
+                            {testimonial.status === TestimonialStatus.ACTIVE && <span className="px-3 py-1 bg-green-50 border border-green-200 text-xs font-bold rounded-full text-green-700 flex items-center gap-1"><Icon name="shield-check" size={12} />Verified</span>}
+                          </div>
+                          <p className="text-gray-700 italic leading-relaxed">&quot;{testimonial.content}&quot;</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center p-8 bg-gray-50 rounded-2xl border border-gray-100 text-gray-500">
+                    No reviews yet for this tour. Be the first to share your experience!
+                  </div>
+                )}
 
                 <div className="mt-12 p-8 bg-gray-50 rounded-3xl border border-gray-100">
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">Write a Review</h3>

@@ -146,7 +146,7 @@ const BlogDetails = ({ slug }: { slug: string }) => {
     );
   }
 
-  const { day, month } = formatDate(blog.publishedAt || blog.createdAt);
+  const { full: publishedDate } = formatDate(blog.publishedAt || blog.createdAt);
 
   return (
     <section className="py-16 lg:py-24 bg-gray-50 min-h-screen">
@@ -155,46 +155,55 @@ const BlogDetails = ({ slug }: { slug: string }) => {
           <div className="lg:col-span-8 flex flex-col gap-10">
 
             {/* Main Article */}
-            <article className="bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
-              <div className="relative w-full">
-                <AppImage
-                  variant={ImageVariant.HERO}
-                  src={getOptimizedImage(blog.featuredImage || `${IMAGEKIT_URL_ENDPOINT}/assets/img/blogs/BlogsPage.webp`, 1200)}
-                  alt={blog.title}
-                  priority
-                />
-                <div className="absolute top-6 left-6 bg-[#EF7C00] text-white flex flex-col items-center justify-center w-20 h-20 rounded-2xl shadow-lg transform -rotate-3 hover:rotate-0 transition-transform">
-                  <span className="text-3xl font-black leading-none">{day}</span>
-                  <span className="text-sm font-bold uppercase tracking-wider">{month}</span>
-                </div>
-              </div>
-
-              <div className="p-6 md:p-10 lg:p-12">
-                <div className="flex items-center gap-4 text-sm font-semibold text-[#EF7C00] uppercase tracking-wider mb-6">
+            <article className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 md:p-10 lg:p-12">
+              <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 border-b border-gray-100">
+                <div className="flex flex-wrap items-center gap-4 text-sm font-semibold">
                   {blog.category && (
-                    <span className="flex items-center gap-1.5 bg-[#EF7C00]/10 px-3 py-1 rounded-full">
+                    <span className="flex items-center gap-1.5 bg-[#EF7C00]/10 text-[#EF7C00] px-3.5 py-1.5 rounded-full uppercase tracking-wider text-xs font-bold">
                       <Icon name="tag" size={14} />
                       {typeof blog.category === 'string' ? blog.category : blog.category.name}
                     </span>
                   )}
                   {blog.author && (
-                    <span className="flex items-center gap-1.5 text-gray-500">
-                      <Icon name="user" size={16} />
-                      {typeof blog.author === 'string' ? blog.author : blog.author.name}
+                    <span className="flex items-center gap-1.5 text-gray-600 font-medium">
+                      <Icon name="user" size={16} className="text-[#EF7C00]" />
+                      By {typeof blog.author === 'string' ? blog.author : blog.author.name}
                     </span>
                   )}
+                  <span className="flex items-center gap-1.5 text-gray-500 font-medium text-xs md:text-sm">
+                    <Icon name="calendar" size={14} className="text-gray-400" />
+                    {publishedDate}
+                  </span>
                 </div>
-
-                <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-8 leading-tight tracking-tight">
-                  {blog.title}
-                </h1>
-
-                <div
-                  className="prose prose-lg md:prose-xl max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-600 prose-a:text-[#EF7C00] prose-img:rounded-2xl"
-                  dangerouslySetInnerHTML={{ __html: blog.content }}
-                  suppressHydrationWarning
-                />
               </div>
+
+              {blog.excerpt && (
+                <div className="text-lg md:text-xl text-gray-700 font-medium leading-relaxed italic border-l-4 border-[#EF7C00] pl-6 py-3 bg-orange-50/50 rounded-r-2xl mb-8">
+                  {blog.excerpt}
+                </div>
+              )}
+
+              <div
+                className="prose prose-lg md:prose-xl max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-[#EF7C00] prose-img:rounded-2xl prose-img:shadow-sm"
+                dangerouslySetInnerHTML={{ __html: blog.content }}
+                suppressHydrationWarning
+              />
+
+              {blog.tags && blog.tags.length > 0 && (
+                <div className="mt-10 pt-6 border-t border-gray-100 flex flex-wrap items-center gap-2">
+                  <span className="text-sm font-bold text-gray-500 mr-2 flex items-center gap-1.5">
+                    <Icon name="tag" size={14} /> Tags:
+                  </span>
+                  {blog.tags.map((tag: string, index: number) => (
+                    <span
+                      key={index}
+                      className="text-xs font-semibold bg-gray-100 text-gray-700 px-3 py-1.5 rounded-full hover:bg-[#EF7C00]/10 hover:text-[#EF7C00] transition-colors"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </article>
 
             {/* Comments Section */}
@@ -357,27 +366,30 @@ const BlogDetails = ({ slug }: { slug: string }) => {
                 </h4>
               </div>
               <div className="flex flex-col gap-6">
-                {recentBlogs.map((recentPost) => (
-                  <div key={recentPost._id} className="flex items-center gap-4 group">
-                    <div className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
-                      <AppImage
-                        variant={ImageVariant.THUMBNAIL}
-                        src={getOptimizedImage(recentPost.featuredImage || `${IMAGEKIT_URL_ENDPOINT}/assets/img/blogs/BlogsPage.webp`, 150)}
-                        alt={recentPost.title}
-                        imageClassName="group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </div>
-                    <div className="flex flex-col justify-center">
-                      <span className="text-xs font-bold text-[#EF7C00] uppercase tracking-wider mb-1 flex items-center gap-1">
-                        <Icon name="calendar" size={12} />
-                        {new Date(recentPost.publishedAt || recentPost.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
-                      </span>
-                      <Link href={`/blogs/${recentPost.slug}`} className="text-gray-900 font-bold leading-snug hover:text-[#EF7C00] transition-colors line-clamp-2">
-                        {recentPost.title}
+                {recentBlogs.map((recentPost) => {
+                  const postSlug = recentPost.seo?.slug || recentPost.slug || recentPost._id;
+                  return (
+                    <div key={recentPost._id} className="flex items-center gap-4 group">
+                      <Link href={`/blogs/${postSlug}`} className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0 block">
+                        <AppImage
+                          variant={ImageVariant.THUMBNAIL}
+                          src={getOptimizedImage(recentPost.featuredImage || `${IMAGEKIT_URL_ENDPOINT}/assets/img/blogs/BlogsPage.webp`, 150)}
+                          alt={recentPost.title}
+                          imageClassName="group-hover:scale-110 transition-transform duration-500"
+                        />
                       </Link>
+                      <div className="flex flex-col justify-center">
+                        <span className="text-xs font-bold text-[#EF7C00] uppercase tracking-wider mb-1 flex items-center gap-1">
+                          <Icon name="calendar" size={12} />
+                          {new Date(recentPost.publishedAt || recentPost.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+                        </span>
+                        <Link href={`/blogs/${postSlug}`} className="text-gray-900 font-bold leading-snug hover:text-[#EF7C00] transition-colors line-clamp-2">
+                          {recentPost.title}
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 

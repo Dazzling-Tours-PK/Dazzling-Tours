@@ -3,7 +3,6 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import connectDB from "@/lib/mongodb";
 import { Tour } from "@/models";
-import BreadCrumb from "../../../Components/Common/BreadCrumb";
 import TourDetails from "../../../Components/TourDetails/TourDetails";
 import { TourStatus, TestimonialStatus } from "@/lib/enums";
 
@@ -217,7 +216,6 @@ const TourDetailsPage = async ({
         }}
         id="tour-trip-schema"
       />
-      <BreadCrumb bgImg={tour.images?.[0]} Title={tour.title} />
       <TourDetails tour={tour} />
     </div>
   );

@@ -21,8 +21,8 @@ export interface AppImageProps extends Omit<ImageProps, "fill" | "width" | "heig
 const getVariantSizes = (variant: ImageVariant) => {
   switch (variant) {
     case ImageVariant.HERO:
-      // Spans the viewport.
-      return "100vw";
+      // Main content columns (e.g. 8-col of max-6xl): ~768px on desktop, 100vw on mobile.
+      return "(min-width: 1280px) 768px, (min-width: 1024px) 66vw, 100vw";
     case ImageVariant.CARD:
       // Grid cards: roughly a third on desktop, half on tablet, full on mobile.
       return "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";

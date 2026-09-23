@@ -93,23 +93,64 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
             }
 
             if (variant) {
-              const expected = IMAGE_DIMENSIONS[variant];
-              const isValidDimensions = await new Promise<boolean>((resolve) => {
+              const config = IMAGE_DIMENSIONS[variant];
+              const validationResult = await new Promise<{
+                valid: boolean;
+                reason?: string;
+                actualWidth?: number;
+                actualHeight?: number;
+              }>((resolve) => {
                 const img = new window.Image();
                 img.src = URL.createObjectURL(file);
                 img.onload = () => {
                   URL.revokeObjectURL(img.src);
-                  // Strict or aspect ratio match: width and height match exact expected dimensions
-                  resolve(img.width === expected.width && img.height === expected.height);
+                  const w = img.width;
+                  const h = img.height;
+
+                  // 1. Check minimum resolution so images stay sharp and high-quality
+                  if (w < config.minWidth || h < config.minHeight) {
+                    return resolve({
+                      valid: false,
+                      reason: `too small (${w}x${h}px). Minimum required is ${config.minWidth}x${config.minHeight}px`,
+                      actualWidth: w,
+                      actualHeight: h,
+                    });
+                  }
+
+                  // 2. Check maximum resolution to protect ImageKit storage and page performance
+                  if (w > config.maxWidth || h > config.maxHeight) {
+                    return resolve({
+                      valid: false,
+                      reason: `too large (${w}x${h}px). Maximum allowed is ${config.maxWidth}x${config.maxHeight}px`,
+                      actualWidth: w,
+                      actualHeight: h,
+                    });
+                  }
+
+                  // 3. Check aspect ratio consistency (within 6% tolerance to accommodate minor pixel differences)
+                  const actualRatio = w / h;
+                  const targetRatio = config.aspectRatio;
+                  const ratioDiff = Math.abs(actualRatio - targetRatio) / targetRatio;
+
+                  if (ratioDiff > 0.06) {
+                    return resolve({
+                      valid: false,
+                      reason: `has an incorrect aspect ratio (${w}x${h}px). Please provide a ${config.ratioLabel} ratio image`,
+                      actualWidth: w,
+                      actualHeight: h,
+                    });
+                  }
+
+                  resolve({ valid: true, actualWidth: w, actualHeight: h });
                 };
                 img.onerror = () => {
                   URL.revokeObjectURL(img.src);
-                  resolve(false);
+                  resolve({ valid: false, reason: "is not a valid image file" });
                 };
               });
 
-              if (!isValidDimensions) {
-                const msg = `"${file.name}" does not match required dimensions of ${expected.width}x${expected.height}px.`;
+              if (!validationResult.valid) {
+                const msg = `"${file.name}" ${validationResult.reason}.`;
                 setInlineError(msg);
                 showError(msg);
                 continue;
@@ -312,7 +353,7 @@ const ImageUpload: React.FC<ImageUploadProps> = React.memo(
 
             {variant && (
               <span className="inline-block text-[11px] font-semibold bg-amber-50 text-[#EF7C00] border border-amber-200 px-2.5 py-0.5 rounded-full">
-                Required Dimensions: {IMAGE_DIMENSIONS[variant].label}
+                Required Format: {IMAGE_DIMENSIONS[variant].label}
               </span>
             )}
           </div>

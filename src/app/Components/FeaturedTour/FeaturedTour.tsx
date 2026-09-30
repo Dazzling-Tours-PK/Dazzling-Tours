@@ -107,13 +107,13 @@ const FeaturedTour = () => {
                   className="pl-4 basis-full sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
                 >
                   <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full border border-gray-100 relative group">
-                    <div className="relative h-60 overflow-hidden">
+                    <div className="relative aspect-video w-full overflow-hidden">
                       <IKImage
                         src={tour.images[0]}
                         alt={tour.title}
-                        width={308}
-                        height={249}
-                        transformation={[{ width: 600, height: 500 }]}
+                        width={480}
+                        height={270}
+                        transformation={[{ width: 720, height: 405 }]}
                         className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
                       />
                       <div className="absolute bottom-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-gray-700 flex items-center gap-1">

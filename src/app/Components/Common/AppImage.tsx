@@ -40,7 +40,7 @@ const getVariantClasses = (variant: ImageVariant) => {
     case ImageVariant.HERO:
       return "aspect-video md:aspect-[21/9]"; // Flexible hero, defaults to 16:9 on mobile, wider on desktop
     case ImageVariant.CARD:
-      return "aspect-[4/3]";
+      return "aspect-video";
     case ImageVariant.THUMBNAIL:
       return "aspect-square";
     case ImageVariant.AVATAR:

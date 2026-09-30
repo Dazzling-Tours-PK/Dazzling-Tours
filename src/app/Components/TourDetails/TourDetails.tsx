@@ -323,13 +323,14 @@ const TourDetails = ({ tour }: TourDetailsProps) => {
             ) : (
               // 1 Photo (Single Hero)
               <div
-                className="relative h-[320px] sm:h-[400px] lg:h-[460px] w-full overflow-hidden cursor-pointer group"
+                className="relative aspect-video w-full overflow-hidden cursor-pointer group"
                 onClick={() => handleOpenLightbox(0)}
               >
                 <AppImage
                   variant={ImageVariant.HERO}
                   src={tour.images?.[0] || `${IMAGEKIT_URL_ENDPOINT}/assets/img/hero/hero1.webp`}
                   alt={tour.title}
+                  containerClassName="h-full aspect-video"
                   imageClassName="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                   priority
                 />

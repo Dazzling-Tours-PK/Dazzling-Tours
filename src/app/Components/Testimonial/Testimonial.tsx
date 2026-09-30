@@ -72,7 +72,7 @@ const Testimonial = () => {
     <Section className="bg-gray-50 py-24 relative overflow-hidden">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          
+
           {/* Left Side - Image */}
           <div className="lg:col-span-5 relative group">
             <div className="absolute inset-0 bg-gradient-to-tr from-[#EF7C00]/20 to-transparent rounded-[2rem] transform rotate-3 scale-105 transition-transform duration-500 group-hover:rotate-6"></div>
@@ -121,11 +121,11 @@ const Testimonial = () => {
                             {testimonial.rating.toFixed(1)} / 5.0
                           </span>
                         </div>
-                        
+
                         <p className="text-xl md:text-2xl text-gray-700 leading-relaxed italic mb-8 font-serif">
                           &ldquo;{testimonial.content}&rdquo;
                         </p>
-                        
+
                         <div className="flex flex-col border-t border-gray-100 pt-6">
                           <h6 className="text-lg font-bold text-gray-900">{testimonial.name}</h6>
                           <div className="flex items-center justify-between mt-1 text-sm text-gray-500">
@@ -142,7 +142,7 @@ const Testimonial = () => {
                   ))}
                 </CarouselContent>
               </Carousel>
-              
+
               {/* Custom Navigation */}
               <div className="flex items-center gap-4 mt-8">
                 <button
@@ -159,15 +159,14 @@ const Testimonial = () => {
                 >
                   <ArrowRight className="w-5 h-5" />
                 </button>
-                
+
                 <div className="flex gap-1.5 ml-4">
                   {testimonials.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => api?.scrollTo(index)}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        currentSlide === index ? "w-6 bg-[#EF7C00]" : "bg-gray-300 hover:bg-gray-400"
-                      }`}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === index ? "w-6 bg-[#EF7C00]" : "bg-gray-300 hover:bg-gray-400"
+                        }`}
                       aria-label={`Go to slide ${index + 1}`}
                     />
                   ))}

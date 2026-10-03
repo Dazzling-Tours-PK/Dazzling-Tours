@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dazzling Tours — Image Specification & Handover Guide</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+      background: #f8fafc;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 48px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+    h1 {
+      color: #ea580c;
+      margin-top: 0;
+      font-size: 28px;
+      border-bottom: 2px solid #fed7aa;
+      padding-bottom: 16px;
+    }
+    h2 {
+      margin-top: 36px;
+      color: #0f172a;
+      font-size: 22px;
+    }
+    p {
+      color: #475569;
+      font-size: 15px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0 40px;
+      font-size: 14px;
+    }
+    th, td {
+      border: 1px solid #e2e8f0;
+      padding: 12px 14px;
+      text-align: left;
+    }
+    th {
+      background: #fff7ed;
+      color: #9a3412;
+      font-weight: 700;
+    }
+    tr:nth-child(even) {
+      background: #f8fafc;
+    }
+    .card {
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 32px;
+      background: #fbfcfe;
+    }
+    .card h3 {
+      margin: 0 0 14px 0;
+      color: #0f172a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 18px;
+    }
+    .badge {
+      background: #ea580c;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    .meta-item {
+      background: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+    .meta-item strong {
+      color: #64748b;
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+    .img-box {
+      background: #0f172a;
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .img-box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    .guidelines {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 32px;
+    }
+    .guidelines h4 {
+      margin-top: 0;
+      color: #166534;
+    }
+    .guidelines ul {
+      margin: 0;
+      padding-left: 20px;
+      color: #15803d;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Dazzling Tours — Website Image Specification Document</h1>
+    <p>This document is prepared for designers. It contains the exact live uploaded dimensions, display aspect ratios, recommended canvas sizes, and visual reference screenshots of every static primary image on the website (excluding dynamic tour/blog uploads).</p>
+
+    <h2>Master Summary Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Section / Placement</th>
+          <th>Recommended Designer Size</th>
+          <th>Aspect Ratio</th>
+          <th>Current Live Dimensions</th>
+          <th>File Path / Key</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><strong>Landing Hero Banner</strong></td>
+          <td><strong>1920 &times; 1080 px</strong></td>
+          <td>16:9</td>
+          <td>1369 &times; 768 px</td>
+          <td><code>/assets/img/hero/hero2.webp</code></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>Tours Page Header</strong></td>
+          <td><strong>1920 &times; 600 px</strong></td>
+          <td>16:5 (~3.2:1)</td>
+          <td>6000 &times; 1281 px</td>
+          <td><code>/assets/img/tours/tourspage.png</code></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>About Us Page Header</strong></td>
+          <td><strong>1920 &times; 600 px</strong></td>
+          <td>16:5 (~3.2:1)</td>
+          <td>6000 &times; 1281 px</td>
+          <td><code>/assets/img/breadcrumb/aboutpage.png</code></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>Contact Page Header</strong></td>
+          <td><strong>1920 &times; 600 px</strong></td>
+          <td>16:5 (~3.2:1)</td>
+          <td>6000 &times; 1281 px</td>
+          <td><code>/assets/img/contact/ContactUs.png</code></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>Blogs Page Header</strong></td>
+          <td><strong>1920 &times; 600 px</strong></td>
+          <td>16:5 (~3.2:1)</td>
+          <td>1240 &times; 826 px</td>
+          <td><code>/assets/img/blogs/BlogsPage.webp</code></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><strong>About Section: Main Center</strong></td>
+          <td><strong>800 &times; 800 px</strong></td>
+          <td>1:1 (Square)</td>
+          <td>1240 &times; 826 px</td>
+          <td><code>/assets/img/about/about1.webp</code></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><strong>About Section: Bottom Badge</strong></td>
+          <td><strong>500 &times; 500 px</strong></td>
+          <td>1:1 (Square)</td>
+          <td>1240 &times; 826 px</td>
+          <td><code>/assets/img/about/about2.webp</code></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><strong>About Section: Top Badge</strong></td>
+          <td><strong>500 &times; 500 px</strong></td>
+          <td>1:1 (Square)</td>
+          <td>1240 &times; 826 px</td>
+          <td><code>/assets/img/about/about3.webp</code></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><strong>Why Choose Us Showcase</strong></td>
+          <td><strong>800 &times; 1000 px</strong></td>
+          <td>4:5 (Portrait)</td>
+          <td>718 &times; 898 px</td>
+          <td><code>/assets/img/choose/Choose1.webp</code></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><strong>CTA Video Section Background</strong></td>
+          <td><strong>1920 &times; 800 px</strong></td>
+          <td>12:5 (~2.4:1)</td>
+          <td>5472 &times; 3648 px</td>
+          <td><code>/assets/img/cta/mountain-trip-family.jpg</code></td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td><strong>Brand Logo (Black & White)</strong></td>
+          <td><strong>500 &times; 400 px / SVG</strong></td>
+          <td>1.24:1</td>
+          <td>4546 &times; 3654 px</td>
+          <td><code>/assets/img/logo-dazzling/Logo_Black.png</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Visual Reference & Specifications</h2>
+
+    <!-- 1. Hero -->
+    <div class="card">
+      <h3>1. Landing Page Hero Banner <span class="badge">1920 &times; 1080 px</span></h3>
+      <div class="meta">
+        <div class="meta-item"><strong>Target Canvas</strong>1920 &times; 1080 px (16:9)</div>
+        <div class="meta-item"><strong>Live Dimensions</strong>1369 &times; 768 px</div>
+        <div class="meta-item"><strong>Live Path</strong>/assets/img/hero/hero2.webp</div>
+        <div class="meta-item"><strong>CSS Behavior</strong>min-h-[90vh], background-cover, centered</div>
+      </div>
+      <div class="img-box">
+        <img src="../previews/landing_hero.jpg" alt="Landing Hero" />
+      </div>
+    </div>
+
+    <!-- 2. Tours Header -->
+    <div class="card">
+      <h3>2. Tours Page Header Banner <span class="badge">1920 &times; 600 px</span></h3>
+      <div class="meta">
+        <div class="meta-item"><strong>Target Canvas</strong>1920 &times; 600 px (16:5 ~3.2:1)</div>
+        <div class="meta-item"><strong>Live Dimensions</strong>6000 &times; 1281 px</div>
+        <div class="meta-item"><strong>Live Path</strong>/assets/img/tours/tourspage.png</div>
+        <div class="meta-item"><strong>CSS Behavior</strong>min-h-[460px] desktop, 380px mobile</div>
+      </div>
+      <div class="img-box">
+        <img src="../previews/tours_header.jpg" alt="Tours Header" />
+      </div>
+    </div>
+
+    <!-- 3. About Header -->
+    <div class="card">
+      <h3>3. About Us Page Header Banner <span class="badge">1920 &times; 600 px</span></h3>
+      <div class="meta">
+        <div class="meta-item"><strong>Target Canvas</strong>1920 &times; 600 px (16:5)</div>
+        <div class="meta-item"><strong>Live Dimensions</strong>6000 &times; 1281 px</div>
+        <div class="meta-item"><strong>Live Path</strong>/assets/img/breadcrumb/aboutpage.png</div>
+      </div>
+      <div class="img-box">
+        <img src="../previews/about_header.jpg" alt="About Header" />
+      </div>
+    </div>
+
+    <!-- 4. Contact Header -->
+    <div class="card">
+      <h3>4. Contact Us Page Header Banner <span class="badge">1920 &times; 600 px</span></h3>
+      <div class="meta">
+        <div class="meta-item"><strong>Target Canvas</strong>1920 &times; 600 px (16:5)</div>
+        <div class="meta-item"><strong>Live Dimensions</strong>6000 &times; 1281 px</div>
+        <div class="meta-item"><strong>Live Path</strong>/assets/img/contact/ContactUs.png</div>
+      </div>
+      <div class="img-box">
+        <img src="../previews/contact_header.jpg" alt="Contact Header" />
+      </div>
+    </div>
+
+    <!-- 5. Blogs Header -->
+    <div class="card">
+      <h3>5. Blogs Page Header Banner <span class="badge">1920 &times; 600 px</span></h3>
+      <div class="meta">
+        <div class="meta-item"><strong>Target Canvas</strong>1920 &times; 600 px (16:5)</div>
+        <div class="meta-item"><strong>Live Dimensions</strong>1240 &times; 826 px</div>
+        <div class="meta-item"><strong>Live Path</strong>/assets/img/blogs/BlogsPage.webp</div>
+      </div>
+      <div class="img-box">
+        <img src="../previews/blogs_header.jpg" alt="Blogs Header" />
+      </div>
+    </div>
+
+    <!-- 6. About Center -->
+    <div class="card">
+      <h3>6. Homepage About Us (Main Center Photo) <span class="badge">800 &times; 800 px</span></h3>
+      <div class="meta">
+        <div class="meta-item"><strong>Target Canvas</strong>800 &times; 800 px (1:1 Square)</div>
+        <div class="meta-item"><strong>Live Dimensions</strong>1240 &times; 826 px (Cropped to square)</div>
+        <div class="meta-item"><strong>Live Path</strong>/assets/img/about/about1.webp</div>
+        <div class="meta-item"><strong>CSS Behavior</strong>aspect-square max-w-[400px], rounded-3xl</div>
+      </div>
+      <div class="img-box" style="background: #f1f5f9;">
+        <img src="../previews/about_main.jpg" alt="About Main" style="max-height: 400px;" />
+      </div>
+    </div>
+
+    <!-- 7. About Bottom Badge -->
+    <div class="card">
+      <h3>7. Homepage About Us (Bottom-Right Badge) <span class="badge">500 &times; 500 px</span></h3>
+      <div class="meta">
+        <div class="meta-item"><strong>Target Canvas</strong>500 &times; 500 px (1:1 Square)</div>
+        <div class="meta-item"><strong>Live Dimensions</strong>1240 &times; 826 px</div>
+        <div class="meta-item"><strong>Live Path</strong>/assets/img/about/about2.webp</div>
+        <div class="meta-item"><strong>CSS Behavior</strong>176x176px box, rounded-2xl, +2deg rotation</div>
+      </div>
+      <div class="img-box" style="background: #f1f5f9;">
+        <img src="../previews/about_badge_bottom.jpg" alt="About Badge Bottom" style="max-height: 350px;" />
+      </div>
+    </div>
+
+    <!-- 8. About Top Badge -->
+    <div class="card">
+      <h3>8. Homepage About Us (Top-Left Badge) <span class="badge">500 &times; 500 px</span></h3>
+      <div class="meta">
+        <div class="meta-item"><strong>Target Canvas</strong>500 &times; 500 px (1:1 Square)</div>
+        <div class="meta-item"><strong>Live Dimensions</strong>1240 &times; 826 px</div>
+        <div class="meta-item"><strong>Live Path</strong>/assets/img/about/about3.webp</div>
+        <div class="meta-item"><strong>CSS Behavior</strong>208x208px box, rounded-2xl, -6deg rotation</div>
+      </div>
+      <div class="img-box" style="background: #f1f5f9;">
+        <img src="../previews/about_badge_top.jpg" alt="About Badge Top" style="max-height: 350px;" />
+      </div>
+    </div>
+
+    <!-- 9. Why Choose Us -->
+    <div class="card">
+      <h3>9. Homepage "Why Choose Us" Showcase <span class="badge">800 &times; 1000 px</span></h3>
+      <div class="meta">
+        <div class="meta-item"><strong>Target Canvas</strong>800 &times; 1000 px (4:5 Vertical)</div>
+        <div class="meta-item"><strong>Live Dimensions</strong>718 &times; 898 px</div>
+        <div class="meta-item"><strong>Live Path</strong>/assets/img/choose/Choose1.webp</div>
+        <div class="meta-item"><strong>CSS Behavior</strong>min-h-[400px], rounded-3xl, shadow-2xl</div>
+      </div>
+      <div class="img-box" style="background: #f1f5f9;">
+        <img src="../previews/choose_side.jpg" alt="Choose Side" style="max-height: 480px;" />
+      </div>
+    </div>
+
+    <!-- 10. CTA Video Background -->
+    <div class="card">
+      <h3>10. Homepage CTA & Video Section Background <span class="badge">1920 &times; 800 px</span></h3>
+      <div class="meta">
+        <div class="meta-item"><strong>Target Canvas</strong>1920 &times; 800 px (12:5 Landscape)</div>
+        <div class="meta-item"><strong>Live Dimensions</strong>5472 &times; 3648 px</div>
+        <div class="meta-item"><strong>Live Path</strong>/assets/img/cta/mountain-trip-family.jpg</div>
+        <div class="meta-item"><strong>CSS Behavior</strong>py-24, bg-cover, bg-black/60 dark overlay</div>
+      </div>
+      <div class="img-box">
+        <img src="../previews/cta_video_bg.jpg" alt="CTA Video Background" />
+      </div>
+    </div>
+
+    <!-- 11. Brand Logo -->
+    <div class="card">
+      <h3>11. Brand Logo <span class="badge">500 &times; 400 px / SVG</span></h3>
+      <div class="meta">
+        <div class="meta-item"><strong>Target Canvas</strong>500 &times; 400 px (or vector SVG)</div>
+        <div class="meta-item"><strong>Live Dimensions</strong>4546 &times; 3654 px</div>
+        <div class="meta-item"><strong>Live Path</strong>/assets/img/logo-dazzling/Logo_Black.png & Logo_White.png</div>
+        <div class="meta-item"><strong>Format</strong>Transparent PNG or SVG</div>
+      </div>
+      <div class="img-box" style="background: #f8fafc;">
+        <img src="../previews/logo_black.jpg" alt="Logo" style="max-height: 250px;" />
+      </div>
+    </div>
+
+    <div class="guidelines">
+      <h4>📌 Designer Handover Notes</h4>
+      <ul>
+        <li><strong>Recommended Format:</strong> WebP (quality 80–85%) for best loading speed, or standard high-res JPEG.</li>
+        <li><strong>Logos:</strong> Deliver transparent PNG and/or vector SVG.</li>
+        <li><strong>File Size Target:</strong> Keep page headers & hero under 300 KB each. Keep square collage images under 120 KB each.</li>
+        <li><strong>Direct Replacement:</strong> If uploaded using the exact paths/filenames listed above, the website will update immediately without code changes.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
